@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  MrS-Cool
+
+  Created by wecancity on 16/10/2023.
+  
+*/
+
+"Hello, World!" = "Hello, World!";
+"sign_in" = "sign in";
+"Don't have an account ?" = "Don't have an account ?";
+"Forget password ?" = "Forget password ?";
+"Remember me" = "Remember me";
+
+//MARK: -- signUp --
+"sign_up" = "sign Up";
+"Accept the Terms and Privacy Policy" = "Accept the Terms and Privacy Policy";
+"Already have an account ?" = "Already have an account ?";
+
+//MARK: --- keyboard --
+"Done" = "Done";
+
+//MARK: -- error --
+"noConnection" = "You are offline";
+"tokenExpired" = "you have to login again";
