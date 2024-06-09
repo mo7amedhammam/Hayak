@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		607C994D261D5597E259E23B /* Pods_Hayak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA111EA2737130E40EB7435 /* Pods_Hayak.framework */; };
 		C8986CD62C15B9FE0091789F /* HayakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CD52C15B9FE0091789F /* HayakApp.swift */; };
 		C8986CD82C15B9FE0091789F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CD72C15B9FE0091789F /* ContentView.swift */; };
 		C8986CDA2C15BA010091789F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8986CD92C15BA010091789F /* Assets.xcassets */; };
@@ -14,11 +15,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		173BBBE9262B99256111750E /* Pods-Hayak.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hayak.debug.xcconfig"; path = "Target Support Files/Pods-Hayak/Pods-Hayak.debug.xcconfig"; sourceTree = "<group>"; };
 		C8986CD22C15B9FE0091789F /* Hayak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hayak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8986CD52C15B9FE0091789F /* HayakApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HayakApp.swift; sourceTree = "<group>"; };
 		C8986CD72C15B9FE0091789F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C8986CD92C15BA010091789F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8986CDC2C15BA010091789F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CEF99719986644E790259E06 /* Pods-Hayak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hayak.release.xcconfig"; path = "Target Support Files/Pods-Hayak/Pods-Hayak.release.xcconfig"; sourceTree = "<group>"; };
+		EFA111EA2737130E40EB7435 /* Pods_Hayak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hayak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,17 +30,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				607C994D261D5597E259E23B /* Pods_Hayak.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A4E21CBB39BCF52BF40C1B2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				173BBBE9262B99256111750E /* Pods-Hayak.debug.xcconfig */,
+				CEF99719986644E790259E06 /* Pods-Hayak.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		C8986CC92C15B9FE0091789F = {
 			isa = PBXGroup;
 			children = (
 				C8986CD42C15B9FE0091789F /* Hayak */,
 				C8986CD32C15B9FE0091789F /* Products */,
+				9A4E21CBB39BCF52BF40C1B2 /* Pods */,
+				D7C1FE29B1773C7CAAFDB47C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +84,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		D7C1FE29B1773C7CAAFDB47C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EFA111EA2737130E40EB7435 /* Pods_Hayak.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C8986CE02C15BA010091789F /* Build configuration list for PBXNativeTarget "Hayak" */;
 			buildPhases = (
+				0CC9D1D05E95260A457DB0A2 /* [CP] Check Pods Manifest.lock */,
 				C8986CCE2C15B9FE0091789F /* Sources */,
 				C8986CCF2C15B9FE0091789F /* Frameworks */,
 				C8986CD02C15B9FE0091789F /* Resources */,
+				E99EE9A089FBA042595698C2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,6 +158,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0CC9D1D05E95260A457DB0A2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Hayak-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E99EE9A089FBA042595698C2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Hayak/Pods-Hayak-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Hayak/Pods-Hayak-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hayak/Pods-Hayak-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C8986CCE2C15B9FE0091789F /* Sources */ = {
@@ -266,6 +335,7 @@
 		};
 		C8986CE12C15BA010091789F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 173BBBE9262B99256111750E /* Pods-Hayak.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -295,6 +365,7 @@
 		};
 		C8986CE22C15BA010091789F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEF99719986644E790259E06 /* Pods-Hayak.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
