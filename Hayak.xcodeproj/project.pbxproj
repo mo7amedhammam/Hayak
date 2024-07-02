@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19091AEE2C3489D5002B2EC6 /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19091AED2C3489D5002B2EC6 /* OnBoardingScreen.swift */; };
+		19091AF42C348DFC002B2EC6 /* LamaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AEF2C348DFA002B2EC6 /* LamaSans-Bold.ttf */; };
+		19091AF52C348DFC002B2EC6 /* LamaSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF02C348DFB002B2EC6 /* LamaSans-Regular.ttf */; };
+		19091AF62C348DFC002B2EC6 /* LamaSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF12C348DFB002B2EC6 /* LamaSans-SemiBold.ttf */; };
+		19091AF72C348DFC002B2EC6 /* LamaSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF22C348DFB002B2EC6 /* LamaSans-Medium.ttf */; };
+		19091AF82C348DFC002B2EC6 /* LamaSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF32C348DFC002B2EC6 /* LamaSans-Light.ttf */; };
 		607C994D261D5597E259E23B /* Pods_Hayak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA111EA2737130E40EB7435 /* Pods_Hayak.framework */; };
 		C8986CD62C15B9FE0091789F /* HayakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CD52C15B9FE0091789F /* HayakApp.swift */; };
 		C8986CD82C15B9FE0091789F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CD72C15B9FE0091789F /* ContentView.swift */; };
@@ -27,16 +33,18 @@
 		C8986D192C15C3A00091789F /* LocalizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D042C15C3A00091789F /* LocalizationService.swift */; };
 		C8986D1A2C15C3A00091789F /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D062C15C3A00091789F /* ColorConstants.swift */; };
 		C8986D1B2C15C3A00091789F /* FontsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D082C15C3A00091789F /* FontsExtension.swift */; };
-		C8986D1C2C15C3A00091789F /* InterMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C8986D092C15C3A00091789F /* InterMedium.ttf */; };
-		C8986D1D2C15C3A00091789F /* RobotoRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C8986D0A2C15C3A00091789F /* RobotoRegular.ttf */; };
-		C8986D1E2C15C3A00091789F /* SoraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C8986D0B2C15C3A00091789F /* SoraBold.ttf */; };
-		C8986D1F2C15C3A00091789F /* SoraRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C8986D0C2C15C3A00091789F /* SoraRegular.ttf */; };
-		C8986D202C15C3A00091789F /* SoraSemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C8986D0D2C15C3A00091789F /* SoraSemiBold.ttf */; };
 		C8986D212C15C3A00091789F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D102C15C3A00091789F /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		173BBBE9262B99256111750E /* Pods-Hayak.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hayak.debug.xcconfig"; path = "Target Support Files/Pods-Hayak/Pods-Hayak.debug.xcconfig"; sourceTree = "<group>"; };
+		19091AED2C3489D5002B2EC6 /* OnBoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreen.swift; sourceTree = "<group>"; };
+		19091AEF2C348DFA002B2EC6 /* LamaSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LamaSans-Bold.ttf"; sourceTree = "<group>"; };
+		19091AF02C348DFB002B2EC6 /* LamaSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LamaSans-Regular.ttf"; sourceTree = "<group>"; };
+		19091AF12C348DFB002B2EC6 /* LamaSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LamaSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		19091AF22C348DFB002B2EC6 /* LamaSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LamaSans-Medium.ttf"; sourceTree = "<group>"; };
+		19091AF32C348DFC002B2EC6 /* LamaSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LamaSans-Light.ttf"; sourceTree = "<group>"; };
+		19091AF92C348E84002B2EC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C8986CD22C15B9FE0091789F /* Hayak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hayak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8986CD52C15B9FE0091789F /* HayakApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HayakApp.swift; sourceTree = "<group>"; };
 		C8986CD72C15B9FE0091789F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,11 +65,6 @@
 		C8986D042C15C3A00091789F /* LocalizationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationService.swift; sourceTree = "<group>"; };
 		C8986D062C15C3A00091789F /* ColorConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
 		C8986D082C15C3A00091789F /* FontsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontsExtension.swift; sourceTree = "<group>"; };
-		C8986D092C15C3A00091789F /* InterMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = InterMedium.ttf; sourceTree = "<group>"; };
-		C8986D0A2C15C3A00091789F /* RobotoRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RobotoRegular.ttf; sourceTree = "<group>"; };
-		C8986D0B2C15C3A00091789F /* SoraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SoraBold.ttf; sourceTree = "<group>"; };
-		C8986D0C2C15C3A00091789F /* SoraRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SoraRegular.ttf; sourceTree = "<group>"; };
-		C8986D0D2C15C3A00091789F /* SoraSemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SoraSemiBold.ttf; sourceTree = "<group>"; };
 		C8986D102C15C3A00091789F /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		CEF99719986644E790259E06 /* Pods-Hayak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hayak.release.xcconfig"; path = "Target Support Files/Pods-Hayak/Pods-Hayak.release.xcconfig"; sourceTree = "<group>"; };
 		EFA111EA2737130E40EB7435 /* Pods_Hayak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hayak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +82,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19091AEC2C3480EB002B2EC6 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				19091AED2C3489D5002B2EC6 /* OnBoardingScreen.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
 		9A4E21CBB39BCF52BF40C1B2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +120,7 @@
 		C8986CD42C15B9FE0091789F /* Hayak */ = {
 			isa = PBXGroup;
 			children = (
+				19091AF92C348E84002B2EC6 /* Info.plist */,
 				C8986CE32C15BFF50091789F /* AppMain */,
 				C8986CE42C15C0020091789F /* AppModules */,
 				C8986CDB2C15BA010091789F /* Preview Content */,
@@ -237,12 +249,12 @@
 		C8986D0E2C15C3A00091789F /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				19091AEF2C348DFA002B2EC6 /* LamaSans-Bold.ttf */,
+				19091AF32C348DFC002B2EC6 /* LamaSans-Light.ttf */,
+				19091AF22C348DFB002B2EC6 /* LamaSans-Medium.ttf */,
+				19091AF02C348DFB002B2EC6 /* LamaSans-Regular.ttf */,
+				19091AF12C348DFB002B2EC6 /* LamaSans-SemiBold.ttf */,
 				C8986D082C15C3A00091789F /* FontsExtension.swift */,
-				C8986D092C15C3A00091789F /* InterMedium.ttf */,
-				C8986D0A2C15C3A00091789F /* RobotoRegular.ttf */,
-				C8986D0B2C15C3A00091789F /* SoraBold.ttf */,
-				C8986D0C2C15C3A00091789F /* SoraRegular.ttf */,
-				C8986D0D2C15C3A00091789F /* SoraSemiBold.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -270,6 +282,7 @@
 		C8986D222C15C3A50091789F /* AppViews */ = {
 			isa = PBXGroup;
 			children = (
+				19091AEC2C3480EB002B2EC6 /* OnBoarding */,
 			);
 			path = AppViews;
 			sourceTree = "<group>";
@@ -343,14 +356,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19091AF62C348DFC002B2EC6 /* LamaSans-SemiBold.ttf in Resources */,
 				C8986CDD2C15BA010091789F /* Preview Assets.xcassets in Resources */,
+				19091AF52C348DFC002B2EC6 /* LamaSans-Regular.ttf in Resources */,
 				C8986D182C15C3A00091789F /* Localizable.strings in Resources */,
-				C8986D1F2C15C3A00091789F /* SoraRegular.ttf in Resources */,
-				C8986D1E2C15C3A00091789F /* SoraBold.ttf in Resources */,
-				C8986D1C2C15C3A00091789F /* InterMedium.ttf in Resources */,
-				C8986D202C15C3A00091789F /* SoraSemiBold.ttf in Resources */,
+				19091AF82C348DFC002B2EC6 /* LamaSans-Light.ttf in Resources */,
 				C8986D172C15C3A00091789F /* Localizable.strings in Resources */,
-				C8986D1D2C15C3A00091789F /* RobotoRegular.ttf in Resources */,
+				19091AF72C348DFC002B2EC6 /* LamaSans-Medium.ttf in Resources */,
+				19091AF42C348DFC002B2EC6 /* LamaSans-Bold.ttf in Resources */,
 				C8986CDA2C15BA010091789F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +427,7 @@
 				C8986D212C15C3A00091789F /* Helper.swift in Sources */,
 				C8986D152C15C3A00091789F /* ExViews.swift in Sources */,
 				C8986D122C15C3A00091789F /* Exdates.swift in Sources */,
+				19091AEE2C3489D5002B2EC6 /* OnBoardingScreen.swift in Sources */,
 				C8986CF42C15C27D0091789F /* Authintications.swift in Sources */,
 				C8986D1A2C15C3A00091789F /* ColorConstants.swift in Sources */,
 				C8986D192C15C3A00091789F /* LocalizationService.swift in Sources */,
@@ -576,6 +590,7 @@
 				DEVELOPMENT_TEAM = 23H4SBD5QL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hayak/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -611,6 +626,7 @@
 				DEVELOPMENT_TEAM = 23H4SBD5QL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hayak/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
