@@ -28,82 +28,112 @@ private let onBoardingStepsArr = [
 struct OnBoardingScreen: View {
        
     @State private var CurrentState = 0
+    @State private var isActive = false
+
+    init() {
+        UIScrollView.appearance().bounces = false
+    }
+    
     
     var body: some View {
-
+        
         ZStack(alignment : .bottom) {
             Color(UIColor(named: "bg")!).ignoresSafeArea()
-            //(UIColor(named: "bg")!)
-            TabView(selection : $CurrentState) {
-                
-                  ForEach(0..<onBoardingStepsArr.count) { index  in
-                      
-                      VStack {
-                          Spacer()
-                          Spacer()
-                          Image(onBoardingStepsArr[index].image)
-                              .frame(width: 340 , height: 290)
+                .navigationBarBackButtonHidden(true)
+            
+        TabView(selection : $CurrentState) {
+           
+                //(UIColor(named: "bg")!)
+                ForEach(0..<onBoardingStepsArr.count) { index  in
+                    
+                    VStack {
+                        Spacer()
+                        Spacer()
+                        Image(onBoardingStepsArr[index].image)
+                            .frame(width: 340 , height: 290)
+                        
+                        Spacer()
+                        ZStack (alignment : .center)  {
+                            Color.clear.ignoresSafeArea()
+                            Image("imgbg")
+                                .resizable()
+                                .ignoresSafeArea()
+                            
+                            VStack (spacing : 10){
+                                
+                                Text(onBoardingStepsArr[index].title)
+                                    .font(.custom("LamaSans-Bold", size: 18))
+                                    .foregroundColor(.white)
+                                    .padding(.top , 20)
+                                
+                                VStack {
+                                    Text(onBoardingStepsArr[index].des1)
+                                        .font(.custom("LamaSans-Medium", size: 13))
+                                        .foregroundColor(.white)
+                                        .frame(height: 16)
+                                    Text(onBoardingStepsArr[index].des2)
+                                        .font(.custom("LamaSans-Medium", size: 13))
+                                        .foregroundColor(.white)
+                                        .frame(height: 16)
+                                    
+                                    Text(onBoardingStepsArr[index].des3)
+                                        .font(.custom("LamaSans-Medium", size: 13))
+                                        .foregroundColor(.white)
+                                        .frame(height: 16)
+                                }
+                                .padding(.top , 20)
+                                
+                                
+                                Button(action: {
+                                    // get started login
+                                    self.isActive = true
+                                }, label: {
+                                    Text("Get Started")
+                                        .frame(height: 50) // Set the height here
+                                        .frame(maxWidth: .infinity)
+                                        .font(.custom("LamaSans-Medium", size: 14))
+                                        .foregroundColor(Color("main")).background(Color("bg"))
+                                        .cornerRadius(20)
+                                        .padding(.top , 10)
+                                })
+                                
+                                NavigationLink(
+                                    destination: WellcomeLoginScreen().navigationBarBackButtonHidden(true),
+                                    isActive: $isActive,
+                                    label: {
+                                        EmptyView()
+                                    }
+                                )
+                                
+                    
+                                HStack {
+                                    ForEach(0..<onBoardingStepsArr.count) { it in
+                                        if it == CurrentState {
+                                            Circle()
+                                                .frame(width: 12, height: 12)
+                                                .foregroundColor(Color("main3"))
+                                        } else {
+                                            Circle()
+                                                .frame(width: 12, height: 12)
+                                                .foregroundColor(Color("color-F1F2F6"))
+                                        }
+                                    }
+                                }
 
-                          Spacer()
-                          ZStack (alignment : .center)  {
-                              Color.clear.ignoresSafeArea()
-                              Image("imgbg")
-                                  .resizable()
-                                  .ignoresSafeArea()
-                              
-                              VStack (spacing : 5){
-                                 
-                                  Text(onBoardingStepsArr[index].title)
-                                      .font(.custom("LamaSans-Bold", size: 18))
-                                      .foregroundColor(.white)
-                                      .padding(.bottom , 20)
-                                  
-                                  Text(onBoardingStepsArr[index].des1)
-                                      .font(.custom("LamaSans-Medium", size: 13))
-                                      .foregroundColor(.white)
-                                      .frame(height: 16)
-                                  Text(onBoardingStepsArr[index].des2)
-                                      .font(.custom("LamaSans-Medium", size: 13))
-                                      .foregroundColor(.white)
-                                      .frame(height: 16)
+                                Spacer()
 
-                                  Text(onBoardingStepsArr[index].des3)
-                                      .font(.custom("LamaSans-Medium", size: 13))
-                                      .foregroundColor(.white)
-                                      .frame(height: 16)
-                                      .padding(.bottom , 50)
-                                  
-                                  
-                                  Button(action: {
-                                      
-                                  }, label: {
-                                      Text("Get Started")
-                                          .frame(height: 50) // Set the height here
-                                          .frame(maxWidth: .infinity)
-                                          .font(.custom("LamaSans-Medium", size: 14))
-                                          .foregroundColor(Color("main")).background(Color("bg"))
-                                          .cornerRadius(20)
-                                  })
-                                  
-                                  Spacer()
-
-                                  Image("slide")
-                                      .frame(width: 100, height: 20)
-
-                                  
-                              }
-                              .padding(16)
-                              
-                          }
-                          .padding(.horizontal , 1)
-                          .frame(height: 300)
-                      }
-                      .tag(index)
-                  }
+                            }
+                            .padding(16)
+                        }
+                        .padding(.horizontal , 1)
+                        .frame(height: 200)
+                    }
+                    .tag(index)
+                }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-
         }
+        .ignoresSafeArea()
 
     }
 }

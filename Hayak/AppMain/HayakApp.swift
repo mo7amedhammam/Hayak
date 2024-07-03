@@ -12,7 +12,6 @@ struct HayakApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-//            OnBoardingScreen()
         }
     }
 }

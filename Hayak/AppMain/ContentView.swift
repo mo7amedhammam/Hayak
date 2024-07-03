@@ -8,20 +8,42 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var isActive = false
+    
     var body: some View {
-       
-        ZStack {
-            Color.white.ignoresSafeArea()
+        
+        NavigationView {
+            ZStack {
+                Color.white.ignoresSafeArea()
+                
+                Image("splash")
+                    .resizable()
+                    .ignoresSafeArea()
+                
+                
+                NavigationLink(
+                    destination: OnBoardingScreen(),
+                    isActive: $isActive,
+                    label: {
+                        EmptyView()
+                    }
+                )
             
-            Image("splash")
-                .resizable()
-                .ignoresSafeArea()
+            .onAppear{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                    self.isActive = true
+                }
+            }
+            
+            }
         }
         
-    }
+    
+}
 }
 
 #Preview {
     ContentView()
-
+    
 }
