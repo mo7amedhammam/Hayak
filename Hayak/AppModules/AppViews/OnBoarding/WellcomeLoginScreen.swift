@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WellcomeLoginScreen: View {
+    
+    @State var isActiveSignIn : Bool = false
     var body: some View {
 
 
@@ -15,6 +17,14 @@ struct WellcomeLoginScreen: View {
             Color(UIColor(named: "bg")!).ignoresSafeArea()
                 .navigationBarBackButtonHidden(true)
 
+            NavigationLink(
+                destination: SignInScreen().navigationBarBackButtonHidden(true),
+                isActive: $isActiveSignIn,
+                label: {
+                    EmptyView()
+                }
+            )
+            
                       VStack {
                         
                           Image("wellcome1")
@@ -50,8 +60,7 @@ struct WellcomeLoginScreen: View {
 
                                   Button(action: {
                                       // get started login
-
-                                      
+                                      self.isActiveSignIn = true                                      
                                   }, label: {
                                       Text("Sign in")
                                           .frame(height: 50) // Set the height here
