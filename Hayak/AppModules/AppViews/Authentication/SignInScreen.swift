@@ -103,9 +103,9 @@ struct CustomHeaderView: View {
                     Image(systemName: "arrow.left")
                         .font(.custom("LamaSans-Bold", size: 14))
                         .foregroundColor(Color("main1"))
-                        
+                        .frame(width: 44) // The same width as the back button
                 }
-                
+
                 Spacer()
                 
                 // Title
