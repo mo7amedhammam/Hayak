@@ -13,6 +13,7 @@
 		19091AF62C348DFC002B2EC6 /* LamaSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF12C348DFB002B2EC6 /* LamaSans-SemiBold.ttf */; };
 		19091AF72C348DFC002B2EC6 /* LamaSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF22C348DFB002B2EC6 /* LamaSans-Medium.ttf */; };
 		19091AF82C348DFC002B2EC6 /* LamaSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF32C348DFC002B2EC6 /* LamaSans-Light.ttf */; };
+		19E2E1672C3B3C6F006AF2E9 /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E2E1662C3B3C6F006AF2E9 /* SignUpScreen.swift */; };
 		19EF10452C35AE830010DF55 /* WellcomeLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EF10442C35AE830010DF55 /* WellcomeLoginScreen.swift */; };
 		19EF624A2C39C0CC0021C589 /* SignInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EF62492C39C0CC0021C589 /* SignInScreen.swift */; };
 		607C994D261D5597E259E23B /* Pods_Hayak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA111EA2737130E40EB7435 /* Pods_Hayak.framework */; };
@@ -47,6 +48,7 @@
 		19091AF22C348DFB002B2EC6 /* LamaSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LamaSans-Medium.ttf"; sourceTree = "<group>"; };
 		19091AF32C348DFC002B2EC6 /* LamaSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LamaSans-Light.ttf"; sourceTree = "<group>"; };
 		19091AF92C348E84002B2EC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		19E2E1662C3B3C6F006AF2E9 /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
 		19EF10442C35AE830010DF55 /* WellcomeLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellcomeLoginScreen.swift; sourceTree = "<group>"; };
 		19EF62492C39C0CC0021C589 /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
 		C8986CD22C15B9FE0091789F /* Hayak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hayak.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				19EF62492C39C0CC0021C589 /* SignInScreen.swift */,
+				19E2E1662C3B3C6F006AF2E9 /* SignUpScreen.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				19091AEE2C3489D5002B2EC6 /* OnBoardingScreen.swift in Sources */,
 				C8986CF42C15C27D0091789F /* Authintications.swift in Sources */,
 				C8986D1A2C15C3A00091789F /* ColorConstants.swift in Sources */,
+				19E2E1672C3B3C6F006AF2E9 /* SignUpScreen.swift in Sources */,
 				C8986D192C15C3A00091789F /* LocalizationService.swift in Sources */,
 				C8986D162C15C3A00091789F /* Language.swift in Sources */,
 				C8986D132C15C3A00091789F /* ExIntegers.swift in Sources */,
