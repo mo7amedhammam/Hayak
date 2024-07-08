@@ -10,6 +10,9 @@ import SwiftUI
 struct WellcomeLoginScreen: View {
     
     @State var isActiveSignIn : Bool = false
+    @State var isActiveSignUp : Bool = false
+    @State var isActiveHome : Bool = false
+
     var body: some View {
 
 
@@ -24,6 +27,16 @@ struct WellcomeLoginScreen: View {
                     EmptyView()
                 }
             )
+            
+            NavigationLink(
+                destination: SignUpScreen().navigationBarBackButtonHidden(true),
+                isActive: $isActiveSignUp,
+                label: {
+                    EmptyView()
+                }
+            )
+            
+            
             
                       VStack {
                         
@@ -72,8 +85,7 @@ struct WellcomeLoginScreen: View {
                                   
                                   Button(action: {
                                       // get started login
-
-                                      
+                                      self.isActiveSignUp = true
                                   }, label: {
                                       Text("Sign Up")
                                           .frame(height: 50) // Set the height here
@@ -83,7 +95,7 @@ struct WellcomeLoginScreen: View {
                                           .cornerRadius(10)
                                   })
                                   Button(action: {
-                                      // get started login
+                                      // go to home 
 
                                       
                                   }, label: {

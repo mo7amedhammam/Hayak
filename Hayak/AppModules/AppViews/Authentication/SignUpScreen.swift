@@ -16,7 +16,7 @@ struct SignUpScreen: View {
                 .navigationBarBackButtonHidden(true)
             
             VStack {
-                CustomHeaderView(title: "Sign in", onBack: {
+                CustomHeaderView(title: "Sign up", onBack: {
                     // Handle back button action
                     print("Back button pressed")
                     presentationMode.wrappedValue.dismiss()
@@ -142,7 +142,7 @@ struct UserNameView: View {
                     text: $userName,
                     placeholder: "Enter your name",
                     placeholderColor: UIColor(named: "empty text field") ?? .gray ,
-                    textColor:  UIColor(named: "main1") ?? .black
+                    textColor:  UIColor(named: "main1") ?? .black , keyboardType: .default
                 ).font(.custom("LamaSans-Regular", size: 10))
                     .padding(.trailing, 32) // Add padding to make room for the icon
                     .overlay(

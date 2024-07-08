@@ -40,6 +40,7 @@ struct SignInScreen: View {
 struct ExtractedViewSignIn: View {
     @State private var isChecked: Bool = false
     @State private var GoToSignUp: Bool = false
+    @State private var GoToForgetPassword: Bool = false
 
     var body: some View {
         ScrollView {
@@ -75,6 +76,7 @@ struct ExtractedViewSignIn: View {
                         Button(action: {
                             // Button action
                             print("Button tapped")
+                            self.GoToForgetPassword = true
                         }) {
                             Text("Forget password?")
                                 .font(.custom("LamaSans-Medium", size: 14))
@@ -92,7 +94,7 @@ struct ExtractedViewSignIn: View {
                             .frame(height: 50) // Set the height here
                             .frame(maxWidth: .infinity)
                             .font(.custom("LamaSans-Medium", size: 14))
-                            .foregroundColor(Color("bg1"))
+                            .foregroundColor(Color("bg1")).background(Color("main2"))
                             .cornerRadius(20)
                             .padding(.horizontal , 20)
                     })
@@ -125,6 +127,15 @@ struct ExtractedViewSignIn: View {
                     NavigationLink(
                         destination: SignUpScreen().navigationBarBackButtonHidden(true),
                         isActive: $GoToSignUp,
+                        label: {
+                            EmptyView()
+                        }
+                    )
+                    
+                    
+                    NavigationLink(
+                        destination: ForgetPasswordScreen().navigationBarBackButtonHidden(true),
+                        isActive: $GoToForgetPassword ,
                         label: {
                             EmptyView()
                         }
@@ -165,7 +176,7 @@ struct PhoneNumberView: View {
                     text: $phoneNumber,
                     placeholder: "Enter your phone number",
                     placeholderColor: UIColor(named: "empty text field") ?? .gray ,
-                    textColor:  UIColor(named: "main1") ?? .black
+                    textColor:  UIColor(named: "main1") ?? .black, keyboardType: .asciiCapableNumberPad
                 ).font(.custom("LamaSans-Regular", size: 10))
                     .padding(.trailing, 32) // Add padding to make room for the icon
                     .overlay(
@@ -286,12 +297,14 @@ struct CustomTextField: UIViewRepresentable {
     var placeholder: String
     var placeholderColor: UIColor
     var textColor: UIColor
+    var keyboardType : UIKeyboardType
     
     func makeUIView(context: Context) -> UITextField {
         let textField = UITextField(frame: .zero)
         textField.placeholder = placeholder
         textField.delegate = context.coordinator
         textField.textColor = textColor
+        textField.keyboardType = keyboardType  // Set the keyboard type to number pad
         textField.attributedPlaceholder = NSAttributedString(
             string: placeholder,
             attributes: [NSAttributedString.Key.foregroundColor: placeholderColor]
