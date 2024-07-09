@@ -10,6 +10,7 @@ import SwiftUI
 struct ForgetPasswordScreen: View {
     @Environment(\.presentationMode) var presentationMode
     
+    @State var GoToOtp : Bool =  false
     
     var body: some View {
         ZStack {
@@ -46,7 +47,8 @@ struct ForgetPasswordScreen: View {
                     PhoneNumberView()
                     
                     Button(action: {
-                        //Sign in
+                        //send
+                        self.GoToOtp = true
                         
                     }, label: {
                         Text("Send")
@@ -59,6 +61,13 @@ struct ForgetPasswordScreen: View {
                     })
                     
                     
+                    NavigationLink(
+                        destination: OtpScreen().navigationBarBackButtonHidden(true),
+                        isActive: $GoToOtp,
+                        label: {
+                            EmptyView()
+                        }
+                    )
                     
                     
                 }
