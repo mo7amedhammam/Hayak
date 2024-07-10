@@ -14,6 +14,8 @@
 		19091AF72C348DFC002B2EC6 /* LamaSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF22C348DFB002B2EC6 /* LamaSans-Medium.ttf */; };
 		19091AF82C348DFC002B2EC6 /* LamaSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF32C348DFC002B2EC6 /* LamaSans-Light.ttf */; };
 		194DA28D2C3DA47000AA3CB4 /* OtpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194DA28C2C3DA47000AA3CB4 /* OtpScreen.swift */; };
+		199FE2D92C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FE2D82C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift */; };
+		199FE2DB2C3F15A70071BF8E /* ChangePasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FE2DA2C3F15A70071BF8E /* ChangePasswordScreen.swift */; };
 		19E2E1672C3B3C6F006AF2E9 /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E2E1662C3B3C6F006AF2E9 /* SignUpScreen.swift */; };
 		19EF10452C35AE830010DF55 /* WellcomeLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EF10442C35AE830010DF55 /* WellcomeLoginScreen.swift */; };
 		19EF624A2C39C0CC0021C589 /* SignInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EF62492C39C0CC0021C589 /* SignInScreen.swift */; };
@@ -51,6 +53,8 @@
 		19091AF32C348DFC002B2EC6 /* LamaSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LamaSans-Light.ttf"; sourceTree = "<group>"; };
 		19091AF92C348E84002B2EC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		194DA28C2C3DA47000AA3CB4 /* OtpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpScreen.swift; sourceTree = "<group>"; };
+		199FE2D82C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetNewPasswordScreen.swift; sourceTree = "<group>"; };
+		199FE2DA2C3F15A70071BF8E /* ChangePasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordScreen.swift; sourceTree = "<group>"; };
 		19E2E1662C3B3C6F006AF2E9 /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
 		19EF10442C35AE830010DF55 /* WellcomeLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellcomeLoginScreen.swift; sourceTree = "<group>"; };
 		19EF62492C39C0CC0021C589 /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 				19E2E1662C3B3C6F006AF2E9 /* SignUpScreen.swift */,
 				19F1AC9E2C3C689400499EF4 /* ForgetPasswordScreen.swift */,
 				194DA28C2C3DA47000AA3CB4 /* OtpScreen.swift */,
+				199FE2D82C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift */,
+				199FE2DA2C3F15A70071BF8E /* ChangePasswordScreen.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -454,6 +460,7 @@
 				19F1AC9F2C3C689400499EF4 /* ForgetPasswordScreen.swift in Sources */,
 				C8986D122C15C3A00091789F /* Exdates.swift in Sources */,
 				19091AEE2C3489D5002B2EC6 /* OnBoardingScreen.swift in Sources */,
+				199FE2DB2C3F15A70071BF8E /* ChangePasswordScreen.swift in Sources */,
 				C8986CF42C15C27D0091789F /* Authintications.swift in Sources */,
 				C8986D1A2C15C3A00091789F /* ColorConstants.swift in Sources */,
 				19E2E1672C3B3C6F006AF2E9 /* SignUpScreen.swift in Sources */,
@@ -462,6 +469,7 @@
 				194DA28D2C3DA47000AA3CB4 /* OtpScreen.swift in Sources */,
 				C8986D132C15C3A00091789F /* ExIntegers.swift in Sources */,
 				C8986D142C15C3A00091789F /* ExStrings.swift in Sources */,
+				199FE2D92C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

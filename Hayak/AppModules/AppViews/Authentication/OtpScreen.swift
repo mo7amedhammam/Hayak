@@ -17,7 +17,7 @@ struct OtpScreen: View {
     
     @FocusState private var focusedField: OTPField?
     @State private var otpFaild: Bool = false
-
+    @State private var GoToResetPassword : Bool = false
     
     enum OTPField {
         case field1, field2, field3, field4
@@ -105,10 +105,10 @@ struct OtpScreen: View {
                     .padding()
                     
                     Button(action: {
-                        //Sign in
-                        self.otpFaild = true
-                        
-                    }, label: {
+                        // Button action
+                        print("Button tapped")
+                        self.GoToResetPassword = true
+                    }) {
                         Text("Send")
                             .frame(height: 50) // Set the height here
                             .frame(maxWidth: .infinity)
@@ -116,10 +116,16 @@ struct OtpScreen: View {
                             .foregroundColor(Color("bg1")).background(Color("main2"))
                             .cornerRadius(20)
                             .padding(.horizontal , 20)
-                    })
+                    }
+                
                     
-                    
-                    
+                    NavigationLink(
+                        destination: ResetNewPasswordScreen().navigationBarBackButtonHidden(true),
+                        isActive: $GoToResetPassword,
+                        label: {
+                            EmptyView()
+                        }
+                    )
                     
                 }
                 .frame(maxWidth: .infinity , minHeight: 400)
@@ -128,6 +134,7 @@ struct OtpScreen: View {
                 .padding(20)
                 
                 Spacer()
+                
                 
             }
         }

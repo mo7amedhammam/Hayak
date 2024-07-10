@@ -11,7 +11,8 @@ struct ForgetPasswordScreen: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var GoToOtp : Bool =  false
-    
+    @State var phoneNumber: String = ""
+
     var body: some View {
         ZStack {
             Color(UIColor(named: "bg1")!).ignoresSafeArea()
@@ -44,7 +45,7 @@ struct ForgetPasswordScreen: View {
                     .padding(.top , 20)
                     
                     
-                    PhoneNumberView()
+                    PhoneNumberView(phoneNumber: $phoneNumber)
                     
                     Button(action: {
                         //send

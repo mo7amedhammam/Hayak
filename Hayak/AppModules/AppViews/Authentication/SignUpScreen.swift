@@ -38,6 +38,20 @@ struct ExtractedViewSignUp: View {
     @State var isChecked : Bool = false
     @Environment(\.presentationMode) var presentationMode
 
+    @State private var passwordNumber: String = ""
+    @State private var passwordPlaceholder: String = "Enter your password"
+    @State private var textLable: String           = "Password"
+    @State private var image: String               = "password"
+    
+    @State private var confirmpasswordNumber: String = ""
+    @State private var confirmpasswordPlaceholder: String = "Confirm your password "
+    @State private var confirmtextLable: String           = "Confirm password"
+    
+    @State var phoneNumber : String = ""
+    
+    @State var isPasswordWrong : Bool = false
+    @State var isPasswordWrongconfirm : Bool = false
+
     
     var body: some View {
         ScrollView {
@@ -61,9 +75,9 @@ struct ExtractedViewSignUp: View {
                 VStack {
                     
                     UserNameView()
-                    PhoneNumberView()
-                    PasswordView()
-                    ConfirmPasswordView()
+                    PhoneNumberView(phoneNumber: $phoneNumber)
+                    PasswordView(passwordNumber: $passwordNumber, passwordPlaceholder: $passwordPlaceholder, textLable: $textLable, image: $image, isPasswordWrong: $isPasswordWrong)
+                    PasswordView(passwordNumber: $confirmpasswordNumber, passwordPlaceholder: $confirmpasswordPlaceholder, textLable: $confirmtextLable, image: $image, isPasswordWrong: $isPasswordWrongconfirm)
 
                     Spacer()
                     

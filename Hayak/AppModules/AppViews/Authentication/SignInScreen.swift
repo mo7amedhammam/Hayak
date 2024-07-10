@@ -41,6 +41,15 @@ struct ExtractedViewSignIn: View {
     @State private var isChecked: Bool = false
     @State private var GoToSignUp: Bool = false
     @State private var GoToForgetPassword: Bool = false
+    
+    @State private var passwordNumber: String = ""
+    @State private var passwordPlaceholder: String = "Enter your password"
+    @State private var textLable: String           = "Password"
+    @State private var image: String               = "password"
+
+    @State var phoneNumber: String = ""
+    @State var isPasswordWrong : Bool = false
+
 
     var body: some View {
         ScrollView {
@@ -63,8 +72,8 @@ struct ExtractedViewSignIn: View {
                 
                 VStack {
                     
-                    PhoneNumberView()
-                    PasswordView()
+                    PhoneNumberView(phoneNumber: $phoneNumber)
+                    PasswordView(passwordNumber: $passwordNumber, passwordPlaceholder: $passwordPlaceholder, textLable: $textLable, image: $image, isPasswordWrong: $isPasswordWrong)
                     Spacer()
                     
                     HStack {
@@ -161,7 +170,7 @@ struct CheckboxView: View {
 }
 
 struct PhoneNumberView: View {
-    @State private var phoneNumber: String = ""
+    @Binding var phoneNumber: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -197,31 +206,35 @@ struct PhoneNumberView: View {
     }
 }
 
+import SwiftUI
 
 struct PasswordView: View {
-    @State private var passwordNumber: String = ""
-    
+    @Binding var passwordNumber: String
+    @Binding var passwordPlaceholder: String
+    @Binding var textLable: String
+    @Binding var image: String
+
+    @Binding var isPasswordWrong: Bool
+
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("Password")
+            Text(textLable)
                 .font(.custom("LamaSans-Bold", size: 12))
                 .foregroundColor(Color("main1"))
             
-            
             HStack {
-                
                 CustomSecureTextField(
                     text: $passwordNumber,
-                    placeholder: "Enter your password",
-                    placeholderColor: UIColor(named: "empty text field") ?? .gray ,
-                    textColor:  UIColor(named: "main1") ?? .black
+                    placeholder: passwordPlaceholder,
+                    placeholderColor: UIColor(named: "empty text field") ?? .gray,
+                    textColor:  (isPasswordWrong ? (UIColor(named: "wrong") ?? .black ) : UIColor(named: "main1") ?? .black)
                 )
                 .font(.custom("LamaSans-Regular", size: 10))
                 .padding(.trailing, 32) // Add padding to make room for the icon
                 .overlay(
                     HStack {
                         Spacer()
-                        Image("password") // Replace with your desired icon
+                        Image(image) // Replace with your desired icon
                             .foregroundColor(Color("AAAAAA"))
                             .padding(.trailing, 8)
                     }
@@ -235,6 +248,7 @@ struct PasswordView: View {
         .frame(height: 100) // Set the desired height here
     }
 }
+
 
 
 struct CustomHeaderView: View {
