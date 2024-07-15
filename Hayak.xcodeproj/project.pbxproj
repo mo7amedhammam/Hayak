@@ -20,6 +20,7 @@
 		19EF10452C35AE830010DF55 /* WellcomeLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EF10442C35AE830010DF55 /* WellcomeLoginScreen.swift */; };
 		19EF624A2C39C0CC0021C589 /* SignInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EF62492C39C0CC0021C589 /* SignInScreen.swift */; };
 		19F1AC9F2C3C689400499EF4 /* ForgetPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F1AC9E2C3C689400499EF4 /* ForgetPasswordScreen.swift */; };
+		19F60B1E2C45766600367453 /* SuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F60B1D2C45766600367453 /* SuccessScreen.swift */; };
 		607C994D261D5597E259E23B /* Pods_Hayak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA111EA2737130E40EB7435 /* Pods_Hayak.framework */; };
 		C8986CD62C15B9FE0091789F /* HayakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CD52C15B9FE0091789F /* HayakApp.swift */; };
 		C8986CD82C15B9FE0091789F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CD72C15B9FE0091789F /* ContentView.swift */; };
@@ -59,6 +60,7 @@
 		19EF10442C35AE830010DF55 /* WellcomeLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellcomeLoginScreen.swift; sourceTree = "<group>"; };
 		19EF62492C39C0CC0021C589 /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
 		19F1AC9E2C3C689400499EF4 /* ForgetPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordScreen.swift; sourceTree = "<group>"; };
+		19F60B1D2C45766600367453 /* SuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessScreen.swift; sourceTree = "<group>"; };
 		C8986CD22C15B9FE0091789F /* Hayak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hayak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8986CD52C15B9FE0091789F /* HayakApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HayakApp.swift; sourceTree = "<group>"; };
 		C8986CD72C15B9FE0091789F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -105,6 +107,20 @@
 			path = OnBoarding;
 			sourceTree = "<group>";
 		};
+		196414572C457F44008370CE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		196414582C457F53008370CE /* TabBare */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TabBare;
+			sourceTree = "<group>";
+		};
 		19EF62482C39C0B30021C589 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +130,7 @@
 				194DA28C2C3DA47000AA3CB4 /* OtpScreen.swift */,
 				199FE2D82C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift */,
 				199FE2DA2C3F15A70071BF8E /* ChangePasswordScreen.swift */,
+				19F60B1D2C45766600367453 /* SuccessScreen.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -310,6 +327,8 @@
 		C8986D222C15C3A50091789F /* AppViews */ = {
 			isa = PBXGroup;
 			children = (
+				196414582C457F53008370CE /* TabBare */,
+				196414572C457F44008370CE /* Profile */,
 				19EF62482C39C0B30021C589 /* Authentication */,
 				19091AEC2C3480EB002B2EC6 /* OnBoarding */,
 			);
@@ -456,6 +475,7 @@
 				19EF624A2C39C0CC0021C589 /* SignInScreen.swift in Sources */,
 				C8986CF12C15C27D0091789F /* BaseResponse.swift in Sources */,
 				C8986D212C15C3A00091789F /* Helper.swift in Sources */,
+				19F60B1E2C45766600367453 /* SuccessScreen.swift in Sources */,
 				C8986D152C15C3A00091789F /* ExViews.swift in Sources */,
 				19F1AC9F2C3C689400499EF4 /* ForgetPasswordScreen.swift in Sources */,
 				C8986D122C15C3A00091789F /* Exdates.swift in Sources */,
