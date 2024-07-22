@@ -14,6 +14,11 @@
 		19091AF72C348DFC002B2EC6 /* LamaSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF22C348DFB002B2EC6 /* LamaSans-Medium.ttf */; };
 		19091AF82C348DFC002B2EC6 /* LamaSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF32C348DFC002B2EC6 /* LamaSans-Light.ttf */; };
 		194DA28D2C3DA47000AA3CB4 /* OtpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194DA28C2C3DA47000AA3CB4 /* OtpScreen.swift */; };
+		195FEDB22C4EEDAC00E9EDC7 /* TabViewWithCenterBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195FEDB12C4EEDAC00E9EDC7 /* TabViewWithCenterBtn.swift */; };
+		195FEDBC2C4EF4F400E9EDC7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195FEDBB2C4EF4F400E9EDC7 /* HomeView.swift */; };
+		195FEDBE2C4EF50800E9EDC7 /* PicUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195FEDBD2C4EF50800E9EDC7 /* PicUpView.swift */; };
+		195FEDC02C4EF51700E9EDC7 /* DiningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195FEDBF2C4EF51700E9EDC7 /* DiningView.swift */; };
+		195FEDC22C4EF52600E9EDC7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195FEDC12C4EF52500E9EDC7 /* ProfileView.swift */; };
 		199FE2D92C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FE2D82C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift */; };
 		199FE2DB2C3F15A70071BF8E /* ChangePasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FE2DA2C3F15A70071BF8E /* ChangePasswordScreen.swift */; };
 		19E2E1672C3B3C6F006AF2E9 /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E2E1662C3B3C6F006AF2E9 /* SignUpScreen.swift */; };
@@ -54,6 +59,11 @@
 		19091AF32C348DFC002B2EC6 /* LamaSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LamaSans-Light.ttf"; sourceTree = "<group>"; };
 		19091AF92C348E84002B2EC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		194DA28C2C3DA47000AA3CB4 /* OtpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpScreen.swift; sourceTree = "<group>"; };
+		195FEDB12C4EEDAC00E9EDC7 /* TabViewWithCenterBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewWithCenterBtn.swift; sourceTree = "<group>"; };
+		195FEDBB2C4EF4F400E9EDC7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		195FEDBD2C4EF50800E9EDC7 /* PicUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicUpView.swift; sourceTree = "<group>"; };
+		195FEDBF2C4EF51700E9EDC7 /* DiningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningView.swift; sourceTree = "<group>"; };
+		195FEDC12C4EF52500E9EDC7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		199FE2D82C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetNewPasswordScreen.swift; sourceTree = "<group>"; };
 		199FE2DA2C3F15A70071BF8E /* ChangePasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordScreen.swift; sourceTree = "<group>"; };
 		19E2E1662C3B3C6F006AF2E9 /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
@@ -107,9 +117,74 @@
 			path = OnBoarding;
 			sourceTree = "<group>";
 		};
+		195FEDB02C4EED8C00E9EDC7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				195FEDB12C4EEDAC00E9EDC7 /* TabViewWithCenterBtn.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		195FEDB32C4EF47200E9EDC7 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				195FEDB62C4EF4C400E9EDC7 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		195FEDB42C4EF47900E9EDC7 /* Pic Up */ = {
+			isa = PBXGroup;
+			children = (
+				195FEDB72C4EF4CB00E9EDC7 /* View */,
+			);
+			path = "Pic Up";
+			sourceTree = "<group>";
+		};
+		195FEDB52C4EF48100E9EDC7 /* Dining */ = {
+			isa = PBXGroup;
+			children = (
+				195FEDB82C4EF4D200E9EDC7 /* View */,
+			);
+			path = Dining;
+			sourceTree = "<group>";
+		};
+		195FEDB62C4EF4C400E9EDC7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				195FEDBB2C4EF4F400E9EDC7 /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		195FEDB72C4EF4CB00E9EDC7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				195FEDBD2C4EF50800E9EDC7 /* PicUpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		195FEDB82C4EF4D200E9EDC7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				195FEDBF2C4EF51700E9EDC7 /* DiningView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		195FEDB92C4EF4D800E9EDC7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				195FEDC12C4EF52500E9EDC7 /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		196414572C457F44008370CE /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				195FEDB92C4EF4D800E9EDC7 /* View */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -117,6 +192,7 @@
 		196414582C457F53008370CE /* TabBare */ = {
 			isa = PBXGroup;
 			children = (
+				195FEDB02C4EED8C00E9EDC7 /* View */,
 			);
 			path = TabBare;
 			sourceTree = "<group>";
@@ -328,6 +404,9 @@
 			isa = PBXGroup;
 			children = (
 				196414582C457F53008370CE /* TabBare */,
+				195FEDB32C4EF47200E9EDC7 /* Home */,
+				195FEDB42C4EF47900E9EDC7 /* Pic Up */,
+				195FEDB52C4EF48100E9EDC7 /* Dining */,
 				196414572C457F44008370CE /* Profile */,
 				19EF62482C39C0B30021C589 /* Authentication */,
 				19091AEC2C3480EB002B2EC6 /* OnBoarding */,
@@ -465,10 +544,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				195FEDBC2C4EF4F400E9EDC7 /* HomeView.swift in Sources */,
 				C8986CD82C15B9FE0091789F /* ContentView.swift in Sources */,
 				19EF10452C35AE830010DF55 /* WellcomeLoginScreen.swift in Sources */,
 				C8986CF22C15C27D0091789F /* EndPoints.swift in Sources */,
 				C8986CD62C15B9FE0091789F /* HayakApp.swift in Sources */,
+				195FEDC02C4EF51700E9EDC7 /* DiningView.swift in Sources */,
 				C8986D1B2C15C3A00091789F /* FontsExtension.swift in Sources */,
 				C8986CF32C15C27D0091789F /* RequestBuilder.swift in Sources */,
 				C8986CF02C15C27D0091789F /* BaseRequest.swift in Sources */,
@@ -481,10 +562,13 @@
 				C8986D122C15C3A00091789F /* Exdates.swift in Sources */,
 				19091AEE2C3489D5002B2EC6 /* OnBoardingScreen.swift in Sources */,
 				199FE2DB2C3F15A70071BF8E /* ChangePasswordScreen.swift in Sources */,
+				195FEDB22C4EEDAC00E9EDC7 /* TabViewWithCenterBtn.swift in Sources */,
 				C8986CF42C15C27D0091789F /* Authintications.swift in Sources */,
 				C8986D1A2C15C3A00091789F /* ColorConstants.swift in Sources */,
 				19E2E1672C3B3C6F006AF2E9 /* SignUpScreen.swift in Sources */,
+				195FEDC22C4EF52600E9EDC7 /* ProfileView.swift in Sources */,
 				C8986D192C15C3A00091789F /* LocalizationService.swift in Sources */,
+				195FEDBE2C4EF50800E9EDC7 /* PicUpView.swift in Sources */,
 				C8986D162C15C3A00091789F /* Language.swift in Sources */,
 				194DA28D2C3DA47000AA3CB4 /* OtpScreen.swift in Sources */,
 				C8986D132C15C3A00091789F /* ExIntegers.swift in Sources */,
