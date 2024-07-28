@@ -22,11 +22,15 @@ struct ResetNewPasswordScreen: View {
                 .navigationBarBackButtonHidden(true)
             
             VStack {
-                CustomHeaderView(title: "Reset New Password", onBack: {
+           
+                CustomHeaderView(title: "Reset New Password" , onBack: {
                     // Handle back button action
                     print("Back button pressed")
                     presentationMode.wrappedValue.dismiss()
-                })
+                }, onOtherBtn: {
+                    
+                }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
+                
                 ExtractedViewResetNewPasswordScreen()
             }
             

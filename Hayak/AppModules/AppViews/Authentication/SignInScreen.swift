@@ -19,11 +19,15 @@ struct SignInScreen: View {
                 .navigationBarBackButtonHidden(true)
             
             VStack {
-                CustomHeaderView(title: "Sign in", onBack: {
+            
+                CustomHeaderView(title: "Sign in" , onBack: {
                     // Handle back button action
                     print("Back button pressed")
                     presentationMode.wrappedValue.dismiss()
-                })
+                }, onOtherBtn: {
+                    
+                }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
+                
                 ExtractedViewSignIn()
             }
             
@@ -206,6 +210,48 @@ struct PhoneNumberView: View {
     }
 }
 
+
+struct CustomTextfieldView: View {
+    @Binding var textLable: String
+    @Binding var text: String
+    @Binding var title: String
+    @Binding var image: String
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text(textLable)
+                .font(.custom("LamaSans-Bold", size: 12))
+                .foregroundColor(Color("main1"))
+            
+            
+            HStack {
+                
+                CustomTextField(
+                    text: $text,
+                    placeholder: title ,
+                    placeholderColor: UIColor(named: "empty text field") ?? .gray ,
+                    textColor:  UIColor(named: "main1") ?? .black, keyboardType: .asciiCapableNumberPad
+                ).font(.custom("LamaSans-Regular", size: 10))
+                    .padding(.trailing, 32) // Add padding to make room for the icon
+                    .overlay(
+                        HStack {
+                            Spacer()
+                            Image(image) // Replace with your desired icon
+                                .foregroundColor(Color("AAAAAA"))
+                                .padding(.trailing, 8)
+                        }
+                    )
+            }
+            .padding(.vertical, 8)
+            .overlay(Rectangle().frame(height: 1).padding(.top, 35))
+            .foregroundColor(.gray)
+        }
+        .padding(.all, 20)
+        .frame(height: 100) // Set the desired height here
+    }
+}
+
+
 import SwiftUI
 
 struct PasswordView: View {
@@ -254,6 +300,12 @@ struct PasswordView: View {
 struct CustomHeaderView: View {
     var title: String
     var onBack: () -> Void
+    var onOtherBtn: () -> Void
+    
+    var OtherBtnIsfound: Bool
+     var imageonOtherBtn : String
+     var coloronOtherBtn : String
+
     
     var body: some View {
         ZStack {
@@ -271,8 +323,9 @@ struct CustomHeaderView: View {
                     Image(systemName: "arrow.left")
                         .font(.custom("LamaSans-Bold", size: 14))
                         .foregroundColor(Color("main1"))
-                    
                 }
+                .frame(width: 44) // The same width as the back button
+
                 
                 Spacer()
                 
@@ -284,11 +337,27 @@ struct CustomHeaderView: View {
                 
                 Spacer()
                 
-                // This spacer is for balancing the HStack
-                Spacer()
+                if OtherBtnIsfound {
+                    Button(action: {
+                        onOtherBtn()
+                    }) {
+                        Image(imageonOtherBtn)
+                            .font(.custom("LamaSans-Bold", size: 14))
+                            .foregroundColor(Color(coloronOtherBtn))
+                    }
                     .frame(width: 44) // The same width as the back button
+                } else {
+                    Spacer()
+                        .frame(width: 44) // The same width as the back button
+                    
+                }
+             
+                
+                
             }
-            .padding([.leading, .trailing])
+//            .padding([.leading, .trailing])
+            
+            
         }
     }
 }

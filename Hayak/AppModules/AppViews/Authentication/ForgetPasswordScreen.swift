@@ -19,11 +19,14 @@ struct ForgetPasswordScreen: View {
                 .navigationBarBackButtonHidden(true)
             
             VStack {
-                CustomHeaderView(title: "Forget Password", onBack: {
+            
+                CustomHeaderView(title: "Forget Password" , onBack: {
                     // Handle back button action
                     print("Back button pressed")
                     presentationMode.wrappedValue.dismiss()
-                })
+                }, onOtherBtn: {
+                    
+                }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
                 
                 VStack {
                     

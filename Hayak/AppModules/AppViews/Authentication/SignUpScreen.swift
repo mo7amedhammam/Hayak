@@ -16,12 +16,15 @@ struct SignUpScreen: View {
                 .navigationBarBackButtonHidden(true)
             
             VStack {
-                CustomHeaderView(title: "Sign up", onBack: {
+          
+                CustomHeaderView(title: "Sign up" , onBack: {
                     // Handle back button action
                     print("Back button pressed")
                     presentationMode.wrappedValue.dismiss()
-
-                })
+                }, onOtherBtn: {
+                    
+                }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
+                
                 ExtractedViewSignUp()
             }
             
