@@ -23,6 +23,8 @@
 		195FEDC22C4EF52600E9EDC7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195FEDC12C4EF52500E9EDC7 /* ProfileView.swift */; };
 		199FE2D92C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FE2D82C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift */; };
 		199FE2DB2C3F15A70071BF8E /* ChangePasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FE2DA2C3F15A70071BF8E /* ChangePasswordScreen.swift */; };
+		19E170EC2C5C05570079FFDE /* NotificationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E170EB2C5C05570079FFDE /* NotificationScreen.swift */; };
+		19E170EE2C5C1D200079FFDE /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E170ED2C5C1D200079FFDE /* SettingsScreen.swift */; };
 		19E2E1672C3B3C6F006AF2E9 /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E2E1662C3B3C6F006AF2E9 /* SignUpScreen.swift */; };
 		19EF10452C35AE830010DF55 /* WellcomeLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EF10442C35AE830010DF55 /* WellcomeLoginScreen.swift */; };
 		19EF624A2C39C0CC0021C589 /* SignInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EF62492C39C0CC0021C589 /* SignInScreen.swift */; };
@@ -70,6 +72,8 @@
 		195FEDC12C4EF52500E9EDC7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		199FE2D82C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetNewPasswordScreen.swift; sourceTree = "<group>"; };
 		199FE2DA2C3F15A70071BF8E /* ChangePasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordScreen.swift; sourceTree = "<group>"; };
+		19E170EB2C5C05570079FFDE /* NotificationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationScreen.swift; sourceTree = "<group>"; };
+		19E170ED2C5C1D200079FFDE /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		19E2E1662C3B3C6F006AF2E9 /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
 		19EF10442C35AE830010DF55 /* WellcomeLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellcomeLoginScreen.swift; sourceTree = "<group>"; };
 		19EF62492C39C0CC0021C589 /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 				195FEDC12C4EF52500E9EDC7 /* ProfileView.swift */,
 				19349FFA2C56EBA200AAA59C /* EditAddressScreen.swift */,
 				19349FFC2C56FA6900AAA59C /* AddAddressScreen.swift */,
+				19E170ED2C5C1D200079FFDE /* SettingsScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -201,6 +206,22 @@
 				195FEDB02C4EED8C00E9EDC7 /* View */,
 			);
 			path = TabBare;
+			sourceTree = "<group>";
+		};
+		19E170E92C5C052B0079FFDE /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				19E170EA2C5C05380079FFDE /* View */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		19E170EA2C5C05380079FFDE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				19E170EB2C5C05570079FFDE /* NotificationScreen.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		19EF62482C39C0B30021C589 /* Authentication */ = {
@@ -414,6 +435,7 @@
 				195FEDB42C4EF47900E9EDC7 /* Pic Up */,
 				195FEDB52C4EF48100E9EDC7 /* Dining */,
 				196414572C457F44008370CE /* Profile */,
+				19E170E92C5C052B0079FFDE /* Notification */,
 				19EF62482C39C0B30021C589 /* Authentication */,
 				19091AEC2C3480EB002B2EC6 /* OnBoarding */,
 			);
@@ -572,11 +594,13 @@
 				195FEDB22C4EEDAC00E9EDC7 /* TabViewWithCenterBtn.swift in Sources */,
 				C8986CF42C15C27D0091789F /* Authintications.swift in Sources */,
 				C8986D1A2C15C3A00091789F /* ColorConstants.swift in Sources */,
+				19E170EC2C5C05570079FFDE /* NotificationScreen.swift in Sources */,
 				19E2E1672C3B3C6F006AF2E9 /* SignUpScreen.swift in Sources */,
 				195FEDC22C4EF52600E9EDC7 /* ProfileView.swift in Sources */,
 				C8986D192C15C3A00091789F /* LocalizationService.swift in Sources */,
 				195FEDBE2C4EF50800E9EDC7 /* PicUpView.swift in Sources */,
 				C8986D162C15C3A00091789F /* Language.swift in Sources */,
+				19E170EE2C5C1D200079FFDE /* SettingsScreen.swift in Sources */,
 				194DA28D2C3DA47000AA3CB4 /* OtpScreen.swift in Sources */,
 				19349FFB2C56EBA200AAA59C /* EditAddressScreen.swift in Sources */,
 				C8986D132C15C3A00091789F /* ExIntegers.swift in Sources */,
