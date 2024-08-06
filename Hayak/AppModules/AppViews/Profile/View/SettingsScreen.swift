@@ -8,6 +8,17 @@
 import SwiftUI
 
 struct SettingsScreen: View {
+    
+    @State private var isOnNews : Bool = false
+    @State private var isOnMessage : Bool = false
+    @State private var isOnCall : Bool = false
+    
+    @State private var Currency : String = "$USD"
+    @State private var Lang : String = "English"
+    @State private var LinkedAcount : String = "Facebook, go..."
+    
+    
+    
     var body: some View {
         
         ZStack {
@@ -50,7 +61,7 @@ struct SettingsScreen: View {
                                     .foregroundColor( Color("main2"))
                             }
                             Spacer()
-
+                            
                             Image("arrow")
                                 .resizable()
                                 .frame(width: 15 , height: 20)
@@ -94,7 +105,7 @@ struct SettingsScreen: View {
                                 .onTapGesture {
                                     
                                 }
-
+                            
                             Text("More Options")
                                 .padding(.horizontal , 10)
                                 .font(.custom("LamaSans-Bold", size: 18))
@@ -103,18 +114,48 @@ struct SettingsScreen: View {
                                 .background(Color("color-EBF4F4"))
                                 .foregroundColor(Color("main2"))
                             
+                            Spacer()
+                                .frame(height: 15)
+                            
+                            ExtractedViewSettingsMoreOption(imgTitle: "newslitter", Title: "payment", isOn: $isOnNews)
+                                .onTapGesture {
+                                    
+                                }
+                            ExtractedViewSettingsMoreOption(imgTitle: "text-message", Title: "Text Message", isOn: $isOnMessage)
+                                .onTapGesture {
+                                    
+                                }
+                            ExtractedViewSettingsMoreOption(imgTitle: "telephone", Title: "Phone Call", isOn: $isOnCall)
+                                .onTapGesture {
+                                    
+                                }
+                            
+                            ExtractedViewSettingsMoreOption2(imgTitle: "currency", Title: "Currency", hint: $Currency)
+                                .onTapGesture {
+                                    
+                                }
+                            ExtractedViewSettingsMoreOption2(imgTitle: "lang", Title: "Language", hint: $Lang)
+                                .onTapGesture {
+                                    
+                                }
+                            ExtractedViewSettingsMoreOption2(imgTitle: "linked-account", Title: "Linked Accounts", hint: $LinkedAcount)
+                                .onTapGesture {
+                                    
+                                }
+                            
+                            
                             
                             Spacer()
                             
                         }
-                        .frame(height: 700)
+                        .frame(height: 800)
                         .frame(maxWidth: .infinity)
                         .background(.white)
                         .cornerRadius(20)
                         .padding(.vertical , 15)
-
+                        
                         Spacer()
-                     
+                        
                     }
                     .frame(maxWidth: .infinity , maxHeight: .infinity)
                     .padding(.horizontal , 15)
@@ -135,7 +176,7 @@ struct ExtractedViewSettings: View {
     var imgTitle : String = ""
     var Title : String = ""
     var imgArrow : Bool = true
-
+    
     var body: some View {
         HStack (spacing : 16) {
             Image(imgTitle)
@@ -151,6 +192,64 @@ struct ExtractedViewSettings: View {
                 .frame(width: 20 , height: 50)
         }
         .frame(height: 65)
+        .padding(.horizontal , 20)
+    }
+}
+
+struct ExtractedViewSettingsMoreOption: View {
+    
+    var imgTitle : String = ""
+    var Title    : String = ""
+    @Binding var isOn : Bool
+    
+    var body: some View {
+        HStack (spacing : 16) {
+            Image(imgTitle)
+                .resizable()
+                .frame(width: 22 , height: 22)
+            Text(Title)
+                .font(.custom("LamaSans-Medium", size: 15))
+                .foregroundColor( Color("main1"))
+            Spacer()
+            
+            Toggle(isOn: $isOn) {
+                
+            }
+            .toggleStyle(SwitchToggleStyle(tint: Color("main2")))
+        }
+        .frame(height: 55)
+        .padding(.horizontal , 20)
+    }
+}
+
+struct ExtractedViewSettingsMoreOption2: View {
+    var imgTitle : String = ""
+    var Title : String = ""
+    @Binding var hint : String
+    
+    var body: some View {
+        HStack (spacing : 16) {
+            Image(imgTitle)
+                .resizable()
+                .frame(width: 22 , height: 22)
+            
+            Text(Title)
+                .font(.custom("LamaSans-Medium", size: 15))
+                .foregroundColor( Color("main1"))
+                .lineLimit(1)
+            
+            Spacer()
+            Text(hint)
+                .font(.custom("LamaSans-Medium", size: 15))
+                .foregroundColor( Color("secondary"))
+                .lineLimit(1)
+            Image("arrowEnable")
+                .renderingMode(.template)
+                .foregroundColor(Color("main1"))
+                .frame(width: 20 , height: 50)
+            
+        }
+        .frame(height: 55)
         .padding(.horizontal , 20)
     }
 }
