@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PaymentSuccessScreen: View {
     @Environment(\.presentationMode) var presentationMode
-    @State private var showOverlay: Bool = false
     
     var body: some View {
         ZStack {
@@ -22,7 +21,6 @@ struct PaymentSuccessScreen: View {
                     print("Back button pressed")
                     presentationMode.wrappedValue.dismiss()
                 }, onOtherBtn: {
-                    showOverlay.toggle()
                 }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
                 
                 ExtractedViewPaymentSuccessScreen()

@@ -312,7 +312,7 @@ struct CustomHeaderView: View {
             // Background color or any other customization
             Color.white
                 .edgesIgnoringSafeArea(.top)
-                .frame(height: 70)
+                .frame(height: 60)
             
             // Content of the header
             HStack {
@@ -356,7 +356,6 @@ struct CustomHeaderView: View {
                 
             }
 //            .padding([.leading, .trailing])
-            
             
         }
     }
