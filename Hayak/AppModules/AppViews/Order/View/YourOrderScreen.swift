@@ -34,13 +34,13 @@ struct YourOrderScreen: View {
 }
 
 
-class OrderStatus : Identifiable ,ObservableObject {
-    var tag : Int
+struct OrderStatus : Identifiable,Equatable  {
+    var id : Int
     var name: String
-    @Published var selected: Bool
+    var selected: Bool
     
-    init(tag: Int, name: String, selected: Bool) {
-        self.tag = tag
+    init(id: Int, name: String, selected: Bool) {
+        self.id = id
         self.name = name
         self.selected = selected
     }
@@ -49,13 +49,13 @@ class OrderStatus : Identifiable ,ObservableObject {
 struct ExtractedViewYourOrderScreen : View {
     
     @State private var items = [
-        OrderStatus(tag : 0 ,name: "Delivered",selected : true ),
-        OrderStatus(tag : 1 ,name: "Submitted",selected : false ),
-        OrderStatus(tag : 2 ,name: "Pending"  ,selected : false),
-        OrderStatus(tag : 3 ,name: "Cancelled",selected : false)
+        OrderStatus(id : 0 ,name: "Delivered",selected : true ),
+        OrderStatus(id : 1 ,name: "Submitted",selected : false ),
+        OrderStatus(id : 2 ,name: "Pending"  ,selected : false),
+        OrderStatus(id : 3 ,name: "Cancelled",selected : false)
        ]
+    @State var selecteditem = OrderStatus(id : 0 ,name: "Delivered",selected : true )
     
-        
     var body: some View {
         
         VStack (spacing : 10) {
@@ -65,23 +65,26 @@ struct ExtractedViewYourOrderScreen : View {
                     HStack(spacing: 10) {
                         ForEach(items){ item in
                             Button(action: {
-                                for data in items {
-                                    data.selected = (item.tag == data.tag)
-                                    print("data.selected : \(data.selected)")
-                                }
+//                                item.selected.toggle()
+//                                for data in items {
+                                    selecteditem = item
+//                                    data.selected = (item.tag == data.tag)
+//                                    print("data.selected : \(data.selected)")
+//                                }
                             }, label: {
                                 Text(item.name)
-                                    .font(.custom(item.selected ? "LamaSans-Medium" : "LamaSans-Regular", size: item.selected ? 12 : 10))
+                                    .font(.custom(item == selecteditem ? "LamaSans-Medium" : "LamaSans-Regular", size: item.selected ? 12 : 10))
                                     .padding()
-                                    .background(item.selected ? Color("main2") : .clear)
-                                    .foregroundColor(item.selected ? .white : Color("main1"))
+                                    .background(item == selecteditem ? Color("main2") : .clear)
+                                    .foregroundColor(item == selecteditem ? .white : Color("main1"))
                                     .cornerRadius(30)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 30)
-                                            .stroke(item.selected ? .clear : Color("main2") , lineWidth: 1)
+                                            .stroke(item == selecteditem ? .clear : Color("main2") , lineWidth: 1)
                                     
                                     )
-                            }).tag(item.tag)
+                            })
+//                            .tag(item.id)
                         }
                     }
                 }
@@ -94,7 +97,7 @@ struct ExtractedViewYourOrderScreen : View {
             List {
                 ForEach(0 ..< 10) {_ in
                     
-                    VStack(spacing : 10) {
+                    VStack(spacing : 0) {
                         
                         HStack(spacing : 10) {
                             
@@ -173,14 +176,24 @@ struct ExtractedViewYourOrderScreen : View {
                     }
                     .padding(.vertical , 10)
                     .frame(height: 130)
+                    .listRowSeparator(.hidden)
+                    
+                    customDivider()
+                        .padding(.horizontal,-20)
+                        .listRowSeparator(.hidden) // Hide the separator lines
                     
                 }
             }
             .listStyle(.plain)
-            .listRowSeparator(.hidden) // Hide the separator lines
 
         }
         
     }
 }
 
+ func customDivider() -> some View {
+    return
+    
+    Color(.black).opacity(0.2)
+        .frame(maxHeight: 0.5)
+}

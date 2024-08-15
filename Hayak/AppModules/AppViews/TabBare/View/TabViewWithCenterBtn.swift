@@ -41,6 +41,7 @@ import SwiftUI
                         .tag(3)
                     
                     ProfileView()
+                        .padding(.bottom)
                         .tabItem {
                             Image("profile")
                             Text("Profile")
