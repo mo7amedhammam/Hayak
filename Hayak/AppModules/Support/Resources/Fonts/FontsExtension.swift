@@ -7,6 +7,16 @@
 
 import SwiftUI
 
+
+enum fontEnum : String {
+    case light   = "LamaSans-Light"
+    case regular = "LamaSans-Regular"
+    case medium  = "LamaSans-Medium"
+    case bold    = "LamaSans-Bold"
+    case semiBold    = "LamaSans-SemiBold"
+}
+
+
 extension Font {
     static func SoraBold( size: CGFloat) -> Self {
         @State var language = LocalizeHelper.shared.currentLanguage

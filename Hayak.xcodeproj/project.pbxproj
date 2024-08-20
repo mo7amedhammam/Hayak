@@ -29,6 +29,7 @@
 		19E170EC2C5C05570079FFDE /* NotificationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E170EB2C5C05570079FFDE /* NotificationScreen.swift */; };
 		19E170EE2C5C1D200079FFDE /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E170ED2C5C1D200079FFDE /* SettingsScreen.swift */; };
 		19E2E1672C3B3C6F006AF2E9 /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E2E1662C3B3C6F006AF2E9 /* SignUpScreen.swift */; };
+		19E3809F2C74F96F00E580D9 /* OrderDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E3809E2C74F96F00E580D9 /* OrderDetailsScreen.swift */; };
 		19EF10452C35AE830010DF55 /* WellcomeLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EF10442C35AE830010DF55 /* WellcomeLoginScreen.swift */; };
 		19EF624A2C39C0CC0021C589 /* SignInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EF62492C39C0CC0021C589 /* SignInScreen.swift */; };
 		19F1AC9F2C3C689400499EF4 /* ForgetPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F1AC9E2C3C689400499EF4 /* ForgetPasswordScreen.swift */; };
@@ -37,7 +38,6 @@
 		C8986CD62C15B9FE0091789F /* HayakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CD52C15B9FE0091789F /* HayakApp.swift */; };
 		C8986CD82C15B9FE0091789F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CD72C15B9FE0091789F /* ContentView.swift */; };
 		C8986CDA2C15BA010091789F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8986CD92C15BA010091789F /* Assets.xcassets */; };
-		C8986CDD2C15BA010091789F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8986CDC2C15BA010091789F /* Preview Assets.xcassets */; };
 		C8986CF02C15C27D0091789F /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CE82C15C27D0091789F /* BaseRequest.swift */; };
 		C8986CF12C15C27D0091789F /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CE92C15C27D0091789F /* BaseResponse.swift */; };
 		C8986CF22C15C27D0091789F /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CEA2C15C27D0091789F /* EndPoints.swift */; };
@@ -81,6 +81,7 @@
 		19E170EB2C5C05570079FFDE /* NotificationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationScreen.swift; sourceTree = "<group>"; };
 		19E170ED2C5C1D200079FFDE /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		19E2E1662C3B3C6F006AF2E9 /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
+		19E3809E2C74F96F00E580D9 /* OrderDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsScreen.swift; sourceTree = "<group>"; };
 		19EF10442C35AE830010DF55 /* WellcomeLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellcomeLoginScreen.swift; sourceTree = "<group>"; };
 		19EF62492C39C0CC0021C589 /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
 		19F1AC9E2C3C689400499EF4 /* ForgetPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordScreen.swift; sourceTree = "<group>"; };
@@ -89,7 +90,6 @@
 		C8986CD52C15B9FE0091789F /* HayakApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HayakApp.swift; sourceTree = "<group>"; };
 		C8986CD72C15B9FE0091789F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C8986CD92C15BA010091789F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C8986CDC2C15BA010091789F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C8986CE82C15C27D0091789F /* BaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
 		C8986CE92C15C27D0091789F /* BaseResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		C8986CEA2C15C27D0091789F /* EndPoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
@@ -228,6 +228,7 @@
 				196498ED2C6A9DC20053F0D3 /* PaymentSuccessScreen.swift */,
 				196498EF2C6AA1D90053F0D3 /* OrderEmptyScreen.swift */,
 				19495DBA2C6BBA4E00D2CCF7 /* YourOrderScreen.swift */,
+				19E3809E2C74F96F00E580D9 /* OrderDetailsScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -295,17 +296,8 @@
 				19091AF92C348E84002B2EC6 /* Info.plist */,
 				C8986CE32C15BFF50091789F /* AppMain */,
 				C8986CE42C15C0020091789F /* AppModules */,
-				C8986CDB2C15BA010091789F /* Preview Content */,
 			);
 			path = Hayak;
-			sourceTree = "<group>";
-		};
-		C8986CDB2C15BA010091789F /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				C8986CDC2C15BA010091789F /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		C8986CE32C15BFF50091789F /* AppMain */ = {
@@ -537,7 +529,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				19091AF62C348DFC002B2EC6 /* LamaSans-SemiBold.ttf in Resources */,
-				C8986CDD2C15BA010091789F /* Preview Assets.xcassets in Resources */,
 				19091AF52C348DFC002B2EC6 /* LamaSans-Regular.ttf in Resources */,
 				C8986D182C15C3A00091789F /* Localizable.strings in Resources */,
 				19091AF82C348DFC002B2EC6 /* LamaSans-Light.ttf in Resources */,
@@ -612,6 +603,7 @@
 				C8986D212C15C3A00091789F /* Helper.swift in Sources */,
 				19F60B1E2C45766600367453 /* SuccessScreen.swift in Sources */,
 				C8986D152C15C3A00091789F /* ExViews.swift in Sources */,
+				19E3809F2C74F96F00E580D9 /* OrderDetailsScreen.swift in Sources */,
 				19F1AC9F2C3C689400499EF4 /* ForgetPasswordScreen.swift in Sources */,
 				C8986D122C15C3A00091789F /* Exdates.swift in Sources */,
 				19091AEE2C3489D5002B2EC6 /* OnBoardingScreen.swift in Sources */,
@@ -783,10 +775,11 @@
 			baseConfigurationReference = 173BBBE9262B99256111750E /* Pods-Hayak.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Hayak/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Hayak/AppMain\"";
 				DEVELOPMENT_TEAM = 23H4SBD5QL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -819,10 +812,11 @@
 			baseConfigurationReference = CEF99719986644E790259E06 /* Pods-Hayak.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Hayak/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Hayak/AppMain\"";
 				DEVELOPMENT_TEAM = 23H4SBD5QL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
