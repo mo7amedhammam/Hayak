@@ -26,6 +26,7 @@
 		196498F02C6AA1D90053F0D3 /* OrderEmptyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196498EF2C6AA1D90053F0D3 /* OrderEmptyScreen.swift */; };
 		199FE2D92C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FE2D82C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift */; };
 		199FE2DB2C3F15A70071BF8E /* ChangePasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FE2DA2C3F15A70071BF8E /* ChangePasswordScreen.swift */; };
+		19A956132C7672600020CCC4 /* OrderTrackingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A956122C7672600020CCC4 /* OrderTrackingScreen.swift */; };
 		19E170EC2C5C05570079FFDE /* NotificationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E170EB2C5C05570079FFDE /* NotificationScreen.swift */; };
 		19E170EE2C5C1D200079FFDE /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E170ED2C5C1D200079FFDE /* SettingsScreen.swift */; };
 		19E2E1672C3B3C6F006AF2E9 /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E2E1662C3B3C6F006AF2E9 /* SignUpScreen.swift */; };
@@ -78,6 +79,7 @@
 		196498EF2C6AA1D90053F0D3 /* OrderEmptyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEmptyScreen.swift; sourceTree = "<group>"; };
 		199FE2D82C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetNewPasswordScreen.swift; sourceTree = "<group>"; };
 		199FE2DA2C3F15A70071BF8E /* ChangePasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordScreen.swift; sourceTree = "<group>"; };
+		19A956122C7672600020CCC4 /* OrderTrackingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackingScreen.swift; sourceTree = "<group>"; };
 		19E170EB2C5C05570079FFDE /* NotificationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationScreen.swift; sourceTree = "<group>"; };
 		19E170ED2C5C1D200079FFDE /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		19E2E1662C3B3C6F006AF2E9 /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				196498EF2C6AA1D90053F0D3 /* OrderEmptyScreen.swift */,
 				19495DBA2C6BBA4E00D2CCF7 /* YourOrderScreen.swift */,
 				19E3809E2C74F96F00E580D9 /* OrderDetailsScreen.swift */,
+				19A956122C7672600020CCC4 /* OrderTrackingScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				19349FFD2C56FA6900AAA59C /* AddAddressScreen.swift in Sources */,
 				195FEDBC2C4EF4F400E9EDC7 /* HomeView.swift in Sources */,
 				C8986CD82C15B9FE0091789F /* ContentView.swift in Sources */,
+				19A956132C7672600020CCC4 /* OrderTrackingScreen.swift in Sources */,
 				19EF10452C35AE830010DF55 /* WellcomeLoginScreen.swift in Sources */,
 				C8986CF22C15C27D0091789F /* EndPoints.swift in Sources */,
 				C8986CD62C15B9FE0091789F /* HayakApp.swift in Sources */,
