@@ -102,11 +102,11 @@ struct ExtractedViewOrderDetailsScreen : View {
 
                                     Text("Pink Risotto")
                                         .foregroundColor(Color("main1"))
-                                        .font(.custom(fontEnum.semiBold.rawValue, size:14))
+                                        .font(.custom(fontEnum.bold.rawValue, size:14))
                                     
                                     Text("SAR 66.00")
                                         .foregroundColor(Color("main1"))
-                                        .font(.custom(fontEnum.semiBold.rawValue, size:12))
+                                        .font(.custom(fontEnum.bold.rawValue, size:12))
 
                                     Text("Your Choice of Sauce")
                                         .foregroundColor(Color("main1"))
@@ -114,23 +114,23 @@ struct ExtractedViewOrderDetailsScreen : View {
 
                                     Text("Spicy Sauce")
                                         .foregroundColor(Color("main1"))
-                                        .font(.custom(fontEnum.semiBold.rawValue, size:10))
+                                        .font(.custom(fontEnum.bold.rawValue, size:10))
                                     
                                     Text("Pasta Sauce (+7 SAR)")
                                         .foregroundColor(Color("main1"))
-                                        .font(.custom(fontEnum.semiBold.rawValue, size:10))
+                                        .font(.custom(fontEnum.bold.rawValue, size:10))
                                     Text("Your Choice of Sandwich")
                                         .foregroundColor(Color("main1"))
                                         .font(.custom(fontEnum.regular.rawValue, size:10))
                                     Text("Spicy (+15 SAR)")
                                         .foregroundColor(Color("main1"))
-                                        .font(.custom(fontEnum.semiBold.rawValue, size:10))
+                                        .font(.custom(fontEnum.bold.rawValue, size:10))
                                     Text("Your Choice of Drink")
                                         .foregroundColor(Color("main1"))
                                         .font(.custom(fontEnum.regular.rawValue, size:10))
                                     Text("Cola")
                                         .foregroundColor(Color("main1"))
-                                        .font(.custom(fontEnum.semiBold.rawValue, size:10))
+                                        .font(.custom(fontEnum.bold.rawValue, size:10))
 
                                 }
                                 Spacer()
@@ -183,7 +183,7 @@ struct ExtractedViewOrderDetailsScreen : View {
                 
                 Text("Payment summary")
                     .foregroundColor(Color("main1"))
-                    .font(.custom(fontEnum.semiBold.rawValue, size:16))
+                    .font(.custom(fontEnum.bold.rawValue, size:16))
                 
                 HStack {
                     Text("Subtotal")

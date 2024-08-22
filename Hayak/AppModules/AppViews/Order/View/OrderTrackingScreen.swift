@@ -46,21 +46,21 @@ struct ExtractedViewOrderTrackingScreen: View {
                     HStack {
                         Text("Your Booking code:")
                             .foregroundColor(Color("main1"))
-                            .font(.custom(fontEnum.semiBold.rawValue, size:14))
+                            .font(.custom(fontEnum.bold.rawValue, size:14))
                         Spacer()
                         Text("#800715")
                             .foregroundColor(Color("main2"))
-                            .font(.custom(fontEnum.semiBold.rawValue, size:14))
+                            .font(.custom(fontEnum.bold.rawValue, size:14))
 
                     }
                     HStack {
                         Text("3 Services")
                             .foregroundColor(Color("main1"))
-                            .font(.custom(fontEnum.semiBold.rawValue, size:14))
+                            .font(.custom(fontEnum.bold.rawValue, size:14))
                         Spacer()
                         Text("$23.5")
                             .foregroundColor(Color("main2"))
-                            .font(.custom(fontEnum.semiBold.rawValue, size:14))
+                            .font(.custom(fontEnum.bold.rawValue, size:14))
                     }
                 }
                 .frame(height: 90)
@@ -96,7 +96,7 @@ struct ExtractedViewOrderTrackingScreen: View {
                         VStack(alignment: .leading ,  spacing : 10){
                             Text("Food Delivered")
                                 .foregroundColor(Color("main1"))
-                                .font(.custom(fontEnum.semiBold.rawValue, size:14))
+                                .font(.custom(fontEnum.bold.rawValue, size:14))
                             Text("Estimated for 7 July, 2021")
                                 .foregroundColor(Color("empty text field"))
                                 .font(.custom(fontEnum.medium.rawValue, size:13))
@@ -105,7 +105,7 @@ struct ExtractedViewOrderTrackingScreen: View {
                         VStack(alignment: .leading ,  spacing : 10){
                             Text("Reached at location")
                                 .foregroundColor(Color("main1"))
-                                .font(.custom(fontEnum.semiBold.rawValue, size:14))
+                                .font(.custom(fontEnum.bold.rawValue, size:14))
                             Text("Estimated for 5 July, 2021")
                                 .foregroundColor(Color("empty text field"))
                                 .font(.custom(fontEnum.medium.rawValue, size:13))
@@ -115,7 +115,7 @@ struct ExtractedViewOrderTrackingScreen: View {
                         VStack(alignment: .leading ,  spacing : 10){
                             Text("Confirmed")
                                 .foregroundColor(Color("main1"))
-                                .font(.custom(fontEnum.semiBold.rawValue, size:14))
+                                .font(.custom(fontEnum.bold.rawValue, size:14))
                             Text("Your Booking has been confirmed")
                                 .foregroundColor(Color("empty text field"))
                                 .font(.custom(fontEnum.medium.rawValue, size:13))
@@ -124,7 +124,7 @@ struct ExtractedViewOrderTrackingScreen: View {
                         VStack(alignment: .leading ,  spacing : 10){
                             Text("Booking placed")
                                 .foregroundColor(Color("main1"))
-                                .font(.custom(fontEnum.semiBold.rawValue, size:14))
+                                .font(.custom(fontEnum.bold.rawValue, size:14))
                             Text("We have received your order")
                                 .foregroundColor(Color("empty text field"))
                                 .font(.custom(fontEnum.medium.rawValue, size:13))

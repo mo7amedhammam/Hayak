@@ -24,6 +24,7 @@
 		195FEDC22C4EF52600E9EDC7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195FEDC12C4EF52500E9EDC7 /* ProfileView.swift */; };
 		196498EE2C6A9DC20053F0D3 /* PaymentSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196498ED2C6A9DC20053F0D3 /* PaymentSuccessScreen.swift */; };
 		196498F02C6AA1D90053F0D3 /* OrderEmptyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196498EF2C6AA1D90053F0D3 /* OrderEmptyScreen.swift */; };
+		1982071F2C77CDBC00F16195 /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1982071E2C77CDBC00F16195 /* SearchScreen.swift */; };
 		199FE2D92C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FE2D82C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift */; };
 		199FE2DB2C3F15A70071BF8E /* ChangePasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FE2DA2C3F15A70071BF8E /* ChangePasswordScreen.swift */; };
 		19A956132C7672600020CCC4 /* OrderTrackingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A956122C7672600020CCC4 /* OrderTrackingScreen.swift */; };
@@ -77,6 +78,7 @@
 		195FEDC12C4EF52500E9EDC7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		196498ED2C6A9DC20053F0D3 /* PaymentSuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessScreen.swift; sourceTree = "<group>"; };
 		196498EF2C6AA1D90053F0D3 /* OrderEmptyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEmptyScreen.swift; sourceTree = "<group>"; };
+		1982071E2C77CDBC00F16195 /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
 		199FE2D82C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetNewPasswordScreen.swift; sourceTree = "<group>"; };
 		199FE2DA2C3F15A70071BF8E /* ChangePasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordScreen.swift; sourceTree = "<group>"; };
 		19A956122C7672600020CCC4 /* OrderTrackingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackingScreen.swift; sourceTree = "<group>"; };
@@ -232,6 +234,22 @@
 				19495DBA2C6BBA4E00D2CCF7 /* YourOrderScreen.swift */,
 				19E3809E2C74F96F00E580D9 /* OrderDetailsScreen.swift */,
 				19A956122C7672600020CCC4 /* OrderTrackingScreen.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1982071C2C77CD8900F16195 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				1982071D2C77CD9700F16195 /* View */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		1982071D2C77CD9700F16195 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1982071E2C77CDBC00F16195 /* SearchScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -455,6 +473,7 @@
 				195FEDB52C4EF48100E9EDC7 /* Dining */,
 				196414572C457F44008370CE /* Profile */,
 				196498EB2C6A9D5D0053F0D3 /* Order */,
+				1982071C2C77CD8900F16195 /* Search */,
 				19E170E92C5C052B0079FFDE /* Notification */,
 				19EF62482C39C0B30021C589 /* Authentication */,
 				19091AEC2C3480EB002B2EC6 /* OnBoarding */,
@@ -602,6 +621,7 @@
 				C8986D1B2C15C3A00091789F /* FontsExtension.swift in Sources */,
 				C8986CF32C15C27D0091789F /* RequestBuilder.swift in Sources */,
 				C8986CF02C15C27D0091789F /* BaseRequest.swift in Sources */,
+				1982071F2C77CDBC00F16195 /* SearchScreen.swift in Sources */,
 				19EF624A2C39C0CC0021C589 /* SignInScreen.swift in Sources */,
 				C8986CF12C15C27D0091789F /* BaseResponse.swift in Sources */,
 				C8986D212C15C3A00091789F /* Helper.swift in Sources */,
