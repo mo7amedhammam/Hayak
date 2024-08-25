@@ -68,16 +68,16 @@ struct OnBoardingScreen: View {
                                 
                                 VStack {
                                     Text(onBoardingStepsArr[index].des1)
-                                        .font(.custom("LamaSans-Medium", size: 13))
+                                        .font(.custom(fontEnum.medium.rawValue, size: 13))
                                         .foregroundColor(.white)
                                         .frame(height: 16)
                                     Text(onBoardingStepsArr[index].des2)
-                                        .font(.custom("LamaSans-Medium", size: 13))
+                                        .font(.custom(fontEnum.medium.rawValue, size: 13))
                                         .foregroundColor(.white)
                                         .frame(height: 16)
                                     
                                     Text(onBoardingStepsArr[index].des3)
-                                        .font(.custom("LamaSans-Medium", size: 13))
+                                        .font(.custom(fontEnum.medium.rawValue, size: 13))
                                         .foregroundColor(.white)
                                         .frame(height: 16)
                                 }
@@ -91,7 +91,7 @@ struct OnBoardingScreen: View {
                                     Text("Get Started")
                                         .frame(height: 50) // Set the height here
                                         .frame(maxWidth: .infinity)
-                                        .font(.custom("LamaSans-Medium", size: 14))
+                                        .font(.custom(fontEnum.medium.rawValue, size: 14))
                                         .foregroundColor(Color("main")).background(Color("bg"))
                                         .cornerRadius(20)
                                         .padding(.top , 10)

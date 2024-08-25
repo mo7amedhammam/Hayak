@@ -101,7 +101,7 @@ struct ExtractedViewEditAddressScreen: View {
                 HStack {
                     
                     Text("Set as default address")
-                        .font(.custom("LamaSans-Medium", size: 14))
+                        .font(.custom(fontEnum.medium.rawValue, size: 14))
                         .foregroundColor(Color("main1"))
                     
                     Spacer()
@@ -131,7 +131,7 @@ struct ExtractedViewEditAddressScreen: View {
                         Text("Add new address")
                             .frame(height: 50) // Set the height here
                             .frame(maxWidth: .infinity)
-                            .font(.custom("LamaSans-Medium", size: 14))
+                            .font(.custom(fontEnum.medium.rawValue, size: 14))
                             .foregroundColor(Color("empty text field"))
                             .padding(.horizontal , 20)
                             .background(
@@ -158,7 +158,7 @@ struct ExtractedViewEditAddressScreen: View {
                     Text("Save")
                         .frame(height: 50) // Set the height here
                         .frame(maxWidth: .infinity)
-                        .font(.custom("LamaSans-Medium", size: 14))
+                        .font(.custom(fontEnum.medium.rawValue, size: 14))
                         .foregroundColor(Color("bg1")).background(Color("main2"))
                         .cornerRadius(11)
                         .padding(.horizontal , 20)

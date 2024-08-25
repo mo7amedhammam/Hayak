@@ -67,7 +67,7 @@ struct ExtractedViewSignIn: View {
                         .font(.custom("LamaSans-Bold", size: 18))
                         .foregroundColor(Color("main1"))
                     Text("Sign in to continue")
-                        .font(.custom("LamaSans-Medium", size: 13))
+                        .font(.custom(fontEnum.medium.rawValue, size: 13))
                         .foregroundColor(Color("main1"))
                 }
                 .frame(maxWidth: .infinity , minHeight: 200 , alignment: .leading)
@@ -84,7 +84,7 @@ struct ExtractedViewSignIn: View {
                         CheckboxView(isChecked: $isChecked)
                         Text("Remember me")
                             .foregroundColor(Color("main1"))
-                            .font(.custom("LamaSans-Medium", size: 13))
+                            .font(.custom(fontEnum.medium.rawValue, size: 13))
                         Spacer()
                         Button(action: {
                             // Button action
@@ -92,7 +92,7 @@ struct ExtractedViewSignIn: View {
                             self.GoToForgetPassword = true
                         }) {
                             Text("Forget password?")
-                                .font(.custom("LamaSans-Medium", size: 14))
+                                .font(.custom(fontEnum.medium.rawValue, size: 14))
                                 .foregroundColor(Color("main2"))
                         }
                     }
@@ -106,7 +106,7 @@ struct ExtractedViewSignIn: View {
                         Text("Sign in")
                             .frame(height: 50) // Set the height here
                             .frame(maxWidth: .infinity)
-                            .font(.custom("LamaSans-Medium", size: 14))
+                            .font(.custom(fontEnum.medium.rawValue, size: 14))
                             .foregroundColor(Color("bg1")).background(Color("main2"))
                             .cornerRadius(20)
                             .padding(.horizontal , 20)
@@ -124,7 +124,7 @@ struct ExtractedViewSignIn: View {
                 
                 HStack (alignment: .center ){
                     Text("Already have not an account?")
-                        .font(.custom("LamaSans-Medium", size: 14))
+                        .font(.custom(fontEnum.medium.rawValue, size: 14))
                         .foregroundColor(Color("main1"))
                     Button(action: {
                         // sign up
@@ -132,7 +132,7 @@ struct ExtractedViewSignIn: View {
                     }, label: {
                         Text("Sign up!")
                             .frame(height: 50) // Set the height here
-                            .font(.custom("LamaSans-Medium", size: 14))
+                            .font(.custom(fontEnum.medium.rawValue, size: 14))
                             .foregroundColor(Color("main2")).background(Color("bg"))
                     })
                     

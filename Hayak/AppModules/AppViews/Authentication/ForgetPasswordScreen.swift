@@ -32,16 +32,16 @@ struct ForgetPasswordScreen: View {
                     
                     VStack {
                         Text("We will send you an ")
-                            .font(.custom("LamaSans-Medium", size: 13))
+                            .font(.custom(fontEnum.medium.rawValue, size: 13))
                             .foregroundColor(Color("active text"))
                             .frame(height: 16)
                         Text("authentication code to your mobile")
-                            .font(.custom("LamaSans-Medium", size: 13))
+                            .font(.custom(fontEnum.medium.rawValue, size: 13))
                             .foregroundColor(Color("active text"))
                             .frame(height: 16)
                         
                         Text(" number to reset your password")
-                            .font(.custom("LamaSans-Medium", size: 13))
+                            .font(.custom(fontEnum.medium.rawValue, size: 13))
                             .foregroundColor(Color("active text"))
                             .frame(height: 16)
                     }
@@ -58,7 +58,7 @@ struct ForgetPasswordScreen: View {
                         Text("Send")
                             .frame(height: 50) // Set the height here
                             .frame(maxWidth: .infinity)
-                            .font(.custom("LamaSans-Medium", size: 14))
+                            .font(.custom(fontEnum.medium.rawValue, size: 14))
                             .foregroundColor(Color("bg1")).background(Color("main2"))
                             .cornerRadius(20)
                             .padding(.horizontal , 20)

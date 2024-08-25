@@ -61,12 +61,12 @@ struct WellcomeLoginScreen: View {
                                   
                                   VStack {
                                       Text("Restaurants and search by cuisine, price,")
-                                          .font(.custom("LamaSans-Medium", size: 13))
+                                          .font(.custom(fontEnum.medium.rawValue, size: 13))
                                           .foregroundColor(.white)
                                           .frame(height: 16)
 
                                       Text("location, and more.")
-                                          .font(.custom("LamaSans-Medium", size: 13))
+                                          .font(.custom(fontEnum.medium.rawValue, size: 13))
                                           .foregroundColor(.white)
                                           .frame(height: 16)
                                   }
@@ -78,7 +78,7 @@ struct WellcomeLoginScreen: View {
                                       Text("Sign in")
                                           .frame(height: 50) // Set the height here
                                           .frame(maxWidth: .infinity)
-                                          .font(.custom("LamaSans-Medium", size: 14))
+                                          .font(.custom(fontEnum.medium.rawValue, size: 14))
                                           .foregroundColor(Color("main")).background(Color("bg"))
                                           .cornerRadius(10)
                                   })
@@ -90,7 +90,7 @@ struct WellcomeLoginScreen: View {
                                       Text("Sign Up")
                                           .frame(height: 50) // Set the height here
                                           .frame(maxWidth: .infinity)
-                                          .font(.custom("LamaSans-Medium", size: 14))
+                                          .font(.custom(fontEnum.medium.rawValue, size: 14))
                                           .foregroundColor(Color("main")).background(Color("bg"))
                                           .cornerRadius(10)
                                   })
@@ -102,7 +102,7 @@ struct WellcomeLoginScreen: View {
                                       Text("Go To Home")
                                           .frame(height: 50) // Set the height here
                                           .frame(maxWidth: .infinity)
-                                          .font(.custom("LamaSans-Medium", size: 14))
+                                          .font(.custom(fontEnum.medium.rawValue, size: 14))
                                           .foregroundColor(Color("main")).background(Color("bg"))
                                           .cornerRadius(10)
                                   })

@@ -82,7 +82,7 @@ struct ExtractedViewAddAddressScreen: View {
                         Text("Save")
                             .frame(height: 50) // Set the height here
                             .frame(maxWidth: .infinity)
-                            .font(.custom("LamaSans-Medium", size: 14))
+                            .font(.custom(fontEnum.medium.rawValue, size: 14))
                             .foregroundColor(Color("bg1")).background(Color("main2"))
                             .cornerRadius(11)
                             .padding(.horizontal , 20)

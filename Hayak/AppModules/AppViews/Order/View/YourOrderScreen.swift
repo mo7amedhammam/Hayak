@@ -111,7 +111,7 @@ struct ExtractedViewYourOrderScreen : View {
                                 HStack {
                                     Text("Subway, Dubai World Trad...")
                                         .foregroundColor(Color("main1"))
-                                    .font(.custom("LamaSans-Medium", size:12))
+                                    .font(.custom(fontEnum.medium.rawValue, size:12))
                                     Spacer()
                                     Image(systemName: "chevron.right")
                                         .foregroundColor(Color("main1"))
@@ -120,15 +120,15 @@ struct ExtractedViewYourOrderScreen : View {
                                 
                                 Text("Delivered")
                                     .foregroundColor(Color("main2"))
-                                    .font(.custom("LamaSans-Medium", size:12))
+                                    .font(.custom(fontEnum.medium.rawValue, size:12))
                                 
                                 Text("24 September 2023 16:17")
                                     .foregroundColor(Color("main1"))
-                                    .font(.custom("LamaSans-Medium", size:12))
+                                    .font(.custom(fontEnum.medium.rawValue, size:12))
                                 
                                 Text("Order ID: 1284566612")
                                     .foregroundColor(Color("main1"))
-                                    .font(.custom("LamaSans-Medium", size:12))
+                                    .font(.custom(fontEnum.medium.rawValue, size:12))
                                 
                                 HStack {
                                     Button(action: {
@@ -140,7 +140,7 @@ struct ExtractedViewYourOrderScreen : View {
                                                 .frame(width: 16 , height: 16)
                                             Text("Re-order")
                                                 .foregroundColor(Color("main2"))
-                                                .font(.custom("LamaSans-Medium", size:12))
+                                                .font(.custom(fontEnum.medium.rawValue, size:12))
                                         }
                                     })
                                     
@@ -154,7 +154,7 @@ struct ExtractedViewYourOrderScreen : View {
                                                 .frame(width: 16 , height: 16)
                                             Text("Rate order")
                                                 .foregroundColor(Color("main2"))
-                                                .font(.custom("LamaSans-Medium", size:12))
+                                                .font(.custom(fontEnum.medium.rawValue, size:12))
                                         }
                                     })
                                   
@@ -277,7 +277,7 @@ struct RateOrderView: View {
                     Text("Submit")
                         .frame(height: 50) // Set the height here
                         .frame(maxWidth: .infinity)
-                        .font(.custom("LamaSans-Medium", size: 14))
+                        .font(.custom(fontEnum.medium.rawValue, size: 14))
                         .foregroundColor(Color("bg1")).background(Color("main2"))
                         .cornerRadius(11)
                         .padding(.horizontal , 20)

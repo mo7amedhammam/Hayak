@@ -60,7 +60,7 @@ struct ExtractedViewOrderDetailsScreen : View {
                     HStack {
                         Text("Subway, Dubai World Trad...")
                             .foregroundColor(Color("main1"))
-                            .font(.custom("LamaSans-Medium", size:12))
+                            .font(.custom(fontEnum.medium.rawValue, size:12))
                         Spacer()
                         
                         Button("" ,systemImage: "chevron.right") {
@@ -73,15 +73,15 @@ struct ExtractedViewOrderDetailsScreen : View {
                     
                     Text("Delivered")
                         .foregroundColor(Color("main2"))
-                        .font(.custom("LamaSans-Medium", size:12))
+                        .font(.custom(fontEnum.medium.rawValue, size:12))
                     
                     Text("24 September 2023 16:17")
                         .foregroundColor(Color("black50%"))
-                        .font(.custom("LamaSans-Medium", size:12))
+                        .font(.custom(fontEnum.medium.rawValue, size:12))
                     
                     Text("Order ID: 1284566612")
                         .foregroundColor(Color("black50%"))
-                        .font(.custom("LamaSans-Medium", size:12))
+                        .font(.custom(fontEnum.medium.rawValue, size:12))
                   
                     Spacer()
 
