@@ -53,7 +53,7 @@ struct ExtractedViewPaymentSuccessScreen: View {
                         .foregroundColor(Color("main2"))
                     Text("Thank you for choosing our service and trusted to help you with your problems")
                         .lineSpacing(10.0)
-                        .font(.custom("LamaSans-Medium", size: 14))
+                        .font(.custom(fontEnum.medium.rawValue, size: 14))
                         .foregroundColor(Color("main1"))
                         .multilineTextAlignment(.center)
                 }
@@ -70,7 +70,7 @@ struct ExtractedViewPaymentSuccessScreen: View {
                     Text("Find Currier")
                         .frame(height: 50) // Set the height here
                         .frame(maxWidth: .infinity)
-                        .font(.custom("LamaSans-Medium", size: 14))
+                        .font(.custom(fontEnum.medium.rawValue, size: 14))
                         .foregroundColor(Color("bg1")).background(Color("main2"))
                         .cornerRadius(11)
                         .padding(.horizontal , 20)

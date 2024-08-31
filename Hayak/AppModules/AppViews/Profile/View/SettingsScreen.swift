@@ -54,10 +54,10 @@ struct SettingsScreen: View {
                                 .frame(width: 50 , height: 50)
                             VStack (alignment : .leading , spacing: 20) {
                                 Text("Jhon Smith")
-                                    .font(.custom("LamaSans-Medium", size: 14))
+                                    .font(.custom(fontEnum.medium.rawValue, size: 14))
                                     .foregroundColor( Color("main1"))
                                 Text("Basic Member")
-                                    .font(.custom("LamaSans-Medium", size: 13))
+                                    .font(.custom(fontEnum.medium.rawValue, size: 13))
                                     .foregroundColor( Color("main2"))
                             }
                             Spacer()
@@ -183,7 +183,7 @@ struct ExtractedViewSettings: View {
                 .resizable()
                 .frame(width: 22 , height: 25)
             Text(Title)
-                .font(.custom("LamaSans-Medium", size: 15))
+                .font(.custom(fontEnum.medium.rawValue, size: 15))
                 .foregroundColor( Color("main1"))
             Spacer()
             Image(imgArrow ? "arrowEnable" : "" )
@@ -208,7 +208,7 @@ struct ExtractedViewSettingsMoreOption: View {
                 .resizable()
                 .frame(width: 22 , height: 22)
             Text(Title)
-                .font(.custom("LamaSans-Medium", size: 15))
+                .font(.custom(fontEnum.medium.rawValue, size: 15))
                 .foregroundColor( Color("main1"))
             Spacer()
             
@@ -234,13 +234,13 @@ struct ExtractedViewSettingsMoreOption2: View {
                 .frame(width: 22 , height: 22)
             
             Text(Title)
-                .font(.custom("LamaSans-Medium", size: 15))
+                .font(.custom(fontEnum.medium.rawValue, size: 15))
                 .foregroundColor( Color("main1"))
                 .lineLimit(1)
             
             Spacer()
             Text(hint)
-                .font(.custom("LamaSans-Medium", size: 15))
+                .font(.custom(fontEnum.medium.rawValue, size: 15))
                 .foregroundColor( Color("secondary"))
                 .lineLimit(1)
             Image("arrowEnable")

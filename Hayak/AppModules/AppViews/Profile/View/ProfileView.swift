@@ -138,7 +138,7 @@ struct  ViewCustomUserIsSigned :  View {
         VStack {
             
             Text("Sign in to your account or Sign up for new account")
-                .font(.custom("LamaSans-Medium", size: 14))
+                .font(.custom(fontEnum.medium.rawValue, size: 14))
                 .foregroundColor(Color("main1"))
                 .multilineTextAlignment(.center)
             Spacer()
@@ -149,7 +149,7 @@ struct  ViewCustomUserIsSigned :  View {
                 Text("Sign in")
                     .frame(height: 50) // Set the height here
                     .frame(maxWidth: .infinity)
-                    .font(.custom("LamaSans-Medium", size: 14))
+                    .font(.custom(fontEnum.medium.rawValue, size: 14))
                     .foregroundColor(Color("bg1")).background(Color("main2"))
                     .cornerRadius(10)
             })
@@ -161,7 +161,7 @@ struct  ViewCustomUserIsSigned :  View {
                 Text("Sign up")
                     .frame(height: 50) // Set the height here
                     .frame(maxWidth: .infinity)
-                    .font(.custom("LamaSans-Medium", size: 14))
+                    .font(.custom(fontEnum.medium.rawValue, size: 14))
                     .foregroundColor(Color("main2")).background(.white)
                     .cornerRadius(10)
                     .padding(.horizontal , 20)
@@ -234,7 +234,7 @@ struct  ViewCustomUserNotSigned :  View {
                 .foregroundColor(Color("main1"))
             Spacer()
             Text(Balance)
-                .font(.custom("LamaSans-Medium", size: 13))
+                .font(.custom(fontEnum.medium.rawValue, size: 13))
                 .foregroundColor(Color("main2"))
             
         }

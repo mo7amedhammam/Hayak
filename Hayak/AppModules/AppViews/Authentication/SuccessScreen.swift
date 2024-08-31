@@ -40,13 +40,13 @@ struct ExtractedViewSuccessScreen : View {
                  
                     VStack(spacing : 10) {
                         Text("Your account had beed created successfully.")
-                            .font(.custom("LamaSans-Medium", size: 13))
+                            .font(.custom(fontEnum.medium.rawValue, size: 13))
                             .foregroundColor(Color("empty text field"))
                             .multilineTextAlignment(.center)
                             .lineSpacing(6.0)
                      
                         Text("Please sign in to use your account and enjoy")
-                            .font(.custom("LamaSans-Medium", size: 13))
+                            .font(.custom(fontEnum.medium.rawValue, size: 13))
                             .foregroundColor(Color("empty text field"))
                             .multilineTextAlignment(.center)
                             .lineSpacing(6.0)
@@ -60,7 +60,7 @@ struct ExtractedViewSuccessScreen : View {
                         Text("Take me to sign in")
                             .frame(height: 50) // Set the height here
                             .frame(maxWidth: .infinity)
-                            .font(.custom("LamaSans-Medium", size: 14))
+                            .font(.custom(fontEnum.medium.rawValue, size: 14))
                             .foregroundColor(Color("bg1"))
                     })
                     .background(Color("main2")).cornerRadius(10)

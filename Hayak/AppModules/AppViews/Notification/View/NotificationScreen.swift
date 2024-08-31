@@ -46,7 +46,7 @@ struct NotificationScreen: View {
                                         .font(.custom("LamaSans-Bold", size: 12))
                                         .foregroundColor( Color("main1"))
                                     Text("order#132 has been canceled")
-                                        .font(.custom("LamaSans-Medium", size: 13))
+                                        .font(.custom(fontEnum.medium.rawValue, size: 13))
                                         .foregroundColor( Color("main1"))
                                 }
                             }
