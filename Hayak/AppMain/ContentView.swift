@@ -8,17 +8,42 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var isActive = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        
+        NavigationView {
+            ZStack {
+                Color.white.ignoresSafeArea()
+                
+                Image("splash")
+                    .resizable()
+                    .ignoresSafeArea()
+                
+                
+                NavigationLink(
+                    destination: OnBoardingScreen(),
+                    isActive: $isActive,
+                    label: {
+                        EmptyView()
+                    }
+                )
+            
+            .onAppear{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                    self.isActive = true
+                }
+            }
+            
+            }
         }
-        .padding()
-    }
+        
+    
+}
 }
 
 #Preview {
     ContentView()
+    
 }
