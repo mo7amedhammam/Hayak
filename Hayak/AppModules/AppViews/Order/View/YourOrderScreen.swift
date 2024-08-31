@@ -303,3 +303,8 @@ struct RateOrderView: View {
 
     }
 }
+
+func customDivider() -> some View {
+   return Color(.black).opacity(0.2)
+       .frame(maxHeight: 0.5)
+}

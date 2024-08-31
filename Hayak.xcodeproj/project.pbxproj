@@ -37,6 +37,8 @@
 		19F1AC9F2C3C689400499EF4 /* ForgetPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F1AC9E2C3C689400499EF4 /* ForgetPasswordScreen.swift */; };
 		19F60B1E2C45766600367453 /* SuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F60B1D2C45766600367453 /* SuccessScreen.swift */; };
 		607C994D261D5597E259E23B /* Pods_Hayak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA111EA2737130E40EB7435 /* Pods_Hayak.framework */; };
+		C85C43D72C8334C6006B64E0 /* ScrollViewRTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85C43D62C8334C6006B64E0 /* ScrollViewRTL.swift */; };
+		C85C43DA2C8337BE006B64E0 /* KFImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85C43D92C8337BE006B64E0 /* KFImageLoader.swift */; };
 		C8986CD62C15B9FE0091789F /* HayakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CD52C15B9FE0091789F /* HayakApp.swift */; };
 		C8986CD82C15B9FE0091789F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CD72C15B9FE0091789F /* ContentView.swift */; };
 		C8986CDA2C15BA010091789F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8986CD92C15BA010091789F /* Assets.xcassets */; };
@@ -90,6 +92,8 @@
 		19EF62492C39C0CC0021C589 /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
 		19F1AC9E2C3C689400499EF4 /* ForgetPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordScreen.swift; sourceTree = "<group>"; };
 		19F60B1D2C45766600367453 /* SuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessScreen.swift; sourceTree = "<group>"; };
+		C85C43D62C8334C6006B64E0 /* ScrollViewRTL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewRTL.swift; sourceTree = "<group>"; };
+		C85C43D92C8337BE006B64E0 /* KFImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KFImageLoader.swift; sourceTree = "<group>"; };
 		C8986CD22C15B9FE0091789F /* Hayak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hayak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8986CD52C15B9FE0091789F /* HayakApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HayakApp.swift; sourceTree = "<group>"; };
 		C8986CD72C15B9FE0091789F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -293,6 +297,31 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C85C43D42C833495006B64E0 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				C85C43D82C8337A1006B64E0 /* Image */,
+				C85C43D52C8334A5006B64E0 /* ScrollView */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		C85C43D52C8334A5006B64E0 /* ScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				C85C43D62C8334C6006B64E0 /* ScrollViewRTL.swift */,
+			);
+			path = ScrollView;
+			sourceTree = "<group>";
+		};
+		C85C43D82C8337A1006B64E0 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				C85C43D92C8337BE006B64E0 /* KFImageLoader.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		C8986CC92C15B9FE0091789F = {
 			isa = PBXGroup;
 			children = (
@@ -456,6 +485,7 @@
 		C8986D112C15C3A00091789F /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				C85C43D42C833495006B64E0 /* CustomViews */,
 				C8986CFE2C15C3A00091789F /* Extensions */,
 				C8986D052C15C3A00091789F /* Localization */,
 				C8986D0F2C15C3A00091789F /* Resources */,
@@ -633,6 +663,7 @@
 				19091AEE2C3489D5002B2EC6 /* OnBoardingScreen.swift in Sources */,
 				199FE2DB2C3F15A70071BF8E /* ChangePasswordScreen.swift in Sources */,
 				195FEDB22C4EEDAC00E9EDC7 /* TabViewWithCenterBtn.swift in Sources */,
+				C85C43DA2C8337BE006B64E0 /* KFImageLoader.swift in Sources */,
 				C8986CF42C15C27D0091789F /* Authintications.swift in Sources */,
 				C8986D1A2C15C3A00091789F /* ColorConstants.swift in Sources */,
 				19E170EC2C5C05570079FFDE /* NotificationScreen.swift in Sources */,
@@ -643,6 +674,7 @@
 				195FEDBE2C4EF50800E9EDC7 /* PicUpView.swift in Sources */,
 				19495DBB2C6BBA4E00D2CCF7 /* YourOrderScreen.swift in Sources */,
 				C8986D162C15C3A00091789F /* Language.swift in Sources */,
+				C85C43D72C8334C6006B64E0 /* ScrollViewRTL.swift in Sources */,
 				19E170EE2C5C1D200079FFDE /* SettingsScreen.swift in Sources */,
 				194DA28D2C3DA47000AA3CB4 /* OtpScreen.swift in Sources */,
 				19349FFB2C56EBA200AAA59C /* EditAddressScreen.swift in Sources */,
