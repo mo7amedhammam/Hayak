@@ -19,7 +19,9 @@ struct pickUpCellModel : Hashable {
 
 struct pickUpCellView: View {
     var pickUp : pickUpCellModel
-    
+    var onSelect: (() -> Void)?
+    var onClickLove: (() -> Void)?
+
 //    @Binding var selectedResturant:restaurant
     
     var body: some View {
@@ -71,7 +73,7 @@ struct pickUpCellView: View {
                         Spacer()
                         
                         Button(action: {
-                            
+                            onClickLove?()
                         }, label: {
                             Image(.unlove)
                         })
@@ -142,6 +144,9 @@ struct pickUpCellView: View {
 //        .padding(.horizontal,4)
 //        .padding(.bottom,4)
         .clipShape(.rect(cornerRadius: 12))
+        .onTapGesture(perform: {
+            onSelect?()
+        })
         
     }
 }
@@ -150,3 +155,4 @@ struct pickUpCellView: View {
     pickUpCellView(pickUp: pickUpCellModel.init())
         .frame(height:120)
 }
+

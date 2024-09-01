@@ -73,101 +73,14 @@ struct MenueView: View {
                         .padding(.bottom,-95)
                         
                         List{
-                            Group{
-                            HStack{
-                                VStack(alignment: .leading,spacing:5){
-                                    Text("Chicken Schezwan Fried Rice")
-                                        .foregroundColor(.main1)
-                                        .font(.custom(fontEnum.semiBold.rawValue, size:12))
-                                    
-                                    HStack(spacing:2){
-                                        Text("220")
-                                        Text("Calories".localized())
-                                    }                                            .foregroundColor(.main2)
-                                        .font(.custom(fontEnum.bold.rawValue, size:10))
-
-                                    
-                                    Text("Golden fried Chicken pieces wok- tossed with hotand spicy schezwan fried rice with vegetables like green ...")
-                                        .foregroundColor(.main1)
-                                        .font(.custom(fontEnum.light.rawValue, size:11))
-                                        .lineLimit(3)
-                                        .lineSpacing(5)
-                                        .padding(.vertical,4)
-                                    
-                                    HStack(spacing:2){
-                                        Text("SAR".localized())
-                                        Text("123.00")
-                                        Spacer()
-                                        
-                                        Text("Customizable".localized())
-                                            .foregroundColor(.white)
-                                            .font(.custom(fontEnum.light.rawValue, size:10))
-                                            .padding(.horizontal,10)
-                                            .padding(.vertical,5)
-                                            .background{Color.main2.clipShape(Capsule())}
-
-                                    }                                            .foregroundColor(.main2)
-                                        .font(.custom(fontEnum.bold.rawValue, size:10))
-                                }
-                                .frame(maxWidth: .infinity,alignment: .leading)
-
-//                                Spacer()
-                                
-//                                GeometryReader{gr in
-                                ZStack(alignment:.bottom){
-                                    KFImageLoader(urlStr: "pickUp.subImage", placeholder: Image("od"))
-                                        .placeholder.resizable().frame(width: 111,height: 100).scaledToFill().cornerRadius(8)
-                                    HStack(alignment:.center,spacing:5){
-                                            
-                                            Button(action: {
-                                                
-                                            }, label: {
-                                                Image(.circleminus)
-                                            })
-                                            .frame(width: 15.3, height: 15.3, alignment: .center)
-                                            
-                                            Text("333")
-                                                .foregroundStyle(.white)
-                                                .font(.custom(fontEnum.bold.rawValue, size:12))
-                                                .frame(maxWidth: .infinity,alignment: .center)
-
-                                            Button(action: {
-                                                
-                                            }, label: {
-                                                Image(.circleplus)
-                                            })
-                                            .frame(width: 15.3, height: 15.3, alignment: .center)
-                                        }
-                                        .frame(height:20)
-                                        .frame(width:75)
-                                        .padding(.horizontal,8)
-//                                        .padding(.vertical,1.5)
-                                        .background{ Color.main2.clipShape(Capsule())
-                                        }
-                                        .offset(y:10)
-                                        .padding(.top,-10)
-
-//                                        .offset(y:(gr.size.height/2)-3)
-//                                        .padding(.top,-(gr.size.height/2)-3.5)
-//                                    }
-                                }
-                                
+//                            Spacer().frame(height: 20)
+                            ForEach(0..<10){_ in
+                                menueListCell()
                             }
-                                customDivider()
-                                    .padding(.horizontal,-30)
-                                    .padding(.top,-20)
-
-                        }
-                                .listRowSeparator(.hidden)
-                                .listRowBackground(Color.clear)
-                                .padding(5)
-
 
                         }
                         .listStyle(.plain)
 //                        .padding(.horizontal)
-
-                        
                         
                         Spacer()
                     }
@@ -181,9 +94,7 @@ struct MenueView: View {
 #Preview {
     MenueView()
 }
-#Preview {
-    MenueView()
-}
+
 
 struct infoLabel: View {
     var title:String
@@ -234,5 +145,98 @@ struct hayakRecommendLabel: View {
         .frame(height: 67)
         .frame(maxWidth: .infinity)
         .background{Color.main2.cornerRadius(8)}
+    }
+}
+
+struct menueListCell: View {
+    @State var count = 0
+    var body: some View {
+        VStack{
+            HStack{
+                VStack(alignment: .leading,spacing:5){
+                    Text("Chicken Schezwan Fried Rice")
+                        .foregroundColor(.main1)
+                        .font(.custom(fontEnum.semiBold.rawValue, size:12))
+                    
+                    HStack(spacing:2){
+                        Text("220")
+                        Text("Calories".localized())
+                    }                                            .foregroundColor(.main2)
+                        .font(.custom(fontEnum.bold.rawValue, size:10))
+                    
+                    
+                    Text("Golden fried Chicken pieces wok- tossed with hotand spicy schezwan fried rice with vegetables like green ...")
+                        .foregroundColor(.main1)
+                        .font(.custom(fontEnum.light.rawValue, size:11))
+                        .lineLimit(3)
+                        .lineSpacing(5)
+                        .padding(.vertical,4)
+                    
+                    HStack(spacing:2){
+                        Text("SAR".localized())
+                        Text("123.00")
+                        Spacer()
+                        
+                        Text("Customizable".localized())
+                            .foregroundColor(.white)
+                            .font(.custom(fontEnum.light.rawValue, size:10))
+                            .padding(.horizontal,10)
+                            .padding(.vertical,5)
+                            .background{Color.main2.clipShape(Capsule())}
+                        
+                    }                                            .foregroundColor(.main2)
+                        .font(.custom(fontEnum.bold.rawValue, size:10))
+                }
+                .frame(maxWidth: .infinity,alignment: .leading)
+                
+                //                                Spacer()
+                
+                //                                GeometryReader{gr in
+                ZStack(alignment:.bottom){
+                    KFImageLoader(urlStr: "pickUp.subImage", placeholder: Image("od"))
+                        .placeholder.resizable().frame(width: 111,height: 100).scaledToFill().cornerRadius(8)
+                    HStack(alignment:.center,spacing:5){
+                        
+                        Button(action: {
+                            guard count > 0 else {return}
+                            count -= 1
+                        }, label: {
+                            Image(.circleminus)
+                        })
+                        .buttonStyle(.plain)
+                        .frame(width: 15.3, height: 15.3, alignment: .center)
+                        
+                        Text(count,format: .number)
+                            .foregroundStyle(.white)
+                            .font(.custom(fontEnum.bold.rawValue, size:12))
+                            .frame(maxWidth: .infinity,alignment: .center)
+                        
+                        Button(action: {
+                            count += 1
+                        }, label: {
+                            Image(.circleplus)
+                        })
+                        .buttonStyle(.plain)
+                        .frame(width: 15.3, height: 15.3, alignment: .center)
+                    }
+                    .frame(height:20)
+                    .frame(width:75)
+                    .padding(.horizontal,8)
+                    .background{ Color.main2.clipShape(Capsule())
+                    }
+                    .offset(y:10)
+                    .padding(.top,-10)
+                    
+                }
+            }
+            customDivider()
+                .padding(.horizontal,-30)
+                .padding(.top,10)
+            
+        }
+        .padding(.top,-10)
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.clear)
+//        .padding(5)
     }
 }
