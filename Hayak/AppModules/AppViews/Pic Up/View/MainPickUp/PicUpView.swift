@@ -8,15 +8,17 @@
 import SwiftUI
 import Kingfisher
 
+func createshoppingimg() -> some View {
+    return Image(.shoppingicon)
+        .resizable()
+        .padding(6)
+        .background{Color(.main).clipShape(Circle())}
+        .frame(width: 33, height: 33)
+}
+
 struct PicUpView: View {
     @Environment(\.presentationMode) var presentationMode
-    func createshoppingimg() -> some View {
-        return Image(.shoppingicon)
-            .resizable()
-            .padding(6)
-            .background{Color(.main).clipShape(Circle())}
-            .frame(width: 33, height: 33)
-    }
+
     var body: some View {
 //        ZStack {
 //            Color(.white).ignoresSafeArea()
@@ -24,8 +26,9 @@ struct PicUpView: View {
             
             VStack {
                 
-                CustomPickupHeaderView(title: "Saudi Arabia", subtitle: "Al Riadh city", onBack: {}, btnimg2:createshoppingimg(), onbtnimg2: {}, btnimg3: Image(.favoriteiconempty), onbtnimg3: {}, btnimg4: Image("carbon_search"), onbtnimg4: {})
-
+                CustomPickupHeaderView(title: "Saudi Arabia", subtitle: "Al Riadh city",btnbackimg: nil, onBack: {}, btnimg2:createshoppingimg(), onbtnimg2: {}, btnimg3: Image(.favoriteiconempty), onbtnimg3: {}, btnimg4: Image("carbon_search"), onbtnimg4: {})
+                    .padding(.horizontal)
+                
                 PickUpContentView()
             Spacer()
             }

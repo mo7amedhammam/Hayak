@@ -44,8 +44,8 @@ struct pickUpCellView: View {
                                     .font(.custom(fontEnum.regular.rawValue, size:10))
 
                             }
-                        .padding(.horizontal,5)
-                        .padding(.vertical,2)
+                        .padding(6)
+                        
                         .background{Color.white.clipShape(Capsule())}
                         .borderRadius(.black25,width: 1, cornerRadius: 12, corners: .allCorners)
 
@@ -64,8 +64,7 @@ struct pickUpCellView: View {
 
                         }
 //                        })
-                    .padding(.horizontal,5)
-                    .padding(.vertical,2)
+                    .padding(7)
                     .background{Color.white.clipShape(Capsule())}
                     .borderRadius(.black25,width: 1, cornerRadius: 12, corners: .allCorners)
 
@@ -78,7 +77,8 @@ struct pickUpCellView: View {
                         })
                         
                     }
-                    .padding()
+                    .padding(.horizontal)
+                    .padding(.top,10)
                     Spacer()
                 Text("Recommended by Hayak")
                     .foregroundColor(.white)
@@ -144,4 +144,9 @@ struct pickUpCellView: View {
         .clipShape(.rect(cornerRadius: 12))
         
     }
+}
+
+#Preview {
+    pickUpCellView(pickUp: pickUpCellModel.init())
+        .frame(height:120)
 }

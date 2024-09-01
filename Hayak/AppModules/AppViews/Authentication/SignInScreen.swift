@@ -379,12 +379,12 @@ struct CustomPickupHeaderView: View {
 
     var btnimg4 : Image?
     var onbtnimg4: () -> Void?
-
+    var bgColor:Color? = .white
 
     var body: some View {
         ZStack {
             // Background color or any other customization
-            Color.white
+            bgColor
                 .edgesIgnoringSafeArea(.top)
                 .frame(height: 60)
             
@@ -402,7 +402,7 @@ struct CustomPickupHeaderView: View {
                             .frame(width: 44) // The same width as the back button
                     }
                 }
-                .frame(width: 44) // The same width as the back button
+//                .frame(width: 44) // The same width as the back button
                 
 //                Spacer()
                 

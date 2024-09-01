@@ -60,6 +60,7 @@
 		C8986D1A2C15C3A00091789F /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D062C15C3A00091789F /* ColorConstants.swift */; };
 		C8986D1B2C15C3A00091789F /* FontsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D082C15C3A00091789F /* FontsExtension.swift */; };
 		C8986D212C15C3A00091789F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D102C15C3A00091789F /* Helper.swift */; };
+		C8F73E7F2C8465C700DE1814 /* MenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F73E7E2C8465C700DE1814 /* MenueView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +119,7 @@
 		C8986D062C15C3A00091789F /* ColorConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
 		C8986D082C15C3A00091789F /* FontsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontsExtension.swift; sourceTree = "<group>"; };
 		C8986D102C15C3A00091789F /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		C8F73E7E2C8465C700DE1814 /* MenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenueView.swift; sourceTree = "<group>"; };
 		CEF99719986644E790259E06 /* Pods-Hayak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hayak.release.xcconfig"; path = "Target Support Files/Pods-Hayak/Pods-Hayak.release.xcconfig"; sourceTree = "<group>"; };
 		EFA111EA2737130E40EB7435 /* Pods_Hayak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hayak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -186,9 +188,8 @@
 		195FEDB72C4EF4CB00E9EDC7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				195FEDBD2C4EF50800E9EDC7 /* PicUpView.swift */,
-				C85C43DD2C837139006B64E0 /* resturantsScrollView.swift */,
-				C85C43DF2C83715D006B64E0 /* PickUpCellView.swift */,
+				C8F73E7C2C84655F00DE1814 /* MenuView */,
+				C8F73E7D2C84659B00DE1814 /* MainPickUp */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -517,6 +518,24 @@
 			path = AppViews;
 			sourceTree = "<group>";
 		};
+		C8F73E7C2C84655F00DE1814 /* MenuView */ = {
+			isa = PBXGroup;
+			children = (
+				C8F73E7E2C8465C700DE1814 /* MenueView.swift */,
+			);
+			path = MenuView;
+			sourceTree = "<group>";
+		};
+		C8F73E7D2C84659B00DE1814 /* MainPickUp */ = {
+			isa = PBXGroup;
+			children = (
+				195FEDBD2C4EF50800E9EDC7 /* PicUpView.swift */,
+				C85C43DD2C837139006B64E0 /* resturantsScrollView.swift */,
+				C85C43DF2C83715D006B64E0 /* PickUpCellView.swift */,
+			);
+			path = MainPickUp;
+			sourceTree = "<group>";
+		};
 		D7C1FE29B1773C7CAAFDB47C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -671,6 +690,7 @@
 				C85C43E02C83715D006B64E0 /* PickUpCellView.swift in Sources */,
 				195FEDB22C4EEDAC00E9EDC7 /* TabViewWithCenterBtn.swift in Sources */,
 				C85C43DA2C8337BE006B64E0 /* KFImageLoader.swift in Sources */,
+				C8F73E7F2C8465C700DE1814 /* MenueView.swift in Sources */,
 				C8986CF42C15C27D0091789F /* Authintications.swift in Sources */,
 				C8986D1A2C15C3A00091789F /* ColorConstants.swift in Sources */,
 				19E170EC2C5C05570079FFDE /* NotificationScreen.swift in Sources */,
