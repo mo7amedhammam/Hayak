@@ -20,7 +20,9 @@ import SwiftUI
                         }
                         .tag(0)
                     
-                    PicUpView()
+                    NavigationView{
+                        PicUpView()
+                    }
                         .tabItem {
                             Image("picup")
                             Text("Pick Up")

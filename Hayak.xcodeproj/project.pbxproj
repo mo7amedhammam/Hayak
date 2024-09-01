@@ -53,13 +53,13 @@
 		C8986D132C15C3A00091789F /* ExIntegers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CF82C15C3A00091789F /* ExIntegers.swift */; };
 		C8986D142C15C3A00091789F /* ExStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CFA2C15C3A00091789F /* ExStrings.swift */; };
 		C8986D152C15C3A00091789F /* ExViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CFC2C15C3A00091789F /* ExViews.swift */; };
-		C8986D162C15C3A00091789F /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CFF2C15C3A00091789F /* Language.swift */; };
 		C8986D172C15C3A00091789F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8986D012C15C3A00091789F /* Localizable.strings */; };
 		C8986D182C15C3A00091789F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8986D032C15C3A00091789F /* Localizable.strings */; };
 		C8986D192C15C3A00091789F /* LocalizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D042C15C3A00091789F /* LocalizationService.swift */; };
 		C8986D1A2C15C3A00091789F /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D062C15C3A00091789F /* ColorConstants.swift */; };
 		C8986D1B2C15C3A00091789F /* FontsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D082C15C3A00091789F /* FontsExtension.swift */; };
 		C8986D212C15C3A00091789F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D102C15C3A00091789F /* Helper.swift */; };
+		C8F73E7F2C8465C700DE1814 /* MenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F73E7E2C8465C700DE1814 /* MenueView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,13 +111,13 @@
 		C8986CF82C15C3A00091789F /* ExIntegers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExIntegers.swift; sourceTree = "<group>"; };
 		C8986CFA2C15C3A00091789F /* ExStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExStrings.swift; sourceTree = "<group>"; };
 		C8986CFC2C15C3A00091789F /* ExViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExViews.swift; sourceTree = "<group>"; };
-		C8986CFF2C15C3A00091789F /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		C8986D002C15C3A00091789F /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C8986D022C15C3A00091789F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C8986D042C15C3A00091789F /* LocalizationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationService.swift; sourceTree = "<group>"; };
 		C8986D062C15C3A00091789F /* ColorConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
 		C8986D082C15C3A00091789F /* FontsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontsExtension.swift; sourceTree = "<group>"; };
 		C8986D102C15C3A00091789F /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		C8F73E7E2C8465C700DE1814 /* MenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenueView.swift; sourceTree = "<group>"; };
 		CEF99719986644E790259E06 /* Pods-Hayak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hayak.release.xcconfig"; path = "Target Support Files/Pods-Hayak/Pods-Hayak.release.xcconfig"; sourceTree = "<group>"; };
 		EFA111EA2737130E40EB7435 /* Pods_Hayak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hayak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -186,9 +186,8 @@
 		195FEDB72C4EF4CB00E9EDC7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				195FEDBD2C4EF50800E9EDC7 /* PicUpView.swift */,
-				C85C43DD2C837139006B64E0 /* resturantsScrollView.swift */,
-				C85C43DF2C83715D006B64E0 /* PickUpCellView.swift */,
+				C8F73E7C2C84655F00DE1814 /* MenuView */,
+				C8F73E7D2C84659B00DE1814 /* MainPickUp */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -450,7 +449,6 @@
 		C8986D052C15C3A00091789F /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				C8986CFF2C15C3A00091789F /* Language.swift */,
 				C8986D012C15C3A00091789F /* Localizable.strings */,
 				C8986D032C15C3A00091789F /* Localizable.strings */,
 				C8986D042C15C3A00091789F /* LocalizationService.swift */,
@@ -515,6 +513,24 @@
 				19091AEC2C3480EB002B2EC6 /* OnBoarding */,
 			);
 			path = AppViews;
+			sourceTree = "<group>";
+		};
+		C8F73E7C2C84655F00DE1814 /* MenuView */ = {
+			isa = PBXGroup;
+			children = (
+				C8F73E7E2C8465C700DE1814 /* MenueView.swift */,
+			);
+			path = MenuView;
+			sourceTree = "<group>";
+		};
+		C8F73E7D2C84659B00DE1814 /* MainPickUp */ = {
+			isa = PBXGroup;
+			children = (
+				195FEDBD2C4EF50800E9EDC7 /* PicUpView.swift */,
+				C85C43DD2C837139006B64E0 /* resturantsScrollView.swift */,
+				C85C43DF2C83715D006B64E0 /* PickUpCellView.swift */,
+			);
+			path = MainPickUp;
 			sourceTree = "<group>";
 		};
 		D7C1FE29B1773C7CAAFDB47C /* Frameworks */ = {
@@ -671,6 +687,7 @@
 				C85C43E02C83715D006B64E0 /* PickUpCellView.swift in Sources */,
 				195FEDB22C4EEDAC00E9EDC7 /* TabViewWithCenterBtn.swift in Sources */,
 				C85C43DA2C8337BE006B64E0 /* KFImageLoader.swift in Sources */,
+				C8F73E7F2C8465C700DE1814 /* MenueView.swift in Sources */,
 				C8986CF42C15C27D0091789F /* Authintications.swift in Sources */,
 				C8986D1A2C15C3A00091789F /* ColorConstants.swift in Sources */,
 				19E170EC2C5C05570079FFDE /* NotificationScreen.swift in Sources */,
@@ -680,7 +697,6 @@
 				196498EE2C6A9DC20053F0D3 /* PaymentSuccessScreen.swift in Sources */,
 				195FEDBE2C4EF50800E9EDC7 /* PicUpView.swift in Sources */,
 				19495DBB2C6BBA4E00D2CCF7 /* YourOrderScreen.swift in Sources */,
-				C8986D162C15C3A00091789F /* Language.swift in Sources */,
 				C85C43D72C8334C6006B64E0 /* ScrollViewRTL.swift in Sources */,
 				19E170EE2C5C1D200079FFDE /* SettingsScreen.swift in Sources */,
 				194DA28D2C3DA47000AA3CB4 /* OtpScreen.swift in Sources */,

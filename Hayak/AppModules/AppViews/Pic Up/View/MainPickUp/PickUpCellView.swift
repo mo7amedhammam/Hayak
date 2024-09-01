@@ -19,7 +19,9 @@ struct pickUpCellModel : Hashable {
 
 struct pickUpCellView: View {
     var pickUp : pickUpCellModel
-    
+    var onSelect: (() -> Void)?
+    var onClickLove: (() -> Void)?
+
 //    @Binding var selectedResturant:restaurant
     
     var body: some View {
@@ -44,8 +46,8 @@ struct pickUpCellView: View {
                                     .font(.custom(fontEnum.regular.rawValue, size:10))
 
                             }
-                        .padding(.horizontal,5)
-                        .padding(.vertical,2)
+                        .padding(6)
+                        
                         .background{Color.white.clipShape(Capsule())}
                         .borderRadius(.black25,width: 1, cornerRadius: 12, corners: .allCorners)
 
@@ -64,21 +66,21 @@ struct pickUpCellView: View {
 
                         }
 //                        })
-                    .padding(.horizontal,5)
-                    .padding(.vertical,2)
+                    .padding(7)
                     .background{Color.white.clipShape(Capsule())}
                     .borderRadius(.black25,width: 1, cornerRadius: 12, corners: .allCorners)
 
                         Spacer()
                         
                         Button(action: {
-                            
+                            onClickLove?()
                         }, label: {
                             Image(.unlove)
                         })
                         
                     }
-                    .padding()
+                    .padding(.horizontal)
+                    .padding(.top,10)
                     Spacer()
                 Text("Recommended by Hayak")
                     .foregroundColor(.white)
@@ -142,6 +144,15 @@ struct pickUpCellView: View {
 //        .padding(.horizontal,4)
 //        .padding(.bottom,4)
         .clipShape(.rect(cornerRadius: 12))
+        .onTapGesture(perform: {
+            onSelect?()
+        })
         
     }
 }
+
+#Preview {
+    pickUpCellView(pickUp: pickUpCellModel.init())
+        .frame(height:120)
+}
+

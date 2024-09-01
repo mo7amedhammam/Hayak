@@ -362,9 +362,8 @@ struct CustomHeaderView: View {
     }
 }
 
-
-
 struct CustomPickupHeaderView: View {
+    @Environment(\.dismiss) var dismiss
     var title: String?
     var subtitle: String?
 
@@ -379,12 +378,12 @@ struct CustomPickupHeaderView: View {
 
     var btnimg4 : Image?
     var onbtnimg4: () -> Void?
-
+    var bgColor:Color? = .white
 
     var body: some View {
         ZStack {
             // Background color or any other customization
-            Color.white
+            bgColor
                 .edgesIgnoringSafeArea(.top)
                 .frame(height: 60)
             
@@ -392,7 +391,8 @@ struct CustomPickupHeaderView: View {
             HStack(spacing:5) {
                 // Back button
                 Button(action: {
-                    onBack()
+                    dismiss()
+                        onBack()
                 }) {
                     if let img = btnbackimg{
 //                        btnbackimg ??  Image(systemName: "arrow.left")
@@ -402,7 +402,7 @@ struct CustomPickupHeaderView: View {
                             .frame(width: 44) // The same width as the back button
                     }
                 }
-                .frame(width: 44) // The same width as the back button
+//                .frame(width: 44) // The same width as the back button
                 
 //                Spacer()
                 
