@@ -23,6 +23,13 @@ struct PicUpView: View {
     @State var isActive : Bool = false
     @State var destination : AnyView = AnyView(EmptyView())
 
+    @State private var items = [
+        OrderStatus(id : 0 ,name: "Recommendation",iconstr: "sorticon"),
+        OrderStatus(id : 1 ,name: "Radius",iconstr:"mapwithpin"),
+        OrderStatus(id : 2 ,name: "Rating 4.0+",iconstr:"starempty")
+    ]
+    @State var selecteditem = OrderStatus(id : 0 ,name: "Delivered" )
+    
     var body: some View {
 //        ZStack {
 //            Color(.white).ignoresSafeArea()
@@ -43,7 +50,23 @@ struct PicUpView: View {
                                 .padding(.bottom,5)
                                 .padding(.horizontal)
                 
-                            restaurantsScrollView( selectedResturant: $selectedResturant)
+                            restaurantsScrollView(selectedResturant: $selectedResturant)
+                            
+                            ScrollViewRTL(type: .hList){
+                                    HStack(spacing: 10) {
+                                        ForEach(items){ item in
+                                            cpsuleBtnView(item: item,isselecteditem: .constant(item == selecteditem),onAction: {
+                                                selecteditem = item
+                                            })
+                //                            .tag(item.id)
+                                        }
+                                    }
+                                    .padding(.leading,2)
+                                    
+                                
+                            }
+                            
+                            
                 
                             List(){
                                 pickUpCellView(pickUp: pickUpCellModel(id: 1,title:"Subway, Dubai World Trad...", subTitle:"Sandwiches, Beverages, Wraps", image: "pickupbgtest",subImage: "od") ,onSelect: {
@@ -118,6 +141,4 @@ struct PicUpView: View {
 //        }
 //    }
 //}
-
-
 
