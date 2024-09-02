@@ -13,6 +13,7 @@
 		19091AF62C348DFC002B2EC6 /* LamaSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF12C348DFB002B2EC6 /* LamaSans-SemiBold.ttf */; };
 		19091AF72C348DFC002B2EC6 /* LamaSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF22C348DFB002B2EC6 /* LamaSans-Medium.ttf */; };
 		19091AF82C348DFC002B2EC6 /* LamaSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF32C348DFC002B2EC6 /* LamaSans-Light.ttf */; };
+		190D9FDE2C86592C0088074A /* PointsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190D9FDD2C86592C0088074A /* PointsScreen.swift */; };
 		19349FFB2C56EBA200AAA59C /* EditAddressScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19349FFA2C56EBA200AAA59C /* EditAddressScreen.swift */; };
 		19349FFD2C56FA6900AAA59C /* AddAddressScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19349FFC2C56FA6900AAA59C /* AddAddressScreen.swift */; };
 		19495DBB2C6BBA4E00D2CCF7 /* YourOrderScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19495DBA2C6BBA4E00D2CCF7 /* YourOrderScreen.swift */; };
@@ -67,6 +68,7 @@
 		19091AF22C348DFB002B2EC6 /* LamaSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LamaSans-Medium.ttf"; sourceTree = "<group>"; };
 		19091AF32C348DFC002B2EC6 /* LamaSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LamaSans-Light.ttf"; sourceTree = "<group>"; };
 		19091AF92C348E84002B2EC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		190D9FDD2C86592C0088074A /* PointsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsScreen.swift; sourceTree = "<group>"; };
 		19349FFA2C56EBA200AAA59C /* EditAddressScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddressScreen.swift; sourceTree = "<group>"; };
 		19349FFC2C56FA6900AAA59C /* AddAddressScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressScreen.swift; sourceTree = "<group>"; };
 		19495DBA2C6BBA4E00D2CCF7 /* YourOrderScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourOrderScreen.swift; sourceTree = "<group>"; };
@@ -133,6 +135,22 @@
 				19EF10442C35AE830010DF55 /* WellcomeLoginScreen.swift */,
 			);
 			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		190D9FDB2C8659070088074A /* Points */ = {
+			isa = PBXGroup;
+			children = (
+				190D9FDC2C8659170088074A /* View */,
+			);
+			path = Points;
+			sourceTree = "<group>";
+		};
+		190D9FDC2C8659170088074A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				190D9FDD2C86592C0088074A /* PointsScreen.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		195FEDB02C4EED8C00E9EDC7 /* View */ = {
@@ -467,6 +485,7 @@
 		C8986D222C15C3A50091789F /* AppViews */ = {
 			isa = PBXGroup;
 			children = (
+				190D9FDB2C8659070088074A /* Points */,
 				196414582C457F53008370CE /* TabBare */,
 				195FEDB32C4EF47200E9EDC7 /* Home */,
 				195FEDB42C4EF47900E9EDC7 /* Pic Up */,
@@ -643,6 +662,7 @@
 				195FEDBE2C4EF50800E9EDC7 /* PicUpView.swift in Sources */,
 				19495DBB2C6BBA4E00D2CCF7 /* YourOrderScreen.swift in Sources */,
 				C8986D162C15C3A00091789F /* Language.swift in Sources */,
+				190D9FDE2C86592C0088074A /* PointsScreen.swift in Sources */,
 				19E170EE2C5C1D200079FFDE /* SettingsScreen.swift in Sources */,
 				194DA28D2C3DA47000AA3CB4 /* OtpScreen.swift in Sources */,
 				19349FFB2C56EBA200AAA59C /* EditAddressScreen.swift in Sources */,
