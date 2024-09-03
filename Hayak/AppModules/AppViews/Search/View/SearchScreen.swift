@@ -200,7 +200,7 @@ struct ExtractedViewRecentlySearch : View {
                     if item % 2 == 0 {
                         ViewResturantCell1
                     } else  {
-                        ViewResturantCell2
+                        ViewResturantCell2()
                         
                     }
                     
@@ -290,11 +290,157 @@ struct ExtractedViewRecentlySearch : View {
     }
     
     
-    private var ViewResturantCell2 : some View {
+//    private var ViewResturantCell2 : some View {
+//        
+//        @State var clickLove : String = "unlove"
+//        
+//        return ZStack {
+//            
+//            VStack(spacing: 0) {  // Set spacing to 0 to remove space between Image and VStack
+//                
+//                ZStack {
+//                    Image("re")
+//                        .resizable()
+//                        .frame(height: 150)
+//                        .scaledToFill()
+//                    //                    .frame(maxWidth: .infinity)
+//                        .clipped()
+//                    
+//                    
+//                    VStack  {
+//                        HStack {
+//                            
+//                            HStack (spacing: 0){
+//                                Image("alarm")
+//                                    .foregroundColor(.yellow)
+//                                    .frame(width: 25 , height: 25)
+//                                Text("35 mins")
+//                                    .foregroundColor(Color("main1"))
+//                                    .font(.custom(fontEnum.regular.rawValue, size:10))
+//                            }
+//                            .padding(.horizontal , 5)
+//                            .background(.white)
+//                            .cornerRadius(10)
+//                            .overlay(
+//                                RoundedCorners(radius: 9, corners: .allCorners)
+//                                    .stroke(Color("black25%"), lineWidth: 1) // Border with custom color and width
+//                            )
+//                            
+//                            HStack (spacing: 0){
+//                                Image("location2")
+//                                    .foregroundColor(.yellow)
+//                                    .frame(width: 25 , height: 25)
+//                                Text("50.50 KM")
+//                                    .foregroundColor(Color("main1"))
+//                                    .font(.custom(fontEnum.regular.rawValue, size:10))
+//                            }
+//                            .padding(.horizontal , 5)
+//                            .background(.white)
+//                            .cornerRadius(10)
+//                            .overlay(
+//                                RoundedCorners(radius: 9, corners: .allCorners)
+//                                    .stroke(Color("black25%"), lineWidth: 1) // Border with custom color and width
+//                            )
+//                            
+//                            Spacer()
+//                            
+//                            Image(clickLove)
+//                                .frame(width: 30 , height: 30)
+//                                .onTapGesture {
+//                                    clickLove = "love"
+//                                }
+//                            
+//                        }
+//                        Spacer()
+//                    }
+//                    .padding(.horizontal , 10)
+//                    .padding(.top, 10) // Add padding from the top
+//                    
+//                }
+//                .frame(height: 150)
+//                
+//                
+//                VStack (alignment : .leading){
+//                    Text("Operation Falafel, Dubai Festiva")
+//                        .foregroundColor(Color("main1"))
+//                        .font(.custom(fontEnum.medium.rawValue, size:12))
+//                    
+//                    HStack {
+//                        Text("Arabic, Middle eastern, Sandwiches")
+//                            .foregroundColor(Color("empty text field"))
+//                            .font(.custom(fontEnum.regular.rawValue, size:10))
+//                        
+//                        Spacer()
+//                        
+//                        Image(systemName: "star.fill")
+//                            .foregroundColor(Color("yellow"))
+//                            .frame(width: 25 , height: 25)
+//                        
+//                        Text("4.8")
+//                            .foregroundColor(.black)
+//                            .font(.custom(fontEnum.regular.rawValue, size:12))
+//                        Text("(100+)")
+//                            .foregroundColor(.black50)
+//                            .font(.custom(fontEnum.medium.rawValue, size:12))
+//                    }
+//                }
+//                .padding(10)
+//                .frame(height: 70)
+//                .overlay(
+//                    RoundedCorners(radius: 10, corners: [.bottomLeft, .bottomRight])
+//                        .stroke(Color("main2"), lineWidth: 1) // Border with custom color and width
+//                )
+//                
+//                
+//            }
+//            .padding(.vertical , 10)
+//            .frame(height: 220)
+//            
+//            
+//            VStack {
+//                Spacer()
+//                HStack {
+//                    Spacer()
+//                    Image("test")
+//                        .resizable()
+//                        .scaledToFill()
+//                        .cornerRadius(20)
+//                        .padding(.leading, 10) // Add padding from the left
+//                        .frame(width: 100 , height: 100)
+//                }
+//                Spacer()
+//                    .frame(height: 40)
+//
+//            }
+//            .padding()
+//    
+//        }
+//        
+//    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
+struct ViewResturantCell2 : View {
+    
+    @State var clickLove : String = "unlove"
+    
+    var body: some View {
+
         
-        @State var clickLove : String = "unlove"
-        
-        return ZStack {
+         ZStack {
             
             VStack(spacing: 0) {  // Set spacing to 0 to remove space between Image and VStack
                 
@@ -305,7 +451,6 @@ struct ExtractedViewRecentlySearch : View {
                         .scaledToFill()
                     //                    .frame(maxWidth: .infinity)
                         .clipped()
-                    
                     
                     VStack  {
                         HStack {
@@ -359,7 +504,6 @@ struct ExtractedViewRecentlySearch : View {
                 }
                 .frame(height: 150)
                 
-                
                 VStack (alignment : .leading){
                     Text("Operation Falafel, Dubai Festiva")
                         .foregroundColor(Color("main1"))
@@ -390,12 +534,9 @@ struct ExtractedViewRecentlySearch : View {
                     RoundedCorners(radius: 10, corners: [.bottomLeft, .bottomRight])
                         .stroke(Color("main2"), lineWidth: 1) // Border with custom color and width
                 )
-                
-                
             }
             .padding(.vertical , 10)
             .frame(height: 220)
-            
             
             VStack {
                 Spacer()
@@ -415,20 +556,5 @@ struct ExtractedViewRecentlySearch : View {
             .padding()
     
         }
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
