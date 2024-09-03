@@ -90,9 +90,10 @@ struct ExtractedViewYourOrderScreen : View {
                 }
 
                 
-            }.frame(height: 50)
+            }
+                .padding()
+                .frame(height: 50)
                 .background(.clear)
-                .padding(.horizontal , 15)
           
             List {
                 ForEach(0 ..< 10) {_ in
