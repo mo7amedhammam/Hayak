@@ -37,6 +37,9 @@
 		19F1AC9F2C3C689400499EF4 /* ForgetPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F1AC9E2C3C689400499EF4 /* ForgetPasswordScreen.swift */; };
 		19F60B1E2C45766600367453 /* SuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F60B1D2C45766600367453 /* SuccessScreen.swift */; };
 		607C994D261D5597E259E23B /* Pods_Hayak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA111EA2737130E40EB7435 /* Pods_Hayak.framework */; };
+		C8550CBC2C873690000108F3 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8550CBB2C873690000108F3 /* BottomSheet.swift */; };
+		C8550CBE2C8736CD000108F3 /* menueItemDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8550CBD2C8736CD000108F3 /* menueItemDetails.swift */; };
+		C8550CC02C874346000108F3 /* menueListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8550CBF2C874346000108F3 /* menueListCell.swift */; };
 		C85C43D72C8334C6006B64E0 /* ScrollViewRTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85C43D62C8334C6006B64E0 /* ScrollViewRTL.swift */; };
 		C85C43DA2C8337BE006B64E0 /* KFImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85C43D92C8337BE006B64E0 /* KFImageLoader.swift */; };
 		C85C43DE2C837139006B64E0 /* resturantsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85C43DD2C837139006B64E0 /* resturantsScrollView.swift */; };
@@ -94,6 +97,9 @@
 		19EF62492C39C0CC0021C589 /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
 		19F1AC9E2C3C689400499EF4 /* ForgetPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordScreen.swift; sourceTree = "<group>"; };
 		19F60B1D2C45766600367453 /* SuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessScreen.swift; sourceTree = "<group>"; };
+		C8550CBB2C873690000108F3 /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
+		C8550CBD2C8736CD000108F3 /* menueItemDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menueItemDetails.swift; sourceTree = "<group>"; };
+		C8550CBF2C874346000108F3 /* menueListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menueListCell.swift; sourceTree = "<group>"; };
 		C85C43D62C8334C6006B64E0 /* ScrollViewRTL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewRTL.swift; sourceTree = "<group>"; };
 		C85C43D92C8337BE006B64E0 /* KFImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KFImageLoader.swift; sourceTree = "<group>"; };
 		C85C43DD2C837139006B64E0 /* resturantsScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resturantsScrollView.swift; sourceTree = "<group>"; };
@@ -186,6 +192,7 @@
 		195FEDB72C4EF4CB00E9EDC7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C8550CC12C874379000108F3 /* MenueItemDetails */,
 				C8F73E7C2C84655F00DE1814 /* MenuView */,
 				C8F73E7D2C84659B00DE1814 /* MainPickUp */,
 			);
@@ -302,9 +309,26 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C8550CBA2C873670000108F3 /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				C8550CBB2C873690000108F3 /* BottomSheet.swift */,
+			);
+			path = BottomSheet;
+			sourceTree = "<group>";
+		};
+		C8550CC12C874379000108F3 /* MenueItemDetails */ = {
+			isa = PBXGroup;
+			children = (
+				C8550CBD2C8736CD000108F3 /* menueItemDetails.swift */,
+			);
+			path = MenueItemDetails;
+			sourceTree = "<group>";
+		};
 		C85C43D42C833495006B64E0 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				C8550CBA2C873670000108F3 /* BottomSheet */,
 				C85C43D82C8337A1006B64E0 /* Image */,
 				C85C43D52C8334A5006B64E0 /* ScrollView */,
 			);
@@ -519,6 +543,7 @@
 			isa = PBXGroup;
 			children = (
 				C8F73E7E2C8465C700DE1814 /* MenueView.swift */,
+				C8550CBF2C874346000108F3 /* menueListCell.swift */,
 			);
 			path = MenuView;
 			sourceTree = "<group>";
@@ -663,6 +688,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19349FFD2C56FA6900AAA59C /* AddAddressScreen.swift in Sources */,
+				C8550CBC2C873690000108F3 /* BottomSheet.swift in Sources */,
 				195FEDBC2C4EF4F400E9EDC7 /* HomeView.swift in Sources */,
 				C8986CD82C15B9FE0091789F /* ContentView.swift in Sources */,
 				19A956132C7672600020CCC4 /* OrderTrackingScreen.swift in Sources */,
@@ -683,6 +709,7 @@
 				19F1AC9F2C3C689400499EF4 /* ForgetPasswordScreen.swift in Sources */,
 				C8986D122C15C3A00091789F /* Exdates.swift in Sources */,
 				19091AEE2C3489D5002B2EC6 /* OnBoardingScreen.swift in Sources */,
+				C8550CBE2C8736CD000108F3 /* menueItemDetails.swift in Sources */,
 				199FE2DB2C3F15A70071BF8E /* ChangePasswordScreen.swift in Sources */,
 				C85C43E02C83715D006B64E0 /* PickUpCellView.swift in Sources */,
 				195FEDB22C4EEDAC00E9EDC7 /* TabViewWithCenterBtn.swift in Sources */,
@@ -701,6 +728,7 @@
 				19E170EE2C5C1D200079FFDE /* SettingsScreen.swift in Sources */,
 				194DA28D2C3DA47000AA3CB4 /* OtpScreen.swift in Sources */,
 				19349FFB2C56EBA200AAA59C /* EditAddressScreen.swift in Sources */,
+				C8550CC02C874346000108F3 /* menueListCell.swift in Sources */,
 				196498F02C6AA1D90053F0D3 /* OrderEmptyScreen.swift in Sources */,
 				C8986D132C15C3A00091789F /* ExIntegers.swift in Sources */,
 				C8986D142C15C3A00091789F /* ExStrings.swift in Sources */,

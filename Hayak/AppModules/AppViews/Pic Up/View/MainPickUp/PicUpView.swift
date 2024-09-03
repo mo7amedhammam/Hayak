@@ -8,12 +8,19 @@
 import SwiftUI
 import Kingfisher
 
-func createshoppingimg() -> some View {
-    return Image(.shoppingicon)
-        .resizable()
-        .padding(6)
-        .background{Color(.main).clipShape(Circle())}
-        .frame(width: 33, height: 33)
+//func createshoppingimg() -> some View {
+//    return Image(.shoppingicon)
+//        .resizable()
+//        .padding(6)
+//        .background{Color(.main).clipShape(Circle())}
+//        .frame(width: 33, height: 33)
+//}
+
+enum menuFilterCases:String{
+    case sort = "Sort"
+    case Radius = "Radius"
+    case Rate = "Rate"
+    
 }
 
 struct PicUpView: View {
@@ -24,12 +31,14 @@ struct PicUpView: View {
     @State var destination : AnyView = AnyView(EmptyView())
 
     @State private var items = [
-        OrderStatus(id : 0 ,name: "Recommendation",iconstr: "sorticon"),
-        OrderStatus(id : 1 ,name: "Radius",iconstr:"mapwithpin"),
-        OrderStatus(id : 2 ,name: "Rating 4.0+",iconstr:"starempty")
+        OrderStatus(id : 0 ,name: menuFilterCases.sort.rawValue,iconstr: "sorticon"),
+        OrderStatus(id : 1 ,name: menuFilterCases.Radius.rawValue,iconstr:"mapwithpin"),
+        OrderStatus(id : 2 ,name: menuFilterCases.Rate.rawValue,iconstr:"starempty")
     ]
-    @State var selecteditem = OrderStatus(id : 0 ,name: "Delivered" )
-    
+    @State var selectedsort : OrderStatus?
+    @State var selectedradius : Int?
+    @State var selectedrate : Int?
+
     var body: some View {
 //        ZStack {
 //            Color(.white).ignoresSafeArea()
@@ -37,7 +46,7 @@ struct PicUpView: View {
             
             VStack {
                 
-                CustomPickupHeaderView(title: "Saudi Arabia", subtitle: "Al Riadh city",btnbackimg: nil, onBack: {}, btnimg2:createshoppingimg(), onbtnimg2: {}, btnimg3: Image(.favoriteiconempty), onbtnimg3: {}, btnimg4: Image("carbon_search"), onbtnimg4: {})
+                CustomPickupHeaderView(title: "Saudi Arabia", subtitle: "Al Riadh city",btnbackimg: nil, onBack: {}, btnimg2:Image(.shoppingiconfill), onbtnimg2: {}, btnimg3: Image(.favoriteiconempty), onbtnimg3: {}, btnimg4: Image("carbon_search"), onbtnimg4: {})
                     .padding(.horizontal)
                 
 //                PickUpContentView()
@@ -55,8 +64,20 @@ struct PicUpView: View {
                             ScrollViewRTL(type: .hList){
                                     HStack(spacing: 10) {
                                         ForEach(items){ item in
-                                            cpsuleBtnView(item: item,isselecteditem: .constant(item == selecteditem),onAction: {
-                                                selecteditem = item
+                                            let isselected = (item.id == 0 && selectedsort != nil) || (item.id == 1 && selectedradius != nil) || (item.id == 2 && selectedrate != nil)
+                                            
+                                            cpsuleBtnView(item: item,isselecteditem: .constant(isselected),onAction: {
+                                                if item.id == 0{
+                                                    // show sort options
+                                                    selectedsort = item
+                                                }else if item.id == 1{
+                                                    // show sort options
+                                                    selectedradius = 5
+                                                }else if item.id == 2{
+                                                    // show rate options
+                                                    selectedrate =  selectedrate == nil ? 4 : nil
+                                                }
+                                                
                                             })
                 //                            .tag(item.id)
                                         }
@@ -106,39 +127,4 @@ struct PicUpView: View {
 #Preview {
     PicUpView()
 }
-
-
-//struct PickUpContentView: View {
-//    @State var selectedResturant:restaurant = restaurant.init()
-//
-//    var body: some View {
-//        VStack {
-//            Text("All restaurants")
-//                .frame(maxWidth: .infinity,alignment: .leading)
-//                .foregroundColor(.activeText)
-//                .font(.custom(fontEnum.bold.rawValue, size:14))
-//                .padding(.top)
-//                .padding(.bottom,5)
-//                .padding(.horizontal)
-//
-//            restaurantsScrollView( selectedResturant: $selectedResturant)
-//
-//            List(){
-//                pickUpCellView(pickUp: pickUpCellModel(id: 1,title:"Subway, Dubai World Trad...", subTitle:"Sandwiches, Beverages, Wraps", image: "pickupbgtest",subImage: "od") )
-//                    .listRowSeparator(.hidden)
-//                    .listRowBackground(Color.clear)
-//                    .padding(5)
-//
-//
-//            }
-//            .listStyle(.plain)
-//            .padding(.horizontal)
-//        }
-////        .padding(.horizontal)
-//        .background{
-//            Color(.bg1).ignoresSafeArea()
-//                .navigationBarBackButtonHidden(true)
-//        }
-//    }
-//}
 

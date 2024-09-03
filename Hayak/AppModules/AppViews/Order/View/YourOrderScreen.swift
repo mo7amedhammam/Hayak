@@ -310,7 +310,7 @@ struct cpsuleBtnView: View {
                         .renderingMode(.template)
                 }
                 Text(item.name)
-                    .font(.custom(isselecteditem ? "LamaSans-Medium" : "LamaSans-Regular", size: isselecteditem ? 12 : 10))
+                    .font(.custom(isselecteditem ? "LamaSans-Medium" : "LamaSans-Regular", size: 10))
             }
             .padding(.horizontal)
             .frame(maxHeight:30)
