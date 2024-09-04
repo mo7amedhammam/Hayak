@@ -47,6 +47,7 @@
 		C8368F4D2C8878A300003DBB /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8368F462C8878A300003DBB /* BottomSheet.swift */; };
 		C8368F4E2C8878A300003DBB /* KFImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8368F482C8878A300003DBB /* KFImageLoader.swift */; };
 		C8368F4F2C8878A300003DBB /* ScrollViewRTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8368F4A2C8878A300003DBB /* ScrollViewRTL.swift */; };
+		C8368F522C88A09600003DBB /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8368F512C88A09600003DBB /* CustomButton.swift */; };
 		C8986CD62C15B9FE0091789F /* HayakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CD52C15B9FE0091789F /* HayakApp.swift */; };
 		C8986CD82C15B9FE0091789F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CD72C15B9FE0091789F /* ContentView.swift */; };
 		C8986CDA2C15BA010091789F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8986CD92C15BA010091789F /* Assets.xcassets */; };
@@ -110,6 +111,7 @@
 		C8368F462C8878A300003DBB /* BottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		C8368F482C8878A300003DBB /* KFImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KFImageLoader.swift; sourceTree = "<group>"; };
 		C8368F4A2C8878A300003DBB /* ScrollViewRTL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewRTL.swift; sourceTree = "<group>"; };
+		C8368F512C88A09600003DBB /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		C8986CD22C15B9FE0091789F /* Hayak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hayak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8986CD52C15B9FE0091789F /* HayakApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HayakApp.swift; sourceTree = "<group>"; };
 		C8986CD72C15B9FE0091789F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -386,11 +388,20 @@
 		C8368F4C2C8878A300003DBB /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				C8368F502C88A06600003DBB /* Button */,
 				C8368F472C8878A300003DBB /* BottomSheet */,
 				C8368F492C8878A300003DBB /* Image */,
 				C8368F4B2C8878A300003DBB /* ScrollView */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		C8368F502C88A06600003DBB /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				C8368F512C88A09600003DBB /* CustomButton.swift */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 		C8986CC92C15B9FE0091789F = {
@@ -759,6 +770,7 @@
 				C8368F402C8877F100003DBB /* PickUpCellView.swift in Sources */,
 				19349FFB2C56EBA200AAA59C /* EditAddressScreen.swift in Sources */,
 				196498F02C6AA1D90053F0D3 /* OrderEmptyScreen.swift in Sources */,
+				C8368F522C88A09600003DBB /* CustomButton.swift in Sources */,
 				C8986D132C15C3A00091789F /* ExIntegers.swift in Sources */,
 				C8986D142C15C3A00091789F /* ExStrings.swift in Sources */,
 				199FE2D92C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift in Sources */,

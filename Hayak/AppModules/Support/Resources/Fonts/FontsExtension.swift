@@ -18,25 +18,25 @@ enum fontEnum : String {
 
 
 extension Font {
-    static func SoraBold( size: CGFloat) -> Self {
+    static func Bold( size: CGFloat) -> Self {
         @State var language = LocalizeHelper.shared.currentLanguage
-        return Font.custom(language == "en" ? "Sora-Bold":"Sora-Bold", size: size)
+        return Font.custom(language == "en" ? "LamaSans-Bold":"LamaSans-Bold", size: size)
     }
-    static func SoraSemiBold( size: CGFloat) -> Self {
+    static func SemiBold( size: CGFloat) -> Self {
         @State var language = LocalizeHelper.shared.currentLanguage
-        return Font.custom(language == "en" ? "Sora-SemiBold":"Sora-SemiBold", size: size)
+        return Font.custom(language == "en" ? "LamaSans-SemiBold":"LamaSans-SemiBold", size: size)
     }
-    static func SoraRegular( size: CGFloat) -> Self {
+    static func Regular( size: CGFloat) -> Self {
         @State var language = LocalizeHelper.shared.currentLanguage
-        return Font.custom(language == "en" ? "SoraRegular":"SoraRegular", size: size)
+        return Font.custom(language == "en" ? "LamaSans-Regular":"LamaSans-Regular", size: size)
     }
-    static func RobotoRegular( size: CGFloat) -> Self {
+    static func Light( size: CGFloat) -> Self {
         @State var language = LocalizeHelper.shared.currentLanguage
-        return Font.custom(language == "en" ? "Roboto-Regular":"Roboto-Regular", size: size)
+        return Font.custom(language == "en" ? "LamaSans-Light":"LamaSans-Light", size: size)
     }
-    static func InterMedium( size: CGFloat) -> Self {
+    static func Medium( size: CGFloat) -> Self {
         @State var language = LocalizeHelper.shared.currentLanguage
-        return Font.custom(language == "en" ? "InterMedium":"InterMedium", size: size)
+        return Font.custom(language == "en" ? "LamaSans-Medium":"LamaSans-Medium", size: size)
     }
 }
 

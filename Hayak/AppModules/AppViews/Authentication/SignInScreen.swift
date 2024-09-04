@@ -298,6 +298,7 @@ struct PasswordView: View {
 
 
 struct CustomHeaderView: View {
+    @Environment(\.dismiss) var dismiss
     var title: String
     var onBack: () -> Void
     var onOtherBtn: () -> Void
@@ -319,6 +320,7 @@ struct CustomHeaderView: View {
                 // Back button
                 Button(action: {
                     onBack()
+                    dismiss()
                 }) {
                     Image(systemName: "arrow.left")
                         .font(.custom("LamaSans-Bold", size: 14))
