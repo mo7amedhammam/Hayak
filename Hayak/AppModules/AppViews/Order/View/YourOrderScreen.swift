@@ -78,7 +78,8 @@ struct ExtractedViewYourOrderScreen : View {
 
                 
             }
-            .frame(height: 50)
+                .padding()
+                .frame(height: 50)
                 .background(.clear)
                 .padding(.horizontal , 8)
           
