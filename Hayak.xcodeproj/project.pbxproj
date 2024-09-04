@@ -165,12 +165,12 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		195FEDB42C4EF47900E9EDC7 /* Pic Up */ = {
+		195FEDB42C4EF47900E9EDC7 /* PicUp */ = {
 			isa = PBXGroup;
 			children = (
 				195FEDB72C4EF4CB00E9EDC7 /* View */,
 			);
-			path = "Pic Up";
+			path = PicUp;
 			sourceTree = "<group>";
 		};
 		195FEDB52C4EF48100E9EDC7 /* Dining */ = {
@@ -527,7 +527,7 @@
 			children = (
 				196414582C457F53008370CE /* TabBare */,
 				195FEDB32C4EF47200E9EDC7 /* Home */,
-				195FEDB42C4EF47900E9EDC7 /* Pic Up */,
+				195FEDB42C4EF47900E9EDC7 /* PicUp */,
 				195FEDB52C4EF48100E9EDC7 /* Dining */,
 				196414572C457F44008370CE /* Profile */,
 				196498EB2C6A9D5D0053F0D3 /* Order */,
