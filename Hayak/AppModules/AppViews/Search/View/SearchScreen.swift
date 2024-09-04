@@ -110,19 +110,19 @@ struct ExtractedViewEmptySearch : View {
 
 
 struct ModelPopularSearch: Identifiable {
-    let id = UUID()
-    let imageName: String
-    let title: String
+    var id : Int?
+    var imageName: String?
+    var title: String?
 }
 
 struct ExtractedViewShowPopularSearch : View {
     
     let items = [
-        ModelPopularSearch(imageName: "star.fill", title: "Star"),
-        ModelPopularSearch(imageName: "heart.fill", title: "Heart"),
-        ModelPopularSearch(imageName: "moon.fill", title: "Moon"),
-        ModelPopularSearch(imageName: "sun.max.fill", title: "Sun"),
-        ModelPopularSearch(imageName: "cloud.fill", title: "Cloud"),
+        ModelPopularSearch(id:0,imageName: "star.fill", title: "Star"),
+        ModelPopularSearch(id:1,imageName: "heart.fill", title: "Heart"),
+        ModelPopularSearch(id:2,imageName: "moon.fill", title: "Moon"),
+        ModelPopularSearch(id:3,imageName: "sun.max.fill", title: "Sun"),
+        ModelPopularSearch(id:4,imageName: "cloud.fill", title: "Cloud"),
     ]
     
     
@@ -141,12 +141,12 @@ struct ExtractedViewShowPopularSearch : View {
                 HStack(spacing: 16) {
                     ForEach(items) { item in
                         HStack (spacing : 8){
-                            Image(systemName: item.imageName)
+                            Image(systemName: item.imageName ?? "")
                                 .resizable()
                                 .foregroundColor(Color("main1"))
                                 .frame(width: 20, height: 20)
                             
-                            Text(item.title)
+                            Text(item.title ?? "")
                                 .foregroundColor(Color("main1"))
                                 .font(.caption)
                                 .padding(.top, 4)

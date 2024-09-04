@@ -34,16 +34,16 @@ struct YourOrderScreen: View {
 }
 
 
-class OrderStatus : Identifiable ,ObservableObject {
-    var tag : Int
+struct OrderStatus : Identifiable,Equatable  {
+    var id : Int
     var name: String
-    @Published var selected: Bool
+    var iconstr: String?
     
-    init(tag: Int, name: String, selected: Bool) {
-        self.tag = tag
-        self.name = name
-        self.selected = selected
-    }
+//    init(id: Int, name: String, iconstr: String?) {
+//        self.id = id
+//        self.name = name
+//        self.iconstr = iconstr
+//    }
 }
 
 struct ExtractedViewYourOrderScreen : View {
@@ -52,13 +52,13 @@ struct ExtractedViewYourOrderScreen : View {
     @State var rating: Int = 0
 
     @State private var items = [
-        OrderStatus(tag : 0 ,name: "Delivered",selected : true ),
-        OrderStatus(tag : 1 ,name: "Submitted",selected : false ),
-        OrderStatus(tag : 2 ,name: "Pending"  ,selected : false),
-        OrderStatus(tag : 3 ,name: "Cancelled",selected : false)
+        OrderStatus(id : 0 ,name: "Delivered"),
+        OrderStatus(id : 1 ,name: "Submitted"),
+        OrderStatus(id : 2 ,name: "Pending"  ),
+        OrderStatus(id : 3 ,name: "Cancelled")
        ]
+    @State var selecteditem = OrderStatus(id : 0 ,name: "Delivered" )
     
-        
     var body: some View {
         
         VStack (spacing : 10) {
@@ -67,26 +67,13 @@ struct ExtractedViewYourOrderScreen : View {
                 ScrollView (.horizontal , showsIndicators: false) {
                     HStack(spacing: 10) {
                         ForEach(items){ item in
-                            Button(action: {
-                                for data in items {
-                                    data.selected = (item.tag == data.tag)
-                                    print("data.selected : \(data.selected)")
-                                }
-                            }, label: {
-                                Text(item.name)
-                                    .font(.custom(item.selected ? "LamaSans-Medium" : "LamaSans-Regular", size: item.selected ? 12 : 10))
-                                    .padding()
-                                    .background(item.selected ? Color("main2") : .clear)
-                                    .foregroundColor(item.selected ? .white : Color("main1"))
-                                    .cornerRadius(30)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 30)
-                                            .stroke(item.selected ? .clear : Color("main2") , lineWidth: 1)
-                                    
-                                    )
-                            }).tag(item.tag)
+                            cpsuleBtnView(item: item,isselecteditem: .constant(item == selecteditem),onAction: {
+                                selecteditem = item
+                            })
+//                            .tag(item.id)
                         }
                     }
+                    .padding(.leading,1)
                 }
 
                 
@@ -94,11 +81,12 @@ struct ExtractedViewYourOrderScreen : View {
                 .padding()
                 .frame(height: 50)
                 .background(.clear)
+                .padding(.horizontal , 8)
           
             List {
                 ForEach(0 ..< 10) {_ in
                     
-                    VStack(spacing : 10) {
+                    VStack(spacing : 0) {
                         
                         HStack(spacing : 10) {
                             
@@ -186,11 +174,15 @@ struct ExtractedViewYourOrderScreen : View {
                     }
                     .padding(.vertical , 10)
                     .frame(height: 130)
+                    .listRowSeparator(.hidden)
+                    
+                    customDivider()
+                        .padding(.horizontal,-20)
+                        .listRowSeparator(.hidden) // Hide the separator lines
                     
                 }
             }
             .listStyle(.plain)
-            .listRowSeparator(.hidden) // Hide the separator lines
 
         }
         
@@ -295,5 +287,38 @@ struct RateOrderView: View {
         }
         .padding(20)
 
+    }
+}
+
+func customDivider() -> some View {
+   return Color(.black).opacity(0.2)
+       .frame(maxHeight: 0.5)
+}
+
+struct cpsuleBtnView: View {
+    var item = OrderStatus(id : 0 ,name: "Delivered")
+    @Binding var isselecteditem : Bool
+    var onAction : (() -> Void?)?
+    
+    var body: some View {
+        
+        Button(action: {
+            onAction?()
+        }, label: {
+            HStack{
+                if let imgstr = item.iconstr {
+                    Image(imgstr)
+                        .renderingMode(.template)
+                }
+                Text(item.name)
+                    .font(.custom(isselecteditem ? "LamaSans-Medium" : "LamaSans-Regular", size: 10))
+            }
+            .padding(.horizontal)
+            .frame(maxHeight:30)
+            .background(isselecteditem ? Color("main2") : .clear)
+            .foregroundColor(isselecteditem ? .white : Color("main1"))
+            .borderRadius(isselecteditem ? .clear : Color("main2"), cornerRadius: 30, corners: .allCorners)
+            .padding(.vertical,1)
+        })
     }
 }

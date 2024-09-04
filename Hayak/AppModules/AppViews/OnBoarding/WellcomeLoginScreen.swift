@@ -9,9 +9,10 @@ import SwiftUI
 
 struct WellcomeLoginScreen: View {
     
-    @State var isActiveSignIn : Bool = false
-    @State var isActiveSignUp : Bool = false
-    @State var isActiveHome : Bool = false
+    @State var isActive : Bool = false
+//    @State var isActiveSignUp : Bool = false
+//    @State var isActiveHome : Bool = false
+        @State var destination : AnyView = AnyView(EmptyView())
 
     var body: some View {
 
@@ -21,20 +22,20 @@ struct WellcomeLoginScreen: View {
                 .navigationBarBackButtonHidden(true)
 
             NavigationLink(
-                destination: SignInScreen().navigationBarBackButtonHidden(true),
-                isActive: $isActiveSignIn,
+                destination: destination,
+                isActive: $isActive,
                 label: {
                     EmptyView()
                 }
             )
             
-            NavigationLink(
-                destination: SignUpScreen().navigationBarBackButtonHidden(true),
-                isActive: $isActiveSignUp,
-                label: {
-                    EmptyView()
-                }
-            )
+//            NavigationLink(
+//                destination: SignUpScreen().navigationBarBackButtonHidden(true),
+//                isActive: $isActiveSignUp,
+//                label: {
+//                    EmptyView()
+//                }
+//            )
             
             
             
@@ -73,7 +74,9 @@ struct WellcomeLoginScreen: View {
 
                                   Button(action: {
                                       // get started login
-                                      self.isActiveSignIn = true                                      
+                                      destination = AnyView( SignInScreen().navigationBarBackButtonHidden(true)
+                                                             )
+                                      self.isActive = true
                                   }, label: {
                                       Text("Sign in")
                                           .frame(height: 50) // Set the height here
@@ -85,7 +88,9 @@ struct WellcomeLoginScreen: View {
                                   
                                   Button(action: {
                                       // get started login
-                                      self.isActiveSignUp = true
+                                      destination = AnyView( SignUpScreen().navigationBarBackButtonHidden(true)
+                                                             )
+                                      self.isActive = true
                                   }, label: {
                                       Text("Sign Up")
                                           .frame(height: 50) // Set the height here
@@ -96,7 +101,9 @@ struct WellcomeLoginScreen: View {
                                   })
                                   Button(action: {
                                       // go to home 
-
+                                       destination = AnyView( TabViewWithCenterBtn().navigationBarBackButtonHidden(true)
+                                      )
+                                      isActive = true
                                       
                                   }, label: {
                                       Text("Go To Home")

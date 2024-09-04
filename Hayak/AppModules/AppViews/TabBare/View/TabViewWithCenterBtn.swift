@@ -20,7 +20,9 @@ import SwiftUI
                         }
                         .tag(0)
                     
-                    PicUpView()
+                    NavigationView{
+                        PicUpView()
+                    }
                         .tabItem {
                             Image("picup")
                             Text("Pick Up")
@@ -41,6 +43,7 @@ import SwiftUI
                         .tag(3)
                     
                     ProfileView()
+                        .padding(.bottom)
                         .tabItem {
                             Image("profile")
                             Text("Profile")
