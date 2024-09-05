@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct DiningView: View {
-        @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) var dismiss
     @State var startScanning = false
-//    @State private var scannedCode: String?
+    //    @State private var scannedCode: String?
     
     @State var isActive : Bool = false
     @State var destination : AnyView = AnyView(EmptyView())
-
+    
     var body: some View {
         ZStack (alignment: .top){
             Color(.white).ignoresSafeArea()
@@ -57,10 +57,10 @@ struct DiningView: View {
                 .padding(.top,40)
                 .padding()
                 .padding(.bottom,40)
-
+                
             }
             .background(.bg)
-
+            
             NavigationLink( destination: destination,isActive: $isActive,label: {})
         }
         .sheet(isPresented: $startScanning, content: {
@@ -82,33 +82,30 @@ struct DiningView: View {
         
         destination = AnyView( MenueView().navigationBarBackButtonHidden(true) )
         isActive = true
-
+        
     }
     
     func scannerTopBar() -> some View {
         
         HStack {
+            Spacer()
+                .frame(width: 35)
+            Spacer()
+            Text("Scan QR Code".localized())
+                .foregroundStyle(.main1)
+                .font(Font.Bold(size: 18))
+                .multilineTextAlignment(.center)
+            
+            Spacer()
             Button(action: {
-                dismiss()
+                startScanning = false
             }) {
                 Image(systemName: "xmark")
                     .foregroundColor(.white)
                     .padding()
                     .background(Color.black.opacity(0.6))
                     .clipShape(Circle())
-            }
-            .frame(width: 35)
-
-            Spacer()
-            Text("Scan QR Code".localized())
-                .foregroundStyle(.main1)
-                .font(Font.Bold(size: 18))
-                .multilineTextAlignment(.center)
-          
-            Spacer()
-            
-            Spacer()
-                .frame(width: 35)
+            }.frame(width: 35)
             
         }.padding()
     }
