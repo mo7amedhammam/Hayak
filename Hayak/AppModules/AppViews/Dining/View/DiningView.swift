@@ -92,7 +92,7 @@ struct DiningView: View {
                 .frame(width: 35)
             Spacer()
             Text("Scan QR Code".localized())
-                .foregroundStyle(.main1)
+                .foregroundStyle(.white)
                 .font(Font.Bold(size: 18))
                 .multilineTextAlignment(.center)
             
