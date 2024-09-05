@@ -21,8 +21,6 @@ struct menueItemDetails: View {
                     .resizable()
                     .frame(height: 206)
                     .scaledToFill()
-                
-                
                     .borderRadius(.clear, cornerRadius: 16, corners: .allCorners)
                 
                 Button(action: {
@@ -47,9 +45,12 @@ struct menueItemDetails: View {
                     .font(.custom(fontEnum.bold.rawValue, size:18))
                 Spacer()
                 
-                Text("220 Calories")
-                    .foregroundColor(.main2)
-                    .font(.custom(fontEnum.semiBold.rawValue, size:12))
+                HStack(spacing:3){
+                    Text("220")
+                    Text("Calories".localized())
+                }
+                .foregroundColor(.main2)
+                .font(.custom(fontEnum.semiBold.rawValue, size:12))
                 
             }
             Text("The shrimp dumpling is made of shrimp\n and wrapped with a translucent wrapper.")
@@ -58,13 +59,17 @@ struct menueItemDetails: View {
                 .multilineTextAlignment(.leading)
                 .frame(maxWidth: .infinity,alignment: .leading)
             
-            Text("SAR 31.00")
-                .foregroundColor(.main2)
-                .font(.custom(fontEnum.semiBold.rawValue, size:12))
-                .frame(maxWidth: .infinity,alignment: .leading)
+            HStack(spacing:3){
+                Text("SAR".localized())
+                Text("31.00")
+            }
+            .foregroundColor(.main2)
+            .font(.custom(fontEnum.semiBold.rawValue, size:12))
+            .frame(maxWidth: .infinity,alignment: .leading)
             
             
-            if let iscustomizable {
+            
+            if iscustomizable == true{
                 ScrollView(showsIndicators: false){
                     ForEach(1..<10,id: \.self){_ in
                         Text("Shrimp Dumplings")
@@ -74,7 +79,7 @@ struct menueItemDetails: View {
                     }
                 }
                 .frame(maxWidth: .infinity,alignment: .center)
-
+                
             }
             
             HStack{
@@ -107,8 +112,6 @@ struct menueItemDetails: View {
                             .foregroundColor(.main3)
                             .background(.main2)
                             .clipShape(Circle())
-                        
-                        
                     })
                     .buttonStyle(.plain)
                 }
@@ -120,14 +123,13 @@ struct menueItemDetails: View {
                 
                 Button(action: {
                     guard count > 0 else {return}
-                    count -= 1
+                    //                    count -= 1
                 }, label: {
                     HStack {
                         Text("Add".localized())
                         Spacer()
                         
                         Text("SAR".localized())
-                        
                         Text(count*13,format: .number)
                         
                     }
@@ -136,17 +138,12 @@ struct menueItemDetails: View {
                     .padding()
                     
                 })
-                .buttonStyle(.plain)
+                //                .buttonStyle(.plain)
                 .frame(height:50)
                 .background{ Color.main2.borderRadius(.clear, cornerRadius: 12, corners: .allCorners)
                 }
-                
-                
             }
-            
-            
         }
-        
     }
 }
 

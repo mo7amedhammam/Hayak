@@ -48,6 +48,7 @@
 		C8368F4E2C8878A300003DBB /* KFImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8368F482C8878A300003DBB /* KFImageLoader.swift */; };
 		C8368F4F2C8878A300003DBB /* ScrollViewRTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8368F4A2C8878A300003DBB /* ScrollViewRTL.swift */; };
 		C8368F522C88A09600003DBB /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8368F512C88A09600003DBB /* CustomButton.swift */; };
+		C88614B02C89C68400E25FCA /* QrCodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88614AF2C89C68400E25FCA /* QrCodeScanner.swift */; };
 		C8986CD62C15B9FE0091789F /* HayakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CD52C15B9FE0091789F /* HayakApp.swift */; };
 		C8986CD82C15B9FE0091789F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986CD72C15B9FE0091789F /* ContentView.swift */; };
 		C8986CDA2C15BA010091789F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8986CD92C15BA010091789F /* Assets.xcassets */; };
@@ -112,6 +113,7 @@
 		C8368F482C8878A300003DBB /* KFImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KFImageLoader.swift; sourceTree = "<group>"; };
 		C8368F4A2C8878A300003DBB /* ScrollViewRTL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewRTL.swift; sourceTree = "<group>"; };
 		C8368F512C88A09600003DBB /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		C88614AF2C89C68400E25FCA /* QrCodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeScanner.swift; sourceTree = "<group>"; };
 		C8986CD22C15B9FE0091789F /* Hayak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hayak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8986CD52C15B9FE0091789F /* HayakApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HayakApp.swift; sourceTree = "<group>"; };
 		C8986CD72C15B9FE0091789F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				195FEDBF2C4EF51700E9EDC7 /* DiningView.swift */,
+				C88614AF2C89C68400E25FCA /* QrCodeScanner.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -737,6 +740,7 @@
 				C8368F4D2C8878A300003DBB /* BottomSheet.swift in Sources */,
 				C8368F4F2C8878A300003DBB /* ScrollViewRTL.swift in Sources */,
 				195FEDC02C4EF51700E9EDC7 /* DiningView.swift in Sources */,
+				C88614B02C89C68400E25FCA /* QrCodeScanner.swift in Sources */,
 				C8986D1B2C15C3A00091789F /* FontsExtension.swift in Sources */,
 				C8986CF32C15C27D0091789F /* RequestBuilder.swift in Sources */,
 				C8986CF02C15C27D0091789F /* BaseRequest.swift in Sources */,

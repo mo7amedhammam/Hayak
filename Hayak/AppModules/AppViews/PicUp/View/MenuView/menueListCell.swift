@@ -9,6 +9,9 @@ import SwiftUI
 struct menueListCell: View {
     @State var count = 0
     var onClick : (() ->  Void?)?
+    var onPlus : ((Int) ->  Void?)?
+    var onMinus : ((Int) ->  Void?)?
+
     var body: some View {
         VStack{
             HStack{
@@ -60,6 +63,7 @@ struct menueListCell: View {
                         Button(action: {
                             guard count > 0 else {return}
                             count -= 1
+                            onMinus?(50)
                         }, label: {
                             Image(.circleminus)
                         })
@@ -73,6 +77,7 @@ struct menueListCell: View {
                         
                         Button(action: {
                             count += 1
+                            onPlus?(50)
                         }, label: {
                             Image(.circleplus)
                         })

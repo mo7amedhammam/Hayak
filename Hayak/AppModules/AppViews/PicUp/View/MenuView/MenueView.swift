@@ -9,7 +9,10 @@ import SwiftUI
 
 struct MenueView: View {
     
-    @State var isSheetPresented = false    
+    @State var isSheetPresented = false
+    @State var basketitemscount = 0
+    @State var basketitemsprice = 0
+    
     var body: some View {
         VStack {
             ZStack(alignment: .top){
@@ -65,7 +68,6 @@ struct MenueView: View {
             }
             .padding()
             .background(.white)
-            
             .borderRadius(.black25,width: 1.2, cornerRadius: 12, corners: .allCorners)
             .padding()
             .offset(y:-95)
@@ -73,15 +75,68 @@ struct MenueView: View {
             
             List{
                 ForEach(0..<10){_ in
-                    menueListCell(onClick: {isSheetPresented.toggle()})
+                    menueListCell(onClick: {
+                        isSheetPresented.toggle()
+                    },onPlus: { price in
+                        basketitemscount += 1
+                        basketitemsprice += price
+                    },onMinus: {price in
+                        basketitemscount -= 1
+                        basketitemsprice -= price
+                    })
                 }
             }
             .listStyle(.plain)
             //                        .padding(.horizontal)
             
-            Spacer()
+            //            Spacer()
+            
+            VStack(alignment: .center) {
+                customDivider()
+                    .padding(.bottom)
+                    .padding(.horizontal,-20)
+                Group{
+                    if basketitemscount == 0{
+                        Text("Add SAR 1.00 to start your order".localized())
+                            .foregroundColor(.wrong)
+                            .font(Font.Regular(size: 12))
+                    }
+                    
+                    Button(action: {
+                        //                    guard count > 0 else {return}
+                        //                    count -= 1
+                    }, label: {
+                        HStack {
+                            Text(basketitemscount,format: .number)
+                            
+                                .font(.custom(fontEnum.semiBold.rawValue, size:12))
+                                .foregroundColor(basketitemscount == 0 ? .white:.main2)
+                                .frame(width:33,height: 33)
+                                .background{(basketitemscount == 0 ? Color.black25:.white).borderRadius(.clear, cornerRadius: 10, corners: .allCorners)
+                                }
+                            
+                            Text("View basket".localized())
+                            Spacer()
+                            
+                            Text("SAR".localized())
+                            Text(basketitemsprice,format: .number)
+                        }
+                        .font(.custom(fontEnum.semiBold.rawValue, size:12))
+                        .foregroundColor(basketitemscount == 0 ? .black50:.white)
+                        .padding()
+                        
+                    })
+                    .disabled(basketitemscount == 0)
+                    //                .buttonStyle(.plain)
+                    .frame(height:50)
+                    .background{ (basketitemscount == 0 ? Color.black25:Color.main2).borderRadius(.clear, cornerRadius: 10, corners: .allCorners)
+                    }
+                    
+                }.padding(.horizontal)
+            }.padding(.top,-8)
         }
-        .edgesIgnoringSafeArea(.top)                    .background{
+        .edgesIgnoringSafeArea(.top)
+        .background{
             Color(.white).ignoresSafeArea()
                 .navigationBarBackButtonHidden(true)
         }

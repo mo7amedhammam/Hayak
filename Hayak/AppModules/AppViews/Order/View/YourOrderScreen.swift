@@ -275,18 +275,10 @@ struct RateOrderView: View {
                         .cornerRadius(11)
                         .padding(.horizontal , 20)
                 })
-                
-                
-                
             }
             .frame(width: .infinity)
-            
-           
-         
-            
         }
         .padding(20)
-
     }
 }
 
