@@ -300,8 +300,9 @@ struct PasswordView: View {
 struct CustomHeaderView: View {
     @Environment(\.dismiss) var dismiss
     var title: String
-    var onBack: () -> Void
-    var onOtherBtn: () -> Void
+    var hasBackBtn: Bool? = true
+    var onBack: (() -> Void?)?
+    var onOtherBtn: (() -> Void?)?
     
     var OtherBtnIsfound: Bool
      var imageonOtherBtn : String
@@ -318,17 +319,22 @@ struct CustomHeaderView: View {
             // Content of the header
             HStack {
                 // Back button
-                Button(action: {
-                    onBack()
-                    dismiss()
-                }) {
-                    Image(systemName: "arrow.left")
-                        .font(.custom("LamaSans-Bold", size: 14))
-                        .foregroundColor(Color("main1"))
+                
+                if hasBackBtn == true{
+                    Button(action: {
+                        onBack?()
+                        dismiss()
+                    }) {
+                        Image(systemName: "arrow.left")
+                            .font(.custom("LamaSans-Bold", size: 14))
+                            .foregroundColor(Color("main1"))
+                            .frame(width: 44) // The same width as the back button
+                    }
+                    .frame(width: 44) // The same width as the back button
+                }else{
+                    Spacer()
                         .frame(width: 44) // The same width as the back button
                 }
-                .frame(width: 44) // The same width as the back button
-
                 
                 Spacer()
                 
@@ -342,7 +348,7 @@ struct CustomHeaderView: View {
                 
                 if OtherBtnIsfound {
                     Button(action: {
-                        onOtherBtn()
+                        onOtherBtn?()
                     }) {
                         Image(imageonOtherBtn)
                             .font(.custom("LamaSans-Bold", size: 14))
@@ -352,14 +358,9 @@ struct CustomHeaderView: View {
                 } else {
                     Spacer()
                         .frame(width: 44) // The same width as the back button
-                    
                 }
-             
-                
-                
             }
 //            .padding([.leading, .trailing])
-            
         }
     }
 }

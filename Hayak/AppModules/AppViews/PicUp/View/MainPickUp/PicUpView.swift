@@ -24,12 +24,12 @@ enum menuFilterCases:String{
 }
 
 struct PicUpView: View {
-    @Environment(\.presentationMode) var presentationMode
-        @State var selectedResturant:restaurant = restaurant.init()
-
+    //    @Environment(\.presentationMode) var presentationMode
+    @State var selectedResturant:restaurant = restaurant.init()
+    
     @State var isActive : Bool = false
     @State var destination : AnyView = AnyView(EmptyView())
-
+    
     @State private var items = [
         OrderStatus(id : 0 ,name: menuFilterCases.sort.rawValue,iconstr: "sorticon"),
         OrderStatus(id : 1 ,name: menuFilterCases.Radius.rawValue,iconstr:"mapwithpin"),
@@ -38,89 +38,84 @@ struct PicUpView: View {
     @State var selectedsort : OrderStatus?
     @State var selectedradius : Int?
     @State var selectedrate : Int?
-
+    
     var body: some View {
-//        ZStack {
-//            Color(.white).ignoresSafeArea()
-//                .navigationBarBackButtonHidden(true)
+        //        ZStack {
+        //            Color(.white).ignoresSafeArea()
+        //                .navigationBarBackButtonHidden(true)
+        
+        VStack {
             
+            CustomPickupHeaderView(title: "Saudi Arabia", subtitle: "Al Riadh city",btnbackimg: nil, onBack: {}, btnimg2:Image(.shoppingiconfill), onbtnimg2: {}, btnimg3: Image(.favoriteiconempty), onbtnimg3: {}, btnimg4: Image("carbon_search"), onbtnimg4: {})
+                .padding(.horizontal)
+            
+            //                PickUpContentView()
             VStack {
-                
-                CustomPickupHeaderView(title: "Saudi Arabia", subtitle: "Al Riadh city",btnbackimg: nil, onBack: {}, btnimg2:Image(.shoppingiconfill), onbtnimg2: {}, btnimg3: Image(.favoriteiconempty), onbtnimg3: {}, btnimg4: Image("carbon_search"), onbtnimg4: {})
+                Text("All restaurants")
+                    .frame(maxWidth: .infinity,alignment: .leading)
+                    .foregroundColor(.activeText)
+                    .font(.custom(fontEnum.bold.rawValue, size:14))
+                    .padding(.top)
+                    .padding(.bottom,5)
                     .padding(.horizontal)
                 
-//                PickUpContentView()
-                        VStack {
-                            Text("All restaurants")
-                                .frame(maxWidth: .infinity,alignment: .leading)
-                                .foregroundColor(.activeText)
-                                .font(.custom(fontEnum.bold.rawValue, size:14))
-                                .padding(.top)
-                                .padding(.bottom,5)
-                                .padding(.horizontal)
+                restaurantsScrollView(selectedResturant: $selectedResturant)
                 
-                            restaurantsScrollView(selectedResturant: $selectedResturant)
+                ScrollViewRTL(type: .hList){
+                    HStack(spacing: 10) {
+                        ForEach(items){ item in
+                            let isselected = (item.id == 0 && selectedsort != nil) || (item.id == 1 && selectedradius != nil) || (item.id == 2 && selectedrate != nil)
                             
-                            ScrollViewRTL(type: .hList){
-                                    HStack(spacing: 10) {
-                                        ForEach(items){ item in
-                                            let isselected = (item.id == 0 && selectedsort != nil) || (item.id == 1 && selectedradius != nil) || (item.id == 2 && selectedrate != nil)
-                                            
-                                            cpsuleBtnView(item: item,isselecteditem: .constant(isselected),onAction: {
-                                                if item.id == 0{
-                                                    // show sort options
-                                                    selectedsort = item
-                                                }else if item.id == 1{
-                                                    // show sort options
-                                                    selectedradius = 5
-                                                }else if item.id == 2{
-                                                    // show rate options
-                                                    selectedrate =  selectedrate == nil ? 4 : nil
-                                                }
-                                                
-                                            })
-                //                            .tag(item.id)
-                                        }
-                                    }
-                                    .padding(.leading,2)
-                                    
+                            cpsuleBtnView(item: item,isselecteditem: .constant(isselected),onAction: {
+                                if item.id == 0{
+                                    // show sort options
+                                    selectedsort = item
+                                }else if item.id == 1{
+                                    // show sort options
+                                    selectedradius = 5
+                                }else if item.id == 2{
+                                    // show rate options
+                                    selectedrate =  selectedrate == nil ? 4 : nil
+                                }
                                 
-                            }
-                            
-                            
+                            })
+                            //                            .tag(item.id)
+                        }
+                    }
+                    .padding(.leading,2)
+                    
+                    
+                }
                 
-                            List(){
-                                pickUpCellView(pickUp: pickUpCellModel(id: 1,title:"Subway, Dubai World Trad...", subTitle:"Sandwiches, Beverages, Wraps", image: "pickupbgtest",subImage: "od") ,onSelect: {
-                                    destination = AnyView( MenueView().navigationBarBackButtonHidden(true) )
-                                    self.isActive = true
-                                },onClickLove: {
-                                    
-                                })
-                                    .listRowSeparator(.hidden)
-                                    .listRowBackground(Color.clear)
-                                    .padding(5)
-                            }
-                            .listStyle(.plain)
-                            .padding(.horizontal)
-                        }
-//                        .padding(.horizontal)
-                        .background{
-                            Color(.bg1).ignoresSafeArea()
-                                .navigationBarBackButtonHidden(true)
-                        }
-            Spacer()
-                NavigationLink(
-                    destination: destination,
-                    isActive: $isActive,
-                    label: {EmptyView()})
+                List(){
+                    pickUpCellView(pickUp: pickUpCellModel(id: 1,title:"Subway, Dubai World Trad...", subTitle:"Sandwiches, Beverages, Wraps", image: "pickupbgtest",subImage: "od") ,onSelect: {
+                        destination = AnyView( MenueView().navigationBarBackButtonHidden(true) )
+                        self.isActive = true
+                    },onClickLove: {
+                        
+                    })
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
+                    .padding(5)
+                }
+                .listStyle(.plain)
+                .padding(.horizontal)
             }
+            //                        .padding(.horizontal)
             .background{
-                Color(.white).ignoresSafeArea()
+                Color(.bg1).ignoresSafeArea()
                     .navigationBarBackButtonHidden(true)
             }
-        
-
-//        }
+            Spacer()
+            NavigationLink(
+                destination: destination,
+                isActive: $isActive,
+                label: {EmptyView()})
+        }
+        .background{
+            Color(.white).ignoresSafeArea()
+                .navigationBarBackButtonHidden(true)
+        }
     }
 }
 

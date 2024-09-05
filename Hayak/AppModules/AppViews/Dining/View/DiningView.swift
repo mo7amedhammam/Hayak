@@ -21,12 +21,7 @@ struct DiningView: View {
                 .navigationBarBackButtonHidden(true)
             
             VStack{
-                CustomHeaderView(title: "QR Code Scan", onBack: {
-                    // Handle back button action
-                    print("Back button pressed")
-                    //                    presentationMode.wrappedValue.dismiss()
-                }, onOtherBtn: {
-                }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
+                CustomHeaderView(title: "QR Code Scan",hasBackBtn: false,  OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
                 
                 Image(.scanMeQrCode)
                     .padding(.top)
