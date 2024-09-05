@@ -56,6 +56,8 @@ struct DiningView: View {
                 .frame(height: 50)
                 .padding(.top,40)
                 .padding()
+                .padding(.bottom,40)
+
             }
             .background(.bg)
 
