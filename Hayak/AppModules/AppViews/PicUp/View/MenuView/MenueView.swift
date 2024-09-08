@@ -13,6 +13,10 @@ struct MenueView: View {
     @State var basketitemscount = 0
     @State var basketitemsprice = 0
     
+    var categories : [restaurant] = [restaurant(id: 1, name: "Trending", imageUrl: "2"),restaurant(id: 2, name: "Free Soup", imageUrl: nil),restaurant(id: 3, name: "Pasta", imageUrl: nil),restaurant(id: 4, name: "Rice", imageUrl: nil),restaurant(id: 5, name: "Main Dishes", imageUrl: nil),restaurant(id: 6, name: "Main Dishes", imageUrl: nil)]
+    
+    @State var selectedcategory:restaurant?
+    
     var body: some View {
         VStack {
             ZStack(alignment: .top){
@@ -72,6 +76,51 @@ struct MenueView: View {
             .padding()
             .offset(y:-95)
             .padding(.bottom,-95)
+            
+            VStack{
+                HStack{
+                    Image(.categoriesIcon)
+                    
+                    ScrollViewRTL(type:.hList){
+                        HStack(spacing:12){
+                            ForEach(categories,id: \.self){category in
+                                Button(action: {
+                                    selectedcategory = category
+                                }, label: {
+                                    HStack(spacing:0){
+                                        Text(category.name ?? "")
+                                            .foregroundColor(selectedcategory == category ? .main2 : .black70)
+                                            .font(Font.Regular(size: 12))
+                                        
+                                        if !(category.imageUrl == nil){
+                                            KFImageLoader(urlStr: category.imageUrl, placeholder: Image("2"))
+                                                .frame(width: 20, height: 20, alignment: .center)
+                                        }
+                                    }
+                                })
+                            }
+                        }
+                    }
+                    .frame(height: 40)
+                }
+                
+                if let category = selectedcategory{
+                    HStack(alignment:.center,spacing:0){
+                    Text(category.name ?? "")
+                        .font(Font.SemiBold(size: 14))
+                        .foregroundStyle(.main1)
+                    
+                        if !(category.imageUrl == nil){
+                            KFImageLoader(urlStr: category.imageUrl, placeholder: Image("2"))
+                                .frame(width: 20, height: 20, alignment: .center)
+                        }
+                        Spacer()
+                    }
+                    .padding(.bottom,5)
+                }
+            }
+            .padding(.horizontal)
+            .padding(.top,-25)
             
             List{
                 ForEach(0..<10){_ in
@@ -147,7 +196,6 @@ struct MenueView: View {
                 .padding(.bottom)
                 .padding(.bottom,100)
         }
-        
         
     }
 }

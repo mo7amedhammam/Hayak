@@ -23,7 +23,17 @@ struct PaymentSuccessScreen: View {
                 }, onOtherBtn: {
                 }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
                 
-                ExtractedViewPaymentSuccessScreen()
+                ScrollView {
+                    ExtractedViewPaymentSuccessScreen(tipororder: .tip(520))
+                    
+                    CustomButton(Title:"Find Currier",IsDisabled: .constant(false), action: {
+                        
+                    })
+                    .padding(.horizontal)
+                    .frame(height: 50) // Set the height here
+
+
+                }
             }
         }
     }
@@ -34,24 +44,57 @@ struct PaymentSuccessScreen: View {
 }
 
 
+enum tipOrorder:CustomStringConvertible{
+//    case tip = "Tip"
+//    case order = "Order"
+
+    case tip(Int)
+    case order(Int)
+
+    var description: String {
+        switch self {
+        case .tip(let value):
+            return "\(value)"
+        case .order(let value):
+            return "\(value)"
+        }
+    }
+
+}
+
 struct ExtractedViewPaymentSuccessScreen: View {
-    
+    var tipororder:tipOrorder = .tip(120)
     
     var body: some View {
-        ScrollView {
+//        ScrollView{
             VStack (spacing : 10){
-                
                 Image("done")
                     .resizable()
                     .frame(width: 190 , height: 150)
                 VStack(spacing : 15) {
-                    Text("Payment Success")
+                    Text("Payment Success".localized())
                         .font(.custom("LamaSans-Bold", size: 18))
                         .foregroundColor(Color("main1"))
-                    Text("Tip ID # 125050")
-                        .font(.custom("LamaSans-Bold", size: 14))
-                        .foregroundColor(Color("main2"))
-                    Text("Thank you for choosing our service and trusted to help you with your problems")
+                    
+                    switch tipororder {
+                    case .tip(let id):
+                        HStack(spacing:2){
+                            Text("Tip ID".localized())
+                            Text("# \(id)")
+                        }
+                            .font(.custom("LamaSans-Bold", size: 14))
+                            .foregroundColor(Color("main2"))
+
+                    case .order(let id):
+                        HStack(spacing:2){
+                            Text("Order ID".localized())
+                            Text("# \(id)")
+                        }
+                            .font(.custom("LamaSans-Bold", size: 14))
+                            .foregroundColor(Color("main2"))
+                    }
+
+                    Text("Thank you for choosing our service and trusted to help you with your problems".localized())
                         .lineSpacing(10.0)
                         .font(.custom(fontEnum.medium.rawValue, size: 14))
                         .foregroundColor(Color("main1"))
@@ -62,22 +105,8 @@ struct ExtractedViewPaymentSuccessScreen: View {
                 .background(.white)
                 .cornerRadius(20)
                 .padding(20)
-                
-                Button(action: {
-                    //save
-                    
-                }, label: {
-                    Text("Find Currier")
-                        .frame(height: 50) // Set the height here
-                        .frame(maxWidth: .infinity)
-                        .font(.custom(fontEnum.medium.rawValue, size: 14))
-                        .foregroundColor(Color("bg1")).background(Color("main2"))
-                        .cornerRadius(11)
-                        .padding(.horizontal , 20)
-                })
-                
-                Spacer()
+//                Spacer()
             }
-        }
+//        }
     }
 }

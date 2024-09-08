@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct restaurant : Hashable {
-        var id : Int = 0
-       var name : String = "Burgers"
-       var imageUrl : String = "2"
+        var id : Int? = 0
+       var name : String? = "Burgers"
+       var imageUrl : String? = "2"
 }
 
 struct restaurantsScrollView: View {
@@ -31,7 +31,7 @@ struct restaurantsScrollView: View {
                                 .padding(10)
                                 .background{Color(selectedResturant == resturant ? "active text":"color-E5E5E5").cornerRadius(12)}
                             
-                            Text(resturant.name)
+                            Text(resturant.name ?? "")
                                 .foregroundColor(selectedResturant == resturant ? .activeText:.main2)
                                 .font(.custom(fontEnum.semiBold.rawValue, size:15))
                         }
@@ -67,7 +67,7 @@ struct restaurantsFilter: View {
                                 .padding(10)
                                 .background{Color(selectedResturant == resturant ? "active text":"color-E5E5E5").cornerRadius(12)}
                             
-                            Text(resturant.name)
+                            Text(resturant.name ?? "")
                                 .foregroundColor(selectedResturant == resturant ? .activeText:.main2)
                                 .font(.custom(fontEnum.semiBold.rawValue, size:15))
                         }

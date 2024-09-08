@@ -39,6 +39,11 @@
 		19F1AC9F2C3C689400499EF4 /* ForgetPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F1AC9E2C3C689400499EF4 /* ForgetPasswordScreen.swift */; };
 		19F60B1E2C45766600367453 /* SuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F60B1D2C45766600367453 /* SuccessScreen.swift */; };
 		607C994D261D5597E259E23B /* Pods_Hayak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA111EA2737130E40EB7435 /* Pods_Hayak.framework */; };
+		C82AED0D2C8D9959005FFC41 /* PickUpCheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82AED0C2C8D9959005FFC41 /* PickUpCheckoutView.swift */; };
+		C82AED122C8D9A01005FFC41 /* OrderCanselationDelayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82AED112C8D9A01005FFC41 /* OrderCanselationDelayView.swift */; };
+		C82AED142C8DA446005FFC41 /* PaymentSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82AED132C8DA446005FFC41 /* PaymentSuccessView.swift */; };
+		C82AED162C8DAA2F005FFC41 /* AddRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82AED152C8DAA2F005FFC41 /* AddRateView.swift */; };
+		C82AED192C8DAF90005FFC41 /* TextInputViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82AED182C8DAF90005FFC41 /* TextInputViews.swift */; };
 		C8368F402C8877F100003DBB /* PickUpCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8368F362C8877F100003DBB /* PickUpCellView.swift */; };
 		C8368F412C8877F100003DBB /* PicUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8368F372C8877F100003DBB /* PicUpView.swift */; };
 		C8368F422C8877F100003DBB /* resturantsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8368F382C8877F100003DBB /* resturantsScrollView.swift */; };
@@ -105,6 +110,11 @@
 		19EF62492C39C0CC0021C589 /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
 		19F1AC9E2C3C689400499EF4 /* ForgetPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordScreen.swift; sourceTree = "<group>"; };
 		19F60B1D2C45766600367453 /* SuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessScreen.swift; sourceTree = "<group>"; };
+		C82AED0C2C8D9959005FFC41 /* PickUpCheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUpCheckoutView.swift; sourceTree = "<group>"; };
+		C82AED112C8D9A01005FFC41 /* OrderCanselationDelayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCanselationDelayView.swift; sourceTree = "<group>"; };
+		C82AED132C8DA446005FFC41 /* PaymentSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessView.swift; sourceTree = "<group>"; };
+		C82AED152C8DAA2F005FFC41 /* AddRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRateView.swift; sourceTree = "<group>"; };
+		C82AED182C8DAF90005FFC41 /* TextInputViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputViews.swift; sourceTree = "<group>"; };
 		C8368F362C8877F100003DBB /* PickUpCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickUpCellView.swift; sourceTree = "<group>"; };
 		C8368F372C8877F100003DBB /* PicUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicUpView.swift; sourceTree = "<group>"; };
 		C8368F382C8877F100003DBB /* resturantsScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resturantsScrollView.swift; sourceTree = "<group>"; };
@@ -330,6 +340,46 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C82AED0B2C8D9926005FFC41 /* PickUpCheckout */ = {
+			isa = PBXGroup;
+			children = (
+				C82AED0C2C8D9959005FFC41 /* PickUpCheckoutView.swift */,
+			);
+			path = PickUpCheckout;
+			sourceTree = "<group>";
+		};
+		C82AED0E2C8D9967005FFC41 /* CancelationDelay */ = {
+			isa = PBXGroup;
+			children = (
+				C82AED112C8D9A01005FFC41 /* OrderCanselationDelayView.swift */,
+			);
+			path = CancelationDelay;
+			sourceTree = "<group>";
+		};
+		C82AED0F2C8D9990005FFC41 /* PaymentSuccess */ = {
+			isa = PBXGroup;
+			children = (
+				C82AED132C8DA446005FFC41 /* PaymentSuccessView.swift */,
+			);
+			path = PaymentSuccess;
+			sourceTree = "<group>";
+		};
+		C82AED102C8D99B2005FFC41 /* AddRate */ = {
+			isa = PBXGroup;
+			children = (
+				C82AED152C8DAA2F005FFC41 /* AddRateView.swift */,
+			);
+			path = AddRate;
+			sourceTree = "<group>";
+		};
+		C82AED172C8DAF4D005FFC41 /* TextInput */ = {
+			isa = PBXGroup;
+			children = (
+				C82AED182C8DAF90005FFC41 /* TextInputViews.swift */,
+			);
+			path = TextInput;
+			sourceTree = "<group>";
+		};
 		C8368F392C8877F100003DBB /* MainPickUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,8 +411,12 @@
 			isa = PBXGroup;
 			children = (
 				C8368F392C8877F100003DBB /* MainPickUp */,
-				C8368F3B2C8877F100003DBB /* MenueItemDetails */,
 				C8368F3E2C8877F100003DBB /* MenuView */,
+				C8368F3B2C8877F100003DBB /* MenueItemDetails */,
+				C82AED0B2C8D9926005FFC41 /* PickUpCheckout */,
+				C82AED0E2C8D9967005FFC41 /* CancelationDelay */,
+				C82AED0F2C8D9990005FFC41 /* PaymentSuccess */,
+				C82AED102C8D99B2005FFC41 /* AddRate */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -394,6 +448,7 @@
 		C8368F4C2C8878A300003DBB /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				C82AED172C8DAF4D005FFC41 /* TextInput */,
 				C8368F502C88A06600003DBB /* Button */,
 				C8368F472C8878A300003DBB /* BottomSheet */,
 				C8368F492C8878A300003DBB /* Image */,
@@ -741,6 +796,8 @@
 				C8368F4E2C8878A300003DBB /* KFImageLoader.swift in Sources */,
 				C8986CD62C15B9FE0091789F /* HayakApp.swift in Sources */,
 				C8368F4D2C8878A300003DBB /* BottomSheet.swift in Sources */,
+				C82AED162C8DAA2F005FFC41 /* AddRateView.swift in Sources */,
+				C82AED0D2C8D9959005FFC41 /* PickUpCheckoutView.swift in Sources */,
 				C8368F4F2C8878A300003DBB /* ScrollViewRTL.swift in Sources */,
 				195FEDC02C4EF51700E9EDC7 /* DiningView.swift in Sources */,
 				C88614B02C89C68400E25FCA /* QrCodeScanner.swift in Sources */,
@@ -771,14 +828,17 @@
 				C8986D192C15C3A00091789F /* LocalizationService.swift in Sources */,
 				196498EE2C6A9DC20053F0D3 /* PaymentSuccessScreen.swift in Sources */,
 				19495DBB2C6BBA4E00D2CCF7 /* YourOrderScreen.swift in Sources */,
+				C82AED192C8DAF90005FFC41 /* TextInputViews.swift in Sources */,
 				C8986D162C15C3A00091789F /* Language.swift in Sources */,
 				190D9FDE2C86592C0088074A /* PointsScreen.swift in Sources */,
+				C82AED142C8DA446005FFC41 /* PaymentSuccessView.swift in Sources */,
 				19E170EE2C5C1D200079FFDE /* SettingsScreen.swift in Sources */,
 				194DA28D2C3DA47000AA3CB4 /* OtpScreen.swift in Sources */,
 				C8368F402C8877F100003DBB /* PickUpCellView.swift in Sources */,
 				19349FFB2C56EBA200AAA59C /* EditAddressScreen.swift in Sources */,
 				196498F02C6AA1D90053F0D3 /* OrderEmptyScreen.swift in Sources */,
 				C8368F522C88A09600003DBB /* CustomButton.swift in Sources */,
+				C82AED122C8D9A01005FFC41 /* OrderCanselationDelayView.swift in Sources */,
 				C8986D132C15C3A00091789F /* ExIntegers.swift in Sources */,
 				C8986D142C15C3A00091789F /* ExStrings.swift in Sources */,
 				199FE2D92C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift in Sources */,
