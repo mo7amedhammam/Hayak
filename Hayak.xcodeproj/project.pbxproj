@@ -28,6 +28,7 @@
 		199FE2D92C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FE2D82C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift */; };
 		199FE2DB2C3F15A70071BF8E /* ChangePasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FE2DA2C3F15A70071BF8E /* ChangePasswordScreen.swift */; };
 		19A956132C7672600020CCC4 /* OrderTrackingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A956122C7672600020CCC4 /* OrderTrackingScreen.swift */; };
+		19C2091D2C89E77C00B7359E /* CheckoutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C2091C2C89E77C00B7359E /* CheckoutScreen.swift */; };
 		19DD5EE32C8799E000B9CD15 /* RewardsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DD5EE22C8799E000B9CD15 /* RewardsScreen.swift */; };
 		19E170EC2C5C05570079FFDE /* NotificationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E170EB2C5C05570079FFDE /* NotificationScreen.swift */; };
 		19E170EE2C5C1D200079FFDE /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E170ED2C5C1D200079FFDE /* SettingsScreen.swift */; };
@@ -94,6 +95,7 @@
 		199FE2D82C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetNewPasswordScreen.swift; sourceTree = "<group>"; };
 		199FE2DA2C3F15A70071BF8E /* ChangePasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordScreen.swift; sourceTree = "<group>"; };
 		19A956122C7672600020CCC4 /* OrderTrackingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackingScreen.swift; sourceTree = "<group>"; };
+		19C2091C2C89E77C00B7359E /* CheckoutScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutScreen.swift; sourceTree = "<group>"; };
 		19DD5EE22C8799E000B9CD15 /* RewardsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsScreen.swift; sourceTree = "<group>"; };
 		19E170EB2C5C05570079FFDE /* NotificationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationScreen.swift; sourceTree = "<group>"; };
 		19E170ED2C5C1D200079FFDE /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			children = (
 				190D9FDD2C86592C0088074A /* PointsScreen.swift */,
 				19DD5EE22C8799E000B9CD15 /* RewardsScreen.swift */,
+				19C2091C2C89E77C00B7359E /* CheckoutScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -755,6 +758,7 @@
 				19F1AC9F2C3C689400499EF4 /* ForgetPasswordScreen.swift in Sources */,
 				C8368F432C8877F100003DBB /* menueItemDetails.swift in Sources */,
 				C8986D122C15C3A00091789F /* Exdates.swift in Sources */,
+				19C2091D2C89E77C00B7359E /* CheckoutScreen.swift in Sources */,
 				19091AEE2C3489D5002B2EC6 /* OnBoardingScreen.swift in Sources */,
 				199FE2DB2C3F15A70071BF8E /* ChangePasswordScreen.swift in Sources */,
 				195FEDB22C4EEDAC00E9EDC7 /* TabViewWithCenterBtn.swift in Sources */,
