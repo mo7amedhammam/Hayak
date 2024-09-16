@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		190702032C98BD3D005B8E23 /* ViewModelCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190702022C98BD3D005B8E23 /* ViewModelCreate.swift */; };
+		190702052C98BD71005B8E23 /* ViewModelLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190702042C98BD71005B8E23 /* ViewModelLogin.swift */; };
+		190702072C98BD88005B8E23 /* ViewModelChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190702062C98BD88005B8E23 /* ViewModelChangePassword.swift */; };
+		190702092C98BD99005B8E23 /* ViewModelSendOtp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190702082C98BD99005B8E23 /* ViewModelSendOtp.swift */; };
+		1907020B2C98BDAB005B8E23 /* ViewModelVeriftOtp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1907020A2C98BDAB005B8E23 /* ViewModelVeriftOtp.swift */; };
+		1907020D2C98BDC3005B8E23 /* ViewModelResetPasssword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1907020C2C98BDC3005B8E23 /* ViewModelResetPasssword.swift */; };
+		190702102C98C08D005B8E23 /* Authentication Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1907020F2C98C08D005B8E23 /* Authentication Mode.swift */; };
 		19091AEE2C3489D5002B2EC6 /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19091AED2C3489D5002B2EC6 /* OnBoardingScreen.swift */; };
 		19091AF42C348DFC002B2EC6 /* LamaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AEF2C348DFA002B2EC6 /* LamaSans-Bold.ttf */; };
 		19091AF52C348DFC002B2EC6 /* LamaSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF02C348DFB002B2EC6 /* LamaSans-Regular.ttf */; };
@@ -78,6 +85,13 @@
 
 /* Begin PBXFileReference section */
 		173BBBE9262B99256111750E /* Pods-Hayak.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hayak.debug.xcconfig"; path = "Target Support Files/Pods-Hayak/Pods-Hayak.debug.xcconfig"; sourceTree = "<group>"; };
+		190702022C98BD3D005B8E23 /* ViewModelCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelCreate.swift; sourceTree = "<group>"; };
+		190702042C98BD71005B8E23 /* ViewModelLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelLogin.swift; sourceTree = "<group>"; };
+		190702062C98BD88005B8E23 /* ViewModelChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelChangePassword.swift; sourceTree = "<group>"; };
+		190702082C98BD99005B8E23 /* ViewModelSendOtp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSendOtp.swift; sourceTree = "<group>"; };
+		1907020A2C98BDAB005B8E23 /* ViewModelVeriftOtp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelVeriftOtp.swift; sourceTree = "<group>"; };
+		1907020C2C98BDC3005B8E23 /* ViewModelResetPasssword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelResetPasssword.swift; sourceTree = "<group>"; };
+		1907020F2C98C08D005B8E23 /* Authentication Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Authentication Mode.swift"; sourceTree = "<group>"; };
 		19091AED2C3489D5002B2EC6 /* OnBoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreen.swift; sourceTree = "<group>"; };
 		19091AEF2C348DFA002B2EC6 /* LamaSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LamaSans-Bold.ttf"; sourceTree = "<group>"; };
 		19091AF02C348DFB002B2EC6 /* LamaSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LamaSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -162,6 +176,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		190702012C98BD0C005B8E23 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				190702022C98BD3D005B8E23 /* ViewModelCreate.swift */,
+				190702042C98BD71005B8E23 /* ViewModelLogin.swift */,
+				190702062C98BD88005B8E23 /* ViewModelChangePassword.swift */,
+				190702082C98BD99005B8E23 /* ViewModelSendOtp.swift */,
+				1907020A2C98BDAB005B8E23 /* ViewModelVeriftOtp.swift */,
+				1907020C2C98BDC3005B8E23 /* ViewModelResetPasssword.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		1907020E2C98C074005B8E23 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1907020F2C98C08D005B8E23 /* Authentication Mode.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		19091AEC2C3480EB002B2EC6 /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,6 +355,8 @@
 		19EF62482C39C0B30021C589 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				1907020E2C98C074005B8E23 /* Model */,
+				190702012C98BD0C005B8E23 /* View Model */,
 				19EF62492C39C0CC0021C589 /* SignInScreen.swift */,
 				19E2E1662C3B3C6F006AF2E9 /* SignUpScreen.swift */,
 				19F1AC9E2C3C689400499EF4 /* ForgetPasswordScreen.swift */,
@@ -785,17 +822,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				19349FFD2C56FA6900AAA59C /* AddAddressScreen.swift in Sources */,
+				190702102C98C08D005B8E23 /* Authentication Mode.swift in Sources */,
 				195FEDBC2C4EF4F400E9EDC7 /* HomeView.swift in Sources */,
 				C8986CD82C15B9FE0091789F /* ContentView.swift in Sources */,
 				C8368F422C8877F100003DBB /* resturantsScrollView.swift in Sources */,
 				19A956132C7672600020CCC4 /* OrderTrackingScreen.swift in Sources */,
 				19DD5EE32C8799E000B9CD15 /* RewardsScreen.swift in Sources */,
 				19EF10452C35AE830010DF55 /* WellcomeLoginScreen.swift in Sources */,
+				190702072C98BD88005B8E23 /* ViewModelChangePassword.swift in Sources */,
 				C8368F412C8877F100003DBB /* PicUpView.swift in Sources */,
 				C8986CF22C15C27D0091789F /* EndPoints.swift in Sources */,
 				C8368F4E2C8878A300003DBB /* KFImageLoader.swift in Sources */,
 				C8986CD62C15B9FE0091789F /* HayakApp.swift in Sources */,
 				C8368F4D2C8878A300003DBB /* BottomSheet.swift in Sources */,
+				1907020D2C98BDC3005B8E23 /* ViewModelResetPasssword.swift in Sources */,
 				C82AED162C8DAA2F005FFC41 /* AddRateView.swift in Sources */,
 				C82AED0D2C8D9959005FFC41 /* PickUpCheckoutView.swift in Sources */,
 				C8368F4F2C8878A300003DBB /* ScrollViewRTL.swift in Sources */,
@@ -807,10 +847,13 @@
 				1982071F2C77CDBC00F16195 /* SearchScreen.swift in Sources */,
 				19EF624A2C39C0CC0021C589 /* SignInScreen.swift in Sources */,
 				C8986CF12C15C27D0091789F /* BaseResponse.swift in Sources */,
+				190702092C98BD99005B8E23 /* ViewModelSendOtp.swift in Sources */,
+				190702032C98BD3D005B8E23 /* ViewModelCreate.swift in Sources */,
 				C8986D212C15C3A00091789F /* Helper.swift in Sources */,
 				19F60B1E2C45766600367453 /* SuccessScreen.swift in Sources */,
 				C8986D152C15C3A00091789F /* ExViews.swift in Sources */,
 				C8368F442C8877F100003DBB /* menueListCell.swift in Sources */,
+				190702052C98BD71005B8E23 /* ViewModelLogin.swift in Sources */,
 				19E3809F2C74F96F00E580D9 /* OrderDetailsScreen.swift in Sources */,
 				19F1AC9F2C3C689400499EF4 /* ForgetPasswordScreen.swift in Sources */,
 				C8368F432C8877F100003DBB /* menueItemDetails.swift in Sources */,
@@ -837,6 +880,7 @@
 				C8368F402C8877F100003DBB /* PickUpCellView.swift in Sources */,
 				19349FFB2C56EBA200AAA59C /* EditAddressScreen.swift in Sources */,
 				196498F02C6AA1D90053F0D3 /* OrderEmptyScreen.swift in Sources */,
+				1907020B2C98BDAB005B8E23 /* ViewModelVeriftOtp.swift in Sources */,
 				C8368F522C88A09600003DBB /* CustomButton.swift in Sources */,
 				C82AED122C8D9A01005FFC41 /* OrderCanselationDelayView.swift in Sources */,
 				C8986D132C15C3A00091789F /* ExIntegers.swift in Sources */,
