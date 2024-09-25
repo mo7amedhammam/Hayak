@@ -143,6 +143,7 @@ struct menueItemDetails: View {
                 .background{ Color.main2.borderRadius(.clear, cornerRadius: 12, corners: .allCorners)
                 }
             }
+            .padding(.horizontal , 10)
         }
     }
 }

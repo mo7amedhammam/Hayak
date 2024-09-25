@@ -21,6 +21,8 @@
 		19091AF72C348DFC002B2EC6 /* LamaSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF22C348DFB002B2EC6 /* LamaSans-Medium.ttf */; };
 		19091AF82C348DFC002B2EC6 /* LamaSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19091AF32C348DFC002B2EC6 /* LamaSans-Light.ttf */; };
 		190D9FDE2C86592C0088074A /* PointsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190D9FDD2C86592C0088074A /* PointsScreen.swift */; };
+		192FCC482CA1E19700CA89C5 /* CartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192FCC472CA1E19700CA89C5 /* CartScreen.swift */; };
+		192FCC4A2CA1E1BB00CA89C5 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192FCC492CA1E1BB00CA89C5 /* CartCell.swift */; };
 		19349FFB2C56EBA200AAA59C /* EditAddressScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19349FFA2C56EBA200AAA59C /* EditAddressScreen.swift */; };
 		19349FFD2C56FA6900AAA59C /* AddAddressScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19349FFC2C56FA6900AAA59C /* AddAddressScreen.swift */; };
 		19495DBB2C6BBA4E00D2CCF7 /* YourOrderScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19495DBA2C6BBA4E00D2CCF7 /* YourOrderScreen.swift */; };
@@ -100,6 +102,8 @@
 		19091AF32C348DFC002B2EC6 /* LamaSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LamaSans-Light.ttf"; sourceTree = "<group>"; };
 		19091AF92C348E84002B2EC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		190D9FDD2C86592C0088074A /* PointsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsScreen.swift; sourceTree = "<group>"; };
+		192FCC472CA1E19700CA89C5 /* CartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartScreen.swift; sourceTree = "<group>"; };
+		192FCC492CA1E1BB00CA89C5 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		19349FFA2C56EBA200AAA59C /* EditAddressScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddressScreen.swift; sourceTree = "<group>"; };
 		19349FFC2C56FA6900AAA59C /* AddAddressScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressScreen.swift; sourceTree = "<group>"; };
 		19495DBA2C6BBA4E00D2CCF7 /* YourOrderScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourOrderScreen.swift; sourceTree = "<group>"; };
@@ -220,6 +224,23 @@
 				190D9FDD2C86592C0088074A /* PointsScreen.swift */,
 				19DD5EE22C8799E000B9CD15 /* RewardsScreen.swift */,
 				19C2091C2C89E77C00B7359E /* CheckoutScreen.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		192FCC452CA1E15400CA89C5 /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				192FCC462CA1E16300CA89C5 /* View */,
+			);
+			path = Cart;
+			sourceTree = "<group>";
+		};
+		192FCC462CA1E16300CA89C5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				192FCC472CA1E19700CA89C5 /* CartScreen.swift */,
+				192FCC492CA1E1BB00CA89C5 /* CartCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -677,6 +698,7 @@
 		C8986D222C15C3A50091789F /* AppViews */ = {
 			isa = PBXGroup;
 			children = (
+				192FCC452CA1E15400CA89C5 /* Cart */,
 				190D9FDB2C8659070088074A /* Points */,
 				196414582C457F53008370CE /* TabBare */,
 				195FEDB32C4EF47200E9EDC7 /* Home */,
@@ -823,6 +845,7 @@
 			files = (
 				19349FFD2C56FA6900AAA59C /* AddAddressScreen.swift in Sources */,
 				190702102C98C08D005B8E23 /* Authentication Mode.swift in Sources */,
+				192FCC4A2CA1E1BB00CA89C5 /* CartCell.swift in Sources */,
 				195FEDBC2C4EF4F400E9EDC7 /* HomeView.swift in Sources */,
 				C8986CD82C15B9FE0091789F /* ContentView.swift in Sources */,
 				C8368F422C8877F100003DBB /* resturantsScrollView.swift in Sources */,
@@ -848,6 +871,7 @@
 				19EF624A2C39C0CC0021C589 /* SignInScreen.swift in Sources */,
 				C8986CF12C15C27D0091789F /* BaseResponse.swift in Sources */,
 				190702092C98BD99005B8E23 /* ViewModelSendOtp.swift in Sources */,
+				192FCC482CA1E19700CA89C5 /* CartScreen.swift in Sources */,
 				190702032C98BD3D005B8E23 /* ViewModelCreate.swift in Sources */,
 				C8986D212C15C3A00091789F /* Helper.swift in Sources */,
 				19F60B1E2C45766600367453 /* SuccessScreen.swift in Sources */,

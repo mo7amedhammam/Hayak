@@ -40,7 +40,7 @@ struct OrderDetailsScreen: View {
 
 struct ExtractedViewOrderDetailsScreen : View {
     
-    @State var showDetails : Bool = false
+    @State var showDetails : Bool = true
     @State var plusMinus : Int = 1
 
     var body: some View {
@@ -163,6 +163,9 @@ struct ExtractedViewOrderDetailsScreen : View {
                                     .frame(width: 100 , height: 25)
                                     .background(Color("main2"))
                                     .cornerRadius(15)
+                                    
+                                    Spacer()
+
 
                                 }
                                 .frame(width: 120)

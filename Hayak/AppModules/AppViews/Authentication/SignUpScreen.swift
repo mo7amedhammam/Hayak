@@ -10,6 +10,20 @@ import SwiftUI
 struct SignUpScreen: View {
     @Environment(\.presentationMode) var presentationMode
 
+    @StateObject private var viewModel = ViewModelCreate() // Initialize the ViewModel
+    @State private var name = ""
+    @State private var phoneNumber = ""
+    @State private var password = ""
+    @State private var confirmPassword = ""
+    @State private var email = ""
+    @State private var address = ""
+    @State private var cityId = 1 // You can use a picker to select the city
+    @State private var genderId = 1 // Assume gender can be chosen with a picker
+    @State private var birthDate = "1990-01-01" // Example birthdate, could use a DatePicker
+    @State private var creationDate = "2024-09-16"
+    @State private var isChecked = false
+
+    
     var body: some View {
         ZStack {
             Color(UIColor(named: "bg1")!).ignoresSafeArea()
@@ -25,10 +39,21 @@ struct SignUpScreen: View {
                     
                 }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
                 
-                ExtractedViewSignUp()
+                ExtractedViewSignUp(isChecked: $isChecked , viewModel: viewModel, name: $name, phoneNumber: $phoneNumber, password: $password, confirmPassword: $confirmPassword, email: $email, address: $address, cityId: $cityId, genderId: $genderId, birthDate: $birthDate, creationDate: $creationDate)
+                
+                
+            }
+            
+            if viewModel.isLoading {
+                ProgressView("Signing Up...") // Show loading indicator
             }
             
         }
+        .alert(isPresented: .constant(viewModel.errorMessage != nil)) {
+            Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? ""), dismissButton: .default(Text("OK")))
+        }
+        
+        
     }
 }
 
@@ -38,23 +63,38 @@ struct SignUpScreen: View {
 
 
 struct ExtractedViewSignUp: View {
-    @State var isChecked : Bool = false
+    @Binding var isChecked : Bool
     @Environment(\.presentationMode) var presentationMode
 
-    @State private var passwordNumber: String = ""
+//    @State private var passwordNumber: String = ""
     @State private var passwordPlaceholder: String = "Enter your password"
     @State private var textLable: String           = "Password"
     @State private var image: String               = "password"
     
-    @State private var confirmpasswordNumber: String = ""
+//    @State private var confirmpasswordNumber: String = ""
     @State private var confirmpasswordPlaceholder: String = "Confirm your password "
     @State private var confirmtextLable: String           = "Confirm password"
     
-    @State var phoneNumber : String = ""
+//    @State var phoneNumber : String = ""
     
     @State var isPasswordWrong : Bool = false
     @State var isPasswordWrongconfirm : Bool = false
 
+    
+    @ObservedObject var viewModel: ViewModelCreate // Observing ViewModel
+    @Binding var name: String
+    @Binding var phoneNumber: String
+    @Binding var password: String
+    @Binding var confirmPassword: String
+    
+    @Binding var email: String
+    @Binding var address: String
+    @Binding var cityId: Int
+    @Binding var genderId: Int
+    @Binding var birthDate: String
+    @Binding var creationDate: String
+    
+    
     
     var body: some View {
         ScrollView {
@@ -77,10 +117,10 @@ struct ExtractedViewSignUp: View {
                 
                 VStack {
                     
-                    UserNameView()
+                    UserNameView(userName: $name)
                     PhoneNumberView(phoneNumber: $phoneNumber)
-                    PasswordView(passwordNumber: $passwordNumber, passwordPlaceholder: $passwordPlaceholder, textLable: $textLable, image: $image, isPasswordWrong: $isPasswordWrong)
-                    PasswordView(passwordNumber: $confirmpasswordNumber, passwordPlaceholder: $confirmpasswordPlaceholder, textLable: $confirmtextLable, image: $image, isPasswordWrong: $isPasswordWrongconfirm)
+                    PasswordView(passwordNumber: $password, passwordPlaceholder: $passwordPlaceholder, textLable: $textLable, image: $image, isPasswordWrong: $isPasswordWrong)
+                    PasswordView(passwordNumber: $confirmPassword, passwordPlaceholder: $confirmpasswordPlaceholder, textLable: $confirmtextLable, image: $image, isPasswordWrong: $isPasswordWrongconfirm)
 
                     Spacer()
                     
@@ -98,6 +138,10 @@ struct ExtractedViewSignUp: View {
                                         
                     Button(action: {
                         //Sign Up
+                        if password == confirmPassword {
+                            // Call ViewModel's Create function when button is pressed
+                            viewModel.Create(name: name, mobile: phoneNumber, genderId: genderId, birthDate: birthDate, email: email, address: address, cityId: cityId, creationDate: creationDate, passwordHash: password)
+                        }
                         
                     }, label: {
                         Text("Sign Up")
@@ -144,7 +188,7 @@ struct ExtractedViewSignUp: View {
 
 
 struct UserNameView: View {
-    @State private var userName: String = ""
+    @Binding  var userName: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {

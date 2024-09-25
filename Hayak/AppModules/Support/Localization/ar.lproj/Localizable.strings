@@ -24,3 +24,6 @@
 //MARK: -- error --
 "noConnection" = "انت غير متصل بالانترنت";
 "tokenExpired" = "يجب ان تسجل دخول مره اخرى";
+
+
+"new item" = "عنصر جديد";
