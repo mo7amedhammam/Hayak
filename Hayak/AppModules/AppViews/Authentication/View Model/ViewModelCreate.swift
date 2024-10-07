@@ -19,11 +19,50 @@ class ViewModelCreate: ObservableObject {
     // Combine cancellable for API calls
     private var cancellables = Set<AnyCancellable>()
     
+    @Published var secondsCount: Int? = 0
+
+    
+    
     // Function to initiate sign-up
-    func Create(name: String, mobile: String, genderId: Int , birthDate : String , email : String , address : String , cityId : Int , creationDate : String ,passwordHash : String ) {
+    func Create(name: String, mobile: String ,passwordHash : String , confirmPassword : String , isChecked : Bool ) {
+        
+        // Input validation logic
+        guard !name.isEmpty else {
+            self.errorMessage = "Please enter your name."
+            return
+        }
+        
+        guard !mobile.isEmpty else {
+            self.errorMessage = "Please enter your phone number."
+            return
+        }
+        
+        guard !passwordHash.isEmpty else {
+            self.errorMessage = "Please enter your password."
+            return
+        }
+        
+        guard !confirmPassword.isEmpty else {
+            self.errorMessage = "Please confirm your password."
+            return
+        }
+        
+        guard passwordHash == confirmPassword else {
+            self.errorMessage = "Passwords do not match."
+            return
+        }
+        
+        guard isChecked else {
+            self.errorMessage = "agree to the Terms of Service and Privacy Policy"
+            return
+        }
+        
+        
+        // If validation passes, reset validation message
+        self.errorMessage = nil
         isLoading = true
-      
-        let parametersArr =  ["name" : name,"mobile" : mobile , "genderId" : genderId , "birthDate" : birthDate , "email" : email , "address" : address , "cityId" : cityId , "creationDate" : creationDate , "passwordHash" : passwordHash] as [String : Any]
+        
+        let parametersArr =  ["name" : name,"mobile" : mobile, "passwordHash" : passwordHash] as [String : Any]
         
         // Create your API request with the username and password
         let target = Authintications.Create(parameters: parametersArr)
@@ -40,8 +79,18 @@ class ViewModelCreate: ObservableObject {
                     break
                 }
             } receiveValue: { response in
+                
+                print("response : \(response)")
+                self.isLoading = false
+                
                 // Handle the response
-                self.signUpSuccess = true
+                if response.success == true {
+                    self.signUpSuccess = true
+                    self.secondsCount = response.data?.otp
+                } else {
+                    self.signUpSuccess = false
+                    self.errorMessage = response.message
+                }
             }
             .store(in: &cancellables)
     }

@@ -15,13 +15,12 @@ struct SignUpScreen: View {
     @State private var phoneNumber = ""
     @State private var password = ""
     @State private var confirmPassword = ""
-    @State private var email = ""
-    @State private var address = ""
-    @State private var cityId = 1 // You can use a picker to select the city
-    @State private var genderId = 1 // Assume gender can be chosen with a picker
-    @State private var birthDate = "1990-01-01" // Example birthdate, could use a DatePicker
-    @State private var creationDate = "2024-09-16"
     @State private var isChecked = false
+    
+    
+    @State private var showAlert = false
+    // State for navigation
+    @State private var shouldNavigateToOtpScreen = false
 
     
     var body: some View {
@@ -39,8 +38,10 @@ struct SignUpScreen: View {
                     
                 }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
                 
-                ExtractedViewSignUp(isChecked: $isChecked , viewModel: viewModel, name: $name, phoneNumber: $phoneNumber, password: $password, confirmPassword: $confirmPassword, email: $email, address: $address, cityId: $cityId, genderId: $genderId, birthDate: $birthDate, creationDate: $creationDate)
+                ExtractedViewSignUp(isChecked: $isChecked , viewModel: viewModel, name: $name, phoneNumber: $phoneNumber, password: $password, confirmPassword: $confirmPassword)
                 
+                    .disabled(viewModel.isLoading) // Disable all fields when loading
+
                 
             }
             
@@ -48,12 +49,40 @@ struct SignUpScreen: View {
                 ProgressView("Signing Up...") // Show loading indicator
             }
             
-        }
-        .alert(isPresented: .constant(viewModel.errorMessage != nil)) {
-            Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? ""), dismissButton: .default(Text("OK")))
+            // Programmatic navigation using a NavigationLink
+            NavigationLink(destination: OtpScreen(From: "signin", mobile : phoneNumber , secondsCount : viewModel.secondsCount ?? 0), isActive: $shouldNavigateToOtpScreen) {
+                EmptyView()
+            }
+            
+        }        
+        
+        // Show alert if there's an error
+        .alert(isPresented: $showAlert, content: {
+            Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK"), action: {
+                // Reset errorMessage and showAlert when dismissed
+                viewModel.errorMessage = nil
+                showAlert = false
+            }))
+        })
+        
+        .onChange(of: viewModel.errorMessage) { _ in
+            if viewModel.errorMessage != nil {
+                showAlert = true
+            }
         }
         
+        .onChange(of: viewModel.signUpSuccess) { success in
+            if success {
+                // Navigate to the OTP screen once signUpSuccess is true
+                shouldNavigateToOtpScreen = true
+            }
+        }
         
+        .onTapGesture {
+            // Dismiss keyboard when tapping anywhere on the screen
+            UIApplication.shared.endEditing()
+        }
+    
     }
 }
 
@@ -86,14 +115,6 @@ struct ExtractedViewSignUp: View {
     @Binding var phoneNumber: String
     @Binding var password: String
     @Binding var confirmPassword: String
-    
-    @Binding var email: String
-    @Binding var address: String
-    @Binding var cityId: Int
-    @Binding var genderId: Int
-    @Binding var birthDate: String
-    @Binding var creationDate: String
-    
     
     
     var body: some View {
@@ -135,13 +156,11 @@ struct ExtractedViewSignUp: View {
                     }
                     .frame(height: 40)
                     .padding()
-                                        
+                    
                     Button(action: {
-                        //Sign Up
-                        if password == confirmPassword {
-                            // Call ViewModel's Create function when button is pressed
-                            viewModel.Create(name: name, mobile: phoneNumber, genderId: genderId, birthDate: birthDate, email: email, address: address, cityId: cityId, creationDate: creationDate, passwordHash: password)
-                        }
+                        UIApplication.shared.endEditing()
+                        // Call ViewModel's Create function when button is pressed
+                        viewModel.Create(name: name, mobile: phoneNumber, passwordHash: password, confirmPassword: confirmPassword , isChecked: isChecked )
                         
                     }, label: {
                         Text("Sign Up")
@@ -152,6 +171,8 @@ struct ExtractedViewSignUp: View {
                             .cornerRadius(20)
                             .padding(.horizontal , 20)
                     })
+
+                    
                     
                     Spacer()
                     
@@ -169,6 +190,8 @@ struct ExtractedViewSignUp: View {
                                 .font(.custom(fontEnum.medium.rawValue, size: 14))
                                 .foregroundColor(Color("main2"))
                         })
+
+                        
                         
                     } .frame(height: 100)
                     

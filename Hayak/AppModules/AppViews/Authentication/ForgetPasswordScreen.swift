@@ -66,7 +66,7 @@ struct ForgetPasswordScreen: View {
                     
                     
                     NavigationLink(
-                        destination: OtpScreen().navigationBarBackButtonHidden(true),
+                        destination: OtpScreen(From : "forgetpassword" ,mobile: "" , secondsCount: 0).navigationBarBackButtonHidden(true),
                         isActive: $GoToOtp,
                         label: {
                             EmptyView()

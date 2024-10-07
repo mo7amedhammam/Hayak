@@ -40,3 +40,10 @@ struct CornersStroke: Shape {
                 .overlay(roundedRect.stroke(content, lineWidth: width))
         }
     }
+
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+

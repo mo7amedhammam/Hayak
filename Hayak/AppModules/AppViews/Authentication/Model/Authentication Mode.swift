@@ -9,9 +9,15 @@ import Foundation
 
 
 struct SignUpResponse: Codable {
-    let success: Bool
-    let message: String
+    let otp: Int
+    let secondsCount: Int
 }
+
+struct OtpResponse: Codable {
+    let otp: Int
+    let secondsCount: Int
+}
+
 
 struct LoginResponse: Codable {
     let name: String
