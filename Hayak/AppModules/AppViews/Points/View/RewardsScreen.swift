@@ -20,7 +20,7 @@ struct RewardsScreen: View {
                 CustomHeaderView(title: "Rewards" , onBack: {
                     // Handle back button action
                     print("Back button pressed")
-                    presentationMode.wrappedValue.dismiss()
+//                    presentationMode.wrappedValue.dismiss()
                 }, onOtherBtn: {
                 }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
                 

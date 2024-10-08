@@ -23,7 +23,6 @@ struct ForgetPasswordScreen: View {
                 CustomHeaderView(title: "Forget Password" , onBack: {
                     // Handle back button action
                     print("Back button pressed")
-                    presentationMode.wrappedValue.dismiss()
                 }, onOtherBtn: {
                     
                 }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
@@ -66,7 +65,7 @@ struct ForgetPasswordScreen: View {
                     
                     
                     NavigationLink(
-                        destination: OtpScreen(From : "forgetpassword" ,mobile: "" , secondsCount: 0).navigationBarBackButtonHidden(true),
+                        destination: OtpScreen(fromScreen: "forgetpassword", mobile: "", name: "", secondsCount: 0).navigationBarBackButtonHidden(true),
                         isActive: $GoToOtp,
                         label: {
                             EmptyView()

@@ -31,8 +31,10 @@ struct OtpScreen: View {
     private let textColor       = Color("main1")
     private let textColorError       = Color("wrong")
     
-    let From : String
+    let fromScreen : String
     let mobile: String // Accept mobile number as a parameter
+    let name: String // Accept mobile number as a parameter
+    
     let secondsCount: Int
     @StateObject private var viewModel = ViewModelOTP() // Initialize the ViewModel
     @State private var showAlert = false
@@ -49,7 +51,6 @@ struct OtpScreen: View {
                 CustomHeaderView(title: "Forget Password" , onBack: {
                     // Handle back button action
                     print("Back button pressed")
-                    presentationMode.wrappedValue.dismiss()
                 }, onOtherBtn: {
                     
                 }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
@@ -179,15 +180,25 @@ struct OtpScreen: View {
                 }
             )
             
-            NavigationLink(
-                destination: SignInScreen().navigationBarBackButtonHidden(true),
-                isActive: $GoToSignin,
-                label: {
-                    EmptyView()
+            
+            
+            if GoToSignin {
+                SuccessScreen(name: name , text1: "Your account had beed created successfully.", text2: "Please sign in to use your account and enjoy", btnName: "Take me to sign in") {
+                    
+                    GoToSignin = false  // Close the SuccessScreen
+                    navigateToSignIn()  // Handle navigation to SignInScreen
+                    
                 }
-            )
+            }
+            
+            
+            NavigationLink(destination: SignInScreen().navigationBarBackButtonHidden(true) , isActive: $GoToSignin) {
+                
+            }
             
         }
+        
+        
         
         
         // Show alert if there's an error
@@ -217,7 +228,7 @@ struct OtpScreen: View {
         .onChange(of: viewModel.OTPSuccess) { success in
             if success {
                 // Navigate to the OTP screen once signUpSuccess is true
-                if From == "signin" {
+                if fromScreen == "signin" {
                     GoToSignin = true
                 } else  {
                     GoToResetPassword = true
@@ -235,10 +246,14 @@ struct OtpScreen: View {
     }
     
     
+    func navigateToSignIn() {
+        GoToSignin = true  // Set this to true to trigger navigation
+    }
+    
 }
 
 #Preview {
-    OtpScreen(From: "", mobile: "" , secondsCount: 0)
+    OtpScreen(fromScreen: "", mobile: "" , name: "", secondsCount: 0)
 }
 
 struct OTPTextField: View {

@@ -21,8 +21,22 @@ class ViewModelLogin: ObservableObject {
     
     // Function to initiate sign-up
     func Login( mobile: String, password: String ) {
+        
+        
+        guard !mobile.isEmpty else {
+            self.errorMessage = "Please enter your phone number."
+            return
+        }
+        
+        // Input validation logic
+        guard !password.isEmpty else {
+            self.errorMessage = "Please enter your password."
+            return
+        }
+        
+        
         isLoading = true
-      
+        errorMessage = nil
         let parametersArr =  ["mobile" : mobile , "password" : password ]
         
         // Create your API request with the username and password
@@ -41,7 +55,21 @@ class ViewModelLogin: ObservableObject {
                 }
             } receiveValue: { response in
                 // Handle the response
-                self.loginSuccess = true
+                print("response : \(response)")
+                self.isLoading = false
+                
+                // Handle the response
+                if response.success == true {
+                    let user = LoginResponse(name: response.data?.name, mobile: response.data?.mobile, genderId: response.data?.genderId, birthDate: response.data?.birthDate, email: response.data?.email, address: response.data?.address, cityId: response.data?.cityId, creationDate: response.data?.creationDate, id: response.data?.id, token: response.data?.token)
+                    
+                    Helper.shared.saveUserToDefaults(user: user)
+                    
+                    self.loginSuccess = true
+                } else {
+                    self.loginSuccess = false
+                    self.errorMessage = response.message
+                }
+                
             }
             .store(in: &cancellables)
     }

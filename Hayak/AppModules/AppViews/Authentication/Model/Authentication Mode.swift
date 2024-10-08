@@ -9,38 +9,38 @@ import Foundation
 
 
 struct SignUpResponse: Codable {
-    let otp: Int
-    let secondsCount: Int
+    let otp: Int?
+    let secondsCount: Int?
 }
 
 struct OtpResponse: Codable {
-    let otp: Int
-    let secondsCount: Int
+    let otp: Int?
+    let secondsCount: Int?
 }
 
 
 struct LoginResponse: Codable {
-    let name: String
-    let mobile: String
-    let genderId: Int
-    let birthDate: String
-    let email: String
-    let address: String
-    let cityId: Int
-    let creationDate: String 
-    let id: Int
-    let token : String
+    let name: String?
+    let mobile: String?
+    let genderId: Int?
+    let birthDate: String?
+    let email: String?
+    let address: String?
+    let cityId: Int?
+    let creationDate: String?
+    let id: Int?
+    let token : String?
 }
 
 
 struct ChangePasswordResponse: Codable {
-    let name: String
-    let mobile: String
-    let genderId: Int
-    let birthDate: String
-    let email: String
-    let address: String
-    let cityId: Int
-    let creationDate: String
-    let id: Int
+    let name: String?
+    let mobile: String?
+    let genderId: Int?
+    let birthDate: String?
+    let email: String?
+    let address: String?
+    let cityId: Int?
+    let creationDate: String?
+    let id: Int?
 }

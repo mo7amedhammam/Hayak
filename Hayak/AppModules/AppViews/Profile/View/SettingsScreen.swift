@@ -103,6 +103,7 @@ struct SettingsScreen: View {
                                 }
                             ExtractedViewSettings(imgTitle: "logout", Title: "Sign Out" , imgArrow : false)
                                 .onTapGesture {
+                                    Helper.shared.logout()
                                     
                                 }
                             

@@ -33,7 +33,6 @@ struct SignUpScreen: View {
                 CustomHeaderView(title: "Sign up" , onBack: {
                     // Handle back button action
                     print("Back button pressed")
-                    presentationMode.wrappedValue.dismiss()
                 }, onOtherBtn: {
                     
                 }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
@@ -50,7 +49,7 @@ struct SignUpScreen: View {
             }
             
             // Programmatic navigation using a NavigationLink
-            NavigationLink(destination: OtpScreen(From: "signin", mobile : phoneNumber , secondsCount : viewModel.secondsCount ?? 0), isActive: $shouldNavigateToOtpScreen) {
+            NavigationLink(destination: OtpScreen(fromScreen: "signin", mobile : phoneNumber , name: name, secondsCount : viewModel.secondsCount ?? 0), isActive: $shouldNavigateToOtpScreen) {
                 EmptyView()
             }
             

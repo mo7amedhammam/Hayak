@@ -85,6 +85,25 @@ class Helper: NSObject {
         return userDef.string(forKey: Languagekey) ?? deviceLanguageCode
     }
     
+    func saveUserToDefaults(user: LoginResponse) {
+        let encoder = JSONEncoder()
+        if let encodedUser = try? encoder.encode(user) {
+            UserDefaults.standard.set(encodedUser, forKey: UserDataKey)
+        }
+    }
+    
+    func getUserFromDefaults() -> LoginResponse? {
+        if let savedUserData = UserDefaults.standard.object(forKey: UserDataKey) as? Data {
+            let decoder = JSONDecoder()
+            if let loadedUser = try? decoder.decode(LoginResponse.self, from: savedUserData) {
+                return loadedUser
+            }
+        }
+        return nil
+    }
+
+    
+    
 //    func setSelectedUserType(userType: UserTypeEnum) {
 //        let rawValue = userType.rawValue
 //        userDef.set(rawValue, forKey: UserTypeKey)

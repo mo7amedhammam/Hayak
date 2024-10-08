@@ -10,7 +10,8 @@ import SwiftUI
 struct SignInScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
-
+    @StateObject private var viewModel = ViewModelLogin()
+    @State private var showAlert: Bool = false
     
     var body: some View {
         
@@ -19,19 +20,43 @@ struct SignInScreen: View {
                 .navigationBarBackButtonHidden(true)
             
             VStack {
-            
+                
                 CustomHeaderView(title: "Sign in" , onBack: {
                     // Handle back button action
                     print("Back button pressed")
-                    presentationMode.wrappedValue.dismiss()
                 }, onOtherBtn: {
                     
                 }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
                 
-                ExtractedViewSignIn()
+                ExtractedViewSignIn(viewModel: viewModel)
+            }
+            
+            if viewModel.isLoading {
+                ProgressView("sign in...") // Show loading indicator
             }
             
         }
+        
+        // Show alert if there's an error
+        .alert(isPresented: $showAlert, content: {
+            Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK"), action: {
+                // Reset errorMessage and showAlert when dismissed
+                viewModel.errorMessage = nil
+                showAlert = false
+            }))
+        })
+        
+        .onChange(of: viewModel.errorMessage) { _ in
+            if viewModel.errorMessage != nil {
+                showAlert = true
+                
+            }
+        }
+        
+        .onTapGesture {
+            UIApplication.shared.endEditing()
+        }
+        
     }
 }
 
@@ -42,20 +67,24 @@ struct SignInScreen: View {
 }
 
 struct ExtractedViewSignIn: View {
+    
+    @StateObject  var viewModel : ViewModelLogin
+    
     @State private var isChecked: Bool = false
     @State private var GoToSignUp: Bool = false
     @State private var GoToForgetPassword: Bool = false
-    
+    @State private var GoToTabViewWithCenterBtn : Bool = false
     @State private var passwordNumber: String = ""
     @State private var passwordPlaceholder: String = "Enter your password"
     @State private var textLable: String           = "Password"
     @State private var image: String               = "password"
-
+    
     @State var phoneNumber: String = ""
     @State var isPasswordWrong : Bool = false
-
-
+    
+    
     var body: some View {
+        
         ScrollView {
             VStack (spacing : 0){
                 
@@ -98,10 +127,11 @@ struct ExtractedViewSignIn: View {
                     }
                     .frame(height: 25)
                     .padding()
-                                        
+                    
                     Button(action: {
+                        UIApplication.shared.endEditing()
                         //Sign in
-                        
+                        viewModel.Login(mobile: phoneNumber , password: passwordNumber)
                     }, label: {
                         Text("Sign in")
                             .frame(height: 50) // Set the height here
@@ -154,12 +184,38 @@ struct ExtractedViewSignIn: View {
                         }
                     )
                     
+                    
+                    NavigationLink(
+                        destination: TabViewWithCenterBtn().navigationBarBackButtonHidden(true),
+                        isActive: $GoToTabViewWithCenterBtn ,
+                        label: {
+                            EmptyView()
+                        }
+                    )
+                    
                 } .frame(height: 80)
                 
                 Spacer()
             }
+            
+            
+            .onChange(of: viewModel.loginSuccess) { _ in
+                
+                phoneNumber    = ""
+                passwordNumber = ""
+                
+                if let currentUser = Helper.shared.getUserFromDefaults()?.token {
+                    GoToTabViewWithCenterBtn = true
+                } else {
+                    viewModel.errorMessage = "try again"
+                }
+               
+            }
+            
         }
     }
+    
+    
 }
 
 struct CheckboxView: View {
@@ -216,7 +272,7 @@ struct CustomTextfieldView: View {
     @Binding var text: String
     @Binding var title: String
     @Binding var image: String
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(textLable)
@@ -259,9 +315,9 @@ struct PasswordView: View {
     @Binding var passwordPlaceholder: String
     @Binding var textLable: String
     @Binding var image: String
-
+    
     @Binding var isPasswordWrong: Bool
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(textLable)
@@ -305,9 +361,9 @@ struct CustomHeaderView: View {
     var onOtherBtn: (() -> Void?)?
     
     var OtherBtnIsfound: Bool
-     var imageonOtherBtn : String
-     var coloronOtherBtn : String
-
+    var imageonOtherBtn : String
+    var coloronOtherBtn : String
+    
     
     var body: some View {
         ZStack {
@@ -360,7 +416,7 @@ struct CustomHeaderView: View {
                         .frame(width: 44) // The same width as the back button
                 }
             }
-//            .padding([.leading, .trailing])
+            //            .padding([.leading, .trailing])
         }
     }
 }
@@ -369,20 +425,20 @@ struct CustomPickupHeaderView: View {
     @Environment(\.dismiss) var dismiss
     var title: String?
     var subtitle: String?
-
+    
     var btnbackimg : Image? = Image(systemName:"arrow.left")
     var onBack: () -> Void?
-
+    
     var btnimg2 :  (any View)?
     var onbtnimg2: () -> Void?
-
+    
     var btnimg3 : Image?
     var onbtnimg3: () -> Void?
-
+    
     var btnimg4 : Image?
     var onbtnimg4: () -> Void?
     var bgColor:Color? = .white
-
+    
     var body: some View {
         ZStack {
             // Background color or any other customization
@@ -395,31 +451,31 @@ struct CustomPickupHeaderView: View {
                 // Back button
                 Button(action: {
                     dismiss()
-                        onBack()
+                    onBack()
                 }) {
                     if let img = btnbackimg{
-//                        btnbackimg ??  Image(systemName: "arrow.left")
+                        //                        btnbackimg ??  Image(systemName: "arrow.left")
                         img
                             .font(.custom("LamaSans-Bold", size: 15))
                             .foregroundColor(Color("main1"))
                             .frame(width: 44) // The same width as the back button
                     }
                 }
-//                .frame(width: 44) // The same width as the back button
+                //                .frame(width: 44) // The same width as the back button
                 
-//                Spacer()
+                //                Spacer()
                 
                 // Title
                 VStack {
                     Text(title?.localized() ?? "")
                         .font(.subheadline)
                         .foregroundColor(Color("empty text field"))
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     
                     Text(subtitle?.localized() ?? "")
                         .font(.headline)
                         .foregroundColor(Color("main1"))
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 
                 Spacer()
@@ -428,7 +484,7 @@ struct CustomPickupHeaderView: View {
                     Button(action: {
                         onbtnimg2()
                     }) {
-                       AnyView(btnimg2)
+                        AnyView(btnimg2)
                     }
                     .frame(width: 44) // The same width as the back button
                 }
@@ -449,10 +505,10 @@ struct CustomPickupHeaderView: View {
                     }
                     .frame(width: 44) // The same width as the back button
                 }
-
+                
                 
             }
-//            .padding([.leading, .trailing])
+            //            .padding([.leading, .trailing])
             
         }
     }
@@ -511,21 +567,21 @@ struct CustomTextField: UIViewRepresentable {
 struct CustomSecureTextField: UIViewRepresentable {
     class Coordinator: NSObject, UITextFieldDelegate {
         var parent: CustomSecureTextField
-
+        
         init(parent: CustomSecureTextField) {
             self.parent = parent
         }
-
+        
         func textFieldDidChangeSelection(_ textField: UITextField) {
             self.parent.text = textField.text ?? ""
         }
     }
-
+    
     @Binding var text: String
     var placeholder: String
     var placeholderColor: UIColor
     var textColor: UIColor
-
+    
     func makeUIView(context: Context) -> UITextField {
         let textField = UITextField(frame: .zero)
         textField.placeholder = placeholder
@@ -538,7 +594,7 @@ struct CustomSecureTextField: UIViewRepresentable {
         )
         return textField
     }
-
+    
     func updateUIView(_ uiView: UITextField, context: Context) {
         uiView.text = text
         uiView.textColor = textColor
@@ -547,7 +603,7 @@ struct CustomSecureTextField: UIViewRepresentable {
             attributes: [NSAttributedString.Key.foregroundColor: placeholderColor]
         )
     }
-
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }

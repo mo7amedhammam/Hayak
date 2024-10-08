@@ -26,7 +26,6 @@ struct ResetNewPasswordScreen: View {
                 CustomHeaderView(title: "Reset New Password" , onBack: {
                     // Handle back button action
                     print("Back button pressed")
-                    presentationMode.wrappedValue.dismiss()
                 }, onOtherBtn: {
                     
                 }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")

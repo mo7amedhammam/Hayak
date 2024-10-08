@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var isActive = false
-    
+    @State private var GoToTabViewWithCenterBtn = false
     var body: some View {
         
         NavigationView {
@@ -29,18 +29,31 @@ struct ContentView: View {
                         EmptyView()
                     }
                 )
+                
+                
+                NavigationLink(
+                    destination: TabViewWithCenterBtn().navigationBarBackButtonHidden(true),
+                    isActive: $GoToTabViewWithCenterBtn ,
+                    label: {
+                        EmptyView()
+                    }
+                )
+                
+            }
             
             .onAppear{
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    self.isActive = true
+                    if  Helper.shared.CheckIfLoggedIn() {
+                        GoToTabViewWithCenterBtn = true
+                    } else {
+                        isActive = true
+                    }
                 }
             }
             
-            }
         }
         
-    
-}
+    }
 }
 
 #Preview {

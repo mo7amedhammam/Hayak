@@ -12,7 +12,7 @@ struct WellcomeLoginScreen: View {
     @State var isActive : Bool = false
 //    @State var isActiveSignUp : Bool = false
 //    @State var isActiveHome : Bool = false
-        @State var destination : AnyView = AnyView(EmptyView())
+    @State var destination : AnyView = AnyView(EmptyView())
 
     var body: some View {
 
