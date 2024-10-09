@@ -1,15 +1,15 @@
 //
-//  ViewModelSendOtp.swift
+//  ViewModelVertifyOtp.swift
 //  Hayak
 //
-//  Created by Mohamed Ragab on 09/10/2024.
+//  Created by Mohamed Ragab on 16/09/2024.
 //
 
 import SwiftUI
 import Combine
 
 
-class ViewModelSendOtp: ObservableObject {
+class ViewModelVertifyOtp: ObservableObject {
     // Published properties to track the sign-up state
     @Published var isLoading: Bool = false
     @Published var OTPSuccess: Bool = false
@@ -28,16 +28,11 @@ class ViewModelSendOtp: ObservableObject {
     }
     
     // Function to initiate sign-up
-    func SendOtp(mobile: String) {
+    func VertifyOtp(otp: String, mobile: String) {
         
         // Input validation logic
-        guard !mobile.isEmpty else {
-            self.errorMessage = "Please enter your phone number."
-            return
-        }
-        
-        guard (mobile.contains("+966")) && (mobile.count == 13) else {
-            self.errorMessage = "phone number must start with +966 and 9 digits"
+        guard !otp.isEmpty else {
+            self.errorMessage = "Please enter correct otp."
             return
         }
         
@@ -46,11 +41,11 @@ class ViewModelSendOtp: ObservableObject {
         isLoading = true
         
         let newMobile = mobile.replacingOccurrences(of: "+966", with: "")
-     
-        let parametersArr =  ["mobile" : newMobile]
+
+        let parametersArr =  ["otp" : otp,"mobile" : newMobile] as [String : Any]
         
         // Create your API request with the username and password
-        let target = Authintications.SendOTP(parameters: parametersArr)
+        let target = Authintications.VerifyOTP(parameters: parametersArr)
         //print(parametersarr)
         // Call the API using the BaseNetwork class
         BaseNetwork.CallApi(target, BaseResponse<OtpResponse>.self)

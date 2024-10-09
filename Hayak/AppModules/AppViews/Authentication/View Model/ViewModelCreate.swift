@@ -32,12 +32,12 @@ class ViewModelCreate: ObservableObject {
         }
         
         guard !mobile.isEmpty else {
-            self.errorMessage = "Please enter your phone number."
+            self.errorMessage = "Please enter a valid phone number"
             return
         }
         
         guard !passwordHash.isEmpty else {
-            self.errorMessage = "Please enter your password."
+            self.errorMessage = "Password must be at least 8 characters long"
             return
         }
         
@@ -56,12 +56,19 @@ class ViewModelCreate: ObservableObject {
             return
         }
         
+        guard (mobile.contains("+966")) && (mobile.count == 13) else {
+            self.errorMessage = "phone number must start with +966 and 9 digits"
+            return
+        }
+        
+        let newMobile = mobile.replacingOccurrences(of: "+966", with: "")
+        
         
         // If validation passes, reset validation message
         self.errorMessage = nil
         isLoading = true
         
-        let parametersArr =  ["name" : name,"mobile" : mobile, "passwordHash" : passwordHash] as [String : Any]
+        let parametersArr =  ["name" : name,"mobile" : newMobile, "passwordHash" : passwordHash] as [String : Any]
         
         // Create your API request with the username and password
         let target = Authintications.Create(parameters: parametersArr)

@@ -14,8 +14,8 @@
             filePath = "Hayak/AppModules/AppViews/Authentication/View Model/ViewModelCreate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "Create(name:mobile:passwordHash:confirmPassword:isChecked:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "Hayak/AppModules/AppViews/Authentication/View Model/ViewModelCreate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "Create(name:mobile:passwordHash:confirmPassword:isChecked:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "Hayak/AppModules/AppViews/Authentication/View Model/ViewModelCreate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "Create(name:mobile:passwordHash:confirmPassword:isChecked:)"
             landmarkType = "7">
          </BreakpointContent>

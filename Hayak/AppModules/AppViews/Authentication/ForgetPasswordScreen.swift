@@ -11,8 +11,11 @@ struct ForgetPasswordScreen: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var GoToOtp : Bool =  false
-    @State var phoneNumber: String = ""
+    @State var phoneNumber: String = "+966"
 
+    @StateObject private var VMSendOtp = ViewModelSendOtp()
+    @State private var showAlertOtp : Bool = false
+    
     var body: some View {
         ZStack {
             Color(UIColor(named: "bg1")!).ignoresSafeArea()
@@ -51,7 +54,8 @@ struct ForgetPasswordScreen: View {
                     
                     Button(action: {
                         //send
-                        self.GoToOtp = true
+                        UIApplication.shared.endEditing()
+                        VMSendOtp.SendOtp(mobile: phoneNumber)
                         
                     }, label: {
                         Text("Send")
@@ -64,15 +68,6 @@ struct ForgetPasswordScreen: View {
                     })
                     
                     
-                    NavigationLink(
-                        destination: OtpScreen(fromScreen: "forgetpassword", mobile: "", name: "", secondsCount: 0).navigationBarBackButtonHidden(true),
-                        isActive: $GoToOtp,
-                        label: {
-                            EmptyView()
-                        }
-                    )
-                    
-                    
                 }
                 .frame(maxWidth: .infinity , minHeight: 300)
                 .background(.white)
@@ -82,7 +77,49 @@ struct ForgetPasswordScreen: View {
                 Spacer()
                 
             }
+            
+            if VMSendOtp.isLoading {
+                ProgressView("forget password...") // Show loading indicator
+            }
+            
+            
+            NavigationLink(
+                destination: OtpScreen(fromScreen: "forgetpassword", mobile: phoneNumber, name: "", secondsCount: 0).navigationBarBackButtonHidden(true),
+                isActive: $GoToOtp ,
+                label: {
+                    EmptyView()
+                }
+            )
+            
+            
         }
+        
+        // Show alert if there's an error
+        .alert(isPresented: $showAlertOtp, content: {
+            Alert(title: Text("Error"), message: Text(VMSendOtp.errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK"), action: {
+                // Reset errorMessage and showAlert when dismissed
+                VMSendOtp.errorMessage = nil
+                showAlertOtp = false
+            }))
+        })
+
+        .onChange(of: VMSendOtp.errorMessage) { _ in
+            if VMSendOtp.errorMessage != nil {
+                showAlertOtp = true
+                
+            }
+        }
+        
+        .onChange(of: VMSendOtp.OTPSuccess) { _ in
+            GoToOtp = true
+        }
+        
+        .onTapGesture {
+            UIApplication.shared.endEditing()
+        }
+        
+        
+        
     }
 }
 

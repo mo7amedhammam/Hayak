@@ -12,7 +12,7 @@ struct SignUpScreen: View {
 
     @StateObject private var viewModel = ViewModelCreate() // Initialize the ViewModel
     @State private var name = ""
-    @State private var phoneNumber = ""
+    @State private var phoneNumber = "+966"
     @State private var password = ""
     @State private var confirmPassword = ""
     @State private var isChecked = false
@@ -49,7 +49,7 @@ struct SignUpScreen: View {
             }
             
             // Programmatic navigation using a NavigationLink
-            NavigationLink(destination: OtpScreen(fromScreen: "signin", mobile : phoneNumber , name: name, secondsCount : viewModel.secondsCount ?? 0), isActive: $shouldNavigateToOtpScreen) {
+            NavigationLink(destination: OtpScreen(fromScreen: "signup", mobile : phoneNumber , name: name, secondsCount : viewModel.secondsCount ?? 0), isActive: $shouldNavigateToOtpScreen) {
                 EmptyView()
             }
             

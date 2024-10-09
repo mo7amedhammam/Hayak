@@ -6,8 +6,7 @@
 //
 
 
-import Foundation
-import Alamofire
+import SwiftUI
 import Combine
 
 
@@ -35,9 +34,16 @@ class ViewModelLogin: ObservableObject {
         }
         
         
+        guard (mobile.contains("+966")) && (mobile.count == 13) else {
+            self.errorMessage = "phone number must start with +966 and 9 digits"
+            return
+        }
+      
+        let newMobile = mobile.replacingOccurrences(of: "+966", with: "")
+        
         isLoading = true
         errorMessage = nil
-        let parametersArr =  ["mobile" : mobile , "password" : password ]
+        let parametersArr =  ["mobile" : newMobile , "password" : password ]
         
         // Create your API request with the username and password
         let target = Authintications.Login(parameters: parametersArr)
@@ -63,6 +69,7 @@ class ViewModelLogin: ObservableObject {
                     let user = LoginResponse(name: response.data?.name, mobile: response.data?.mobile, genderId: response.data?.genderId, birthDate: response.data?.birthDate, email: response.data?.email, address: response.data?.address, cityId: response.data?.cityId, creationDate: response.data?.creationDate, id: response.data?.id, token: response.data?.token)
                     
                     Helper.shared.saveUserToDefaults(user: user)
+                    Helper.shared.IsLoggedIn(value: true)
                     
                     self.loginSuccess = true
                 } else {

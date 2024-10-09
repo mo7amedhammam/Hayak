@@ -36,7 +36,7 @@ struct OtpScreen: View {
     let name: String // Accept mobile number as a parameter
     
     let secondsCount: Int
-    @StateObject private var viewModel = ViewModelOTP() // Initialize the ViewModel
+    @StateObject private var viewModel = ViewModelVertifyOtp() // Initialize the ViewModel
     @State private var showAlert = false
     
     
@@ -145,8 +145,8 @@ struct OtpScreen: View {
                     Button(action: {
                         // Button action
                         print("Button tapped")
-                        //                        self.GoToResetPassword = true
-                        viewModel.SendOtp(otp: "\(otp1)\(otp2)\(otp3)\(otp4)\(otp5)\(otp6)", mobile: mobile)
+                        viewModel.VertifyOtp(otp: "\(otp1)\(otp2)\(otp3)\(otp4)\(otp5)\(otp6)", mobile: mobile)
+                        
                     }) {
                         Text("Send")
                             .frame(height: 50) // Set the height here
@@ -173,7 +173,7 @@ struct OtpScreen: View {
             }
             
             NavigationLink(
-                destination: ResetNewPasswordScreen().navigationBarBackButtonHidden(true),
+                destination: ResetNewPasswordScreen(mobile: mobile).navigationBarBackButtonHidden(true),
                 isActive: $GoToResetPassword,
                 label: {
                     EmptyView()
@@ -228,8 +228,10 @@ struct OtpScreen: View {
         .onChange(of: viewModel.OTPSuccess) { success in
             if success {
                 // Navigate to the OTP screen once signUpSuccess is true
-                if fromScreen == "signin" {
+                if fromScreen == "signup" {
                     GoToSignin = true
+                } else if fromScreen == "forgetpassword" {
+                    GoToResetPassword = true
                 } else  {
                     GoToResetPassword = true
                 }

@@ -19,10 +19,11 @@ enum EndPoints: String {
     //MARK: -- Lookups --
     case Create = "Customer/Create"
     case Login = "Customer/Login"
-    case ChangePassword = "Customer/ChangePassword"
     case SendOTP = "Customer/SendOTP"
     case VerifyOTP = "Customer/VerifyOTP"
     case ResetPassword = "Customer/ResetPassword"
+    case ChangePassword = "Customer/ChangePassword"
+
 
 }
 
