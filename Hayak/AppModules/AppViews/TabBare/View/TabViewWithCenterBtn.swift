@@ -11,149 +11,151 @@ struct TabViewWithCenterBtn: View {
     @State private var selectedIndex = 0
     
     var body: some View {
-        ZStack {
-            TabView(selection: $selectedIndex) {
-                HomeView()
-                    .tabItem {
-                        Image("home")
-                        Text("Home")
-                    }
-                    .tag(0)
-                
-                NavigationView{
-                    PicUpView()
-                }
-                .tabItem {
-                    Image("picup")
-                    Text("Pick Up")
-                }
-                .tag(1)
-                
-                Text("tab2")
-                    .tabItem {
-                        
-                    }
-                    .tag(2)
-                
-                NavigationView{
-                    DiningView()
-                }
-                .tabItem {
-                    Image("dining")
-                    Text("Dining")
-                }
-                .tag(3)
-                
-                ProfileView()
-                    .padding(.bottom)
-                    .tabItem {
-                        Image("profile")
-                        Text("Profile")
-                    }
-                    .tag(4)
-            }
-            
-            // Custom tab bar with center button
-            VStack {
-                Spacer()
-                ZStack {
-                    HStack {
-                        Button(action: {
-                            selectedIndex = 0
-                        }) {
-                            VStack (spacing : 8){
-                                Image("home")
-                                Text("Home")
-                                    .font(.custom("LamaSans-Bold", size: 10))
-                                    .foregroundColor(Color("main2"))
-                            }
-                            .padding(.vertical)
+            ZStack {
+                TabView(selection: $selectedIndex) {
+                    HomeView()
+                        .tabItem {
+                            Image("home")
+                            Text("Home")
                         }
-                        .frame(maxWidth: .infinity)
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            selectedIndex = 1
-                        }) {
-                            VStack (spacing : 8){
-                                Image("picup")
-                                Text("Pic Up")
-                                    .font(.custom("LamaSans-Bold", size: 10))
-                                    .foregroundColor(Color("main2"))
-                            }
-                            .padding(.vertical)
-                        }
-                        .frame(maxWidth: .infinity)
-                        
-                        Spacer()
-                        
-                        
-                        Button(action: {
-//                            selectedIndex = 2
-                        }) {
-                            VStack {
-                                //                                    Image(systemName: "person")
-                                //                                    Text("Profile")
-                            }
-                            .padding(.vertical)
-                        }
-                        .frame(maxWidth: .infinity)
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            selectedIndex = 3
-                        }) {
-                            VStack (spacing : 8){
-                                Image("dining")
-                                Text("Dining")
-                                    .font(.custom("LamaSans-Bold", size: 10))
-                                    .foregroundColor(Color("main2"))
-                            }
-                            .padding(.vertical)
-                        }
-                        .frame(maxWidth: .infinity)
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            selectedIndex = 4
-                        }) {
-                            VStack (spacing : 8){
-                                Image("profile")
-                                Text("Profile")
-                                    .font(.custom("LamaSans-Bold", size: 10))
-                                    .foregroundColor(Color("main2"))
-                            }
-                            .padding(.vertical)
-                        }
-                        .frame(maxWidth: .infinity)
-                        
-                        
-                    }
-                    .frame(height: 100)
-                    .background(
-                        TabBarShape(curveDepth: 60 , curveWidth: 50)
-                            .fill(Color.white)
-                            .shadow(radius: 5)
-                    )
+                        .tag(0)
                     
-                    // Center button
-                    Button(action: {
-                        // Center button action
-                        selectedIndex = 2
-                    }) {
-                        Image("center")
-                            .resizable()
-                            .frame(width: 80, height: 80)
-                            .shadow(radius: 2)
+                    NavigationView{
+                        PicUpView()
                     }
-                    .offset(y: -50)
+                    .tabItem {
+                        Image("picup")
+                        Text("Pick Up")
+                    }
+                    .tag(1)
+                    
+                    //                NavigationView{
+                    PointsScreen()
+                    //                }
+                        .tabItem {
+                            
+                        }
+                        .tag(2)
+                    
+                    NavigationView{
+                        DiningView()
+                    }
+                    .tabItem {
+                        Image("dining")
+                        Text("Dining")
+                    }
+                    .tag(3)
+                    
+                    ProfileView()
+                        .padding(.bottom)
+                        .tabItem {
+                            Image("profile")
+                            Text("Profile")
+                        }
+                        .tag(4)
                 }
+                
+                // Custom tab bar with center button
+                VStack {
+                    Spacer()
+                    ZStack {
+                        HStack {
+                            Button(action: {
+                                selectedIndex = 0
+                            }) {
+                                VStack (spacing : 8){
+                                    Image("home")
+                                    Text("Home")
+                                        .font(.custom("LamaSans-Bold", size: 10))
+                                        .foregroundColor(Color("main2"))
+                                }
+                                .padding(.vertical)
+                            }
+                            .frame(maxWidth: .infinity)
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                selectedIndex = 1
+                            }) {
+                                VStack (spacing : 8){
+                                    Image("picup")
+                                    Text("Pic Up")
+                                        .font(.custom("LamaSans-Bold", size: 10))
+                                        .foregroundColor(Color("main2"))
+                                }
+                                .padding(.vertical)
+                            }
+                            .frame(maxWidth: .infinity)
+                            
+                            Spacer()
+                            
+                            
+                            Button(action: {
+                                //                            selectedIndex = 2
+                            }) {
+                                VStack {
+                                    //                                    Image(systemName: "person")
+                                    //                                    Text("Profile")
+                                }
+                                .padding(.vertical)
+                            }
+                            .frame(maxWidth: .infinity)
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                selectedIndex = 3
+                            }) {
+                                VStack (spacing : 8){
+                                    Image("dining")
+                                    Text("Dining")
+                                        .font(.custom("LamaSans-Bold", size: 10))
+                                        .foregroundColor(Color("main2"))
+                                }
+                                .padding(.vertical)
+                            }
+                            .frame(maxWidth: .infinity)
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                selectedIndex = 4
+                            }) {
+                                VStack (spacing : 8){
+                                    Image("profile")
+                                    Text("Profile")
+                                        .font(.custom("LamaSans-Bold", size: 10))
+                                        .foregroundColor(Color("main2"))
+                                }
+                                .padding(.vertical)
+                            }
+                            .frame(maxWidth: .infinity)
+                            
+                            
+                        }
+                        .frame(height: 100)
+                        .background(
+                            TabBarShape(curveDepth: 60 , curveWidth: 50)
+                                .fill(Color.white)
+                                .shadow(radius: 5)
+                        )
+                        
+                        // Center button
+                        Button(action: {
+                            // Center button action
+                            selectedIndex = 2
+                        }) {
+                            Image("center")
+                                .resizable()
+                                .frame(width: 80, height: 80)
+                                .shadow(radius: 2)
+                        }
+                        .offset(y: -50)
+                    }
+                }
+                .edgesIgnoringSafeArea(.bottom)
             }
-            .edgesIgnoringSafeArea(.bottom)
-        }
     }
 }
 

@@ -41,6 +41,8 @@ struct ProfileView: View {
     //    @StateObject var ViewModel : ViewModelProfile = ViewModelProfile()
     @State var isUserLogin : Bool = Helper.shared.CheckIfLoggedIn()
     
+    @State var destination = AnyView(EmptyView())
+    @State var ispush = false
     var body: some View {
         
         ZStack {
@@ -84,7 +86,10 @@ struct ProfileView: View {
                         //..................
                         VStack {
                             ViewCustom(title: "Notifications" , img1: isUserLogin ? "011" : "11" , img01:  isUserLogin ? "arrowEnable" : "arrow" , isUserLogin : isUserLogin)
-                            ViewCustom(title: "My orders" , img1: isUserLogin ?  "022" : "22" , img01: isUserLogin ? "arrowEnable" : "arrow", isUserLogin : isUserLogin)
+                            ViewCustom(title: "My orders" , img1: isUserLogin ?  "022" : "22" , img01: isUserLogin ? "arrowEnable" : "arrow", isUserLogin : isUserLogin){
+                                destination = AnyView(YourOrderScreen())
+                                ispush = true
+                            }
                             ViewCustom(title: "Addresses" , img1: isUserLogin ?  "033" : "33" , img01: isUserLogin ? "arrowEnable" : "arrow", isUserLogin : isUserLogin)
                             ViewCustom(title: "Payment" , img1: isUserLogin ?  "044" : "44" , img01: isUserLogin ? "arrowEnable" : "arrow", isUserLogin : isUserLogin)
                             ViewCustom(title: "Wishlist" , img1: isUserLogin ?  "055" : "55" , img01: isUserLogin ? "arrowEnable" : "arrow", isUserLogin : isUserLogin)
@@ -107,7 +112,10 @@ struct ProfileView: View {
                     }
                 }
             }
-            
+            NavigationLink(
+                destination: destination,
+                isActive: $ispush,label: {}
+            )
         }
         .hideNavigationBar()
         .localizeView()

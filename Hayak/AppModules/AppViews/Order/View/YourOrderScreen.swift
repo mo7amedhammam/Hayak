@@ -25,7 +25,8 @@ struct YourOrderScreen: View {
                 
                 ExtractedViewYourOrderScreen()
             }
-        }
+        }.hideNavigationBar()
+            .localizeView()
     }
 }
 

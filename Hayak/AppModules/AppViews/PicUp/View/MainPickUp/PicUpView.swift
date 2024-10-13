@@ -8,20 +8,21 @@
 import SwiftUI
 import Kingfisher
 
-//func createshoppingimg() -> some View {
-//    return Image(.shoppingicon)
-//        .resizable()
-//        .padding(6)
-//        .background{Color(.main).clipShape(Circle())}
-//        .frame(width: 33, height: 33)
-//}
-
 enum menuFilterCases:String{
     case sort = "Sort"
     case Radius = "Radius"
     case Rate = "Rate"
     
 }
+
+
+// get list for main cetegory > Brand/GetCategoriesWithBrand
+// send : categoryId
+// default : send current lat & lon
+/// will have an api to select radius 5km , 10km , or 20km
+/// will send distance from its selection
+// sortBy : rate, recommendation,distance
+//call this endpoint :Pickup/NearestBrandBranches (with previous parameters)
 
 struct PicUpView: View {
     //    @Environment(\.presentationMode) var presentationMode
@@ -60,8 +61,9 @@ struct PicUpView: View {
                     .padding(.horizontal)
                 
                 restaurantsScrollView(selectedResturant: $selectedResturant)
+                    .frame(height: 100)
                 
-                ScrollViewRTL(type: .hList){
+                ScrollView(.horizontal){
                     HStack(spacing: 10) {
                         ForEach(items){ item in
                             let isselected = (item.id == 0 && selectedsort != nil) || (item.id == 1 && selectedradius != nil) || (item.id == 2 && selectedrate != nil)
@@ -79,13 +81,15 @@ struct PicUpView: View {
                                 }
                                 
                             })
+                            .frame(height:35)
                             //                            .tag(item.id)
                         }
                     }
                     .padding(.leading,2)
-                    
+                    .padding(.top,5)
                     
                 }
+                
                 
                 List(){
                     pickUpCellView(pickUp: pickUpCellModel(id: 1,title:"Subway, Dubai World Trad...", subTitle:"Sandwiches, Beverages, Wraps", image: "pickupbgtest",subImage: "od") ,onSelect: {
@@ -97,6 +101,7 @@ struct PicUpView: View {
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
                     .padding(5)
+                    
                 }
                 .listStyle(.plain)
                 .padding(.horizontal)

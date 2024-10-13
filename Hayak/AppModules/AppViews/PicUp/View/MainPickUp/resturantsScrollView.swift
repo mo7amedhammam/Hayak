@@ -19,7 +19,7 @@ struct restaurantsScrollView: View {
     @Binding var selectedResturant:restaurant
     
     var body: some View {
-        ScrollViewRTL(type: .hList){
+        ScrollView(.horizontal,showsIndicators: false){
             HStack{
                 ForEach(resturants,id: \.self){resturant in
                     Button(action: {
@@ -47,15 +47,13 @@ struct restaurantsScrollView: View {
 }
 
 
-
-
 struct restaurantsFilter: View {
     var resturants : [restaurant] = [restaurant(id: 1, name: "Burgers", imageUrl: "2"),restaurant(id: 2, name: "Burgers", imageUrl: "2"),restaurant(id: 3, name: "Burgers", imageUrl: "2"),restaurant(id: 4, name: "Burgers", imageUrl: "2"),restaurant(id: 5, name: "Burgers", imageUrl: "2"),restaurant(id: 6, name: "Burgers", imageUrl: "2")]
     
     @Binding var selectedResturant:restaurant
     
     var body: some View {
-        ScrollViewRTL(type: .hList){
+        ScrollView(.horizontal,showsIndicators: false){
             HStack{
                 ForEach(resturants,id: \.self){resturant in
                     Button(action: {
