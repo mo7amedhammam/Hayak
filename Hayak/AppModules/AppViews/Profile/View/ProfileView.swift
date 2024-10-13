@@ -39,7 +39,7 @@ import SwiftUI
 struct ProfileView: View {
     
     //    @StateObject var ViewModel : ViewModelProfile = ViewModelProfile()
-    @State var isUserLogin : Bool = false
+    @State var isUserLogin : Bool = Helper.shared.CheckIfLoggedIn()
     
     var body: some View {
         
@@ -72,7 +72,7 @@ struct ProfileView: View {
                 ScrollView {
                     VStack (spacing : 20) {
                         VStack{
-                            if isUserLogin {
+                            if !isUserLogin {
                                 ViewCustomUserIsSigned()
                             } else {
                                 ViewCustomUserNotSigned(Name : "Mohamed Ragab" , Balance : "Balance: $1200.00")
@@ -89,8 +89,14 @@ struct ProfileView: View {
                             ViewCustom(title: "Payment" , img1: isUserLogin ?  "044" : "44" , img01: isUserLogin ? "arrowEnable" : "arrow", isUserLogin : isUserLogin)
                             ViewCustom(title: "Wishlist" , img1: isUserLogin ?  "055" : "55" , img01: isUserLogin ? "arrowEnable" : "arrow", isUserLogin : isUserLogin)
                             ViewCustom(title: "Settings" , img1: "66" , img01: "arrowEnable", isUserLogin : true)
-                            ViewCustom(title: "Languages" , img1:"77" , img01: "arrowEnable", isUserLogin : true)
-                            ViewCustom(title: "LogOut" , img1: isUserLogin ?  "088" : "88" , img01: isUserLogin ? "arrowEnable" : "arrow", isUserLogin : isUserLogin)
+                            ViewCustom(title: "Languages" , img1:"77" , img01: "arrowEnable", isUserLogin : true){
+                                
+                            }
+                            ViewCustom(title: "LogOut" , img1: isUserLogin ?  "088" : "88" , img01: isUserLogin ? "arrowEnable" : "arrow", isUserLogin : isUserLogin){
+                                Helper.shared.logout()
+                            Helper.shared.changeRoot(toView: SignInScreen(hasnavbar: false))
+
+                            }
                             Spacer()
                             Spacer()
                             
@@ -103,6 +109,8 @@ struct ProfileView: View {
             }
             
         }
+        .hideNavigationBar()
+        .localizeView()
         .background(Color("bg1"))
         .ignoresSafeArea()
     }
@@ -112,9 +120,12 @@ struct ProfileView: View {
         @State var title : String = ""
         @State var img1 : String = ""
         @State var img01 : String = ""
-        @State var isUserLogin : Bool
-        
+        @State var isUserLogin : Bool = false
+        var action:(() -> Void?)?
         var body: some View {
+            Button(action: {
+                action?()
+            }, label: {
             HStack (spacing : 15) {
                 Image(img1)
                     .resizable()
@@ -128,6 +139,8 @@ struct ProfileView: View {
             }
             .frame(height: 60)
             .padding(.horizontal , 8)
+                
+            })
         }
     }
 }

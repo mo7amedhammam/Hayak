@@ -13,7 +13,7 @@ struct SignInScreen: View {
     @StateObject private var viewModel = ViewModelLogin()
 
     @State private var showAlert: Bool = false
-    
+    var hasnavbar:Bool? = true
     var body: some View {
         
         ZStack {
@@ -22,22 +22,25 @@ struct SignInScreen: View {
             
             VStack {
                 
-                CustomHeaderView(title: "Sign in" , onBack: {
-                    // Handle back button action
-                    print("Back button pressed")
-                }, onOtherBtn: {
-                    
-                }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
+                if hasnavbar ?? true{
+                    CustomHeaderView(title: "Sign in" , onBack: {
+                        // Handle back button action
+                        print("Back button pressed")
+                    }, onOtherBtn: {
+                        
+                    }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
+                }
                 
                 ExtractedViewSignIn(viewModel: viewModel)
             }
+                
             
-            if viewModel.isLoading {
-                ProgressView("sign in...") // Show loading indicator
-            }
-            
-            
-        }
+//            if viewModel.isLoading {
+//                ProgressView("sign in...") // Show loading indicator
+//            }            
+        }.hideNavigationBar()
+            .localizeView()
+            .showHud(isShowing: $viewModel.isLoading, text: "sign in...")
         
         // Show alert if there's an error
         .alert(isPresented: $showAlert, content: {

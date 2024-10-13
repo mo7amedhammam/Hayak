@@ -12,7 +12,7 @@ import Combine
 
 class ViewModelLogin: ObservableObject {
     // Published properties to track the sign-up state
-    @Published var isLoading: Bool = false
+    @Published var isLoading: Bool? = false
     @Published var loginSuccess: Bool = false
     @Published var errorMessage: String? = nil
     // Combine cancellable for API calls

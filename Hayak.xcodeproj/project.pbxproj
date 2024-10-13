@@ -85,6 +85,8 @@
 		C8986D1A2C15C3A00091789F /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D062C15C3A00091789F /* ColorConstants.swift */; };
 		C8986D1B2C15C3A00091789F /* FontsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D082C15C3A00091789F /* FontsExtension.swift */; };
 		C8986D212C15C3A00091789F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D102C15C3A00091789F /* Helper.swift */; };
+		C8C544142CBBC7B300472504 /* navigationBarModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C544132CBBC7B300472504 /* navigationBarModifiers.swift */; };
+		C8C544172CBBCE8500472504 /* HudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C544162CBBCE8500472504 /* HudView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -168,6 +170,8 @@
 		C8986D062C15C3A00091789F /* ColorConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
 		C8986D082C15C3A00091789F /* FontsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontsExtension.swift; sourceTree = "<group>"; };
 		C8986D102C15C3A00091789F /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		C8C544132CBBC7B300472504 /* navigationBarModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navigationBarModifiers.swift; sourceTree = "<group>"; };
+		C8C544162CBBCE8500472504 /* HudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudView.swift; sourceTree = "<group>"; };
 		CEF99719986644E790259E06 /* Pods-Hayak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hayak.release.xcconfig"; path = "Target Support Files/Pods-Hayak/Pods-Hayak.release.xcconfig"; sourceTree = "<group>"; };
 		EFA111EA2737130E40EB7435 /* Pods_Hayak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hayak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -510,6 +514,8 @@
 		C8368F4C2C8878A300003DBB /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				C8C544152CBBCE5200472504 /* LoadingIndicator */,
+				C8C544122CBBC77600472504 /* NavigationController */,
 				C82AED172C8DAF4D005FFC41 /* TextInput */,
 				C8368F502C88A06600003DBB /* Button */,
 				C8368F472C8878A300003DBB /* BottomSheet */,
@@ -720,6 +726,22 @@
 			path = AppViews;
 			sourceTree = "<group>";
 		};
+		C8C544122CBBC77600472504 /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				C8C544132CBBC7B300472504 /* navigationBarModifiers.swift */,
+			);
+			path = NavigationController;
+			sourceTree = "<group>";
+		};
+		C8C544152CBBCE5200472504 /* LoadingIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				C8C544162CBBCE8500472504 /* HudView.swift */,
+			);
+			path = LoadingIndicator;
+			sourceTree = "<group>";
+		};
 		D7C1FE29B1773C7CAAFDB47C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -905,6 +927,7 @@
 				19495DBB2C6BBA4E00D2CCF7 /* YourOrderScreen.swift in Sources */,
 				C82AED192C8DAF90005FFC41 /* TextInputViews.swift in Sources */,
 				C8986D162C15C3A00091789F /* Language.swift in Sources */,
+				C8C544142CBBC7B300472504 /* navigationBarModifiers.swift in Sources */,
 				190D9FDE2C86592C0088074A /* PointsScreen.swift in Sources */,
 				C82AED142C8DA446005FFC41 /* PaymentSuccessView.swift in Sources */,
 				19E170EE2C5C1D200079FFDE /* SettingsScreen.swift in Sources */,
@@ -916,6 +939,7 @@
 				C8368F522C88A09600003DBB /* CustomButton.swift in Sources */,
 				C82AED122C8D9A01005FFC41 /* OrderCanselationDelayView.swift in Sources */,
 				C8986D132C15C3A00091789F /* ExIntegers.swift in Sources */,
+				C8C544172CBBCE8500472504 /* HudView.swift in Sources */,
 				C8986D142C15C3A00091789F /* ExStrings.swift in Sources */,
 				199FE2D92C3EE6FA0071BF8E /* ResetNewPasswordScreen.swift in Sources */,
 			);

@@ -29,7 +29,7 @@ struct TabViewWithCenterBtn: View {
                 }
                 .tag(1)
                 
-                Text("")
+                Text("tab2")
                     .tabItem {
                         
                     }
@@ -90,7 +90,7 @@ struct TabViewWithCenterBtn: View {
                         
                         
                         Button(action: {
-                            selectedIndex = 2
+//                            selectedIndex = 2
                         }) {
                             VStack {
                                 //                                    Image(systemName: "person")
@@ -142,6 +142,7 @@ struct TabViewWithCenterBtn: View {
                     // Center button
                     Button(action: {
                         // Center button action
+                        selectedIndex = 2
                     }) {
                         Image("center")
                             .resizable()

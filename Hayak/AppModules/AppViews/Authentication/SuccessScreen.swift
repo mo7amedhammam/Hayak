@@ -76,7 +76,8 @@ struct SuccessScreen: View {
                     
                 }
             }    
-        }
+        }.hideNavigationBar()
+            .localizeView()
     }
 }
 

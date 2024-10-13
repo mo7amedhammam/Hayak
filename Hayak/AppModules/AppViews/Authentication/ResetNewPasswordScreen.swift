@@ -52,7 +52,8 @@ struct ResetNewPasswordScreen: View {
             NavigationLink(destination: SignInScreen().navigationBarBackButtonHidden(true) , isActive: $GoToSignin) {
             }
             
-        }
+        }.hideNavigationBar()
+            .localizeView()
         
         // Show alert if there's an error
         .alert(isPresented: $showAlert, content: {

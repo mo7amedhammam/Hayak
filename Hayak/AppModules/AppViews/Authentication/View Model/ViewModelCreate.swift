@@ -12,13 +12,14 @@ import Combine
 
 class ViewModelCreate: ObservableObject {
     // Published properties to track the sign-up state
-    @Published var isLoading: Bool = false
+    @Published var isLoading: Bool? = false
     @Published var signUpSuccess: Bool = false
     @Published var errorMessage: String? = nil
     // Combine cancellable for API calls
     private var cancellables = Set<AnyCancellable>()
     
     @Published var secondsCount: Int? = 0
+    @Published var code: Int? = 0
 
     
     
@@ -75,7 +76,9 @@ class ViewModelCreate: ObservableObject {
         //print(parametersarr)
         // Call the API using the BaseNetwork class
         BaseNetwork.CallApi(target, BaseResponse<SignUpResponse>.self)
-            .sink { completion in
+            .sink {[weak self] completion in
+                guard let self = self else {return}
+
                 // Handle completion
                 self.isLoading = false
                 switch completion {
@@ -84,15 +87,17 @@ class ViewModelCreate: ObservableObject {
                 case .finished:
                     break
                 }
-            } receiveValue: { response in
-                
+            } receiveValue: {[weak self] response in
+                guard let self = self else {return}
                 print("response : \(response)")
                 self.isLoading = false
                 
                 // Handle the response
                 if response.success == true {
                     self.signUpSuccess = true
-                    self.secondsCount = response.data?.otp
+                    self.secondsCount = response.data?.secondsCount
+                    self.code = response.data?.otp
+
                 } else {
                     self.signUpSuccess = false
                     self.errorMessage = response.message

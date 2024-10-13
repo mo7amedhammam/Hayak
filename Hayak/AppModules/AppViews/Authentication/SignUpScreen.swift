@@ -19,6 +19,8 @@ struct SignUpScreen: View {
     
     
     @State private var showAlert = false
+    var hasnavbar:Bool? = true
+
     // State for navigation
     @State private var shouldNavigateToOtpScreen = false
 
@@ -30,30 +32,32 @@ struct SignUpScreen: View {
             
             VStack {
           
-                CustomHeaderView(title: "Sign up" , onBack: {
-                    // Handle back button action
-                    print("Back button pressed")
-                }, onOtherBtn: {
-                    
-                }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
-                
+                if hasnavbar ?? true{
+                    CustomHeaderView(title: "Sign up" , onBack: {
+                        // Handle back button action
+                        print("Back button pressed")
+                    }, onOtherBtn: {
+                        
+                    }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
+                }
                 ExtractedViewSignUp(isChecked: $isChecked , viewModel: viewModel, name: $name, phoneNumber: $phoneNumber, password: $password, confirmPassword: $confirmPassword)
                 
-                    .disabled(viewModel.isLoading) // Disable all fields when loading
-
-                
+//                    .disabled(viewModel.isLoading) // Disable all fields when loading
             }
             
-            if viewModel.isLoading {
-                ProgressView("Signing Up...") // Show loading indicator
-            }
+//            if viewModel.isLoading {
+//                ProgressView("Signing Up...") // Show loading indicator
+//            }
             
             // Programmatic navigation using a NavigationLink
-            NavigationLink(destination: OtpScreen(fromScreen: "signup", mobile : phoneNumber , name: name, secondsCount : viewModel.secondsCount ?? 0), isActive: $shouldNavigateToOtpScreen) {
+            NavigationLink(destination: OtpScreen(fromScreen: "signup", mobile : phoneNumber , name: name, secondsCount : viewModel.secondsCount ?? 0, code: viewModel.code ?? 0), isActive: $shouldNavigateToOtpScreen) {
                 EmptyView()
             }
             
-        }        
+        }.hideNavigationBar()
+            .localizeView()
+        
+            .showHud(isShowing: $viewModel.isLoading, text: "Signing Up...")
         
         // Show alert if there's an error
         .alert(isPresented: $showAlert, content: {

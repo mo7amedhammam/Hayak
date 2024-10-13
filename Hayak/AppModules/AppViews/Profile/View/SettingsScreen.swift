@@ -101,10 +101,9 @@ struct SettingsScreen: View {
                                 .onTapGesture {
                                     
                                 }
-                            ExtractedViewSettings(imgTitle: "logout", Title: "Sign Out" , imgArrow : false)
-                                .onTapGesture {
+                            ExtractedViewSettings(imgTitle: "logout", Title: "Sign Out" , imgArrow : false){
                                     Helper.shared.logout()
-                                    
+                                Helper.shared.changeRoot(toView: SignInScreen())
                                 }
                             
                             Text("More Options")
@@ -177,8 +176,12 @@ struct ExtractedViewSettings: View {
     var imgTitle : String = ""
     var Title : String = ""
     var imgArrow : Bool = true
+    var action: (() -> Void?)?
     
     var body: some View {
+        Button(action:{
+            action?()
+        }, label: {
         HStack (spacing : 16) {
             Image(imgTitle)
                 .resizable()
@@ -194,6 +197,8 @@ struct ExtractedViewSettings: View {
         }
         .frame(height: 65)
         .padding(.horizontal , 20)
+        })
+        .buttonStyle(.plain)
     }
 }
 

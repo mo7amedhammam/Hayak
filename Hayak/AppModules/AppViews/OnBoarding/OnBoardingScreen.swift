@@ -132,7 +132,8 @@ struct OnBoardingScreen: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-        }
+        }.hideNavigationBar()
+            .localizeView()
         .ignoresSafeArea()
 
     }

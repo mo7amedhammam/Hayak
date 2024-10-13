@@ -35,7 +35,9 @@ struct OtpScreen: View {
     let mobile: String // Accept mobile number as a parameter
     let name: String // Accept mobile number as a parameter
     
-    let secondsCount: Int
+    var secondsCount: Int?
+    var code: Int?
+
     @StateObject private var viewModel = ViewModelVertifyOtp() // Initialize the ViewModel
     @State private var showAlert = false
     
@@ -69,6 +71,11 @@ struct OtpScreen: View {
                             .frame(height: 16)
                         
                         Text("\(mobile)")
+                            .font(.custom(fontEnum.medium.rawValue, size: 13))
+                            .foregroundColor(.emptyTextField)
+                            .frame(height: 16)
+                        
+                        Text(viewModel.code ?? 0 , format: .number)
                             .font(.custom(fontEnum.medium.rawValue, size: 13))
                             .foregroundColor(.emptyTextField)
                             .frame(height: 16)
@@ -122,7 +129,7 @@ struct OtpScreen: View {
                         Button(action: {
                             // Button action
                             print("Button tapped")
-                            
+                            // sond mobile number to send new Otp from send otp then call sendotp function to update new otp and fire new timer 
                             
                         }) {
                             Text("Resend Now!")
@@ -196,7 +203,8 @@ struct OtpScreen: View {
                 
             }
             
-        }
+        }.hideNavigationBar()
+            .localizeView()
         
         
         
@@ -221,7 +229,6 @@ struct OtpScreen: View {
                 otp4 = ""
                 otp5 = ""
                 otp6 = ""
-                
             }
         }
         
@@ -237,10 +244,14 @@ struct OtpScreen: View {
                 }
             }
         }
-        
-        .onAppear {
-            viewModel.secondsCount =  secondsCount
+        .task {
+            viewModel.secondsCount =  secondsCount ?? 0
+            viewModel.code =  code
         }
+//        .onAppear {
+//            viewModel.secondsCount =  secondsCount
+//            viewModel.code =  code
+//        }
         
         .onTapGesture {
             UIApplication.shared.endEditing()
@@ -255,7 +266,7 @@ struct OtpScreen: View {
 }
 
 #Preview {
-    OtpScreen(fromScreen: "", mobile: "" , name: "", secondsCount: 0)
+    OtpScreen(fromScreen: "", mobile: "" , name: "", secondsCount: 0,code: 0)
 }
 
 struct OTPTextField: View {

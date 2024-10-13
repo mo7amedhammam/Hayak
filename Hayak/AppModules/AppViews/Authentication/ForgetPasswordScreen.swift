@@ -92,7 +92,8 @@ struct ForgetPasswordScreen: View {
             )
             
             
-        }
+        }.hideNavigationBar()
+            .localizeView()
         
         // Show alert if there's an error
         .alert(isPresented: $showAlertOtp, content: {

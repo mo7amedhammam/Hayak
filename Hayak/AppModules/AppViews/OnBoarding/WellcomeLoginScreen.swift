@@ -122,7 +122,8 @@ struct WellcomeLoginScreen: View {
                       }
            
 
-        }
+        }.hideNavigationBar()
+            .localizeView()
     }
 }
 

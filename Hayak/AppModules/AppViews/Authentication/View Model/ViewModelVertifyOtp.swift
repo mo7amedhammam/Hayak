@@ -17,14 +17,19 @@ class ViewModelVertifyOtp: ObservableObject {
     // Combine cancellable for API calls
     private var cancellables = Set<AnyCancellable>()
     
-    var secondsCount: Int     = 0 // Countdown starting from 180 seconds (3 minutes)
+    var secondsCount: Int     = 0{
+        didSet{
+            startTimer()
+        }
+    } // Countdown starting from 180 seconds (3 minutes)
     @Published var timeRemaining: String = "00:00" // Formatted time string
-    
+    @Published var code: Int?
+
     private var timer: AnyCancellable?
     
     
     init() {
-        startTimer()
+//        startTimer()
     }
     
     // Function to initiate sign-up
@@ -49,7 +54,9 @@ class ViewModelVertifyOtp: ObservableObject {
         //print(parametersarr)
         // Call the API using the BaseNetwork class
         BaseNetwork.CallApi(target, BaseResponse<OtpResponse>.self)
-            .sink { completion in
+            .sink {[weak self] completion in
+                guard let self = self else{return}
+
                 // Handle completion
                 self.isLoading = false
                 switch completion {
@@ -58,14 +65,18 @@ class ViewModelVertifyOtp: ObservableObject {
                 case .finished:
                     break
                 }
-            } receiveValue: { response in
-                
+            } receiveValue: {[weak self] response in
+                guard let self = self else{return}
+
                 print("response : \(response)")
                 self.isLoading = false
                 
                 // Handle the response
                 if response.success == true {
                     self.OTPSuccess = true
+                    self.code = response.data?.otp
+                    self.secondsCount = response.data?.secondsCount ?? 0
+                    
                 } else {
                     self.OTPSuccess = false
                     self.errorMessage = response.message

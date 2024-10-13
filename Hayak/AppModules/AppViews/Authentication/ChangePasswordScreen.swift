@@ -80,7 +80,8 @@ struct ChangePasswordScreen: View {
 
             }
             
-        }
+        }.hideNavigationBar()
+            .localizeView()
         
         
     }
