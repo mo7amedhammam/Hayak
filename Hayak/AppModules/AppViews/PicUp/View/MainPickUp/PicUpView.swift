@@ -26,8 +26,9 @@ enum menuFilterCases:String{
 
 struct PicUpView: View {
     //    @Environment(\.presentationMode) var presentationMode
-    @State var selectedResturant:restaurant = restaurant.init()
-    
+    @StateObject var pickupvm = MainPickUpVM.shared
+//    @State var selectedResturant:CategoriesItem?
+
     @State var isActive : Bool = false
     @State var destination : AnyView = AnyView(EmptyView())
     
@@ -60,7 +61,7 @@ struct PicUpView: View {
                     .padding(.bottom,5)
                     .padding(.horizontal)
                 
-                restaurantsScrollView(selectedResturant: $selectedResturant)
+                restaurantsScrollView(resturants: pickupvm.Categories?.items ?? [] ,selectedResturant: $pickupvm.selectedCategory)
                     .frame(height: 100)
                 
                 ScrollView(.horizontal){

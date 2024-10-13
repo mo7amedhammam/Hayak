@@ -14,9 +14,10 @@ struct restaurant : Hashable {
 }
 
 struct restaurantsScrollView: View {
-    var resturants : [restaurant] = [restaurant(id: 1, name: "Burgers", imageUrl: "2"),restaurant(id: 2, name: "Burgers", imageUrl: "2"),restaurant(id: 3, name: "Burgers", imageUrl: "2"),restaurant(id: 4, name: "Burgers", imageUrl: "2"),restaurant(id: 5, name: "Burgers", imageUrl: "2"),restaurant(id: 6, name: "Burgers", imageUrl: "2")]
+//    var resturants : [restaurant] = [restaurant(id: 1, name: "Burgers", imageUrl: "2"),restaurant(id: 2, name: "Burgers", imageUrl: "2"),restaurant(id: 3, name: "Burgers", imageUrl: "2"),restaurant(id: 4, name: "Burgers", imageUrl: "2"),restaurant(id: 5, name: "Burgers", imageUrl: "2"),restaurant(id: 6, name: "Burgers", imageUrl: "2")]
     
-    @Binding var selectedResturant:restaurant
+    var resturants : [CategoriesItem] = []
+    @Binding var selectedResturant:CategoriesItem?
     
     var body: some View {
         ScrollView(.horizontal,showsIndicators: false){
@@ -26,7 +27,7 @@ struct restaurantsScrollView: View {
                         selectedResturant = resturant
                     }, label: {
                         VStack{
-                            KFImageLoader(urlStr: resturant.imageUrl, placeholder: Image("2"))
+                            KFImageLoader(urlStr: resturant.imageURL, placeholder: Image("2"))
                                 .frame(width: 70, height: 70, alignment: .center)
                                 .padding(10)
                                 .background{Color(selectedResturant == resturant ? "active text":"color-E5E5E5").cornerRadius(12)}
@@ -43,7 +44,7 @@ struct restaurantsScrollView: View {
 }
 
 #Preview {
-    restaurantsScrollView(resturants: [restaurant(id: 1, name: "Burgers", imageUrl: "2"),restaurant(id: 2, name: "Burgers", imageUrl: "2"),restaurant(id: 3, name: "Burgers", imageUrl: "2"),restaurant(id: 4, name: "Burgers", imageUrl: "2"),restaurant(id: 5, name: "Burgers", imageUrl: "2"),restaurant(id: 6, name: "Burgers", imageUrl: "2")], selectedResturant: .constant(restaurant.init()))
+    restaurantsScrollView(resturants: [], selectedResturant: .constant(CategoriesItem.init()))
 }
 
 

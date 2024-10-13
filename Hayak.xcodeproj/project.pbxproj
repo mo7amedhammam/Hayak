@@ -87,6 +87,12 @@
 		C8986D212C15C3A00091789F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D102C15C3A00091789F /* Helper.swift */; };
 		C8C544142CBBC7B300472504 /* navigationBarModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C544132CBBC7B300472504 /* navigationBarModifiers.swift */; };
 		C8C544172CBBCE8500472504 /* HudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C544162CBBCE8500472504 /* HudView.swift */; };
+		C8C544212CBBFBDC00472504 /* LoopUpsM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C544202CBBFBDC00472504 /* LoopUpsM.swift */; };
+		C8C544232CBBFBE900472504 /* LookUpsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C544222CBBFBE900472504 /* LookUpsVM.swift */; };
+		C8C544272CBC012300472504 /* MainPickUpM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C544262CBC012300472504 /* MainPickUpM.swift */; };
+		C8C544292CBC022400472504 /* MainPickUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C544282CBC022400472504 /* MainPickUpVM.swift */; };
+		C8C5442C2CBC03F000472504 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5442B2CBC03F000472504 /* CustomAlertView.swift */; };
+		C8C5442E2CBC042900472504 /* PickupServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5442D2CBC042900472504 /* PickupServices.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -172,6 +178,12 @@
 		C8986D102C15C3A00091789F /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		C8C544132CBBC7B300472504 /* navigationBarModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navigationBarModifiers.swift; sourceTree = "<group>"; };
 		C8C544162CBBCE8500472504 /* HudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudView.swift; sourceTree = "<group>"; };
+		C8C544202CBBFBDC00472504 /* LoopUpsM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopUpsM.swift; sourceTree = "<group>"; };
+		C8C544222CBBFBE900472504 /* LookUpsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpsVM.swift; sourceTree = "<group>"; };
+		C8C544262CBC012300472504 /* MainPickUpM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPickUpM.swift; sourceTree = "<group>"; };
+		C8C544282CBC022400472504 /* MainPickUpVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPickUpVM.swift; sourceTree = "<group>"; };
+		C8C5442B2CBC03F000472504 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
+		C8C5442D2CBC042900472504 /* PickupServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupServices.swift; sourceTree = "<group>"; };
 		CEF99719986644E790259E06 /* Pods-Hayak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hayak.release.xcconfig"; path = "Target Support Files/Pods-Hayak/Pods-Hayak.release.xcconfig"; sourceTree = "<group>"; };
 		EFA111EA2737130E40EB7435 /* Pods_Hayak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hayak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -272,6 +284,8 @@
 		195FEDB42C4EF47900E9EDC7 /* PicUp */ = {
 			isa = PBXGroup;
 			children = (
+				C8C544252CBC010600472504 /* Model */,
+				C8C544242CBC00FC00472504 /* ViewModel */,
 				C8368F3F2C8877F100003DBB /* View */,
 			);
 			path = PicUp;
@@ -514,6 +528,7 @@
 		C8368F4C2C8878A300003DBB /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				C8C5442A2CBC03D900472504 /* CustomAlertView */,
 				C8C544152CBBCE5200472504 /* LoadingIndicator */,
 				C8C544122CBBC77600472504 /* NavigationController */,
 				C82AED172C8DAF4D005FFC41 /* TextInput */,
@@ -596,6 +611,7 @@
 			isa = PBXGroup;
 			children = (
 				C8986CED2C15C27D0091789F /* Authintications.swift */,
+				C8C5442D2CBC042900472504 /* PickupServices.swift */,
 			);
 			path = HayakService;
 			sourceTree = "<group>";
@@ -710,6 +726,7 @@
 		C8986D222C15C3A50091789F /* AppViews */ = {
 			isa = PBXGroup;
 			children = (
+				C8C544182CBBFB0A00472504 /* Lookups */,
 				192FCC452CA1E15400CA89C5 /* Cart */,
 				190D9FDB2C8659070088074A /* Points */,
 				196414582C457F53008370CE /* TabBare */,
@@ -740,6 +757,55 @@
 				C8C544162CBBCE8500472504 /* HudView.swift */,
 			);
 			path = LoadingIndicator;
+			sourceTree = "<group>";
+		};
+		C8C544182CBBFB0A00472504 /* Lookups */ = {
+			isa = PBXGroup;
+			children = (
+				C8C5441B2CBBFB4C00472504 /* Model */,
+				C8C5441A2CBBFB1800472504 /* ViewModel */,
+			);
+			path = Lookups;
+			sourceTree = "<group>";
+		};
+		C8C5441A2CBBFB1800472504 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C8C544222CBBFBE900472504 /* LookUpsVM.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C8C5441B2CBBFB4C00472504 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C8C544202CBBFBDC00472504 /* LoopUpsM.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C8C544242CBC00FC00472504 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C8C544282CBC022400472504 /* MainPickUpVM.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C8C544252CBC010600472504 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C8C544262CBC012300472504 /* MainPickUpM.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C8C5442A2CBC03D900472504 /* CustomAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				C8C5442B2CBC03F000472504 /* CustomAlertView.swift */,
+			);
+			path = CustomAlertView;
 			sourceTree = "<group>";
 		};
 		D7C1FE29B1773C7CAAFDB47C /* Frameworks */ = {
@@ -885,7 +951,9 @@
 				C8986CF22C15C27D0091789F /* EndPoints.swift in Sources */,
 				C8368F4E2C8878A300003DBB /* KFImageLoader.swift in Sources */,
 				19EA12892CB6B21C00C80528 /* CustomPickupHeaderView.swift in Sources */,
+				C8C5442C2CBC03F000472504 /* CustomAlertView.swift in Sources */,
 				C8986CD62C15B9FE0091789F /* HayakApp.swift in Sources */,
+				C8C544292CBC022400472504 /* MainPickUpVM.swift in Sources */,
 				C8368F4D2C8878A300003DBB /* BottomSheet.swift in Sources */,
 				1907020D2C98BDC3005B8E23 /* ViewModelResetPasssword.swift in Sources */,
 				C82AED162C8DAA2F005FFC41 /* AddRateView.swift in Sources */,
@@ -907,6 +975,7 @@
 				C8986D152C15C3A00091789F /* ExViews.swift in Sources */,
 				C8368F442C8877F100003DBB /* menueListCell.swift in Sources */,
 				190702052C98BD71005B8E23 /* ViewModelLogin.swift in Sources */,
+				C8C5442E2CBC042900472504 /* PickupServices.swift in Sources */,
 				19E3809F2C74F96F00E580D9 /* OrderDetailsScreen.swift in Sources */,
 				19F1AC9F2C3C689400499EF4 /* ForgetPasswordScreen.swift in Sources */,
 				C8368F432C8877F100003DBB /* menueItemDetails.swift in Sources */,
@@ -916,17 +985,20 @@
 				199FE2DB2C3F15A70071BF8E /* ChangePasswordScreen.swift in Sources */,
 				195FEDB22C4EEDAC00E9EDC7 /* TabViewWithCenterBtn.swift in Sources */,
 				C8986CF42C15C27D0091789F /* Authintications.swift in Sources */,
+				C8C544232CBBFBE900472504 /* LookUpsVM.swift in Sources */,
 				C8986D1A2C15C3A00091789F /* ColorConstants.swift in Sources */,
 				19E170EC2C5C05570079FFDE /* NotificationScreen.swift in Sources */,
 				19EA12872CB6B16D00C80528 /* EXTextfield.swift in Sources */,
 				C8368F452C8877F100003DBB /* MenueView.swift in Sources */,
 				19E2E1672C3B3C6F006AF2E9 /* SignUpScreen.swift in Sources */,
 				195FEDC22C4EF52600E9EDC7 /* ProfileView.swift in Sources */,
+				C8C544272CBC012300472504 /* MainPickUpM.swift in Sources */,
 				C8986D192C15C3A00091789F /* LocalizationService.swift in Sources */,
 				196498EE2C6A9DC20053F0D3 /* PaymentSuccessScreen.swift in Sources */,
 				19495DBB2C6BBA4E00D2CCF7 /* YourOrderScreen.swift in Sources */,
 				C82AED192C8DAF90005FFC41 /* TextInputViews.swift in Sources */,
 				C8986D162C15C3A00091789F /* Language.swift in Sources */,
+				C8C544212CBBFBDC00472504 /* LoopUpsM.swift in Sources */,
 				C8C544142CBBC7B300472504 /* navigationBarModifiers.swift in Sources */,
 				190D9FDE2C86592C0088074A /* PointsScreen.swift in Sources */,
 				C82AED142C8DA446005FFC41 /* PaymentSuccessView.swift in Sources */,

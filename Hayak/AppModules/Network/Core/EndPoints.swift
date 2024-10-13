@@ -27,3 +27,10 @@ enum EndPoints: String {
 
 }
 
+
+
+enum PickupEndPoints: String {
+    //MARK: -- PickupEndPoints --
+    case Categories = "Brand/GetCategoriesWithBrand"
+
+}
