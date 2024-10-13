@@ -31,6 +31,11 @@ class ViewModelCreate: ObservableObject {
             self.errorMessage = "Please enter your name."
             return
         }
+        guard validateInput(name) else {
+            errorMessage = "Only alphabetic characters and spaces are allowed."
+            return
+        }
+        
         
         guard !mobile.isEmpty else {
             self.errorMessage = "Please enter a valid phone number"
@@ -38,9 +43,16 @@ class ViewModelCreate: ObservableObject {
         }
         
         guard !passwordHash.isEmpty else {
-            self.errorMessage = "Password must be at least 8 characters long"
+            self.errorMessage = "Password must be at least 8 characters long, contain at least one number, and one special character."
             return
         }
+        
+        // Validate the password using the reusable function
+          guard isValidPassword(passwordHash) else {
+              self.errorMessage = "Password must be at least 8 characters long, contain at least one number, and one special character."
+              return
+          }
+        
         
         guard !confirmPassword.isEmpty else {
             self.errorMessage = "Please confirm your password."

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SignUpScreen: View {
     @Environment(\.presentationMode) var presentationMode
-
+    
     @StateObject private var viewModel = ViewModelCreate() // Initialize the ViewModel
     @State private var name = ""
     @State private var phoneNumber = "+966"
@@ -20,10 +20,10 @@ struct SignUpScreen: View {
     
     @State private var showAlert = false
     var hasnavbar:Bool? = true
-
+    
     // State for navigation
     @State private var shouldNavigateToOtpScreen = false
-
+    
     
     var body: some View {
         ZStack {
@@ -31,7 +31,7 @@ struct SignUpScreen: View {
                 .navigationBarBackButtonHidden(true)
             
             VStack {
-          
+                
                 if hasnavbar ?? true{
                     CustomHeaderView(title: "Sign up" , onBack: {
                         // Handle back button action
@@ -42,12 +42,10 @@ struct SignUpScreen: View {
                 }
                 ExtractedViewSignUp(isChecked: $isChecked , viewModel: viewModel, name: $name, phoneNumber: $phoneNumber, password: $password, confirmPassword: $confirmPassword)
                 
-//                    .disabled(viewModel.isLoading) // Disable all fields when loading
+                //                    .disabled(viewModel.isLoading) // Disable all fields when loading
             }
             
-//            if viewModel.isLoading {
-//                ProgressView("Signing Up...") // Show loading indicator
-//            }
+            
             
             // Programmatic navigation using a NavigationLink
             NavigationLink(destination: OtpScreen(fromScreen: "signup", mobile : phoneNumber , name: name, secondsCount : viewModel.secondsCount ?? 0, code: viewModel.code ?? 0), isActive: $shouldNavigateToOtpScreen) {
@@ -60,32 +58,32 @@ struct SignUpScreen: View {
             .showHud(isShowing: $viewModel.isLoading, text: "Signing Up...")
         
         // Show alert if there's an error
-        .alert(isPresented: $showAlert, content: {
-            Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK"), action: {
-                // Reset errorMessage and showAlert when dismissed
-                viewModel.errorMessage = nil
-                showAlert = false
-            }))
-        })
+            .alert(isPresented: $showAlert, content: {
+                Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK"), action: {
+                    // Reset errorMessage and showAlert when dismissed
+                    viewModel.errorMessage = nil
+                    showAlert = false
+                }))
+            })
         
-        .onChange(of: viewModel.errorMessage) { _ in
-            if viewModel.errorMessage != nil {
-                showAlert = true
+            .onChange(of: viewModel.errorMessage) { _ in
+                if viewModel.errorMessage != nil {
+                    showAlert = true
+                }
             }
-        }
         
-        .onChange(of: viewModel.signUpSuccess) { success in
-            if success {
-                // Navigate to the OTP screen once signUpSuccess is true
-                shouldNavigateToOtpScreen = true
+            .onChange(of: viewModel.signUpSuccess) { success in
+                if success {
+                    // Navigate to the OTP screen once signUpSuccess is true
+                    shouldNavigateToOtpScreen = true
+                }
             }
-        }
         
-        .onTapGesture {
-            // Dismiss keyboard when tapping anywhere on the screen
-            UIApplication.shared.endEditing()
-        }
-    
+            .onTapGesture {
+                // Dismiss keyboard when tapping anywhere on the screen
+                UIApplication.shared.endEditing()
+            }
+        
     }
 }
 
@@ -97,21 +95,21 @@ struct SignUpScreen: View {
 struct ExtractedViewSignUp: View {
     @Binding var isChecked : Bool
     @Environment(\.presentationMode) var presentationMode
-
-//    @State private var passwordNumber: String = ""
+    
+    //    @State private var passwordNumber: String = ""
     @State private var passwordPlaceholder: String = "Enter your password"
     @State private var textLable: String           = "Password"
     @State private var image: String               = "password"
     
-//    @State private var confirmpasswordNumber: String = ""
+    //    @State private var confirmpasswordNumber: String = ""
     @State private var confirmpasswordPlaceholder: String = "Confirm your password "
     @State private var confirmtextLable: String           = "Confirm password"
     
-//    @State var phoneNumber : String = ""
+    //    @State var phoneNumber : String = ""
     
     @State var isPasswordWrong : Bool = false
     @State var isPasswordWrongconfirm : Bool = false
-
+    
     
     @ObservedObject var viewModel: ViewModelCreate // Observing ViewModel
     @Binding var name: String
@@ -137,7 +135,7 @@ struct ExtractedViewSignUp: View {
                 }
                 .frame(maxWidth: .infinity , minHeight: 200 , alignment: .leading)
                 .padding(.horizontal , 20)
-
+                
                 
                 VStack {
                     
@@ -145,7 +143,7 @@ struct ExtractedViewSignUp: View {
                     PhoneNumberView(phoneNumber: $phoneNumber)
                     PasswordView(passwordNumber: $password, passwordPlaceholder: $passwordPlaceholder, textLable: $textLable, image: $image, isPasswordWrong: $isPasswordWrong)
                     PasswordView(passwordNumber: $confirmPassword, passwordPlaceholder: $confirmpasswordPlaceholder, textLable: $confirmtextLable, image: $image, isPasswordWrong: $isPasswordWrongconfirm)
-
+                    
                     Spacer()
                     
                     HStack {
@@ -154,8 +152,8 @@ struct ExtractedViewSignUp: View {
                             .foregroundColor(Color("main1"))
                             .font(.custom(fontEnum.medium.rawValue, size: 13))
                             .multilineTextAlignment(.leading)
-                            
-                     
+                        
+                        
                     }
                     .frame(height: 40)
                     .padding()
@@ -174,7 +172,7 @@ struct ExtractedViewSignUp: View {
                             .cornerRadius(20)
                             .padding(.horizontal , 20)
                     })
-
+                    
                     
                     
                     Spacer()
@@ -186,14 +184,14 @@ struct ExtractedViewSignUp: View {
                         Button(action: {
                             // sign in
                             presentationMode.wrappedValue.dismiss()
-
+                            
                         }, label: {
                             Text("Sign in!")
                                 .frame(height: 50) // Set the height here
                                 .font(.custom(fontEnum.medium.rawValue, size: 14))
                                 .foregroundColor(Color("main2"))
                         })
-
+                        
                         
                         
                     } .frame(height: 100)
@@ -205,7 +203,7 @@ struct ExtractedViewSignUp: View {
                 .background(.white)
                 .cornerRadius(20)
                 .padding(20)
-            
+                
             }
         }
     }

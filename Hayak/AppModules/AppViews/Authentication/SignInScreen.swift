@@ -35,9 +35,7 @@ struct SignInScreen: View {
             }
                 
             
-//            if viewModel.isLoading {
-//                ProgressView("sign in...") // Show loading indicator
-//            }            
+          
         }.hideNavigationBar()
             .localizeView()
             .showHud(isShowing: $viewModel.isLoading, text: "sign in...")

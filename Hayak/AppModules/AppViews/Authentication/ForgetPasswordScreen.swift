@@ -12,7 +12,7 @@ struct ForgetPasswordScreen: View {
     
     @State var GoToOtp : Bool =  false
     @State var phoneNumber: String = "+966"
-
+    
     @StateObject private var VMSendOtp = ViewModelSendOtp()
     @State private var showAlertOtp : Bool = false
     
@@ -22,7 +22,7 @@ struct ForgetPasswordScreen: View {
                 .navigationBarBackButtonHidden(true)
             
             VStack {
-            
+                
                 CustomHeaderView(title: "Forget Password" , onBack: {
                     // Handle back button action
                     print("Back button pressed")
@@ -78,13 +78,11 @@ struct ForgetPasswordScreen: View {
                 
             }
             
-            if VMSendOtp.isLoading {
-                ProgressView("forget password...") // Show loading indicator
-            }
+            
             
             
             NavigationLink(
-                destination: OtpScreen(fromScreen: "forgetpassword", mobile: phoneNumber, name: "", secondsCount: 0).navigationBarBackButtonHidden(true),
+                destination: OtpScreen(fromScreen: "forgetpassword", mobile: phoneNumber, name: "", secondsCount : VMSendOtp.secondsCount, code: VMSendOtp.code ?? 0 ).navigationBarBackButtonHidden(true),
                 isActive: $GoToOtp ,
                 label: {
                     EmptyView()
@@ -95,29 +93,37 @@ struct ForgetPasswordScreen: View {
         }.hideNavigationBar()
             .localizeView()
         
+        //                    .showHud(isShowing: $VMSendOtp.isLoading, text: "Forget Password...")
+            .showHud(isShowing: Binding<Bool?>(
+                get: { VMSendOtp.isLoading },
+                set: { VMSendOtp.isLoading = $0 ?? false }
+            ), text: "Forget Password...")
+        
+        
+        
         // Show alert if there's an error
-        .alert(isPresented: $showAlertOtp, content: {
-            Alert(title: Text("Error"), message: Text(VMSendOtp.errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK"), action: {
-                // Reset errorMessage and showAlert when dismissed
-                VMSendOtp.errorMessage = nil
-                showAlertOtp = false
-            }))
-        })
-
-        .onChange(of: VMSendOtp.errorMessage) { _ in
-            if VMSendOtp.errorMessage != nil {
-                showAlertOtp = true
-                
+            .alert(isPresented: $showAlertOtp, content: {
+                Alert(title: Text("Error"), message: Text(VMSendOtp.errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK"), action: {
+                    // Reset errorMessage and showAlert when dismissed
+                    VMSendOtp.errorMessage = nil
+                    showAlertOtp = false
+                }))
+            })
+        
+            .onChange(of: VMSendOtp.errorMessage) { _ in
+                if VMSendOtp.errorMessage != nil {
+                    showAlertOtp = true
+                    
+                }
             }
-        }
         
-        .onChange(of: VMSendOtp.OTPSuccess) { _ in
-            GoToOtp = true
-        }
+            .onChange(of: VMSendOtp.OTPSuccess) { _ in
+                GoToOtp = true
+            }
         
-        .onTapGesture {
-            UIApplication.shared.endEditing()
-        }
+            .onTapGesture {
+                UIApplication.shared.endEditing()
+            }
         
         
         

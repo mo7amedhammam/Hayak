@@ -8,6 +8,27 @@
 import Foundation
 import UIKit
 
+
+func validateInput(_ text: String) -> Bool {
+    // Regular expression for alphabetic characters and spaces only
+    let allowedCharacterSet = CharacterSet.letters.union(.whitespaces)
+    // Check if the input contains any invalid characters
+    if text.rangeOfCharacter(from: allowedCharacterSet.inverted) != nil {
+        return false
+    }
+    return true
+}
+
+
+func isValidPassword(_ password: String) -> Bool {
+    // Regular expression for password: at least 8 characters, 1 number, 1 special character
+    let passwordRegex = "^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\\d!@#$%^&*]{8,}$"
+    let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
+    return passwordPredicate.evaluate(with: password)
+}
+
+
+
 extension String {
     func removingSpaces() -> String {
         return self.replacingOccurrences(of: " ", with: "")

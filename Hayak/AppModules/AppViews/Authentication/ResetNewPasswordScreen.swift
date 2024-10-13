@@ -38,9 +38,7 @@ struct ResetNewPasswordScreen: View {
                 ExtractedViewResetNewPasswordScreen(viewModel: viewModel, mobile: mobile)
             }
             
-            if viewModel.isLoading {
-                ProgressView("reset password...") // Show loading indicator
-            }
+            
             
             if GoToSignin {
                 SuccessScreen(name: "" , text1: "", text2: "Your Password Reset!", btnName: "Take me to sign in") {
@@ -54,27 +52,33 @@ struct ResetNewPasswordScreen: View {
             
         }.hideNavigationBar()
             .localizeView()
+//            .showHud(isShowing: $viewModel.isLoading, text: "Reset Password...")
+            .showHud(isShowing: Binding<Bool?>(
+                get: { viewModel.isLoading },
+                set: { viewModel.isLoading = $0 ?? false }
+            ), text: "Reset Password...")
+
         
         // Show alert if there's an error
-        .alert(isPresented: $showAlert, content: {
-            Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK"), action: {
-                // Reset errorMessage and showAlert when dismissed
-                viewModel.errorMessage = nil
-                showAlert = false
-            }))
-        })
+            .alert(isPresented: $showAlert, content: {
+                Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK"), action: {
+                    // Reset errorMessage and showAlert when dismissed
+                    viewModel.errorMessage = nil
+                    showAlert = false
+                }))
+            })
         
-        .onChange(of: viewModel.errorMessage) { _ in
-            if viewModel.errorMessage != nil {
-                showAlert = true
+            .onChange(of: viewModel.errorMessage) { _ in
+                if viewModel.errorMessage != nil {
+                    showAlert = true
+                }
             }
-        }
-        .onChange(of: viewModel.resetSuccess) { _ in
-            GoToSignin = true
-        }
-        .onTapGesture {
-            UIApplication.shared.endEditing()
-        }
+            .onChange(of: viewModel.resetSuccess) { _ in
+                GoToSignin = true
+            }
+            .onTapGesture {
+                UIApplication.shared.endEditing()
+            }
         
     }
     

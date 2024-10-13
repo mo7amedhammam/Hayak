@@ -37,7 +37,7 @@ struct OtpScreen: View {
     
     var secondsCount: Int?
     var code: Int?
-
+    
     @StateObject private var viewModel = ViewModelVertifyOtp() // Initialize the ViewModel
     @State private var showAlert = false
     
@@ -129,7 +129,7 @@ struct OtpScreen: View {
                         Button(action: {
                             // Button action
                             print("Button tapped")
-                            // sond mobile number to send new Otp from send otp then call sendotp function to update new otp and fire new timer 
+                            // sond mobile number to send new Otp from send otp then call sendotp function to update new otp and fire new timer
                             
                         }) {
                             Text("Resend Now!")
@@ -175,9 +175,7 @@ struct OtpScreen: View {
                 
             }
             
-            if viewModel.isLoading {
-                ProgressView("OTP Verification...") // Show loading indicator
-            }
+            
             
             NavigationLink(
                 destination: ResetNewPasswordScreen(mobile: mobile).navigationBarBackButtonHidden(true),
@@ -205,57 +203,61 @@ struct OtpScreen: View {
             
         }.hideNavigationBar()
             .localizeView()
-        
+        //            .showHud(isShowing: $viewModel.isLoading, text: "OTP Verification...")
+            .showHud(isShowing: Binding<Bool?>(
+                get: { viewModel.isLoading },
+                set: { viewModel.isLoading = $0 ?? false }
+            ), text: "OTP Verification...")
         
         
         
         // Show alert if there's an error
-        .alert(isPresented: $showAlert, content: {
-            Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK"), action: {
-                // Reset errorMessage and showAlert when dismissed
-                viewModel.errorMessage = nil
-                showAlert = false
-            }))
-        })
+            .alert(isPresented: $showAlert, content: {
+                Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK"), action: {
+                    // Reset errorMessage and showAlert when dismissed
+                    viewModel.errorMessage = nil
+                    showAlert = false
+                }))
+            })
         
-        .onChange(of: viewModel.errorMessage) { _ in
-            if viewModel.errorMessage != nil {
-                showAlert = true
-                
-                focusedField = .field1
-                otp1 = ""
-                otp2 = ""
-                otp3 = ""
-                otp4 = ""
-                otp5 = ""
-                otp6 = ""
-            }
-        }
-        
-        .onChange(of: viewModel.OTPSuccess) { success in
-            if success {
-                // Navigate to the OTP screen once signUpSuccess is true
-                if fromScreen == "signup" {
-                    GoToSignin = true
-                } else if fromScreen == "forgetpassword" {
-                    GoToResetPassword = true
-                } else  {
-                    GoToResetPassword = true
+            .onChange(of: viewModel.errorMessage) { _ in
+                if viewModel.errorMessage != nil {
+                    showAlert = true
+                    
+                    focusedField = .field1
+                    otp1 = ""
+                    otp2 = ""
+                    otp3 = ""
+                    otp4 = ""
+                    otp5 = ""
+                    otp6 = ""
                 }
             }
-        }
-        .task {
-            viewModel.secondsCount =  secondsCount ?? 0
-            viewModel.code =  code
-        }
-//        .onAppear {
-//            viewModel.secondsCount =  secondsCount
-//            viewModel.code =  code
-//        }
         
-        .onTapGesture {
-            UIApplication.shared.endEditing()
-        }
+            .onChange(of: viewModel.OTPSuccess) { success in
+                if success {
+                    // Navigate to the OTP screen once signUpSuccess is true
+                    if fromScreen == "signup" {
+                        GoToSignin = true
+                    } else if fromScreen == "forgetpassword" {
+                        GoToResetPassword = true
+                    } else  {
+                        GoToResetPassword = true
+                    }
+                }
+            }
+            .task {
+                viewModel.secondsCount =  secondsCount ?? 0
+                viewModel.code =  code
+            }
+        //        .onAppear {
+        //            viewModel.secondsCount =  secondsCount
+        //            viewModel.code =  code
+        //        }
+        
+            .onTapGesture {
+                UIApplication.shared.endEditing()
+            }
     }
     
     
