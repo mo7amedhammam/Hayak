@@ -49,7 +49,7 @@ class ViewModelLogin: ObservableObject {
         let target = Authintications.Login(parameters: parametersArr)
         //print(parametersarr)
         // Call the API using the BaseNetwork class
-        BaseNetwork.CallApi(target, BaseResponse<LoginResponse>.self)
+        BaseNetwork.shared.CallApi(target, BaseResponse<LoginResponse>.self)
             .sink { completion in
                 // Handle completion
                 self.isLoading = false

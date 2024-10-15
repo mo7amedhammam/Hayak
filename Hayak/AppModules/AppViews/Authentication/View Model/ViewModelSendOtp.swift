@@ -58,7 +58,7 @@ class ViewModelSendOtp: ObservableObject {
         let target = Authintications.SendOTP(parameters: parametersArr)
         //print(parametersarr)
         // Call the API using the BaseNetwork class
-        BaseNetwork.CallApi(target, BaseResponse<OtpResponse>.self)
+        BaseNetwork.shared.CallApi(target, BaseResponse<OtpResponse>.self)
             .sink { [weak self] completion in
                 guard let self = self else{return}
 

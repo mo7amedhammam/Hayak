@@ -31,7 +31,7 @@ final class BaseNetwork{
     
     // MARK: --- (Combine) CAll API with Future ---
     // more modern and aligned with Swift's async/await concurrency model
-    static func CallApi<T: TargetType,M:Codable>(_ target: T,_ Model:M.Type) -> AnyPublisher<M, NetworkError> {
+     func CallApi<T: TargetType,M:Codable>(_ target: T,_ Model:M.Type) -> AnyPublisher<M, NetworkError> {
         return Future<M, NetworkError>{ promise in
             guard Helper.shared.isConnectedToNetwork() else {
                 return promise(.failure(.noConnection))

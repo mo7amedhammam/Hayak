@@ -9,7 +9,8 @@ import Foundation
 import Alamofire
 
 enum PickupServices {
-    case Categories(parameters : [String:Any])
+    case Categories
+//    case Categories(parameters : [String:Any])
     
 }
 
@@ -25,20 +26,20 @@ extension PickupServices : TargetType {
     var method: HTTPMethod {
         switch self {
             
-        case .Categories :
-            return .post
 //        case .Categories :
-//            return .get
+//            return .post
+        case .Categories :
+            return .get
         }
     }
     
     var parameter: parameterType {
         switch self {
-//        case .Categories(let parameters):
-//            return .plainRequest
+        case .Categories:
+            return .plainRequest
             
-        case .Categories(let parameters):
-            return .parameterRequest(Parameters: parameters, Encoding: .default)
+//        case .Categories(let parameters):
+//            return .parameterRequest(Parameters: parameters, Encoding: .default)
             
 //        case .SendFirebaseToken(parameters: let parameters):
 //            return .parameterdGetRequest(Parameters: parameters, Encoding: .default)

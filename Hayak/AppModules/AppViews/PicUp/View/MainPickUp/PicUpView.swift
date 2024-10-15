@@ -61,8 +61,8 @@ struct PicUpView: View {
                     .padding(.bottom,5)
                     .padding(.horizontal)
                 
-                restaurantsScrollView(resturants: pickupvm.Categories?.items ?? [] ,selectedResturant: $pickupvm.selectedCategory)
-                    .frame(height: 100)
+                restaurantsScrollView(resturants: pickupvm.Categories ?? [] ,selectedResturant: $pickupvm.selectedCategory)
+                    .frame(height: 120)
                 
                 ScrollView(.horizontal){
                     HStack(spacing: 10) {

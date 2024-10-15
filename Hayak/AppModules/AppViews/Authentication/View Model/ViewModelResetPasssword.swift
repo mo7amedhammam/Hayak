@@ -62,7 +62,7 @@ class ViewModelResetPasssword: ObservableObject {
         let target = Authintications.ResetPassword(parameters: parametersArr)
         //print(parametersarr)
         // Call the API using the BaseNetwork class
-        BaseNetwork.CallApi(target, BaseResponse<OtpResponse>.self)
+        BaseNetwork.shared.CallApi(target, BaseResponse<OtpResponse>.self)
             .sink { completion in
                 // Handle completion
                 self.isLoading = false

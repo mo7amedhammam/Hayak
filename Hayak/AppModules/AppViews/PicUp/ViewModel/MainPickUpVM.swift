@@ -17,7 +17,7 @@ class MainPickUpVM: ObservableObject {
     @Published var skipCount = 0
     
 //    @Published var selectedLessonid : Int?
-    @Published var selectedCategory:CategoriesItem?
+    @Published var selectedCategory:MainCategoriesM?
 
 //    @Published var filtersubject : DropDownOption?{
 //        didSet{
@@ -35,7 +35,7 @@ class MainPickUpVM: ObservableObject {
     @Published var error: AlertType = .error(title: "", image: "", message: "", buttonTitle: "", secondButtonTitle: "")
     
     //    @Published var isTeacherHasSubjects: Bool = false
-    @Published var Categories : CategoriesM?
+    @Published var Categories : [MainCategoriesM]?
 //    @Published var completedLessonDetails : CompletedLessonDetailsM?
 
     init()  {
@@ -46,7 +46,7 @@ class MainPickUpVM: ObservableObject {
 extension MainPickUpVM{
     
     func GetCategories(){
-        var parameters:[String:Any] = ["maxResultCount":maxResultCount,"skipCount":skipCount]
+//        var parameters:[String:Any] = ["maxResultCount":maxResultCount,"skipCount":skipCount]
             
 //        if let filtersubjectid = filtersubject?.id{
 //            parameters["teacherSubjectId"] = filtersubjectid
@@ -61,10 +61,10 @@ extension MainPickUpVM{
 //            parameters["lessonDate"] = filterdate
 //        }
         
-        print("parameters",parameters)
-        let target = PickupServices.Categories(parameters: parameters)
+//        print("parameters",parameters)
+        let target = PickupServices.Categories
         isLoading = true
-        BaseNetwork.CallApi(target, BaseResponse<CategoriesM>.self)
+        BaseNetwork.shared.CallApi(target, BaseResponse<[MainCategoriesM]>.self)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {[weak self] completion in
                 guard let self = self else{return}
@@ -81,11 +81,11 @@ extension MainPickUpVM{
                 print("receivedData",receivedData)
                 if receivedData.success == true {
                     //                    TeacherSubjects?.append(model)
-                    if skipCount == 0{
+//                    if skipCount == 0{
                         Categories = receivedData.data
-                    }else{
-                        Categories?.items?.append(contentsOf: receivedData.data?.items ?? [])
-                    }
+//                    }else{
+//                        Categories?.items?.append(contentsOf: receivedData.data?.items ?? [])
+//                    }
 
                 }else{
                     isError =  true

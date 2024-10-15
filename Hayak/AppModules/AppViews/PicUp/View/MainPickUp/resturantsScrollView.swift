@@ -14,10 +14,8 @@ struct restaurant : Hashable {
 }
 
 struct restaurantsScrollView: View {
-//    var resturants : [restaurant] = [restaurant(id: 1, name: "Burgers", imageUrl: "2"),restaurant(id: 2, name: "Burgers", imageUrl: "2"),restaurant(id: 3, name: "Burgers", imageUrl: "2"),restaurant(id: 4, name: "Burgers", imageUrl: "2"),restaurant(id: 5, name: "Burgers", imageUrl: "2"),restaurant(id: 6, name: "Burgers", imageUrl: "2")]
-    
-    var resturants : [CategoriesItem] = []
-    @Binding var selectedResturant:CategoriesItem?
+    var resturants : [MainCategoriesM] = []
+    @Binding var selectedResturant:MainCategoriesM?
     
     var body: some View {
         ScrollView(.horizontal,showsIndicators: false){
@@ -27,7 +25,14 @@ struct restaurantsScrollView: View {
                         selectedResturant = resturant
                     }, label: {
                         VStack{
-                            KFImageLoader(urlStr: resturant.imageURL, placeholder: Image("2"))
+                            
+//                            KFImageLoader(urlStr: resturant.imageURL, placeholder: Image("2"))
+//                                .frame(width: 70, height: 70, alignment: .center)
+//                                .padding(10)
+//                                .background{Color(selectedResturant == resturant ? "active text":"color-E5E5E5").cornerRadius(12)}
+                            
+                            
+                            AsyncImageLoader(urlStr: resturant.imageURL, placeholder: Image("2"))
                                 .frame(width: 70, height: 70, alignment: .center)
                                 .padding(10)
                                 .background{Color(selectedResturant == resturant ? "active text":"color-E5E5E5").cornerRadius(12)}
@@ -37,14 +42,16 @@ struct restaurantsScrollView: View {
                                 .font(.custom(fontEnum.semiBold.rawValue, size:15))
                         }
                     })
+
                 }
-            }
+            }   
+
         }
     }
 }
 
 #Preview {
-    restaurantsScrollView(resturants: [], selectedResturant: .constant(CategoriesItem.init()))
+    restaurantsScrollView(resturants: [], selectedResturant: .constant(MainCategoriesM.init()))
 }
 
 
@@ -76,3 +83,4 @@ struct restaurantsFilter: View {
         }
     }
 }
+

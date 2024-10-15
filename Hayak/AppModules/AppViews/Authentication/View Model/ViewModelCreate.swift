@@ -87,7 +87,7 @@ class ViewModelCreate: ObservableObject {
         let target = Authintications.Create(parameters: parametersArr)
         //print(parametersarr)
         // Call the API using the BaseNetwork class
-        BaseNetwork.CallApi(target, BaseResponse<SignUpResponse>.self)
+        BaseNetwork.shared.CallApi(target, BaseResponse<SignUpResponse>.self)
             .sink {[weak self] completion in
                 guard let self = self else {return}
 
