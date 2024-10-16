@@ -15,7 +15,6 @@ enum menuFilterCases:String{
     
 }
 
-
 // get list for main cetegory > Brand/GetCategoriesWithBrand
 // send : categoryId
 // default : send current lat & lon
@@ -27,7 +26,7 @@ enum menuFilterCases:String{
 struct PicUpView: View {
     //    @Environment(\.presentationMode) var presentationMode
     @StateObject var pickupvm = MainPickUpVM.shared
-//    @State var selectedResturant:CategoriesItem?
+    @StateObject var locationManager = LocationManagerVM.shared
 
     @State var isActive : Bool = false
     @State var destination : AnyView = AnyView(EmptyView())
@@ -42,16 +41,10 @@ struct PicUpView: View {
     @State var selectedrate : Int?
     
     var body: some View {
-        //        ZStack {
-        //            Color(.white).ignoresSafeArea()
-        //                .navigationBarBackButtonHidden(true)
-        
         VStack {
-            
             CustomPickupHeaderView(title: "Saudi Arabia", subtitle: "Al Riadh city",btnbackimg: nil, onBack: {}, btnimg2:Image(.shoppingiconfill), onbtnimg2: {}, btnimg3: Image(.favoriteiconempty), onbtnimg3: {}, btnimg4: Image("carbon_search"), onbtnimg4: {})
                 .padding(.horizontal)
             
-            //                PickUpContentView()
             VStack {
                 Text("All restaurants")
                     .frame(maxWidth: .infinity,alignment: .leading)
@@ -88,9 +81,7 @@ struct PicUpView: View {
                     }
                     .padding(.leading,2)
                     .padding(.top,5)
-                    
                 }
-                
                 
                 List(){
                     pickUpCellView(pickUp: pickUpCellModel(id: 1,title:"Subway, Dubai World Trad...", subTitle:"Sandwiches, Beverages, Wraps", image: "pickupbgtest",subImage: "od") ,onSelect: {
@@ -121,6 +112,13 @@ struct PicUpView: View {
         .background{
             Color(.white).ignoresSafeArea()
                 .navigationBarBackButtonHidden(true)
+        }
+        .task {
+            pickupvm.lat = locationManager.Currentlat
+            pickupvm.lon = locationManager.Currentlong
+
+            pickupvm.GetCategories()
+            pickupvm.GetNearestBrandBranches()
         }
     }
 }

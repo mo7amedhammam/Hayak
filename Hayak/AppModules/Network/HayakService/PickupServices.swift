@@ -10,7 +10,7 @@ import Alamofire
 
 enum PickupServices {
     case Categories
-//    case Categories(parameters : [String:Any])
+    case NearestBrandBranches(parameters : [String:Any])
     
 }
 
@@ -20,14 +20,16 @@ extension PickupServices : TargetType {
         case .Categories:
             return PickupEndPoints.Categories.rawValue
 
+        case .NearestBrandBranches:
+            return PickupEndPoints.NearestBrandBranches.rawValue
         }
     }
     
     var method: HTTPMethod {
         switch self {
             
-//        case .Categories :
-//            return .post
+        case .NearestBrandBranches:
+            return .post
         case .Categories :
             return .get
         }
@@ -38,8 +40,8 @@ extension PickupServices : TargetType {
         case .Categories:
             return .plainRequest
             
-//        case .Categories(let parameters):
-//            return .parameterRequest(Parameters: parameters, Encoding: .default)
+        case .NearestBrandBranches(parameters:let parameters):
+            return .parameterRequest(Parameters: parameters, Encoding: .default)
             
 //        case .SendFirebaseToken(parameters: let parameters):
 //            return .parameterdGetRequest(Parameters: parameters, Encoding: .default)

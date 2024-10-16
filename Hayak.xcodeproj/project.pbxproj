@@ -85,6 +85,7 @@
 		C8986D1A2C15C3A00091789F /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D062C15C3A00091789F /* ColorConstants.swift */; };
 		C8986D1B2C15C3A00091789F /* FontsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D082C15C3A00091789F /* FontsExtension.swift */; };
 		C8986D212C15C3A00091789F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8986D102C15C3A00091789F /* Helper.swift */; };
+		C8B88BF82CBFD474008F0AFB /* LocationManagerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B88BF72CBFD474008F0AFB /* LocationManagerVM.swift */; };
 		C8C544142CBBC7B300472504 /* navigationBarModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C544132CBBC7B300472504 /* navigationBarModifiers.swift */; };
 		C8C544172CBBCE8500472504 /* HudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C544162CBBCE8500472504 /* HudView.swift */; };
 		C8C544212CBBFBDC00472504 /* LoopUpsM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C544202CBBFBDC00472504 /* LoopUpsM.swift */; };
@@ -176,6 +177,7 @@
 		C8986D062C15C3A00091789F /* ColorConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
 		C8986D082C15C3A00091789F /* FontsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontsExtension.swift; sourceTree = "<group>"; };
 		C8986D102C15C3A00091789F /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		C8B88BF72CBFD474008F0AFB /* LocationManagerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerVM.swift; sourceTree = "<group>"; };
 		C8C544132CBBC7B300472504 /* navigationBarModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navigationBarModifiers.swift; sourceTree = "<group>"; };
 		C8C544162CBBCE8500472504 /* HudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudView.swift; sourceTree = "<group>"; };
 		C8C544202CBBFBDC00472504 /* LoopUpsM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopUpsM.swift; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 		C8368F4C2C8878A300003DBB /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				C8B88BF62CBFD437008F0AFB /* LocationManagerVM */,
 				C8C5442A2CBC03D900472504 /* CustomAlertView */,
 				C8C544152CBBCE5200472504 /* LoadingIndicator */,
 				C8C544122CBBC77600472504 /* NavigationController */,
@@ -741,6 +744,14 @@
 				19091AEC2C3480EB002B2EC6 /* OnBoarding */,
 			);
 			path = AppViews;
+			sourceTree = "<group>";
+		};
+		C8B88BF62CBFD437008F0AFB /* LocationManagerVM */ = {
+			isa = PBXGroup;
+			children = (
+				C8B88BF72CBFD474008F0AFB /* LocationManagerVM.swift */,
+			);
+			path = LocationManagerVM;
 			sourceTree = "<group>";
 		};
 		C8C544122CBBC77600472504 /* NavigationController */ = {
@@ -978,6 +989,7 @@
 				C8C5442E2CBC042900472504 /* PickupServices.swift in Sources */,
 				19E3809F2C74F96F00E580D9 /* OrderDetailsScreen.swift in Sources */,
 				19F1AC9F2C3C689400499EF4 /* ForgetPasswordScreen.swift in Sources */,
+				C8B88BF82CBFD474008F0AFB /* LocationManagerVM.swift in Sources */,
 				C8368F432C8877F100003DBB /* menueItemDetails.swift in Sources */,
 				C8986D122C15C3A00091789F /* Exdates.swift in Sources */,
 				19C2091D2C89E77C00B7359E /* CheckoutScreen.swift in Sources */,

@@ -32,5 +32,6 @@ enum EndPoints: String {
 enum PickupEndPoints: String {
     //MARK: -- PickupEndPoints --
     case Categories = "MainCategory/GetAll"
+    case NearestBrandBranches = "Pickup/NearestBrandBranches"
 
 }

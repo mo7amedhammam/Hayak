@@ -17,3 +17,21 @@ struct MainCategoriesM: Codable,Hashable {
            case imageURL = "mainCategoryPath"
        }
 }
+
+// MARK: - NearestBrandBrancheM
+struct NearestBrandBrancheM: Codable {
+    var id: Int?
+    var branchName: String?
+    var rate, ratingCount: Int?
+    var bannerURL: String?
+    var favourite: Bool?
+    var distance: Int?
+    var resturantType: String?
+    var isRecommended: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case id, branchName, rate, ratingCount
+        case bannerURL = "bannerUrl"
+        case favourite, distance, resturantType, isRecommended
+    }
+}
