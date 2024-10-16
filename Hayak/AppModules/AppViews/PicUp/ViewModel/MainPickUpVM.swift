@@ -112,10 +112,13 @@ extension MainPickUpVM{
     func GetNearestBrandBranches(){
         var parameters:[String:Any] = [:]
         // Access latitude and longitude directly from the location manager
-        if let lat = lat, let lon = lon {
-            parameters["lat"] = lat
-            parameters["lon"] = lon
-        }
+        parameters["lat"] = 30.549753700368758
+        parameters["lon"] = 31.065455361906114
+
+//        if let lat = lat, let lon = lon {
+//            parameters["lat"] = lat
+//            parameters["lon"] = lon
+//        }
         
 //        if let distance = ""{
 //            parameters["distance"] = distance

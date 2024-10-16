@@ -75,7 +75,7 @@ struct ExtractedViewSignIn: View {
     @State private var isChecked: Bool = false
     @State private var GoToSignUp: Bool = false
     @State private var GoToForgetPassword: Bool = false
-    @State private var GoToTabViewWithCenterBtn : Bool = false
+//    @State private var GoToTabViewWithCenterBtn : Bool = false
     @State private var passwordNumber: String = ""
     @State private var passwordPlaceholder: String = "Enter your password"
     @State private var textLable: String           = "Password"
@@ -186,13 +186,13 @@ struct ExtractedViewSignIn: View {
                     )
                     
                     
-                    NavigationLink(
-                        destination: TabViewWithCenterBtn().navigationBarBackButtonHidden(true),
-                        isActive: $GoToTabViewWithCenterBtn ,
-                        label: {
-                            EmptyView()
-                        }
-                    )
+//                    NavigationLink(
+//                        destination: TabViewWithCenterBtn().navigationBarBackButtonHidden(true),
+//                        isActive: $GoToTabViewWithCenterBtn ,
+//                        label: {
+//                            EmptyView()
+//                        }
+//                    )
                     
                 } .frame(height: 80)
                 
@@ -200,13 +200,14 @@ struct ExtractedViewSignIn: View {
             }
             
             
-            .onChange(of: viewModel.loginSuccess) { _ in
+            .onChange(of: viewModel.loginSuccess) { newvalue in
                 
                 phoneNumber    = ""
                 passwordNumber = ""
-                
-                if  Helper.shared.CheckIfLoggedIn() {
-                    GoToTabViewWithCenterBtn = true
+                if newvalue == true{
+//                if  Helper.shared.CheckIfLoggedIn() {
+                    Helper.shared.changeRoot(toView: TabViewWithCenterBtn())
+//                    TabViewWithCenterBtn()
                 } else {
                     viewModel.errorMessage = "try again"
                 }

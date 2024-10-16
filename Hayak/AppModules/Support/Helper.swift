@@ -23,24 +23,24 @@ class Helper: NSObject {
     let Languagekey = "languagekey"
     let UserTypeKey = "setSelectedUserTypeKey"
     
-//    func saveUser(user: TeacherModel?) {
-//        let encoder = JSONEncoder()
-//        if let encoded = try? encoder.encode(user) {
-//            userDef.set(encoded, forKey: UserDataKey)
-//            IsLoggedIn(value: true)
-//            userDef.synchronize()
-//        }
-//    }
+    func saveUser(user: LoginResponse?) {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(user) {
+            userDef.set(encoded, forKey: UserDataKey)
+            IsLoggedIn(value: true)
+            userDef.synchronize()
+        }
+    }
     
-//    func getUser() -> TeacherModel? {
-//        if let data = userDef.object(forKey: UserDataKey) as? Data {
-//            let decoder = JSONDecoder()
-//            if let user = try? decoder.decode(TeacherModel.self, from: data) {
-//                return user
-//            }
-//        }
-//        return nil
-//    }
+    func getUser() -> LoginResponse? {
+        if let data = userDef.object(forKey: UserDataKey) as? Data {
+            let decoder = JSONDecoder()
+            if let user = try? decoder.decode(LoginResponse.self, from: data) {
+                return user
+            }
+        }
+        return nil
+    }
     
     //remove data then logout
     func logout() {
@@ -85,22 +85,22 @@ class Helper: NSObject {
         return userDef.string(forKey: Languagekey) ?? deviceLanguageCode
     }
     
-    func saveUserToDefaults(user: LoginResponse) {
-        let encoder = JSONEncoder()
-        if let encodedUser = try? encoder.encode(user) {
-            UserDefaults.standard.set(encodedUser, forKey: UserDataKey)
-        }
-    }
-    
-    func getUserFromDefaults() -> LoginResponse? {
-        if let savedUserData = UserDefaults.standard.object(forKey: UserDataKey) as? Data {
-            let decoder = JSONDecoder()
-            if let loadedUser = try? decoder.decode(LoginResponse.self, from: savedUserData) {
-                return loadedUser
-            }
-        }
-        return nil
-    }
+//    func saveUserToDefaults(user: LoginResponse) {
+//        let encoder = JSONEncoder()
+//        if let encodedUser = try? encoder.encode(user) {
+//            UserDefaults.standard.set(encodedUser, forKey: UserDataKey)
+//        }
+//    }
+//    
+//    func getUserFromDefaults() -> LoginResponse? {
+//        if let savedUserData = UserDefaults.standard.object(forKey: UserDataKey) as? Data {
+//            let decoder = JSONDecoder()
+//            if let loadedUser = try? decoder.decode(LoginResponse.self, from: savedUserData) {
+//                return loadedUser
+//            }
+//        }
+//        return nil
+//    }
 
     
     

@@ -79,9 +79,9 @@ public extension TargetType {
         header["Content-Type"] = "application/json"
         header ["Accept"] = "text/plain"
 
-//        if let token = Helper.shared.getUser()?.token {
-//        header["Authorization"] = "Bearer " + token
-//        }
+        if let token = Helper.shared.getUser()?.token {
+        header["Authorization"] = "Bearer " + token
+        }
         return header
     }
     /// The type of validation to perform on the request. Default is `.none`.

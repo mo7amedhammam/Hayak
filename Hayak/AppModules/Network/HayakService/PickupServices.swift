@@ -27,7 +27,6 @@ extension PickupServices : TargetType {
     
     var method: HTTPMethod {
         switch self {
-            
         case .NearestBrandBranches:
             return .post
         case .Categories :

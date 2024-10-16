@@ -68,7 +68,7 @@ class ViewModelLogin: ObservableObject {
                 if response.success == true {
                     let user = LoginResponse(name: response.data?.name, mobile: response.data?.mobile, genderId: response.data?.genderId, birthDate: response.data?.birthDate, email: response.data?.email, address: response.data?.address, cityId: response.data?.cityId, creationDate: response.data?.creationDate, id: response.data?.id, token: response.data?.token)
                     
-                    Helper.shared.saveUserToDefaults(user: user)
+                    Helper.shared.saveUser(user: user)
                     Helper.shared.IsLoggedIn(value: true)
                     
                     self.loginSuccess = true

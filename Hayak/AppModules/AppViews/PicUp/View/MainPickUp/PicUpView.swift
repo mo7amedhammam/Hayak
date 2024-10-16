@@ -83,8 +83,8 @@ struct PicUpView: View {
                     .padding(.top,5)
                 }
                 
-                List(){
-                    pickUpCellView(pickUp: pickUpCellModel(id: 1,title:"Subway, Dubai World Trad...", subTitle:"Sandwiches, Beverages, Wraps", image: "pickupbgtest",subImage: "od") ,onSelect: {
+                List(pickupvm.NearestBrandBranches ?? [],id:\.self){branch in
+                    pickUpCellView(pickUp: branch ,onSelect: {
                         destination = AnyView( MenueView().navigationBarBackButtonHidden(true) )
                         self.isActive = true
                     },onClickLove: {
@@ -96,7 +96,7 @@ struct PicUpView: View {
                     
                 }
                 .listStyle(.plain)
-                .padding(.horizontal)
+                .padding(.horizontal,-12)
             }
             //                        .padding(.horizontal)
             .background{
@@ -120,6 +120,8 @@ struct PicUpView: View {
             pickupvm.GetCategories()
             pickupvm.GetNearestBrandBranches()
         }
+        .showHud(isShowing: $pickupvm.isLoading)
+        .showAlert(hasAlert: $pickupvm.isError, alertType: pickupvm.error)
     }
 }
 

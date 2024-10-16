@@ -19,13 +19,13 @@ struct MainCategoriesM: Codable,Hashable {
 }
 
 // MARK: - NearestBrandBrancheM
-struct NearestBrandBrancheM: Codable {
+struct NearestBrandBrancheM: Codable,Hashable {
     var id: Int?
     var branchName: String?
     var rate, ratingCount: Int?
     var bannerURL: String?
     var favourite: Bool?
-    var distance: Int?
+    var distance: Double?
     var resturantType: String?
     var isRecommended: Bool?
 

@@ -18,7 +18,7 @@ struct pickUpCellModel : Hashable {
 }
 
 struct pickUpCellView: View {
-    var pickUp : pickUpCellModel
+    var pickUp : NearestBrandBrancheM
     var onSelect: (() -> Void)?
     var onClickLove: (() -> Void)?
     
@@ -26,9 +26,10 @@ struct pickUpCellView: View {
         
         VStack(spacing:0){
             ZStack (){
-                KFImageLoader(urlStr: pickUp.image, placeholder: Image("pickupbgtest"))
-                    .placeholder.resizable().scaledToFill()
-                
+                AsyncImageLoader(urlStr: pickUp.bannerURL, placeholder: Image("pickupbgtest"))
+//                    .placeholder.resizable().scaledToFill()
+                    .frame(height: 120).scaledToFill().cornerRadius(8)
+                    .frame(maxWidth: .infinity)
                 VStack{
                     HStack{
                         HStack(spacing:2){
@@ -38,17 +39,15 @@ struct pickUpCellView: View {
                             
                             Group{
                                 Text("31")
-                                Text("mins")
+                                Text("mins".localized())
                             }
                             .foregroundColor(.main1)
                             .font(.custom(fontEnum.regular.rawValue, size:10))
                             
                         }
                         .padding(6)
-                        
                         .background{Color.white.clipShape(Capsule())}
                         .borderRadius(.black25,width: 1, cornerRadius: 12, corners: .allCorners)
-                        
                         
                         HStack(spacing:2){
                             Image(.mapwithpin)
@@ -56,8 +55,8 @@ struct pickUpCellView: View {
                                 .frame(width: 13, height: 13, alignment:.center)
                             
                             Group{
-                                Text("5.4")
-                                Text("KM")
+                                Text(pickUp.distance ?? 0,format:.number)
+                                Text("KM".localized())
                             }
                             .foregroundColor(.main1)
                             .font(.custom(fontEnum.regular.rawValue, size:10))
@@ -72,30 +71,32 @@ struct pickUpCellView: View {
                         Button(action: {
                             onClickLove?()
                         }, label: {
-                            Image(.unlove)
+                            Image(pickUp.favourite ?? false ? .unlove:.love)
                         })
                         
                     }
                     .padding(.horizontal)
                     .padding(.top,10)
                     Spacer()
-                    Text("Recommended by Hayak")
-                        .foregroundColor(.white)
-                        .padding(.horizontal,10)
-                        .padding(.vertical,3)
-                        .font(.custom(fontEnum.regular.rawValue, size:12))
-                        .frame(maxWidth: .infinity,alignment: .leading)
-                        .background{Color.main}
+                    if pickUp.isRecommended == true{
+                        Text("Recommended by Hayak".localized())
+                            .foregroundColor(.white)
+                            .padding(.horizontal,10)
+                            .padding(.vertical,3)
+                            .font(.custom(fontEnum.regular.rawValue, size:12))
+                            .frame(maxWidth: .infinity,alignment: .leading)
+                            .background{Color.main}
+                    }
                 }
             }
             
             VStack(alignment: .leading,spacing: 5) {
-                Text(pickUp.title)
+                Text(pickUp.branchName ?? "")
                     .foregroundColor(.main1)
                     .font(.custom(fontEnum.regular.rawValue, size:12))
                 
                 HStack {
-                    Text(pickUp.subTitle)
+                    Text(pickUp.resturantType ?? "")
                         .foregroundColor(.main2)
                         .font(.custom(fontEnum.regular.rawValue, size:10))
                         .frame(maxWidth: .infinity,alignment: .leading)
@@ -105,11 +106,11 @@ struct pickUpCellView: View {
                             Image(systemName: "star.fill")
                                 .foregroundStyle(.yellow)
                             
-                            Text("4.5")
+                            Text(pickUp.rate ?? 0,format: .number)
                                 .foregroundColor(.black)
                                 .font(.custom(fontEnum.light.rawValue, size:12))
                             
-                            Text("( \(100)+)")
+                            Text("( \(pickUp.ratingCount ?? 0)+)")
                                 .foregroundColor(.main2)
                                 .font(.custom(fontEnum.regular.rawValue, size:12))
                         }
@@ -118,16 +119,14 @@ struct pickUpCellView: View {
             }
             .frame(maxWidth: .infinity,alignment: .leading)
             .padding(10)
-            
-            
             .borderRadius(.main,width: 1.2, cornerRadius: 12, corners: [.bottomLeft,.bottomRight])
             .padding(.horizontal,0.8)
-            
             .overlay(content: {
                 HStack{
                     Spacer()
-                    KFImageLoader(urlStr: pickUp.subImage, placeholder: Image("od"))
-                        .placeholder.resizable().frame(width: 70,height: 60).scaledToFill().cornerRadius(8)
+                    AsyncImageLoader(urlStr: pickUp.bannerURL, placeholder: Image("od"))
+//                        .placeholder.resizable()
+                        .frame(width: 70,height: 60).scaledToFill().cornerRadius(8)
                 }
                 .padding(.trailing,20)
                 //                    .padding(.bottom,14)
@@ -146,7 +145,7 @@ struct pickUpCellView: View {
 }
 
 #Preview {
-    pickUpCellView(pickUp: pickUpCellModel.init())
+    pickUpCellView(pickUp: NearestBrandBrancheM.init())
         .frame(height:120)
 }
 
