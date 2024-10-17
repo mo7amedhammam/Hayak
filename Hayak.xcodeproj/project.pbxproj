@@ -290,9 +290,13 @@
 		195FEDB42C4EF47900E9EDC7 /* PicUp */ = {
 			isa = PBXGroup;
 			children = (
-				C8C544252CBC010600472504 /* Model */,
-				C8C544242CBC00FC00472504 /* ViewModel */,
-				C8368F3F2C8877F100003DBB /* View */,
+				C8368F392C8877F100003DBB /* MainPickUp */,
+				C8368F3E2C8877F100003DBB /* MenuView */,
+				C8368F3B2C8877F100003DBB /* MenueItemDetails */,
+				C82AED0B2C8D9926005FFC41 /* PickUpCheckout */,
+				C82AED0E2C8D9967005FFC41 /* CancelationDelay */,
+				C82AED0F2C8D9990005FFC41 /* PaymentSuccess */,
+				C82AED102C8D99B2005FFC41 /* AddRate */,
 			);
 			path = PicUp;
 			sourceTree = "<group>";
@@ -469,9 +473,9 @@
 		C8368F392C8877F100003DBB /* MainPickUp */ = {
 			isa = PBXGroup;
 			children = (
-				C8368F362C8877F100003DBB /* PickUpCellView.swift */,
-				C8368F372C8877F100003DBB /* PicUpView.swift */,
-				C8368F382C8877F100003DBB /* resturantsScrollView.swift */,
+				C8C544252CBC010600472504 /* Model */,
+				C8C544242CBC00FC00472504 /* ViewModel */,
+				C8368F3F2C8877F100003DBB /* View */,
 			);
 			path = MainPickUp;
 			sourceTree = "<group>";
@@ -487,8 +491,9 @@
 		C8368F3E2C8877F100003DBB /* MenuView */ = {
 			isa = PBXGroup;
 			children = (
-				C8368F3C2C8877F100003DBB /* menueListCell.swift */,
-				C8368F3D2C8877F100003DBB /* MenueView.swift */,
+				C8601B1D2CC12256000BF662 /* Model */,
+				C8601B1C2CC12252000BF662 /* ViewModel */,
+				C8601B1B2CC1224A000BF662 /* View */,
 			);
 			path = MenuView;
 			sourceTree = "<group>";
@@ -496,13 +501,9 @@
 		C8368F3F2C8877F100003DBB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C8368F392C8877F100003DBB /* MainPickUp */,
-				C8368F3E2C8877F100003DBB /* MenuView */,
-				C8368F3B2C8877F100003DBB /* MenueItemDetails */,
-				C82AED0B2C8D9926005FFC41 /* PickUpCheckout */,
-				C82AED0E2C8D9967005FFC41 /* CancelationDelay */,
-				C82AED0F2C8D9990005FFC41 /* PaymentSuccess */,
-				C82AED102C8D99B2005FFC41 /* AddRate */,
+				C8368F362C8877F100003DBB /* PickUpCellView.swift */,
+				C8368F372C8877F100003DBB /* PicUpView.swift */,
+				C8368F382C8877F100003DBB /* resturantsScrollView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -553,6 +554,31 @@
 				C8368F512C88A09600003DBB /* CustomButton.swift */,
 			);
 			path = Button;
+			sourceTree = "<group>";
+		};
+		C8601B1B2CC1224A000BF662 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C8368F3C2C8877F100003DBB /* menueListCell.swift */,
+				C8368F3D2C8877F100003DBB /* MenueView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C8601B1C2CC12252000BF662 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C8601B192CC11E08000BF662 /* MenueVM.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C8601B1D2CC12256000BF662 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C8601B172CC11DEC000BF662 /* MenueM.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C8986CC92C15B9FE0091789F = {
@@ -803,7 +829,6 @@
 			isa = PBXGroup;
 			children = (
 				C8C544282CBC022400472504 /* MainPickUpVM.swift */,
-				C8601B192CC11E08000BF662 /* MenueVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -812,7 +837,6 @@
 			isa = PBXGroup;
 			children = (
 				C8C544262CBC012300472504 /* MainPickUpM.swift */,
-				C8601B172CC11DEC000BF662 /* MenueM.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

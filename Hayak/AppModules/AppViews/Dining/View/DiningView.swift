@@ -74,10 +74,9 @@ struct DiningView: View {
     func performAction(for code: String) {
         // Implement the specific action based on the scanned QR code data
         print("Performing action for: \(code)")
-        
-        destination = AnyView( MenueView().navigationBarBackButtonHidden(true) )
+        guard let id = Int(code) else {return}
+        destination = AnyView( MenueView(SelectedBranchId: id ).navigationBarBackButtonHidden(true) )
         isActive = true
-        
     }
     
     func scannerTopBar() -> some View {

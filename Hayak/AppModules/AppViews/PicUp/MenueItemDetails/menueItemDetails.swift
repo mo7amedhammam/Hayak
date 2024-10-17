@@ -130,7 +130,7 @@ struct menueItemDetails: View {
                         Spacer()
                         
                         Text("SAR".localized())
-                        Text(count*13,format: .number)
+                        Text(count*13,format: .number.precision(.fractionLength(2)))
                         
                     }
                     .font(.custom(fontEnum.regular.rawValue, size:14))

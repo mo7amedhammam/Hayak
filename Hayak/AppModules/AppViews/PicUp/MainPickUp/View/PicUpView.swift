@@ -85,7 +85,8 @@ struct PicUpView: View {
                 
                 List(pickupvm.NearestBrandBranches ?? [],id:\.self){branch in
                     pickUpCellView(pickUp: branch ,onSelect: {
-                        destination = AnyView( MenueView().navigationBarBackButtonHidden(true) )
+                        guard let id = branch.id else {return}
+                        destination = AnyView( MenueView(SelectedBranchId: id).navigationBarBackButtonHidden(true) )
                         self.isActive = true
                     },onClickLove: {
                         

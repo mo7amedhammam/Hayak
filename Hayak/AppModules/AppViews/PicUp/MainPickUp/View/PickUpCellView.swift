@@ -55,7 +55,7 @@ struct pickUpCellView: View {
                                 .frame(width: 13, height: 13, alignment:.center)
                             
                             Group{
-                                Text(pickUp.distance ?? 0,format:.number)
+                                Text(pickUp.distance ?? 0,format:.number.precision(.fractionLength(1)))
                                 Text("KM".localized())
                             }
                             .foregroundColor(.main1)
@@ -106,7 +106,7 @@ struct pickUpCellView: View {
                             Image(systemName: "star.fill")
                                 .foregroundStyle(.yellow)
                             
-                            Text(pickUp.rate ?? 0,format: .number)
+                            Text(pickUp.rate ?? 0,format: .number.precision(.fractionLength(1)))
                                 .foregroundColor(.black)
                                 .font(.custom(fontEnum.light.rawValue, size:12))
                             

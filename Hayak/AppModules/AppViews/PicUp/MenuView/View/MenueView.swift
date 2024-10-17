@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct MenueView: View {
-    
+    var SelectedBranchId:Int
+    @StateObject var menuvm = MenueVM.shared
     @State var isSheetPresented = false
     @State var basketitemscount = 0
     @State var basketitemsprice = 0
@@ -27,11 +28,12 @@ struct MenueView: View {
                 CustomPickupHeaderView(btnbackimg: Image(.circleback), onBack: {}, btnimg2:Image(.circlelove), onbtnimg2: {}, btnimg3: Image(.circleshare), onbtnimg3: {}, btnimg4: Image(.circlesearch), onbtnimg4: {},bgColor: .clear)
                     .padding(.top,UIDevice().hasNotch ? 50:20)
             }
-            
+            let details = menuvm.BrandBrancheDetails
             VStack(spacing:15){
                 HStack{
                     KFImageLoader(urlStr: "pickUp.subImage", placeholder: Image("od"))
-                        .placeholder.resizable().frame(width: 72,height: 65).scaledToFill().cornerRadius(8)
+//                        .placeholder.resizable()
+                        .frame(width: 72,height: 65).scaledToFill().cornerRadius(8)
                     
                     VStack(alignment:.leading,spacing: 7.5){
                         Text("Mandarin Oak")
@@ -46,7 +48,7 @@ struct MenueView: View {
                             Image(systemName: "star.fill")
                                 .foregroundStyle(.yellow)
                             
-                            Text("4.5")
+                            Text(details?.rate ?? 0,format:.number.precision(.fractionLength(1)))
                                 .foregroundColor(.black)
                                 .font(.custom(fontEnum.light.rawValue, size:12))
                             
@@ -81,7 +83,7 @@ struct MenueView: View {
                 HStack{
                     Image(.categoriesIcon)
                     
-                    ScrollViewRTL(type:.hList){
+                    ScrollView{
                         HStack(spacing:12){
                             ForEach(categories,id: \.self){category in
                                 Button(action: {
@@ -122,9 +124,9 @@ struct MenueView: View {
             .padding(.horizontal)
             .padding(.top,-25)
             
-            List{
-                ForEach(0..<10){_ in
-                    menueListCell(onClick: {
+            List(details?.items ?? [],id:\.self){menuitem in
+//                ForEach(details?.items ?? [],id:\.self){menuitem in
+                    menueListCell(model: menuitem,onClick: {
                         isSheetPresented.toggle()
                     },onPlus: { price in
                         basketitemscount += 1
@@ -133,7 +135,7 @@ struct MenueView: View {
                         basketitemscount -= 1
                         basketitemsprice -= price
                     })
-                }
+//                }
             }
             .listStyle(.plain)
             //                        .padding(.horizontal)
@@ -168,7 +170,7 @@ struct MenueView: View {
                             Spacer()
                             
                             Text("SAR".localized())
-                            Text(basketitemsprice,format: .number)
+                            Text(basketitemsprice,format: .number.precision(.fractionLength(2)))
                         }
                         .font(.custom(fontEnum.semiBold.rawValue, size:12))
                         .foregroundColor(basketitemscount == 0 ? .black50:.white)
@@ -190,6 +192,9 @@ struct MenueView: View {
             Color(.white).ignoresSafeArea()
                 .navigationBarBackButtonHidden(true)
         }
+        .task {
+            menuvm.GetBrandBrancheDetails(id: SelectedBranchId)
+        }
         .bottomSheet(isPresented: $isSheetPresented) {
             menueItemDetails( isPresented: $isSheetPresented)
                 .padding(10)
@@ -201,7 +206,7 @@ struct MenueView: View {
 }
 
 #Preview {
-    MenueView()
+    MenueView(SelectedBranchId: 0)
 }
 
 

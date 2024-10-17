@@ -7,6 +7,7 @@
 
 import SwiftUI
 struct menueListCell: View {
+    var model = BrandBrancheMenuItemM()
     @State var count = 0
     var onClick : (() ->  Void?)?
     var onPlus : ((Int) ->  Void?)?
@@ -16,19 +17,19 @@ struct menueListCell: View {
         VStack{
             HStack{
                 VStack(alignment: .leading,spacing:5){
-                    Text("Chicken Schezwan Fried Rice")
+                    Text(model.name ?? "")
                         .foregroundColor(.main1)
                         .font(.custom(fontEnum.semiBold.rawValue, size:12))
                     
                     HStack(spacing:2){
-                        Text("220")
+                        Text(model.calories ?? 0,format: .number)
                         Text("Calories".localized())
                     }
                     .foregroundColor(.main2)
                     .font(.custom(fontEnum.bold.rawValue, size:10))
                     
                     
-                    Text("Golden fried Chicken pieces wok- tossed with hotand spicy schezwan fried rice with vegetables like green ...")
+                    Text(model.description ?? "")
                         .foregroundColor(.main1)
                         .font(.custom(fontEnum.light.rawValue, size:11))
                         .lineLimit(3)
@@ -37,7 +38,7 @@ struct menueListCell: View {
                     
                     HStack(spacing:2){
                         Text("SAR".localized())
-                        Text("123.00")
+                        Text(model.price ?? 0,format: .number.precision(.fractionLength(2)))
                         Spacer()
                         
                         Text("Customizable".localized())
@@ -56,14 +57,15 @@ struct menueListCell: View {
                 
                 //                                GeometryReader{gr in
                 ZStack(alignment:.bottom){
-                    KFImageLoader(urlStr: "pickUp.subImage", placeholder: Image("od"))
-                        .placeholder.resizable().frame(width: 111,height: 100).scaledToFill().cornerRadius(8)
+                    AsyncImageLoader(urlStr: model.imageURL, placeholder: Image("od"))
+//                        .placeholder.resizable()
+                        .frame(width: 111,height: 100).scaledToFill().cornerRadius(8)
                     HStack(alignment:.center,spacing:5){
                         
                         Button(action: {
                             guard count > 0 else {return}
                             count -= 1
-                            onMinus?(50)
+                            onMinus?(model.price ?? 0)
                         }, label: {
                             Image(.circleminus)
                         })
@@ -77,7 +79,7 @@ struct menueListCell: View {
                         
                         Button(action: {
                             count += 1
-                            onPlus?(50)
+                            onPlus?(model.price ?? 0)
                         }, label: {
                             Image(.circleplus)
                         })

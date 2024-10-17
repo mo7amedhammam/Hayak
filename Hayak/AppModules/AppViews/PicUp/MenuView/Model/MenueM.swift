@@ -11,7 +11,7 @@ import Foundation
 struct BrandBrancheMenuM: Codable,Hashable {
     var id: Int?
     var address: String?
-    var rate: Int?
+    var rate: Double?
     var availablePickup, availableDineIn: Bool?
     var items: [BrandBrancheMenuItemM]?
 }
