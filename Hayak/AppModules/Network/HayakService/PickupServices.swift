@@ -11,6 +11,8 @@ import Alamofire
 enum PickupServices {
     case Categories
     case NearestBrandBranches(parameters : [String:Any])
+    
+    case CategoryForList
     case BrandBranchDetails(parameters : [String:Any])
 
 }
@@ -20,9 +22,11 @@ extension PickupServices : TargetType {
         switch self {
         case .Categories:
             return PickupEndPoints.Categories.rawValue
-
         case .NearestBrandBranches:
             return PickupEndPoints.NearestBrandBranches.rawValue
+            
+        case .CategoryForList:
+            return PickupEndPoints.CategoryForList.rawValue
         case .BrandBranchDetails:
             return PickupEndPoints.BrandBranchDetails.rawValue
         }
@@ -30,23 +34,24 @@ extension PickupServices : TargetType {
     
     var method: HTTPMethod {
         switch self {
-        case .NearestBrandBranches:
+        case .NearestBrandBranches,.BrandBranchDetails:
             return .post
-        case .Categories,.BrandBranchDetails:
+        case .Categories,.CategoryForList:
             return .get
         }
     }
     
     var parameter: parameterType {
         switch self {
-        case .Categories:
+        case .Categories,.CategoryForList:
             return .plainRequest
             
-        case .NearestBrandBranches(parameters:let parameters):
+        case .NearestBrandBranches(parameters:let parameters),
+                .BrandBranchDetails(parameters: let parameters):
             return .parameterRequest(Parameters: parameters, Encoding: .default)
             
-        case .BrandBranchDetails(parameters: let parameters):
-            return .parameterdGetRequest(Parameters: parameters, Encoding: .default)
+//        case .BrandBranchDetails(parameters: let parameters):
+//            return .parameterdGetRequest(Parameters: parameters, Encoding: .default)
             
         }
     }

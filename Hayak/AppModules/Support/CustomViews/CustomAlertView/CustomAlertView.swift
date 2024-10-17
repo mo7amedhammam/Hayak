@@ -196,9 +196,9 @@ struct CustomAlertView: View {
                     }
                 }
                 
-//                if let imgStr = alertType.image(){
+                if let imgStr = alertType.image(){
                     ZStack {
-                        Image(alertType.image() ?? "payment_failed")
+                        Image(imgStr)
                             .resizable()
                             .renderingMode(alertType.image() == nil ? .original : alertType.imagerendermode() ?? .template)
                         //                                .foregroundColor(Color("Second_Color"))
@@ -208,7 +208,7 @@ struct CustomAlertView: View {
                             .frame(width: 70, height: 70, alignment: .center)
                     }
                     .padding(.top)
-//                }
+                }
                 
                 // alert message
                 Text(alertType.message().localized())

@@ -75,7 +75,7 @@ struct DiningView: View {
         // Implement the specific action based on the scanned QR code data
         print("Performing action for: \(code)")
         guard let id = Int(code) else {return}
-        destination = AnyView( MenueView(SelectedBranchId: id ).navigationBarBackButtonHidden(true) )
+        destination = AnyView( MenueView(SelectedBranchId: id ).environmentObject(LocationManagerVM.shared) )
         isActive = true
     }
     

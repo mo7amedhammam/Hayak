@@ -10,16 +10,21 @@ import Foundation
 // MARK: - NearestBrandBrancheM
 struct BrandBrancheMenuM: Codable,Hashable {
     var id: Int?
-    var address: String?
-    var rate: Double?
-    var availablePickup, availableDineIn: Bool?
+        var address: String?
+        var rate,distance: Float?
+        var availablePickup, availableDineIn: Bool?
+        var brandBranchName, brandBranchImage: String?
+        var rateCount: Int?
+        var description: String?
+        var cookingTaime: Int?
     var items: [BrandBrancheMenuItemM]?
 }
 
 // MARK: - Item
 struct BrandBrancheMenuItemM: Codable ,Hashable{
     var id, name, description: String?
-    var price, calories: Int?
+    var price: Float?
+    var calories: Int?
     var imageURL: String?
 
     enum CodingKeys: String, CodingKey {

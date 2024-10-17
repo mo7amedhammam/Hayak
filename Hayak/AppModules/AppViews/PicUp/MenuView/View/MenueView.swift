@@ -10,13 +10,15 @@ import SwiftUI
 struct MenueView: View {
     var SelectedBranchId:Int
     @StateObject var menuvm = MenueVM.shared
+    @EnvironmentObject var locationManager : LocationManagerVM
+
     @State var isSheetPresented = false
-    @State var basketitemscount = 0
-    @State var basketitemsprice = 0
+    @State var basketitemscount:Float = 0
+    @State var basketitemsprice:Float = 0
     
-    var categories : [restaurant] = [restaurant(id: 1, name: "Trending", imageUrl: "2"),restaurant(id: 2, name: "Free Soup", imageUrl: nil),restaurant(id: 3, name: "Pasta", imageUrl: nil),restaurant(id: 4, name: "Rice", imageUrl: nil),restaurant(id: 5, name: "Main Dishes", imageUrl: nil),restaurant(id: 6, name: "Main Dishes", imageUrl: nil)]
+//    var categories : [restaurant] = [restaurant(id: 1, name: "Trending", imageUrl: "2"),restaurant(id: 2, name: "Free Soup", imageUrl: nil),restaurant(id: 3, name: "Pasta", imageUrl: nil),restaurant(id: 4, name: "Rice", imageUrl: nil),restaurant(id: 5, name: "Main Dishes", imageUrl: nil),restaurant(id: 6, name: "Main Dishes", imageUrl: nil)]
     
-    @State var selectedcategory:restaurant?
+//    @State var selectedcategory:restaurant?
     
     var body: some View {
         VStack {
@@ -31,16 +33,16 @@ struct MenueView: View {
             let details = menuvm.BrandBrancheDetails
             VStack(spacing:15){
                 HStack{
-                    KFImageLoader(urlStr: "pickUp.subImage", placeholder: Image("od"))
+                    AsyncImageLoader(urlStr: details?.brandBranchImage, placeholder: Image("od"))
 //                        .placeholder.resizable()
                         .frame(width: 72,height: 65).scaledToFill().cornerRadius(8)
                     
                     VStack(alignment:.leading,spacing: 7.5){
-                        Text("Mandarin Oak")
+                        Text(details?.brandBranchName ?? "")
                             .foregroundColor(.black)
                             .font(.custom(fontEnum.bold.rawValue, size:14))
                         
-                        Text("Chinese, Thai, Asian, Noodles, Dumplings")
+                        Text(details?.description ?? "")
                             .foregroundColor(.black50)
                             .font(.custom(fontEnum.bold.rawValue, size:10))
                         
@@ -54,7 +56,7 @@ struct MenueView: View {
                             
                             Group {
                                 Text("(".localized())
-                                Text("\(100)")
+                                Text(details?.rateCount ?? 0,format: .number)
                                 Text("Ratings".localized())
                                 Text(")".localized())
                                 
@@ -67,9 +69,9 @@ struct MenueView: View {
                 }
                 
                 HStack{
-                    infoLabel(title: "Distance",number: "5",measureunit: "KM")
-                    infoLabel(title: "cooking time",number: "25",measureunit: "mins")
-                    hayakRecommendLabel(title: "Recommended by")
+                    infoLabel(title: "Distance",number: "\(details?.distance ?? 0.0)",measureunit: "KM")
+                    infoLabel(title: "cooking time",number: "\(details?.cookingTaime ?? 0)",measureunit: "mins")
+//                    hayakRecommendLabel(title: "Recommended by")
                 }
             }
             .padding()
@@ -79,41 +81,45 @@ struct MenueView: View {
             .offset(y:-95)
             .padding(.bottom,-95)
             
-            VStack{
-                HStack{
-                    Image(.categoriesIcon)
-                    
-                    ScrollView{
-                        HStack(spacing:12){
-                            ForEach(categories,id: \.self){category in
-                                Button(action: {
-                                    selectedcategory = category
-                                }, label: {
-                                    HStack(spacing:0){
-                                        Text(category.name ?? "")
-                                            .foregroundColor(selectedcategory == category ? .main2 : .black70)
-                                            .font(Font.Regular(size: 12))
-                                        
-                                        if !(category.imageUrl == nil){
-                                            KFImageLoader(urlStr: category.imageUrl, placeholder: Image("2"))
-                                                .frame(width: 20, height: 20, alignment: .center)
+            if let Categories = menuvm.Categories,Categories.count > 0{
+            VStack(alignment: .leading){
+                    HStack{
+                        Image(.categoriesIcon)
+                            .onTapGesture {
+                                // show categories drop list
+                            }
+                        ScrollView{
+                            HStack(spacing:12){
+                                ForEach(Categories,id: \.self){category in
+                                    Button(action: {
+                                        menuvm.selectedCategory = category
+                                    }, label: {
+                                        HStack(spacing:0){
+                                            Text(category.name ?? "")
+                                                .foregroundColor(menuvm.selectedCategory == category ? .main2 : .black70)
+                                                .font(Font.Regular(size: 12))
+                                            
+                                            if let imageURL = category.imageURL{
+                                                AsyncImageLoader(urlStr: imageURL, placeholder: Image("2"))
+                                                    .frame(width: 20, height: 20, alignment: .center)
+                                            }
                                         }
-                                    }
-                                })
+                                    })
+                                }
                             }
                         }
+                        Spacer()
                     }
                     .frame(height: 40)
-                }
-                
-                if let category = selectedcategory{
+                  
+                if let category = menuvm.selectedCategory{
                     HStack(alignment:.center,spacing:0){
                     Text(category.name ?? "")
                         .font(Font.SemiBold(size: 14))
                         .foregroundStyle(.main1)
                     
-                        if !(category.imageUrl == nil){
-                            KFImageLoader(urlStr: category.imageUrl, placeholder: Image("2"))
+                        if let imageURL = category.imageURL{
+                            AsyncImageLoader(urlStr: imageURL, placeholder: Image("2"))
                                 .frame(width: 20, height: 20, alignment: .center)
                         }
                         Spacer()
@@ -123,6 +129,9 @@ struct MenueView: View {
             }
             .padding(.horizontal)
             .padding(.top,-25)
+            }else{
+                Spacer()
+            }
             
             List(details?.items ?? [],id:\.self){menuitem in
 //                ForEach(details?.items ?? [],id:\.self){menuitem in
@@ -193,6 +202,10 @@ struct MenueView: View {
                 .navigationBarBackButtonHidden(true)
         }
         .task {
+            menuvm.lat = locationManager.Currentlat
+            menuvm.lon = locationManager.Currentlong
+            
+            menuvm.GetCategoriesForList()
             menuvm.GetBrandBrancheDetails(id: SelectedBranchId)
         }
         .bottomSheet(isPresented: $isSheetPresented) {
@@ -207,6 +220,7 @@ struct MenueView: View {
 
 #Preview {
     MenueView(SelectedBranchId: 0)
+        .environmentObject(LocationManagerVM.shared)
 }
 
 
@@ -222,8 +236,8 @@ struct infoLabel: View {
                 .font(.custom(fontEnum.light.rawValue, size:10))
             
             HStack(spacing:2) {
-                Text("\(number ?? "5")")
-                Text(measureunit?.localized() ?? "KM")
+                Text("\(number ?? "")")
+                Text(measureunit?.localized() ?? "")
             }
             .foregroundColor(.main1)
             .font(.custom(fontEnum.semiBold.rawValue, size:10))

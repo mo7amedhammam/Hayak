@@ -10,11 +10,14 @@ struct menueListCell: View {
     var model = BrandBrancheMenuItemM()
     @State var count = 0
     var onClick : (() ->  Void?)?
-    var onPlus : ((Int) ->  Void?)?
-    var onMinus : ((Int) ->  Void?)?
+    var onPlus : ((Float) ->  Void?)?
+    var onMinus : ((Float) ->  Void?)?
 
     var body: some View {
         VStack{
+            Button(action: {
+                onClick?()
+            }, label: {
             HStack{
                 VStack(alignment: .leading,spacing:5){
                     Text(model.name ?? "")
@@ -96,14 +99,10 @@ struct menueListCell: View {
                     
                 }
             }
-            .onTapGesture {
-                onClick?()
-            }
-            
+            })
             customDivider()
                 .padding(.horizontal,-30)
                 .padding(.top,10)
-            
         }
         .padding(.top,-10)
         .listRowSeparator(.hidden)

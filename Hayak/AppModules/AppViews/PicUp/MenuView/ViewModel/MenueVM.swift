@@ -39,8 +39,8 @@ class MenueVM: ObservableObject {
     @Published var error: AlertType = .error(title: "", image: "", message: "", buttonTitle: "", secondButtonTitle: "")
     
     //    @Published var isTeacherHasSubjects: Bool = false
+    @Published var Categories : [MainCategoriesM]?
     @Published var BrandBrancheDetails : BrandBrancheMenuM?
-//    @Published var NearestBrandBranches : [NearestBrandBrancheM]?
     
      var lat : Double?
      var lon : Double?
@@ -56,9 +56,8 @@ class MenueVM: ObservableObject {
 }
 
 extension MenueVM{
-    
-    func GetBrandBrancheDetails(id:Int){
-                var parameters:[String:Any] = ["id":id]
+    func GetCategoriesForList(){
+        //        var parameters:[String:Any] = ["maxResultCount":maxResultCount,"skipCount":skipCount]
         
         //        if let filtersubjectid = filtersubject?.id{
         //            parameters["teacherSubjectId"] = filtersubjectid
@@ -72,6 +71,56 @@ extension MenueVM{
         //        if let filterdate = filterdate?.ChangeDateFormat(FormatFrom: "dd MMM yyyy", FormatTo:"yyyy-MM-dd'T'HH:mm:ss",outputLocal: .english,inputTimeZone: TimeZone(identifier: "GMT")){
         //            parameters["lessonDate"] = filterdate
         //        }
+        
+        //        print("parameters",parameters)
+        let target = PickupServices.CategoryForList
+        isLoading = true
+        BaseNetwork.shared.CallApi(target, BaseResponse<[MainCategoriesM]>.self)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {[weak self] completion in
+                guard let self = self else{return}
+                isLoading = false
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    isError =  true
+                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
+                }
+            },receiveValue: {[weak self] receivedData in
+                guard let self = self else{return}
+                print("receivedData",receivedData)
+                if receivedData.success == true {
+                    //                    TeacherSubjects?.append(model)
+                    //                    if skipCount == 0{
+                    Categories = receivedData.data
+                    //                    }else{
+                    //                        Categories?.items?.append(contentsOf: receivedData.data?.items ?? [])
+                    //                    }
+                    
+                }else{
+                    isError =  true
+                    //                    error = NetworkError.apiError(code: receivedData.messageCode ?? 0, error: receivedData.message ?? "")
+                    error = .error(image:nil,  message: receivedData.message ?? "",buttonTitle:"Done")
+                }
+                isLoading = false
+            })
+            .store(in: &cancellables)
+    }
+    
+    func GetBrandBrancheDetails(id:Int){
+                var parameters:[String:Any] = ["id":id]
+        parameters["lat"] = "30.549753700368758"
+        parameters["lon"] = "31.065455361906114"
+
+//        if let lat = lat, let lon = lon {
+//            parameters["lat"] = lat
+//            parameters["lon"] = lon
+//        }
+        
+        if let categoryId = selectedCategory?.id{
+            parameters["categoryId"] = categoryId
+        }
         
         //        print("parameters",parameters)
         let target = PickupServices.BrandBranchDetails(parameters: parameters)

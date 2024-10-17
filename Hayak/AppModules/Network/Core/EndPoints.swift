@@ -9,8 +9,8 @@ import Foundation
 
 struct Constants {
 // MARK: - APIs Constants
-    static var baseURL:String {return "https://hayakapidev.azurewebsites.net/"} //TEST
-//static var baseURL:String {return "https://hayakapidev.azurewebsites.net/"} //LIVE
+    static var baseURL:String {return "https://alnada-devhayakapi.azurewebsites.net/"} //TEST
+//static var baseURL:String {return "https://alnada-devhayakapi.azurewebsites.net/"} //LIVE
     static var apiURL:String {return "\(baseURL)api/\(LocalizeHelper.shared.currentLanguage)/"}
     static var WhatsAppNum = "+201011138900"
 }
@@ -33,6 +33,9 @@ enum PickupEndPoints: String {
     //MARK: -- PickupEndPoints --
     case Categories = "MainCategory/GetAll"
     case NearestBrandBranches = "Pickup/NearestBrandBranches"
+    
+    //MARK: -- pickup menu (details) --
+    case CategoryForList = "Category/GetCategoryForList"
     case BrandBranchDetails = "Pickup/BrandBranchDetails"
 
 }
