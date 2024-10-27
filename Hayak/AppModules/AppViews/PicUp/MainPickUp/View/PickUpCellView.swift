@@ -24,12 +24,15 @@ struct pickUpCellView: View {
     
     var body: some View {
         
-        VStack(spacing:0){
+        VStack(spacing:2.5){
             ZStack (){
-                AsyncImageLoader(urlStr: pickUp.bannerURL, placeholder: Image("pickupbgtest"))
-//                    .placeholder.resizable().scaledToFill()
-                    .frame(height: 120).scaledToFill().cornerRadius(8)
+                KFImageLoader(urlStr: pickUp.bannerURL, placeholder: Image("pickupbgtest"))
+                    .placeholder.resizable().scaledToFill()
+                    .frame(height: 120)
+                    .scaledToFill()
+//                    .cornerRadius(8)
                     .frame(maxWidth: .infinity)
+
                 VStack{
                     HStack{
                         HStack(spacing:2){
@@ -124,8 +127,8 @@ struct pickUpCellView: View {
             .overlay(content: {
                 HStack{
                     Spacer()
-                    AsyncImageLoader(urlStr: pickUp.bannerURL, placeholder: Image("od"))
-//                        .placeholder.resizable()
+                    KFImageLoader(urlStr: pickUp.bannerURL, placeholder: Image("od"))
+                        .placeholder.resizable()
                         .frame(width: 70,height: 60).scaledToFill().cornerRadius(8)
                 }
                 .padding(.trailing,20)

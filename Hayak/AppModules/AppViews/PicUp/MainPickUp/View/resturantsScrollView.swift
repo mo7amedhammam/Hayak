@@ -32,7 +32,7 @@ struct restaurantsScrollView: View {
 //                                .background{Color(selectedResturant == resturant ? "active text":"color-E5E5E5").cornerRadius(12)}
                             
                             
-                            AsyncImageLoader(urlStr: resturant.imageURL, placeholder: Image("2"))
+                            KFImageLoader(urlStr: resturant.imageURL, placeholder: Image("2"))
                                 .frame(width: 70, height: 70, alignment: .center)
                                 .padding(10)
                                 .background{Color(selectedResturant == resturant ? "active text":"color-E5E5E5").cornerRadius(12)}
