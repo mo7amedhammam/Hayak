@@ -54,6 +54,8 @@ struct ForgetPasswordScreen: View {
                         .onChange(of: phoneNumber) { newValue in
                             if newValue.count < 4{
                                 phoneNumber = "+966"
+                            } else if newValue.count > 13   {
+                                phoneNumber = String(newValue.prefix(13))
                             }
                         }
                     
