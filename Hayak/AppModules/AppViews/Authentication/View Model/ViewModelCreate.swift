@@ -42,6 +42,11 @@ class ViewModelCreate: ObservableObject {
             return
         }
         
+        guard (mobile.contains("+966")) && (mobile.count == 13) else {
+            self.errorMessage = "phone number must start with +966 and 9 digits"
+            return
+        }
+        
         guard !passwordHash.isEmpty else {
             self.errorMessage = "Password must be at least 8 characters long, contain at least one number, and one special character."
             return
@@ -69,10 +74,6 @@ class ViewModelCreate: ObservableObject {
             return
         }
         
-        guard (mobile.contains("+966")) && (mobile.count == 13) else {
-            self.errorMessage = "phone number must start with +966 and 9 digits"
-            return
-        }
         
         let newMobile = mobile.replacingOccurrences(of: "+966", with: "")
         

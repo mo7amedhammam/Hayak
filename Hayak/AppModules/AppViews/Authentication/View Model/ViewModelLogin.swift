@@ -27,17 +27,16 @@ class ViewModelLogin: ObservableObject {
             return
         }
         
+        guard (mobile.contains("+966")) && (mobile.count == 13) else {
+            self.errorMessage = "phone number must start with +966 and 9 digits"
+            return
+        }
         // Input validation logic
         guard !password.isEmpty else {
             self.errorMessage = "Please enter your password."
             return
         }
-        
-        
-        guard (mobile.contains("+966")) && (mobile.count == 13) else {
-            self.errorMessage = "phone number must start with +966 and 9 digits"
-            return
-        }
+           
       
         let newMobile = mobile.replacingOccurrences(of: "+966", with: "")
         

@@ -108,6 +108,13 @@ struct ExtractedViewSignIn: View {
                 VStack {
                     
                     PhoneNumberView(phoneNumber: $phoneNumber)
+                        .onChange(of: phoneNumber) { newValue in
+                            if newValue.count < 4{
+                                phoneNumber = "+966"
+                            }
+                        }
+                    
+                    
                     PasswordView(passwordNumber: $passwordNumber, passwordPlaceholder: $passwordPlaceholder, textLable: $textLable, image: $image, isPasswordWrong: $isPasswordWrong)
                     Spacer()
                     

@@ -51,6 +51,11 @@ struct ForgetPasswordScreen: View {
                     
                     
                     PhoneNumberView(phoneNumber: $phoneNumber)
+                        .onChange(of: phoneNumber) { newValue in
+                            if newValue.count < 4{
+                                phoneNumber = "+966"
+                            }
+                        }
                     
                     Button(action: {
                         //send

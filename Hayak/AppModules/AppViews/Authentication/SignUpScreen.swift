@@ -141,6 +141,12 @@ struct ExtractedViewSignUp: View {
                     
                     UserNameView(userName: $name)
                     PhoneNumberView(phoneNumber: $phoneNumber)
+                        .onChange(of: phoneNumber) { newValue in
+                            if newValue.count < 4{
+                                phoneNumber = "+966"
+                            }
+                        }
+                    
                     PasswordView(passwordNumber: $password, passwordPlaceholder: $passwordPlaceholder, textLable: $textLable, image: $image, isPasswordWrong: $isPasswordWrong)
                     PasswordView(passwordNumber: $confirmPassword, passwordPlaceholder: $confirmpasswordPlaceholder, textLable: $confirmtextLable, image: $image, isPasswordWrong: $isPasswordWrongconfirm)
                     
