@@ -8,10 +8,10 @@
 import SwiftUI
 struct menueListCell: View {
     var model = BrandBrancheMenuItemM()
-    @State var count = 0
+//    @State var count = 0
     var onClick : (() ->  Void?)?
-    var onPlus : ((Float) ->  Void?)?
-    var onMinus : ((Float) ->  Void?)?
+//    var onPlus : ((Float) ->  Void?)?
+//    var onMinus : ((Float) ->  Void?)?
 
     var body: some View {
         VStack{
@@ -30,7 +30,6 @@ struct menueListCell: View {
                     }
                     .foregroundColor(.main2)
                     .font(.custom(fontEnum.bold.rawValue, size:10))
-                    
                     
                     Text(model.description ?? "")
                         .foregroundColor(.main1)
@@ -51,8 +50,9 @@ struct menueListCell: View {
                             .padding(.vertical,5)
                             .background{Color.main2.clipShape(Capsule())}
                         
-                    }                                            .foregroundColor(.main2)
-                        .font(.custom(fontEnum.bold.rawValue, size:10))
+                    }                                          
+                    .foregroundColor(.main2)
+                    .font(.custom(fontEnum.bold.rawValue, size:10))
                 }
                 .frame(maxWidth: .infinity,alignment: .leading)
                 
@@ -60,42 +60,42 @@ struct menueListCell: View {
                 
                 //                                GeometryReader{gr in
                 ZStack(alignment:.bottom){
-                    AsyncImageLoader(urlStr: model.imageURL, placeholder: Image("od"))
-//                        .placeholder.resizable()
+                    KFImageLoader(urlStr: model.imageURL, placeholder: Image("od"))
+                        .placeholder.resizable()
                         .frame(width: 111,height: 100).scaledToFill().cornerRadius(8)
-                    HStack(alignment:.center,spacing:5){
-                        
-                        Button(action: {
-                            guard count > 0 else {return}
-                            count -= 1
-                            onMinus?(model.price ?? 0)
-                        }, label: {
-                            Image(.circleminus)
-                        })
-                        .buttonStyle(.plain)
-                        .frame(width: 15.3, height: 15.3, alignment: .center)
-                        
-                        Text(count,format: .number)
-                            .foregroundStyle(.white)
-                            .font(.custom(fontEnum.bold.rawValue, size:12))
-                            .frame(maxWidth: .infinity,alignment: .center)
-                        
-                        Button(action: {
-                            count += 1
-                            onPlus?(model.price ?? 0)
-                        }, label: {
-                            Image(.circleplus)
-                        })
-                        .buttonStyle(.plain)
-                        .frame(width: 15.3, height: 15.3, alignment: .center)
-                    }
-                    .frame(height:20)
-                    .frame(width:75)
-                    .padding(.horizontal,8)
-                    .background{ Color.main2.clipShape(Capsule())
-                    }
-                    .offset(y:10)
-                    .padding(.top,-10)
+//                    HStack(alignment:.center,spacing:5){
+//                        
+//                        Button(action: {
+//                            guard count > 0 else {return}
+//                            count -= 1
+//                            onMinus?(model.price ?? 0)
+//                        }, label: {
+//                            Image(.circleminus)
+//                        })
+//                        .buttonStyle(.plain)
+//                        .frame(width: 15.3, height: 15.3, alignment: .center)
+//                        
+//                        Text(count,format: .number)
+//                            .foregroundStyle(.white)
+//                            .font(.custom(fontEnum.bold.rawValue, size:12))
+//                            .frame(maxWidth: .infinity,alignment: .center)
+//                        
+//                        Button(action: {
+//                            count += 1
+//                            onPlus?(model.price ?? 0)
+//                        }, label: {
+//                            Image(.circleplus)
+//                        })
+//                        .buttonStyle(.plain)
+//                        .frame(width: 15.3, height: 15.3, alignment: .center)
+//                    }
+//                    .frame(height:20)
+//                    .frame(width:75)
+//                    .padding(.horizontal,8)
+//                    .background{ Color.main2.clipShape(Capsule())
+//                    }
+//                    .offset(y:10)
+//                    .padding(.top,-10)
                     
                 }
             }

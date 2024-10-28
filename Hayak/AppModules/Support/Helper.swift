@@ -85,6 +85,8 @@ class Helper: NSObject {
         return userDef.string(forKey: Languagekey) ?? deviceLanguageCode
     }
     
+    var selectedordertype : OrderTypes?
+    
 //    func saveUserToDefaults(user: LoginResponse) {
 //        let encoder = JSONEncoder()
 //        if let encodedUser = try? encoder.encode(user) {
@@ -136,8 +138,6 @@ class Helper: NSObject {
         let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
         return (isReachable && !needsConnection)
     }
-    
-    
     
     func changeRoot(toView:any View) {
         let window = UIApplication

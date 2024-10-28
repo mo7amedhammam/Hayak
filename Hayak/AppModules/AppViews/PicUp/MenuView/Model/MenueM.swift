@@ -22,7 +22,8 @@ struct BrandBrancheMenuM: Codable,Hashable {
 
 // MARK: - Item
 struct BrandBrancheMenuItemM: Codable ,Hashable{
-    var id, name, description: String?
+    var id: Int?
+    var name, description: String?
     var price: Float?
     var calories: Int?
     var imageURL: String?

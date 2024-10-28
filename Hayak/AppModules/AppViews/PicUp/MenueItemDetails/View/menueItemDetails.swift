@@ -9,16 +9,24 @@ import SwiftUI
 
 struct menueItemDetails: View {
     
-    @State var count = 0
+    @State var count = 1
     @Binding var isPresented:Bool
     
+    @StateObject var itemdetailsvm = ItemDetailsVM()
+    @EnvironmentObject var checkoutvm : CheckoutVM
+
     var iscustomizable : Bool? = true
-    
+    var branchId : Int?
+    var itemId : Int?
     var body: some View {
+
         VStack(spacing:15){
+            let cart = itemdetailsvm.Details?.customerCart ?? .init()
             ZStack(alignment: .topTrailing) {
-                Image(.re)
-                    .resizable()
+                KFImageLoader(urlStr: cart.imageURL, placeholder: Image(.re))
+                    .placeholder.resizable()
+
+//                    .resizable()
                     .frame(height: 206)
                     .scaledToFill()
                     .borderRadius(.clear, cornerRadius: 16, corners: .allCorners)
@@ -40,20 +48,20 @@ struct menueItemDetails: View {
             }
             
             HStack{
-                Text("Shrimp Dumplings")
+                Text(cart.itemName ?? "")
                     .foregroundColor(.main1)
                     .font(.custom(fontEnum.bold.rawValue, size:18))
                 Spacer()
                 
                 HStack(spacing:3){
-                    Text("220")
+                    Text(cart.calories ?? 0,format: .number)
                     Text("Calories".localized())
                 }
                 .foregroundColor(.main2)
                 .font(.custom(fontEnum.semiBold.rawValue, size:12))
                 
             }
-            Text("The shrimp dumpling is made of shrimp\n and wrapped with a translucent wrapper.")
+            Text(cart.description ?? "")
                 .foregroundColor(.main2)
                 .font(.custom(fontEnum.regular.rawValue, size:14))
                 .multilineTextAlignment(.leading)
@@ -61,13 +69,11 @@ struct menueItemDetails: View {
             
             HStack(spacing:3){
                 Text("SAR".localized())
-                Text("31.00")
+                Text(cart.price ?? 0,format: .number.precision(.fractionLength(2)))
             }
             .foregroundColor(.main2)
             .font(.custom(fontEnum.semiBold.rawValue, size:12))
             .frame(maxWidth: .infinity,alignment: .leading)
-            
-            
             
             if iscustomizable == true{
                 ScrollView(showsIndicators: false){
@@ -86,8 +92,8 @@ struct menueItemDetails: View {
                 HStack(alignment:.center,spacing:5){
                     
                     Button(action: {
-                        guard count > 0 else {return}
-                        count -= 1
+                        guard itemdetailsvm.quantity > 0 else {return}
+                        itemdetailsvm.quantity -= 1
                     }, label: {
                         Image(systemName: "minus")
                             .font(Font.system(size: 12))
@@ -98,13 +104,13 @@ struct menueItemDetails: View {
                     })
                     .buttonStyle(.plain)
                     
-                    Text(count,format: .number)
+                    Text(itemdetailsvm.quantity,format: .number)
                         .foregroundStyle(.main1)
                         .font(.custom(fontEnum.bold.rawValue, size:12))
                         .frame(maxWidth: .infinity,alignment: .center)
                     
                     Button(action: {
-                        count += 1
+                        itemdetailsvm.quantity += 1
                     }, label: {
                         Image(systemName: "plus")
                             .font(Font.system(size: 12))
@@ -123,14 +129,15 @@ struct menueItemDetails: View {
                 
                 Button(action: {
                     guard count > 0 else {return}
-                    //                    count -= 1
+                    // call add to cart
+                    itemdetailsvm.AddToCart()
                 }, label: {
                     HStack {
                         Text("Add".localized())
                         Spacer()
                         
                         Text("SAR".localized())
-                        Text(count*13,format: .number.precision(.fractionLength(2)))
+                        Text(itemdetailsvm.quantity*(cart.price ?? 0),format: .number.precision(.fractionLength(2)))
                         
                     }
                     .font(.custom(fontEnum.regular.rawValue, size:14))
@@ -145,9 +152,21 @@ struct menueItemDetails: View {
             }
             .padding(.horizontal , 10)
         }
+        .task {
+            guard let itemId = itemId else {return}
+            itemdetailsvm.GetItemDetails(itemId: itemId)
+            itemdetailsvm.branchId = branchId
+        }
+        .task(id: itemdetailsvm.isAddedToCheckout){
+            guard itemdetailsvm.isAddedToCheckout == true else{return}
+            checkoutvm.GetCheckout()
+        }
+        .showHud(isShowing: $itemdetailsvm.isLoading)
+        .showAlert(hasAlert: $itemdetailsvm.isError, alertType: itemdetailsvm.error)
+
     }
 }
 
 #Preview {
-    menueItemDetails( isPresented: .constant(true))
+    menueItemDetails( isPresented: .constant(true),itemId: 5).environmentObject(CheckoutVM.shared)
 }

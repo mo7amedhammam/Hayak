@@ -30,12 +30,26 @@ enum EndPoints: String {
 
 
 enum PickupEndPoints: String {
-    //MARK: -- PickupEndPoints --
+    //MARK: -- 1. PickupEndPoints --
     case Categories = "MainCategory/GetAll"
     case NearestBrandBranches = "Pickup/NearestBrandBranches"
     
-    //MARK: -- pickup menu (details) --
+    //MARK: -- 2. pickup menu (details) --
     case CategoryForList = "Category/GetCategoryForList"
     case BrandBranchDetails = "Pickup/BrandBranchDetails"
+    
+    //MARK: -- 3. Order Customization Screen:**
+    /** get<itemId */
+    case GetItemDetailsView = "CustomerCart/GetItemDetailsView"
+    /** post<brandBranchId,orderTypeId,itemId,[itemAttributeValueId],quantity */
+    case AddToCart = "CustomerCart/AddToCart"
+
+    //MARK: -- 4. **Order Summary Screen:**
+    /** get*/
+    case CheckoutView = "CustomerCart/CheckoutView"
+    /** get<icustomerCartId*/
+    case DeleteFromCart = "CustomerCart/DeleteFromCart"
+    /** post<cartItems:[customerCartId,...]*/
+    case ConfirmCheckout = "CustomerCart/ConfirmCheckout"
 
 }
