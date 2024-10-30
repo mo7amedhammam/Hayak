@@ -7,15 +7,17 @@
 
 import SwiftUI
 
-struct CartItem: Identifiable {
-    let id = UUID()
-    // Add more properties as needed (e.g., name, price, etc.)
-}
+//struct CartItem: Identifiable {
+//    let id = UUID()
+//    // Add more properties as needed (e.g., name, price, etc.)
+//}
 
 struct CheckoutCellView: View {
     
-   @State var plusMinus  = 1
+   @State var plusMinus  = 0
     
+    var cartItems : CheckoutCartItem
+
     
     var body: some View {
         
@@ -23,42 +25,36 @@ struct CheckoutCellView: View {
             
             VStack(alignment : .leading , spacing : 10) {
                 
-                Text("Pink Risotto")
+                Text(cartItems.itemName ?? "")
                     .foregroundColor(Color("main1"))
                     .font(.custom(fontEnum.bold.rawValue, size:14))
                 
-                Text("SAR 66.00")
+                Text("SAR \(cartItems.itemPrice ?? 0)")
                     .foregroundColor(Color("main1"))
                     .font(.custom(fontEnum.bold.rawValue, size:12))
                 
-                Text("Your Choice of Sauce")
-                    .foregroundColor(Color("main1"))
-                    .font(.custom(fontEnum.regular.rawValue, size:10))
-                
-                Text("Spicy Sauce")
-                    .foregroundColor(Color("main1"))
-                    .font(.custom(fontEnum.bold.rawValue, size:10))
-                
-                Text("Pasta Sauce (+7 SAR)")
-                    .foregroundColor(Color("main1"))
-                    .font(.custom(fontEnum.bold.rawValue, size:10))
-                Text("Your Choice of Sandwich")
-                    .foregroundColor(Color("main1"))
-                    .font(.custom(fontEnum.regular.rawValue, size:10))
-                Text("Spicy (+15 SAR)")
-                    .foregroundColor(Color("main1"))
-                    .font(.custom(fontEnum.bold.rawValue, size:10))
-                Text("Your Choice of Drink")
-                    .foregroundColor(Color("main1"))
-                    .font(.custom(fontEnum.regular.rawValue, size:10))
-                Text("Cola")
-                    .foregroundColor(Color("main1"))
-                    .font(.custom(fontEnum.bold.rawValue, size:10))
+                if cartItems.itemAttributeValues?.count != 0 {
+                    
+                    Text("Your Choice of Sauce")
+                        .foregroundColor(Color("main1"))
+                        .font(.custom(fontEnum.regular.rawValue, size:10))
+                    
+                    ForEach(cartItems.itemAttributeValues ?? [] ) { att in
+                        Text(att.attributeValueName ?? "")
+                            .foregroundColor(Color("main1"))
+                            .font(.custom(fontEnum.bold.rawValue, size:10))
+                    }
+                }
+                Spacer()
                 
             }
             Spacer()
             
             VStack (spacing : -10){
+//                KFImageLoader(urlStr: cartItems., placeholder: Image("pickupbgtest"))
+//                    .placeholder.resizable().scaledToFill()
+//                    .resizable()
+//                    .frame(width: 100 , height: 100)
                 Image("od")
                     .resizable()
                     .frame(width: 100 , height: 100)
@@ -79,7 +75,13 @@ struct CheckoutCellView: View {
                         .frame(width: 20 , height: 20 )
                         .foregroundColor(.white)
                         .onTapGesture {
-                            plusMinus -= 1
+                            if plusMinus == 1 {
+                                // remove from cart
+                                
+                                
+                            } else {
+                                plusMinus -= 1
+                            }
                         }
                 }
                 .padding(.horizontal , 10)
@@ -94,10 +96,14 @@ struct CheckoutCellView: View {
             
         }
         .padding(.vertical , 10)
-        .frame(height: 200)
+        .frame(minHeight: 120)
+        
+        .onAppear{
+            plusMinus = cartItems.qty ?? 0
+        }
     }
 }
 
 #Preview {
-    CheckoutCellView()
+    CheckoutCellView(cartItems: CheckoutCartItem())
 }

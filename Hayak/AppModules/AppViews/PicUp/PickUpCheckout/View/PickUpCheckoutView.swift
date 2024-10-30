@@ -25,7 +25,7 @@ struct PickUpCheckoutView: View {
                 }, onOtherBtn: {
                 }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
                 
-                ExtractedViewCartScreen()
+                ExtractedViewCartScreen(checkoutvm: checkoutvm)
             }
         }
         
@@ -51,7 +51,7 @@ struct PickUpCheckoutView: View {
 
 struct ExtractedViewCartScreen : View {
     
-    let cartItems = Array(repeating: CartItem(), count: 1)
+     var checkoutvm : CheckoutVM
 
     var body: some View {
         
@@ -68,7 +68,7 @@ struct ExtractedViewCartScreen : View {
                         .font(.custom(fontEnum.bold.rawValue, size: 14))
                     Spacer()
                     
-                    Text("5")
+                    Text("\(checkoutvm.checkout?.cartItems?.count ?? 0)")
                         .padding()
                         .frame(minWidth: 50)
                         .frame(height: 50)
@@ -79,9 +79,9 @@ struct ExtractedViewCartScreen : View {
                 .frame(height: 60)
                 
                                     
-                    ForEach(cartItems) {_ in
-                        CheckoutCellView()
-                    }
+                ForEach(checkoutvm.checkout?.cartItems ?? [] ) { attributes in
+                    CheckoutCellView( cartItems: attributes)
+                }
               
                 VStack (alignment : .leading , spacing : 10) {
                     Text("Special request")
@@ -122,7 +122,7 @@ struct ExtractedViewCartScreen : View {
                         .foregroundColor(Color("main1"))
                         .font(.custom(fontEnum.regular.rawValue, size:12))
                     Spacer()
-                    Text("SAR 66.00")
+                    Text("SAR \(checkoutvm.checkout?.subTotal ?? 0)")
                         .foregroundColor(Color("main1"))
                         .font(.custom(fontEnum.medium.rawValue, size:12))
                 }
@@ -133,7 +133,7 @@ struct ExtractedViewCartScreen : View {
                         .foregroundColor(Color("main2"))
                         .font(.custom(fontEnum.regular.rawValue, size:12))
                     Spacer()
-                    Text("SAR 1.90")
+                    Text("SAR \(checkoutvm.checkout?.tax ?? 0)")
                         .foregroundColor(Color("main2"))
                         .font(.custom(fontEnum.medium.rawValue, size:12))
                 }
@@ -142,7 +142,7 @@ struct ExtractedViewCartScreen : View {
                         .foregroundColor(Color("main1"))
                         .font(.custom(fontEnum.medium.rawValue, size:14))
                     Spacer()
-                    Text("SAR 76.98")
+                    Text("SAR \(checkoutvm.checkout?.totalPrice ?? 0)")
                         .foregroundColor(Color("main1"))
                         .font(.custom(fontEnum.medium.rawValue, size:14))
                 }
@@ -160,6 +160,11 @@ struct ExtractedViewCartScreen : View {
                 })
             }
             .padding(.horizontal , 10)
+            
+            
+            Spacer()
+                .frame(height: 50)
+
         }
     }
 }
