@@ -14,7 +14,8 @@ struct CheckoutM: Codable {
 }
 
 // MARK: - CheckoutCartItem
-struct CheckoutCartItem: Codable {
+struct CheckoutCartItem: Codable , Identifiable {
+    let id = UUID()
     var customerCartID, itemID, itemPrice: Int?
     var itemName: String?
     var customerID, qty: Int?
@@ -30,7 +31,8 @@ struct CheckoutCartItem: Codable {
 }
 
 // MARK: - ItemAttributeValue
-struct ItemAttributeValue: Codable {
+struct ItemAttributeValue: Codable , Identifiable {
+    let id = UUID()
     var itemAttributeValueID: Int?
     var attributeValueName: String?
     var attributeValueID, attributeValuePrice: Int?
