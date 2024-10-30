@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 
-
+@MainActor
 class ViewModelLogin: ObservableObject {
     // Published properties to track the sign-up state
     @Published var isLoading: Bool? = false
@@ -79,4 +79,77 @@ class ViewModelLogin: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    func Login1( mobile: String, password: String ) async {
+        guard !mobile.isEmpty else {
+            self.errorMessage = "Please enter your phone number."
+            return
+        }
+        
+        guard (mobile.contains("+966")) && (mobile.count == 13) else {
+            self.errorMessage = "phone number must start with +966 and 9 digits"
+            return
+        }
+        // Input validation logic
+        guard !password.isEmpty else {
+            self.errorMessage = "Please enter your password."
+            return
+        }
+           
+        let newMobile = mobile.replacingOccurrences(of: "+966", with: "")
+        
+        isLoading = true
+        errorMessage = nil
+        let parametersArr =  ["mobile" : newMobile , "password" : password ]
+        
+        // Create your API request with the username and password
+        let target = Authintications.Login(parameters: parametersArr)
+        print(parametersArr)
+
+        isLoading = true
+            errorMessage = nil
+        do{
+            let response = try await BaseNetwork.shared.request(target, LoginResponse.self)
+            print(response)
+            self.isLoading = false
+            
+//            if response.success == true {
+                     // Successful login
+                     let user = LoginResponse(
+                        name: response.name ,
+                         mobile: response.mobile,
+                         genderId: response.genderId,
+                         birthDate: response.birthDate,
+                         email: response.email,
+                         address: response.address,
+                         cityId: response.cityId,
+                         creationDate: response.creationDate,
+                         id: response.id,
+                         token: response.token
+                     )
+                     
+                     Helper.shared.saveUser(user: user)
+                     Helper.shared.IsLoggedIn(value: true)
+                     
+                     self.loginSuccess = true
+//                 } else {
+//                     self.loginSuccess = false
+//                     self.errorMessage = response.message ?? "Login failed due to an unknown error."
+//                 }
+                 
+             } catch let error as NetworkError {
+                 self.isLoading = false
+
+                 self.errorMessage = "Network error: \(error.errorDescription)"
+                 print("Network error: \(error.errorDescription)")
+             } catch {
+                 self.isLoading = false
+                 self.errorMessage = "Unexpected error: \(error.localizedDescription)"
+                 print("Unexpected error: \(error.localizedDescription)")
+
+             }
+
+    }
+    
+    
 }

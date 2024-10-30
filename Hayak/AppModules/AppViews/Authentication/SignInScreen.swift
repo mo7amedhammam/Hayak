@@ -142,7 +142,10 @@ struct ExtractedViewSignIn: View {
                     Button(action: {
                         UIApplication.shared.endEditing()
                         //Sign in
-                        viewModel.Login(mobile: phoneNumber , password: passwordNumber)
+                            viewModel.Login(mobile: phoneNumber , password: passwordNumber)
+//                        Task{
+//                            await viewModel.Login1(mobile: phoneNumber , password: passwordNumber)
+//                        }
                     }, label: {
                         Text("Sign in")
                             .frame(height: 50) // Set the height here

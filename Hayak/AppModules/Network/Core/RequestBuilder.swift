@@ -69,6 +69,49 @@ public extension TargetType {
             return components.url!
         }
     }
+    
+    
+    // MARK: - Request URL
+    func asURL() throws -> URL{
+//                    return baseURL.appendingPathComponent(path)
+
+        switch parameter {
+            
+//        case .plainRequest:
+//            return baseURL.appendingPathComponent(path)
+//        case .parameterRequest(let parameters, _):
+//            var components = URLComponents(url: baseURL.appendingPathComponent(path), resolvingAgainstBaseURL: false)!
+//            let queryItems = parameters.map { key, value in
+//                URLQueryItem(name: key, value: "\(value)")
+//            }
+//            components.queryItems = queryItems
+//            return components.url!
+//        case .BodyparameterRequest(_, _):
+//            // For URLEncoding, parameters will be included in the request body
+//            return baseURL.appendingPathComponent(path)
+            
+        case .plainRequest,.parameterRequest,.BodyparameterRequest:
+            return baseURL.appendingPathComponent(path)
+
+            
+        case .parameterdGetRequest(let parameters, _):
+            // For GET requests with parameters in the URL
+            var components = URLComponents(url: baseURL.appendingPathComponent(path), resolvingAgainstBaseURL: false)!
+            let queryItems = parameters.map { key, value in
+                URLQueryItem(name: key, value: "\(value)")
+            }
+            components.queryItems = queryItems
+            
+            
+//            return components.url!
+            
+            guard let url = components.url else {
+                throw NetworkError.badURL("Invalid URL")
+            }
+            
+            return url
+        }
+    }
     var headers: [String: String]? {
         var header = [String: String]()
 //
@@ -77,7 +120,9 @@ public extension TargetType {
 
         
         header["Content-Type"] = "application/json"
-        header ["Accept"] = "text/plain"
+//        header ["Accept"] = "text/plain"
+//        header ["Accept"] = "application/json"
+
 
         if let token = Helper.shared.getUser()?.token {
         header["Authorization"] = "Bearer " + token
