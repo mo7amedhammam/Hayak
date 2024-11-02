@@ -31,22 +31,24 @@ struct ContentView: View {
                 )
                 
                 
-                NavigationLink(
-                    destination: TabViewWithCenterBtn().navigationBarBackButtonHidden(true),
-                    isActive: $GoToTabViewWithCenterBtn ,
-                    label: {
-                        EmptyView()
-                    }
-                )
+//                NavigationLink(
+//                    destination: TabViewWithCenterBtn().navigationBarBackButtonHidden(true),
+//                    isActive: $GoToTabViewWithCenterBtn ,
+//                    label: {
+//                        EmptyView()
+//                    }
+//                )
                 
             }
             
             .onAppear{
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                     if  Helper.shared.CheckIfLoggedIn() {
-                        GoToTabViewWithCenterBtn = true
+//                        GoToTabViewWithCenterBtn = true
+                        Helper.shared.changeRoot(toView: TabViewWithCenterBtn())
                     } else {
-                        isActive = true
+                        Helper.shared.changeRoot(toView: OnBoardingScreen())
+//                        isActive = true
                     }
                 }
             }

@@ -46,6 +46,10 @@ class CheckoutVM: ObservableObject {
 //     var lat : Double?
 //     var lon : Double?
     
+    
+    @Published var isCartDeleted : Bool = false
+
+    
     init(){
 
     }
@@ -123,6 +127,45 @@ extension CheckoutVM{
                 }
                 isLoading = false
             })
+            .store(in: &cancellables)
+    }
+    
+    
+    
+    func DeleteFromCart( customerCartId: Int) {
+        
+        isLoading = true
+        let parametersArr =  ["customerCartId" : customerCartId]
+        
+        // Create your API request with the username and password
+        let target = PickupServices.DeleteFromCart(parameters: parametersArr)
+        //print(parametersarr)
+        // Call the API using the BaseNetwork class
+        BaseNetwork.shared.CallApi(target, BaseResponse<LoginResponse>.self)
+            .sink { [self] completion in
+                // Handle completion
+                self.isLoading = false
+                switch completion {
+                case .failure(let error):
+                    isError =  true
+                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
+                case .finished:
+                    break
+                }
+            } receiveValue: { [self] response in
+                // Handle the response
+                print("response : \(response)")
+                self.isLoading = false
+                
+                // Handle the response
+                if response.success == true {
+                    isCartDeleted = true
+                } else {
+                    isError =  true
+                    error = .error(image:nil,  message: response.message ?? "",buttonTitle:"Done")
+                }
+                
+            }
             .store(in: &cancellables)
     }
     

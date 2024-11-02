@@ -27,6 +27,10 @@ struct PickUpCheckoutView: View {
                 
                 ExtractedViewCartScreen(checkoutvm: checkoutvm)
             }
+            
+            .showHud(isShowing: $checkoutvm.isLoading)
+            .showAlert(hasAlert: $checkoutvm.isError, alertType: checkoutvm.error)
+
         }
         
         //        .localizeView()
@@ -56,7 +60,6 @@ struct ExtractedViewCartScreen : View {
     var body: some View {
         
         ScrollView {
-            Spacer()
             VStack( alignment : .leading , spacing : 20) {
                 HStack {
                     Image("cartfill")
@@ -78,10 +81,12 @@ struct ExtractedViewCartScreen : View {
                 }
                 .frame(height: 60)
                 
-                                    
-                ForEach(checkoutvm.checkout?.cartItems ?? [] ) { attributes in
+                //                List {
+                ForEach(checkoutvm.checkout?.cartItems ?? []) { attributes in
                     CheckoutCellView( cartItems: attributes)
                 }
+                //                    .onDelete(perform: deleteItem)
+                //                }
               
                 VStack (alignment : .leading , spacing : 10) {
                     Text("Special request")
@@ -148,7 +153,7 @@ struct ExtractedViewCartScreen : View {
                 }
                 
                 Button(action: {
-                    
+                    checkoutvm.ConfirmCheckout()
                 }, label: {
                     Text("Check Out")
                         .frame(height: 50) // Set the height here
@@ -166,5 +171,30 @@ struct ExtractedViewCartScreen : View {
                 .frame(height: 50)
 
         }
+        .onAppear {
+            if checkoutvm.isCheckoutConfirmed {
+                
+            }
+        }
+
     }
+    
+    
+    
+    // Function to delete item
+    private func deleteItem(at offsets: IndexSet) {
+        if let index = offsets.first {
+            print("Deleting item at index: \(index)") // Print or use the index as needed
+            checkoutvm.DeleteFromCart(customerCartId: checkoutvm.checkout?.cartItems?[index].itemID ?? 0 )
+        }
+        
+        if checkoutvm.isCartDeleted {
+            SuccessItemdeleted(at: offsets)
+        }
+    }
+    
+    private func SuccessItemdeleted(at offsets: IndexSet) {
+        checkoutvm.checkout?.cartItems?.remove(atOffsets: offsets)
+    }
+    
 }
