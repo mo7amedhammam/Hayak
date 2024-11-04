@@ -46,7 +46,7 @@ struct PicUpView: View {
                 .padding(.horizontal)
             
             VStack {
-                Text("All restaurants")
+                Text("All restaurants".localized())
                     .frame(maxWidth: .infinity,alignment: .leading)
                     .foregroundColor(.activeText)
                     .font(.custom(fontEnum.bold.rawValue, size:14))
@@ -110,6 +110,7 @@ struct PicUpView: View {
                 isActive: $isActive,
                 label: {EmptyView()})
         }
+        .hideNavigationBar()
         .background{
             Color(.white).ignoresSafeArea()
                 .navigationBarBackButtonHidden(true)

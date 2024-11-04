@@ -163,6 +163,7 @@ struct TabViewWithCenterBtn: View {
                 }
                 .edgesIgnoringSafeArea(.bottom)
             }
+            .hideNavigationBar()
     }
 }
 

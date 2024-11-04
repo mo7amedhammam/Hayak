@@ -30,7 +30,7 @@ class CheckoutVM: ObservableObject {
     //    }
     //    @Published var filterlesson : DropDownOption?
 //    @Published var filtergroupName : String = ""
-//    @Published var filterdate : String?
+    @Published var note : String = ""
     
     @Published var isCheckoutConfirmed : Bool = false
     

@@ -25,13 +25,16 @@ struct PickUpCheckoutView: View {
                 }, onOtherBtn: {
                 }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
                 
-                ExtractedViewCartScreen(checkoutvm: checkoutvm)
+                ExtractedViewCartScreen()
+                    .environmentObject(checkoutvm)
+                
             }
-            
             .showHud(isShowing: $checkoutvm.isLoading)
             .showAlert(hasAlert: $checkoutvm.isError, alertType: checkoutvm.error)
             
         }
+        .hideNavigationBar()
+        
         
         //        .localizeView()
         //
@@ -55,7 +58,7 @@ struct PickUpCheckoutView: View {
 
 struct ExtractedViewCartScreen : View {
     
-    var checkoutvm : CheckoutVM
+    @EnvironmentObject var checkoutvm : CheckoutVM
     
     var body: some View {
         
@@ -66,7 +69,7 @@ struct ExtractedViewCartScreen : View {
                     .foregroundColor(Color("main1"))
                     .frame(width: 50 , height: 50)
                 
-                Text("In your cart")
+                Text("In your cart".localized())
                     .foregroundColor(Color("main1"))
                     .font(.custom(fontEnum.bold.rawValue, size: 14))
                 Spacer()
@@ -82,104 +85,134 @@ struct ExtractedViewCartScreen : View {
             .frame(height: 60)
             
             List {
-                ForEach(checkoutvm.checkout?.cartItems ?? []) { attributes in
-                    CheckoutCellView( cartItems: attributes)
-                }
-                .onDelete(perform: deleteItem)
-            }
-            
-            VStack (alignment : .leading , spacing : 10) {
-                Text("Special request")
-                    .foregroundColor(Color("main1"))
-                    .font(.custom(fontEnum.bold.rawValue, size:16))
-                
-                HStack {
-                    Image("note")
-                        .frame(width: 25 , height: 25)
-                        .offset(y : -10)
+                Group{
                     
-                    VStack (alignment : .leading ) {
-                        Text("Add a note")
+                    ForEach(checkoutvm.checkout?.cartItems ?? []) { attributes in
+                        CheckoutCellView( cartItems: attributes)
+                    }
+                    .onDelete(perform: deleteItem)
+                    //            }
+                    
+                    VStack (alignment : .leading , spacing : 15) {
+                        Text("Special request".localized())
                             .foregroundColor(Color("main1"))
-                            .font(.custom(fontEnum.medium.rawValue, size:14))
-                        Spacer()
-                        Text("Anything else we need to know ?")
+                            .font(.custom(fontEnum.bold.rawValue, size:16))
+                        
+                        HStack(alignment: .top){
+                            Image("note")
+                                .frame(width: 25 , height: 25)
+                                .offset(y : -5)
+                            
+                            VStack (alignment : .leading ) {
+                                Text("Add a note".localized())
+                                    .foregroundColor(Color("main1"))
+                                    .font(.custom(fontEnum.medium.rawValue, size:14))
+                                //                                Spacer()
+                                
+                                //                                MultilineTextField("Anything else we need to know ?",text: checkoutvm.note,onCommit: {})
+                                
+                                MultilineTextField("Anything else we need to know ?", text: $checkoutvm.note)
+                                    .font(Font.Medium(size:12))
+                                    .foregroundColor(.main1)
+                                    .disableAutocorrection(true)
+                                    .textInputAutocapitalization(.never)
+                                //                                    .frame(minHeight: 126)
+                                
+                                //                                Text("Anything else we need to know ?".localized())
+                            }
+                        }
+                        .frame(maxWidth: .infinity)
+                        
+                    }
+                    .padding(.vertical,-15)
+                    //                    .padding(.bottom , 15)
+                    //                    .padding(10)
+                    .frame(maxWidth: .infinity)
+                    
+                    // views
+                    VStack(alignment : .leading , spacing: 10) {
+                        
+                        Text("Payment summary".localized())
+                            .foregroundColor(Color("main1"))
+                            .font(.custom(fontEnum.bold.rawValue, size:16))
+                        
+                        HStack {
+                            Text("Subtotal".localized())
+                                .foregroundColor(Color("main1"))
+                                .font(.custom(fontEnum.regular.rawValue, size:12))
+                            Spacer()
+                            
+                            
+                            Group{
+                                Text("SAR".localized())
+                                Text(checkoutvm.checkout?.subTotal ?? 0,format: .number.precision(.fractionLength(2)))
+                            }
                             .foregroundColor(Color("main1"))
                             .font(.custom(fontEnum.medium.rawValue, size:12))
+                        }
+                        
+                        
+                        HStack {
+                            Text("Service fee".localized())
+                                .foregroundColor(Color("main2"))
+                                .font(.custom(fontEnum.regular.rawValue, size:12))
+                            Spacer()
+                            
+                            Group{
+                                Text("SAR".localized())
+                                Text(checkoutvm.checkout?.tax ?? 0,format: .number.precision(.fractionLength(2)))
+                            }
+                            .foregroundColor(Color("main2"))
+                            .font(.custom(fontEnum.medium.rawValue, size:12))
+                        }
+                        HStack {
+                            Text("Total amount".localized())
+                                .foregroundColor(Color("main1"))
+                                .font(.custom(fontEnum.medium.rawValue, size:14))
+                            Spacer()
+                            Group {
+                                Text("SAR".localized())
+                                Text(checkoutvm.checkout?.totalPrice ?? 0,format: .number.precision(.fractionLength(2)))
+                            }
+                            .foregroundColor(Color("main1"))
+                            .font(.custom(fontEnum.medium.rawValue, size:14))
+                        }
+                        
+                        Button(action: {
+                            checkoutvm.ConfirmCheckout()
+                        }, label: {
+                            Text("Check Out".localized())
+                                .frame(height: 50) // Set the height here
+                                .frame(maxWidth: .infinity)
+                                .font(.custom(fontEnum.medium.rawValue, size: 14))
+                                .foregroundColor(Color("bg1")).background(Color("main2"))
+                                .cornerRadius(10)
+                                .padding(.top , 30)
+                        })
                     }
+                    //                    .padding(.horizontal , 10)
+                    //                    .padding(.bottom)
+                    .padding(.bottom,20)
                 }
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
+                .padding(5)
+                
             }
-            .padding(.bottom , 15)
+            .listStyle(.plain)
+            .padding(.horizontal,-12)
+            
+            
+            //        Spacer()
+            //            .frame(height: 50)
             
         }
-        .padding(10)
-        .frame(maxWidth: .infinity)
-        
-        // views
-        VStack(alignment : .leading , spacing: 10) {
-            
-            Text("Payment summary")
-                .foregroundColor(Color("main1"))
-                .font(.custom(fontEnum.bold.rawValue, size:16))
-            
-            HStack {
-                Text("Subtotal")
-                    .foregroundColor(Color("main1"))
-                    .font(.custom(fontEnum.regular.rawValue, size:12))
-                Spacer()
-                Text("SAR \(checkoutvm.checkout?.subTotal ?? 0)")
-                    .foregroundColor(Color("main1"))
-                    .font(.custom(fontEnum.medium.rawValue, size:12))
+        .onAppear {
+            if checkoutvm.isCheckoutConfirmed {
+                
             }
-            
-            
-            HStack {
-                Text("Service fee")
-                    .foregroundColor(Color("main2"))
-                    .font(.custom(fontEnum.regular.rawValue, size:12))
-                Spacer()
-                Text("SAR \(checkoutvm.checkout?.tax ?? 0)")
-                    .foregroundColor(Color("main2"))
-                    .font(.custom(fontEnum.medium.rawValue, size:12))
-            }
-            HStack {
-                Text("Total amount")
-                    .foregroundColor(Color("main1"))
-                    .font(.custom(fontEnum.medium.rawValue, size:14))
-                Spacer()
-                Text("SAR \(checkoutvm.checkout?.totalPrice ?? 0)")
-                    .foregroundColor(Color("main1"))
-                    .font(.custom(fontEnum.medium.rawValue, size:14))
-            }
-            
-            Button(action: {
-                checkoutvm.ConfirmCheckout()
-            }, label: {
-                Text("Check Out")
-                    .frame(height: 50) // Set the height here
-                    .frame(maxWidth: .infinity)
-                    .font(.custom(fontEnum.medium.rawValue, size: 14))
-                    .foregroundColor(Color("bg1")).background(Color("main2"))
-                    .cornerRadius(10)
-                    .padding(.top , 30)
-            })
         }
-        .padding(.horizontal , 10)
-        
-        
-        Spacer()
-            .frame(height: 50)
-        
-        //        }
-            .onAppear {
-                if checkoutvm.isCheckoutConfirmed {
-                    
-                }
-            }
-        
     }
-    
-    
     
     // Function to delete item
     private func deleteItem(at offsets: IndexSet) {

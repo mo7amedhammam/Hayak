@@ -43,7 +43,7 @@ struct ContentView: View {
             
             .onAppear{
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    if  Helper.shared.CheckIfLoggedIn() {
+                    if Helper.shared.CheckIfLoggedIn() {
 //                        GoToTabViewWithCenterBtn = true
                         Helper.shared.changeRoot(toView: TabViewWithCenterBtn())
                     } else {
@@ -54,6 +54,7 @@ struct ContentView: View {
             }
             
         }
+        .hideNavigationBar()
         
     }
 }
