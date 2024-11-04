@@ -35,7 +35,7 @@ struct CheckoutCellView: View {
                 
                 if cartItems.itemAttributeValues?.count != 0 {
                     
-                    Text("Your Choice of Sauce")
+                    Text("Your Choice of Sauce".localized())
                         .foregroundColor(Color("main1"))
                         .font(.custom(fontEnum.regular.rawValue, size:10))
                     

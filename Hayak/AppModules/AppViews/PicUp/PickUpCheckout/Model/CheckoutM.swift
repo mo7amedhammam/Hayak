@@ -14,7 +14,11 @@ struct CheckoutM: Codable {
 }
 
 // MARK: - CheckoutCartItem
-struct CheckoutCartItem: Codable , Identifiable {
+struct CheckoutCartItem: Codable , Identifiable,Hashable,Equatable {
+    static func == (lhs: CheckoutCartItem, rhs: CheckoutCartItem) -> Bool {
+        return lhs.itemID == rhs.itemID
+    }
+    
     let id = UUID()
     var customerCartID, itemID, itemPrice: Int?
     var itemName: String?
@@ -31,7 +35,7 @@ struct CheckoutCartItem: Codable , Identifiable {
 }
 
 // MARK: - ItemAttributeValue
-struct ItemAttributeValue: Codable , Identifiable {
+struct ItemAttributeValue: Codable , Identifiable ,Hashable{
     let id = UUID()
     var itemAttributeValueID: Int?
     var attributeValueName: String?

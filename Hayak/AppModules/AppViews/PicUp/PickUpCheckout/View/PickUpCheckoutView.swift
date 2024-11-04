@@ -87,11 +87,10 @@ struct ExtractedViewCartScreen : View {
             List {
                 Group{
                     
-                    ForEach(checkoutvm.checkout?.cartItems ?? []) { attributes in
-                        CheckoutCellView( cartItems: attributes)
+                    ForEach(checkoutvm.checkout?.cartItems ?? [],id:\.self){ attributes in
+                        CheckoutCellView(cartItems: attributes)
                     }
                     .onDelete(perform: deleteItem)
-                    //            }
                     
                     VStack (alignment : .leading , spacing : 15) {
                         Text("Special request".localized())
@@ -189,6 +188,7 @@ struct ExtractedViewCartScreen : View {
                                 .cornerRadius(10)
                                 .padding(.top , 30)
                         })
+                        .buttonStyle(.plain)
                     }
                     //                    .padding(.horizontal , 10)
                     //                    .padding(.bottom)
