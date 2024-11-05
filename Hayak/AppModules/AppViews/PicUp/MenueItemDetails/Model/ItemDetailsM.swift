@@ -31,7 +31,8 @@ struct AddToCartDetail: Codable {
 struct AttributeValue: Codable {
     var itemAttributeValueID: Int?
     var attributeValueName: String?
-    var attributeValueID, attributeValuePrice: Int?
+    var attributeValueID: Int?
+    var attributeValuePrice: Float?
 
     enum CodingKeys: String, CodingKey {
         case itemAttributeValueID = "itemAttributeValueId"
@@ -45,7 +46,8 @@ struct AttributeValue: Codable {
 struct CustomerCart: Codable {
     var itemID: Int?
     var itemName, description: String?
-    var price, calories: Int?
+    var price: Float?
+    var calories: Int?
     var imageURL: String?
 
     enum CodingKeys: String, CodingKey {

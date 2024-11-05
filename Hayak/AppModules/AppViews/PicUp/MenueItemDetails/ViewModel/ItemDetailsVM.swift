@@ -23,7 +23,10 @@ class ItemDetailsVM: ObservableObject {
      var branchId : Int?
     
     @Published var quantity:Int = 1
-    @Published var extraIds:[Int]?
+    @Published var extraIds:[Int] = []
+    
+//    @Published private var multiSelection: [Int: Set<Int>] = [:] // Holds selected item IDs per attribute for multi-selection
+
     //    @Published var filtersubject : DropDownOption?{
     //        didSet{
     //            filterlesson = nil
@@ -106,7 +109,7 @@ extension ItemDetailsVM{
             "itemId": itemId,
             "quantity":quantity
         ]
-        if let extraIds = extraIds {
+        if extraIds.count > 0 {
             parameters["itemAttributeValueId"] = extraIds
         }
         
