@@ -13,15 +13,15 @@ class CheckoutVM: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     // Reference the location view model
-//    private var locationManager = LocationManagerVM.shared
+    //    private var locationManager = LocationManagerVM.shared
     
     
     //    MARK: --- inputs ---
-//    @Published var maxResultCount = 10
-//    @Published var skipCount = 0
+    //    @Published var maxResultCount = 10
+    //    @Published var skipCount = 0
     
     //    @Published var selectedLessonid : Int?
-//    @Published var selectedCategory:MainCategoriesM?
+    //    @Published var selectedCategory:MainCategoriesM?
     
     //    @Published var filtersubject : DropDownOption?{
     //        didSet{
@@ -29,7 +29,7 @@ class CheckoutVM: ObservableObject {
     //        }
     //    }
     //    @Published var filterlesson : DropDownOption?
-//    @Published var filtergroupName : String = ""
+    //    @Published var filtergroupName : String = ""
     @Published var note : String = ""
     
     @Published var isCheckoutConfirmed : Bool = false
@@ -41,17 +41,18 @@ class CheckoutVM: ObservableObject {
     
     //    @Published var isTeacherHasSubjects: Bool = false
     @Published var checkout : CheckoutM?
-//    @Published var NearestBrandBranches : [NearestBrandBrancheM]?
+    //    @Published var NearestBrandBranches : [NearestBrandBrancheM]?
     
-//     var lat : Double?
-//     var lon : Double?
+    //     var lat : Double?
+    //     var lon : Double?
     
     
     @Published var isCartDeleted : Bool = false
-
+    @Published var dismissCart : Bool = false
+    
     
     init(){
-
+        
     }
 }
 
@@ -117,7 +118,7 @@ extension CheckoutVM{
                 print("receivedData",receivedData)
                 if receivedData.success == true {
                     //                    TeacherSubjects?.append(model)
-//                    NearestBrandBranches = receivedData.data
+                    //                    NearestBrandBranches = receivedData.data
                     isCheckoutConfirmed = true
                     
                 }else{
@@ -132,7 +133,7 @@ extension CheckoutVM{
     
     
     
-    func DeleteFromCart( customerCartId: Int) {
+    func DeleteFromCart( customerCartId: Int , offsets: IndexSet) {
         
         isLoading = true
         let parametersArr =  ["customerCartId" : customerCartId]
@@ -160,6 +161,7 @@ extension CheckoutVM{
                 // Handle the response
                 if response.success == true {
                     isCartDeleted = true
+                    SuccessItemdeleted(at: offsets)
                 } else {
                     isError =  true
                     error = .error(image:nil,  message: response.message ?? "",buttonTitle:"Done")
@@ -167,6 +169,15 @@ extension CheckoutVM{
                 
             }
             .store(in: &cancellables)
+    }
+    
+    private func SuccessItemdeleted(at offsets: IndexSet) {
+        checkout?.cartItems?.remove(atOffsets: offsets)
+        
+        if checkout?.cartItems?.count == 0  {
+            dismissCart = true
+        }
+        
     }
     
     
