@@ -10,26 +10,54 @@ import SwiftUI
 struct OrderCanselationDelayView: View {
     
     var timeSeconds = 30
-    @State private var timeRemaining  = 0 // Set countdown time in seconds
+    @Binding var timeRemaining : Int // Set countdown time in seconds
     @State private var timerIsActive = false
+    var onPay: () -> Void
+    var onCancel: () -> Void
     
     var body: some View {
         
         ZStack {
             VStack{
-                CustomHeaderView(title: "QR Code Scan", OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
+//                CustomHeaderView(title: "QR Code Scan", OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
+                
+                // Content of the header
+                HStack {
+                    // Back button
+                    Button(action: {
+                        onCancel()
+                    }) {
+                        Image(systemName: "arrow.left")
+                            .font(.custom("LamaSans-Bold", size: 14))
+                            .foregroundColor(Color("main1"))
+                            .frame(width: 44) // The same width as the back button
+                    }
+                    .frame(width: 44) // The same width as the back button
+                    Spacer()
+                    // Title
+                    Text("QR Code Scan")
+                        .font(.headline)
+                        .foregroundColor(Color("main1"))
+                        .frame(maxWidth: .infinity, alignment: .center)
+                    
+                    Spacer()
+                        .frame(width: 44) // The same width as the back button
+                    
+                }
+                .frame(height: 60)
+                
                 
                 Spacer()
                 
                 HStack{
                     CustomBorderedButton(Title:"Cancel",IsDisabled:.constant(false) , action: {
-                        //                        startScanning = true
+                        onCancel()
                     })
                     .frame(height: 50)
                     .padding(.bottom,40)
                     
                     CustomButton(Title:"Pay",IsDisabled:.constant(false) , action: {
-                        //                        startScanning = true
+                        onPay()
                     })
                     .frame(height: 50)
                     .padding(.bottom,40)
@@ -85,5 +113,5 @@ struct OrderCanselationDelayView: View {
 }
 
 #Preview {
-    OrderCanselationDelayView()
+    OrderCanselationDelayView(timeRemaining: .constant(30), onPay: {} , onCancel: {})
 }

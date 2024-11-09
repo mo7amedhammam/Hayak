@@ -120,7 +120,6 @@ extension CheckoutVM{
                     //                    TeacherSubjects?.append(model)
                     //                    NearestBrandBranches = receivedData.data
                     isCheckoutConfirmed = true
-                    
                 }else{
                     isError =  true
                     //                    error = NetworkError.apiError(code: receivedData.messageCode ?? 0, error: receivedData.message ?? "")

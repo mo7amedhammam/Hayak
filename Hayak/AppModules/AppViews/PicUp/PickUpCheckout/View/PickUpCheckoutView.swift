@@ -12,6 +12,10 @@ struct PickUpCheckoutView: View {
     //    @ObservedObject var localizeHelper = LocalizeHelper.shared // Observe the language changes
     @EnvironmentObject var checkoutvm : CheckoutVM
     
+    @State var showTimerView = false
+    @State private var timeRemaining = 30 // Initial time for the timer
+
+    
     var body: some View {
         ZStack {
             Color(.white).ignoresSafeArea()
@@ -25,18 +29,35 @@ struct PickUpCheckoutView: View {
                 }, onOtherBtn: {
                 }, OtherBtnIsfound: false , imageonOtherBtn: "", coloronOtherBtn: "")
                 
-                ExtractedViewCartScreen()
+                ExtractedViewCartScreen(showTimerView: $showTimerView)
                     .environmentObject(checkoutvm)
                 
             }
             .showHud(isShowing: $checkoutvm.isLoading)
             .showAlert(hasAlert: $checkoutvm.isError, alertType: checkoutvm.error)
             
+            .fullScreenCover(isPresented: $showTimerView, content: {
+                OrderCanselationDelayView(
+                    timeSeconds: 30,
+                    timeRemaining: $timeRemaining ,
+                    onPay: handlePay,
+                    onCancel: handleCancel
+                )
+            })
+            
+            
             .onChange(of: checkoutvm.dismissCart) { newValue in
                 if newValue {
                     presentationMode.wrappedValue.dismiss()
                 }
             }
+            
+            .onChange(of: checkoutvm.isCartDeleted) { newValue in
+                if newValue {
+                    checkoutvm.GetCheckout()
+                }
+            }
+            
             
             .onChange(of: checkoutvm.isCheckoutConfirmed) { newValue in
                 if newValue {
@@ -61,6 +82,27 @@ struct PickUpCheckoutView: View {
         
         
     }
+    
+    
+    func handlePay() {
+        // Code to execute when "Pay" is tapped
+        if timeRemaining > 0 {
+            print("Payment initiated.")
+            showTimerView = false
+            checkoutvm.ConfirmCheckout()
+        } else {
+            print("Time is out, payment cannot be made.")
+        }
+        
+    }
+       
+       func handleCancel() {
+           // Code to execute when "Cancel" is tapped
+           print("Order cancelled.")
+           showTimerView = false
+       }
+    
+    
 }
 
 #Preview {
@@ -72,6 +114,7 @@ struct PickUpCheckoutView: View {
 struct ExtractedViewCartScreen : View {
     
     @EnvironmentObject var checkoutvm : CheckoutVM
+    @Binding var showTimerView : Bool
     
     var body: some View {
         
@@ -96,6 +139,7 @@ struct ExtractedViewCartScreen : View {
                     .font(.custom(fontEnum.bold.rawValue, size: 14))
             }
             .frame(height: 60)
+            .padding(.horizontal , 5)
             
             List {
                 Group{
@@ -191,7 +235,7 @@ struct ExtractedViewCartScreen : View {
                         }
                         
                         Button(action: {
-                            checkoutvm.ConfirmCheckout()
+                            showTimerView = true
                         }, label: {
                             Text("Check Out".localized())
                                 .frame(height: 50) // Set the height here
