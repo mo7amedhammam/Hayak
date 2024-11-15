@@ -50,11 +50,27 @@ class CheckoutVM: ObservableObject {
     @Published var isCartDeleted : Bool = false
     @Published var dismissCart : Bool = false
     
-    
     init(){
         
     }
 }
+
+extension CheckoutVM {
+    /// Updates the quantity of a specific item in the cart
+    func updateItemQuantity(itemID: UUID, newQuantity: Int) {
+        guard var cartItems = checkout?.cartItems else { return }
+        // Find the index of the item to update
+        if let index = cartItems.firstIndex(where: { $0.id == itemID }) {
+            // Update the quantity of the item
+            cartItems[index].qty = newQuantity
+            // Update the checkout model
+            print("newQuantity : \(newQuantity)")
+            checkout?.cartItems = cartItems
+        }
+    }
+}
+
+
 
 extension CheckoutVM{
     

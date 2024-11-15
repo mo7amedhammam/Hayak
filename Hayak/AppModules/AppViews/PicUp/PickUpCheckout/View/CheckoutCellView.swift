@@ -14,10 +14,11 @@ import SwiftUI
 
 struct CheckoutCellView: View {
     
-   @State var plusMinus  = 0
+    @State var plusMinus  = 0
     
+    @ObservedObject var viewModel: CheckoutVM
     var cartItems : CheckoutCartItem
-
+    
     
     var body: some View {
         
@@ -51,10 +52,10 @@ struct CheckoutCellView: View {
             Spacer()
             
             VStack (spacing : -10){
-//                KFImageLoader(urlStr: cartItems., placeholder: Image("pickupbgtest"))
-//                    .placeholder.resizable().scaledToFill()
-//                    .resizable()
-//                    .frame(width: 100 , height: 100)
+                //                KFImageLoader(urlStr: cartItems., placeholder: Image("pickupbgtest"))
+                //                    .placeholder.resizable().scaledToFill()
+                //                    .resizable()
+                //                    .frame(width: 100 , height: 100)
                 Image("od")
                     .resizable()
                     .frame(width: 100 , height: 100)
@@ -64,6 +65,7 @@ struct CheckoutCellView: View {
                         .foregroundColor(.white)
                         .onTapGesture {
                             plusMinus += 1
+                            viewModel.updateItemQuantity(itemID: cartItems.id, newQuantity: plusMinus)
                         }
                     Spacer()
                     Text("\(plusMinus)")
@@ -75,12 +77,9 @@ struct CheckoutCellView: View {
                         .frame(width: 20 , height: 20 )
                         .foregroundColor(.white)
                         .onTapGesture {
-                            if plusMinus == 1 {
-                                // remove from cart
-                                
-                                
-                            } else {
+                            if plusMinus > 1 {
                                 plusMinus -= 1
+                                viewModel.updateItemQuantity(itemID: cartItems.id, newQuantity: plusMinus)
                             }
                         }
                 }
@@ -105,5 +104,5 @@ struct CheckoutCellView: View {
 }
 
 #Preview {
-    CheckoutCellView(cartItems: CheckoutCartItem())
+    CheckoutCellView(viewModel: CheckoutVM.shared , cartItems: CheckoutCartItem())
 }

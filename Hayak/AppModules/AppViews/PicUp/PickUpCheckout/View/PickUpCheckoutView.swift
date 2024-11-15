@@ -15,6 +15,7 @@ struct PickUpCheckoutView: View {
     @State var showTimerView = false
     @State private var timeRemaining = 30 // Initial time for the timer
 
+    @State var Total_Price = 0
     
     var body: some View {
         ZStack {
@@ -145,7 +146,7 @@ struct ExtractedViewCartScreen : View {
                 Group{
                     
                     ForEach(checkoutvm.checkout?.cartItems ?? [],id:\.self){ attributes in
-                        CheckoutCellView(cartItems: attributes)
+                        CheckoutCellView(viewModel: checkoutvm, cartItems: attributes)
                     }
                     .onDelete(perform: deleteItem)
                     
