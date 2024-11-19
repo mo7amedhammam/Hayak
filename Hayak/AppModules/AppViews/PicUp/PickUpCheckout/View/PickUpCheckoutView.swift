@@ -143,8 +143,7 @@ struct ExtractedViewCartScreen : View {
             .padding(.horizontal , 5)
             
             List {
-                Group{
-                    
+                Group{                    
                     ForEach(checkoutvm.checkout?.cartItems ?? [],id:\.self){ attributes in
                         CheckoutCellView(viewModel: checkoutvm, cartItems: attributes)
                     }

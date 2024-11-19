@@ -57,7 +57,7 @@ class MainPickUpVM: ObservableObject {
 
 extension MainPickUpVM{
     
-    func GetCategories(){
+    func GetCategories() {
         //        var parameters:[String:Any] = ["maxResultCount":maxResultCount,"skipCount":skipCount]
         
         //        if let filtersubjectid = filtersubject?.id{
@@ -75,6 +75,10 @@ extension MainPickUpVM{
         
         //        print("parameters",parameters)
         let target = PickupServices.Categories
+        
+        let target2 = PickupServices.CustomerFavourite
+
+        
         isLoading = true
         BaseNetwork.shared.CallApi(target, BaseResponse<[MainCategoriesM]>.self)
             .receive(on: DispatchQueue.main)

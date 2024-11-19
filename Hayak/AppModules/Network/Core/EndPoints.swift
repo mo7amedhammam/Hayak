@@ -51,5 +51,8 @@ enum PickupEndPoints: String {
     case DeleteFromCart = "CustomerCart/DeleteFromCart"
     /** post<cartItems:[customerCartId,...]*/
     case ConfirmCheckout = "CustomerCart/ConfirmCheckout"
+    
+    case CustomerFavourite = "CustomerFavourite/GetAll"
+    case AddToFavourit = "CustomerFavourite/Create"
 
 }
