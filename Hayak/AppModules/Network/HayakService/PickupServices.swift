@@ -21,6 +21,9 @@ enum PickupServices {
     case GetCheckout
     case DeleteFromCart(parameters : [String:Any])
     case ConfirmCheckout(parameters : [String:Any])
+    case CustomerFavourite
+    case AddToFavourit(parameters : [String:Any])
+
 
 }
 
@@ -48,27 +51,32 @@ extension PickupServices : TargetType {
             return PickupEndPoints.DeleteFromCart.rawValue
         case .ConfirmCheckout:
             return PickupEndPoints.ConfirmCheckout.rawValue
+        case .CustomerFavourite :
+            return PickupEndPoints.CustomerFavourite.rawValue
+        case .AddToFavourit :
+            return PickupEndPoints.AddToFavourit.rawValue
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .NearestBrandBranches,.BrandBranchDetails,.AddToCart,.ConfirmCheckout:
+        case .NearestBrandBranches,.BrandBranchDetails,.AddToCart,.ConfirmCheckout , .AddToFavourit :
             return .post
-        case .Categories,.CategoryForList,.GetItemDetailsView,.GetCheckout,.DeleteFromCart:
+        case .Categories,.CategoryForList,.GetItemDetailsView,.GetCheckout,.DeleteFromCart , .CustomerFavourite:
             return .get
         }
     }
     
     var parameter: parameterType {
         switch self {
-        case .Categories,.CategoryForList,.GetCheckout:
+        case .Categories,.CategoryForList,.GetCheckout , .CustomerFavourite:
             return .plainRequest
             
         case .NearestBrandBranches(parameters:let parameters),
                 .BrandBranchDetails(parameters: let parameters),
                 .AddToCart(parameters: let parameters),
-                .ConfirmCheckout(parameters: let parameters):
+                .ConfirmCheckout(parameters: let parameters),
+                .AddToFavourit(parameters: let parameters) :
             return .parameterRequest(Parameters: parameters, Encoding: .default)
             
         case .GetItemDetailsView(parameters: let parameters),

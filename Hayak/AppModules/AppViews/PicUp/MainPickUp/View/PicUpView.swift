@@ -42,7 +42,14 @@ struct PicUpView: View {
     
     var body: some View {
         VStack {
-            CustomPickupHeaderView(title: "Saudi Arabia", subtitle: "Al Riadh city",btnbackimg: nil, onBack: {}, btnimg2:Image(.shoppingiconfill), onbtnimg2: {}, btnimg3: Image(.favoriteiconempty), onbtnimg3: {}, btnimg4: Image("carbon_search"), onbtnimg4: {})
+            CustomPickupHeaderView(title: "Saudi Arabia", subtitle: "Al Riadh city",btnbackimg: nil, onBack: {}, btnimg2:Image(.shoppingiconfill), onbtnimg2: {}, btnimg3: Image(.favoriteiconempty), onbtnimg3: {
+                
+                print("favourite")
+                
+                
+                
+                
+            }, btnimg4: Image("carbon_search"), onbtnimg4: {})
                 .padding(.horizontal)
             
             VStack {

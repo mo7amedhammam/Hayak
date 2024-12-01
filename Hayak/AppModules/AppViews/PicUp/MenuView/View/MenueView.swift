@@ -20,7 +20,7 @@ struct MenueView: View {
     @State var selecteditemId : Int = 0
     @State var isActive : Bool = false
     @State var destination : AnyView = AnyView(EmptyView())
-
+             
     var body: some View {
         VStack {
             ZStack(alignment: .top){
@@ -28,7 +28,13 @@ struct MenueView: View {
                     .resizable()
                     .frame(height: 195)
                 
-                CustomPickupHeaderView(btnbackimg: Image(.circleback), onBack: {}, btnimg2:Image(.circlelove), onbtnimg2: {}, btnimg3: Image(.circleshare), onbtnimg3: {}, btnimg4: Image(.circlesearch), onbtnimg4: {},bgColor: .clear)
+                CustomPickupHeaderView(btnbackimg: Image(.circleback), onBack: {}, btnimg2:Image(checkoutvm.itemAddedToFavourit ? .favoriteiconfill : .circlelove), onbtnimg2: {
+                    
+                    // add to favourit
+                    checkoutvm.AddToFavourit(brandBranchId: menuvm.BrandBrancheDetails?.id ?? 0)
+                    
+                    
+                }, btnimg3: Image(.circleshare), onbtnimg3: {}, btnimg4: Image(.circlesearch), onbtnimg4: {},bgColor: .clear)
                     .padding(.top,UIDevice().hasNotch ? 50:20)
             }
             let details = menuvm.BrandBrancheDetails
@@ -218,6 +224,9 @@ struct MenueView: View {
         }
         .showHud(isShowing: $menuvm.isLoading)
         .showAlert(hasAlert: $menuvm.isError, alertType: menuvm.error)
+        
+        .showHud(isShowing: $checkoutvm.isLoading)
+        .showAlert(hasAlert: $checkoutvm.isError, alertType: checkoutvm.error)
 
         .bottomSheet(isPresented: $isSheetPresented) {
             menueItemDetails( isPresented: $isSheetPresented, branchId:SelectedBranchId, itemId: selecteditemId)
