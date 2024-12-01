@@ -23,3 +23,7 @@
 //MARK: -- error --
 "noConnection" = "You are offline";
 "tokenExpired" = "you have to login again";
+
+"new item" = "new item";
+
+"Get Started" = "Get Started";

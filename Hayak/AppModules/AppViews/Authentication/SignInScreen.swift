@@ -147,7 +147,7 @@ struct ExtractedViewSignIn: View {
 //                            await viewModel.Login1(mobile: phoneNumber , password: passwordNumber)
 //                        }
                     }, label: {
-                        Text("Sign in")
+                        Text("Sign in".localized())
                             .frame(height: 50) // Set the height here
                             .frame(maxWidth: .infinity)
                             .font(.custom(fontEnum.medium.rawValue, size: 14))
