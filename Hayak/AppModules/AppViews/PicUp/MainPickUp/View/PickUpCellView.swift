@@ -18,7 +18,7 @@ struct pickUpCellModel : Hashable {
 }
 
 struct pickUpCellView: View {
-    var pickUp : NearestBrandBrancheM
+   @State var pickUp : NearestBrandBrancheM
     var onSelect: (() -> Void)?
     var onClickLove: (() -> Void)?
     
@@ -73,9 +73,11 @@ struct pickUpCellView: View {
                         
                         Button(action: {
                             onClickLove?()
+                            pickUp.favourite?.toggle()
                         }, label: {
                             Image(pickUp.favourite ?? false ? .unlove:.love)
                         })
+                        .buttonStyle(.plain)
                         
                     }
                     .padding(.horizontal)

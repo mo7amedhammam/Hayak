@@ -7,6 +7,7 @@
 */
 
 "Hello, World!" = "مرحبا";
+"Welcome Back!" = "Welcome Back!";
 "sign_in" = "تسجيل دخول";
 "Don't have an account ?" = "ليس لديك حساب ؟";
 "Forget password ?" = "نسيت كلمة المرور ؟";
@@ -30,4 +31,4 @@
 
 
 "Get Started" = "Get Started";
-"Sign in"
+"Sign in" = "Sign in";

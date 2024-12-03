@@ -10,7 +10,7 @@ import Foundation
 // MARK: - CheckoutM
 struct CheckoutM: Codable {
     var cartItems: [CheckoutCartItem]?
-    var totalPrice, subTotal, tax, discount: Int?
+    var totalPrice, subTotal, tax, discount: Float?
 }
 
 // MARK: - CheckoutCartItem
@@ -20,7 +20,8 @@ struct CheckoutCartItem: Codable , Identifiable,Hashable,Equatable {
     }
     
     let id = UUID()
-    var customerCartID, itemID, itemPrice: Int?
+    var customerCartID, itemID: Int?
+    var itemPrice: Float?
     var itemName: String?
     var customerID, qty: Int?
     var itemAttributeValues: [ItemAttributeValue]?
@@ -39,7 +40,8 @@ struct ItemAttributeValue: Codable , Identifiable ,Hashable{
     let id = UUID()
     var itemAttributeValueID: Int?
     var attributeValueName: String?
-    var attributeValueID, attributeValuePrice: Int?
+    var attributeValueID: Int?
+    var attributeValuePrice: Float?
 
     enum CodingKeys: String, CodingKey {
         case itemAttributeValueID = "itemAttributeValueId"

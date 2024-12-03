@@ -140,11 +140,11 @@ class ViewModelLogin: ObservableObject {
              } catch let error as NetworkError {
                  self.isLoading = false
 
-                 self.errorMessage = "Network error: \(error.errorDescription)"
+                 self.errorMessage = error.errorDescription
                  print("Network error: \(error.errorDescription)")
              } catch {
                  self.isLoading = false
-                 self.errorMessage = "Unexpected error: \(error.localizedDescription)"
+                 self.errorMessage = error.localizedDescription
                  print("Unexpected error: \(error.localizedDescription)")
 
              }

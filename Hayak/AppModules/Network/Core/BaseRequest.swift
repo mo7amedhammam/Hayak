@@ -95,7 +95,7 @@ final class BaseNetwork{
              encoding: parameters.1,
              headers: headers
          )
-         .validate()
+            .validate(statusCode: 200..<500)
          .serializingDecodable(BaseResponse<M>.self)
          .value
          
@@ -103,7 +103,7 @@ final class BaseNetwork{
        
          guard let data = response.data else {
              throw NetworkError.unknown(
-                 code: 0,
+                code: response.messageCode ?? 0,
                  error: response.message ?? "Unknown error"
              )
          }

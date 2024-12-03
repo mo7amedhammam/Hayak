@@ -39,15 +39,33 @@ struct PicUpView: View {
     @State var selectedsort : OrderStatus?
     @State var selectedradius : Int?
     @State var selectedrate : Int?
-    
+    var isshowingcart:Bool? = false
+
+    var islistingfavourites:Bool? = false
+    var hasbackBtn:Bool? = false
+//    @Environment(\.dismiss) var dismiss
+
     var body: some View {
         VStack {
-            CustomPickupHeaderView(title: "Saudi Arabia", subtitle: "Al Riadh city",btnbackimg: nil, onBack: {}, btnimg2:Image(.shoppingiconfill), onbtnimg2: {}, btnimg3: Image(.favoriteiconempty), onbtnimg3: {
+            CustomPickupHeaderView(title: "Saudi Arabia", subtitle: "Al Riadh city",btnbackimg: hasbackBtn ?? false ? Image(.circleback):nil, onBack: {}, btnimg2:Image(.shoppingiconfill), onbtnimg2: {
                 
-                print("favourite")
+                guard isshowingcart == false else {return}
+                let checkoutvm = CheckoutVM()
+                checkoutvm.GetCheckout()
+                var view = PickUpCheckoutView().environmentObject(checkoutvm)
+                destination = AnyView(view)
+                isActive = true
                 
+            }, btnimg3: Image(islistingfavourites ?? false ? .favoriteiconfill:.favoriteiconempty), onbtnimg3: {
                 
-                
+                guard islistingfavourites == false else {return}
+                print("list favourites")
+                var view = PicUpView()
+                view.islistingfavourites = true
+                view.hasbackBtn = true
+                view.pickupvm.GetFavouriteBrandBranches()
+                destination = AnyView(view)
+                isActive = true
                 
             }, btnimg4: Image("carbon_search"), onbtnimg4: {})
                 .padding(.horizontal)
@@ -96,7 +114,9 @@ struct PicUpView: View {
                         destination = AnyView( MenueView(SelectedBranchId: id).environmentObject(locationManager) )
                         self.isActive = true
                     },onClickLove: {
-                        
+                        guard let id = branch.id else {return}
+                        pickupvm.AddToFavourit(brandBranchId: id)
+
                     })
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
@@ -123,6 +143,7 @@ struct PicUpView: View {
                 .navigationBarBackButtonHidden(true)
         }
         .task {
+            guard islistingfavourites == false && isshowingcart == false else {return}
             pickupvm.lat = locationManager.Currentlat
             pickupvm.lon = locationManager.Currentlong
 

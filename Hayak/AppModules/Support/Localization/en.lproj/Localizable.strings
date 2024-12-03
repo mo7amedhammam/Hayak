@@ -7,6 +7,8 @@
 */
 
 "Hello, World!" = "Hello, World!";
+"Welcome Back!" = "Welcome Back!";
+"Sign in to continue" = "Sign in to continue";
 "sign_in" = "sign in";
 "Don't have an account ?" = "Don't have an account ?";
 "Forget password ?" = "Forget password ?";
@@ -15,6 +17,7 @@
 //MARK: -- signUp --
 "sign_up" = "sign Up";
 "Accept the Terms and Privacy Policy" = "Accept the Terms and Privacy Policy";
+"By creating an account you agree to our Terms of Service and Privacy Policy" = "By creating an account you agree to our Terms of Service and Privacy Policy";
 "Already have an account ?" = "Already have an account ?";
 
 //MARK: --- keyboard --
@@ -27,3 +30,7 @@
 "new item" = "new item";
 
 "Get Started" = "Get Started";
+"Sign in" = "Sign in";
+"Sign up" = "Sign up";
+"Profile" = "Profile";
+"Sign in to your account or Sign up for new account" = "Sign in to your account or Sign up for new account";

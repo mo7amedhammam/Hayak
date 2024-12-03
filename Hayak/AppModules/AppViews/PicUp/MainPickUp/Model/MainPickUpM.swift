@@ -35,3 +35,4 @@ struct NearestBrandBrancheM: Codable,Hashable {
         case favourite, distance, resturantType, isRecommended
     }
 }
+

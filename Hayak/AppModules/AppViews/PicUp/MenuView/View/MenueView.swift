@@ -28,10 +28,10 @@ struct MenueView: View {
                     .resizable()
                     .frame(height: 195)
                 
-                CustomPickupHeaderView(btnbackimg: Image(.circleback), onBack: {}, btnimg2:Image(checkoutvm.itemAddedToFavourit ? .favoriteiconfill : .circlelove), onbtnimg2: {
+                CustomPickupHeaderView(btnbackimg: Image(.circleback), onBack: {}, btnimg2:Image(.circlelove), onbtnimg2: {
                     
                     // add to favourit
-                    checkoutvm.AddToFavourit(brandBranchId: menuvm.BrandBrancheDetails?.id ?? 0)
+//                    checkoutvm.AddToFavourit(brandBranchId: menuvm.BrandBrancheDetails?.id ?? 0)
                     
                     
                 }, btnimg3: Image(.circleshare), onbtnimg3: {}, btnimg4: Image(.circlesearch), onbtnimg4: {},bgColor: .clear)

@@ -49,7 +49,6 @@ class CheckoutVM: ObservableObject {
     
     @Published var isCartDeleted : Bool = false
     @Published var dismissCart : Bool = false
-    @Published var itemAddedToFavourit : Bool = false
 
     init(){
         
@@ -146,41 +145,6 @@ extension CheckoutVM{
             })
             .store(in: &cancellables)
     }
-    
-    
-    func AddToFavourit (brandBranchId: Int) {
-        
-        isLoading = true
-        let parametersArr =  ["brandBranchId" : brandBranchId]
-        let target = PickupServices.AddToFavourit(parameters: parametersArr)
-        // Call the API using the BaseNetwork class
-        BaseNetwork.shared.CallApi(target, BaseResponse<LoginResponse>.self)
-            .sink { [self] completion in
-                // Handle completion
-                self.isLoading = false
-                switch completion {
-                case .failure(let error):
-                    isError =  true
-                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
-                case .finished:
-                    break
-                }
-            } receiveValue: { [self] response in
-                // Handle the response
-                print("response AddToFavourit : \(response)")
-                self.isLoading = false
-                // Handle the response
-                if response.success == true {
-                    itemAddedToFavourit = true
-                } else {
-                    isError =  true
-                    error = .error(image:nil,  message: response.message ?? "unexpected error occured",buttonTitle:"Done")
-                }
-                
-            }
-            .store(in: &cancellables)
-    }
-    
     
     
     func DeleteFromCart( customerCartId: Int , offsets: IndexSet) {

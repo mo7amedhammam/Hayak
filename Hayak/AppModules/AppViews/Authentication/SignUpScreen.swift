@@ -149,8 +149,8 @@ struct ExtractedViewSignUp: View {
                             }
                         }
                     
-                    PasswordView(passwordNumber: $password, passwordPlaceholder: $passwordPlaceholder, textLable: $textLable, image: $image, isPasswordWrong: $isPasswordWrong)
-                    PasswordView(passwordNumber: $confirmPassword, passwordPlaceholder: $confirmpasswordPlaceholder, textLable: $confirmtextLable, image: $image, isPasswordWrong: $isPasswordWrongconfirm)
+                    PasswordView(passwordNumber: $password, passwordPlaceholder: passwordPlaceholder, textLable: textLable, image: image, isPasswordWrong: $isPasswordWrong)
+                    PasswordView(passwordNumber: $confirmPassword, passwordPlaceholder: confirmpasswordPlaceholder, textLable: confirmtextLable, image: image, isPasswordWrong: $isPasswordWrongconfirm)
                     
                     Spacer()
                     
@@ -258,33 +258,34 @@ struct UserNameView: View {
 
 
 struct ConfirmPasswordView: View {
-    @State private var ConfirmpasswordNumber: String = ""
-    
+    @State private var confirmPasswordNumber: String = ""
+    @State private var isPasswordVisible: Bool = false // State to toggle password visibility
+
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text("Confirm Password")
                 .font(.custom("LamaSans-Bold", size: 12))
                 .foregroundColor(Color("main1"))
             
-            
             HStack {
-                
                 CustomSecureTextField(
-                    text: $ConfirmpasswordNumber,
+                    text: $confirmPasswordNumber,
+                    isSecure: .constant(!isPasswordVisible), // Pass negation of visibility state
                     placeholder: "Confirm your password",
-                    placeholderColor: UIColor(named: "empty text field") ?? .gray ,
-                    textColor:  UIColor(named: "main1") ?? .black
+                    placeholderColor: UIColor(named: "empty text field") ?? .gray,
+                    textColor: UIColor(named: "main1") ?? .black
                 )
-                .font(.custom("LamaSans-Regular", size: 10))
-                .padding(.trailing, 32) // Add padding to make room for the icon
-                .overlay(
-                    HStack {
-                        Spacer()
-                        Image("password") // Replace with your desired icon
-                            .foregroundColor(Color("AAAAAA"))
-                            .padding(.trailing, 8)
-                    }
-                )
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .padding(.trailing, 32) // Add padding to make room for the toggle button
+                
+                Button(action: {
+                    isPasswordVisible.toggle() // Toggle password visibility
+                }) {
+                    Image(systemName: isPasswordVisible ? "eye.slash" : "eye")
+                        .foregroundColor(Color("main1"))
+                }
+                .padding(.trailing, 8)
             }
             .padding(.vertical, 8)
             .overlay(Rectangle().frame(height: 1).padding(.top, 35))
@@ -294,3 +295,4 @@ struct ConfirmPasswordView: View {
         .frame(height: 100) // Set the desired height here
     }
 }
+

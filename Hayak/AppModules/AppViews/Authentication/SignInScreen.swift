@@ -94,10 +94,10 @@ struct ExtractedViewSignIn: View {
                     Image("LOGO")
                         .resizable()
                         .frame(width: 170 , height: 80)
-                    Text("Welcome Back!")
+                    Text("Welcome Back!".localized())
                         .font(.custom("LamaSans-Bold", size: 18))
                         .foregroundColor(Color("main1"))
-                    Text("Sign in to continue")
+                    Text("Sign in to continue".localized())
                         .font(.custom(fontEnum.medium.rawValue, size: 13))
                         .foregroundColor(Color("main1"))
                 }
@@ -117,12 +117,12 @@ struct ExtractedViewSignIn: View {
                         }
                     
                     
-                    PasswordView(passwordNumber: $passwordNumber, passwordPlaceholder: $passwordPlaceholder, textLable: $textLable, image: $image, isPasswordWrong: $isPasswordWrong)
+                    PasswordView(passwordNumber: $passwordNumber, passwordPlaceholder: passwordPlaceholder, textLable: textLable, image: image, isPasswordWrong: $isPasswordWrong)
                     Spacer()
                     
                     HStack {
                         CheckboxView(isChecked: $isChecked)
-                        Text("Remember me")
+                        Text("Remember me".localized())
                             .foregroundColor(Color("main1"))
                             .font(.custom(fontEnum.medium.rawValue, size: 13))
                         Spacer()
@@ -131,7 +131,7 @@ struct ExtractedViewSignIn: View {
                             print("Button tapped")
                             GoToForgetPassword = true
                         }) {
-                            Text("Forget password?")
+                            Text("Forget password?".localized())
                                 .font(.custom(fontEnum.medium.rawValue, size: 14))
                                 .foregroundColor(Color("main2"))
                         }
@@ -142,10 +142,10 @@ struct ExtractedViewSignIn: View {
                     Button(action: {
                         UIApplication.shared.endEditing()
                         //Sign in
-                            viewModel.Login(mobile: phoneNumber , password: passwordNumber)
-//                        Task{
-//                            await viewModel.Login1(mobile: phoneNumber , password: passwordNumber)
-//                        }
+//                            viewModel.Login(mobile: phoneNumber , password: passwordNumber)
+                        Task{
+                            await viewModel.Login1(mobile: phoneNumber , password: passwordNumber)
+                        }
                     }, label: {
                         Text("Sign in".localized())
                             .frame(height: 50) // Set the height here

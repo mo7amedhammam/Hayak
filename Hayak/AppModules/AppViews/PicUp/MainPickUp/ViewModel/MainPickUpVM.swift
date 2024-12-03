@@ -13,7 +13,7 @@ class MainPickUpVM: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     // Reference the location view model
-//    private var locationManager = LocationManagerVM.shared
+    //    private var locationManager = LocationManagerVM.shared
     
     
     //    MARK: --- inputs ---
@@ -41,17 +41,18 @@ class MainPickUpVM: ObservableObject {
     //    @Published var isTeacherHasSubjects: Bool = false
     @Published var Categories : [MainCategoriesM]?
     @Published var NearestBrandBranches : [NearestBrandBrancheM]?
+//    @Published var itemAddedToFavourit : Bool = false
     
-     var lat : Double?
-     var lon : Double?
+    var lat : Double?
+    var lon : Double?
     
     init(){
-//        lat = locationManager.userLatitude
-//        lon = locationManager.userLongitude
+        //        lat = locationManager.userLatitude
+        //        lon = locationManager.userLongitude
         
-//        lat = LocationManagerVM.shared.userLatitude
-//        lon = LocationManagerVM.shared.userLongitude
-
+        //        lat = LocationManagerVM.shared.userLatitude
+        //        lon = LocationManagerVM.shared.userLongitude
+        
     }
 }
 
@@ -75,9 +76,6 @@ extension MainPickUpVM{
         
         //        print("parameters",parameters)
         let target = PickupServices.Categories
-        
-        let target2 = PickupServices.CustomerFavourite
-
         
         isLoading = true
         BaseNetwork.shared.CallApi(target, BaseResponse<[MainCategoriesM]>.self)
@@ -118,21 +116,21 @@ extension MainPickUpVM{
         // Access latitude and longitude directly from the location manager
         parameters["lat"] = 30.549753700368758
         parameters["lon"] = 31.065455361906114
-
-//        if let lat = lat, let lon = lon {
-//            parameters["lat"] = lat
-//            parameters["lon"] = lon
-//        }
         
-//        if let distance = ""{
-//            parameters["distance"] = distance
-//        }
+        //        if let lat = lat, let lon = lon {
+        //            parameters["lat"] = lat
+        //            parameters["lon"] = lon
+        //        }
+        
+        //        if let distance = ""{
+        //            parameters["distance"] = distance
+        //        }
         if let categoryId = selectedCategory?.id{
             parameters["categoryId"] = categoryId
         }
-//        if let sortBy = ""{
-//            parameters["sortBy"] = sortBy
-//        }
+        //        if let sortBy = ""{
+        //            parameters["sortBy"] = sortBy
+        //        }
         print("parameters",parameters)
         let target = PickupServices.NearestBrandBranches(parameters: parameters)
         isLoading = true
@@ -161,6 +159,72 @@ extension MainPickUpVM{
                 }
                 isLoading = false
             })
+            .store(in: &cancellables)
+        
+    }
+    
+    func GetFavouriteBrandBranches(){
+     
+        let target = PickupServices.CustomerFavourite
+        isLoading = true
+        BaseNetwork.shared.CallApi(target, BaseResponse<[NearestBrandBrancheM]>.self)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {[weak self] completion in
+                guard let self = self else{return}
+                isLoading = false
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    isError =  true
+                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
+                }
+            },receiveValue: {[weak self] receivedData in
+                guard let self = self else{return}
+                print("receivedData",receivedData)
+                if receivedData.success == true {
+                    //                    TeacherSubjects?.append(model)
+                    NearestBrandBranches = receivedData.data
+                }else{
+                    isError =  true
+                    //                    error = NetworkError.apiError(code: receivedData.messageCode ?? 0, error: receivedData.message ?? "")
+                    error = .error(image:nil,  message: receivedData.message ?? "",buttonTitle:"Done")
+                }
+                isLoading = false
+            })
+            .store(in: &cancellables)
+        
+    }
+    func AddToFavourit (brandBranchId: Int) {
+        
+        isLoading = true
+        let parametersArr =  ["brandBranchId" : brandBranchId]
+        let target = PickupServices.AddToFavourit(parameters: parametersArr)
+        // Call the API using the BaseNetwork class
+        BaseNetwork.shared.CallApi(target, BaseResponse<LoginResponse>.self)
+            .sink { [self] completion in
+                // Handle completion
+                self.isLoading = false
+                switch completion {
+                case .failure(let error):
+                    isError =  true
+                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
+                case .finished:
+                    break
+                }
+            } receiveValue: { [self] response in
+                // Handle the response
+                print("response AddToFavourit : \(response)")
+                self.isLoading = false
+                // Handle the response
+                if response.success == true {
+                    
+                } else {
+                    isError =  true
+                    error = .error(image:nil,  message: response.message ?? "unexpected error occured",buttonTitle:"Done")
+                }
+                
+            }
             .store(in: &cancellables)
     }
     

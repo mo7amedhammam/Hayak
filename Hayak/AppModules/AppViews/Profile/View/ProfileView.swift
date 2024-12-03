@@ -55,7 +55,7 @@ struct ProfileView: View {
                             .frame(width: 20 , height: 15)
                         Spacer()
 
-                        Text("Profile")
+                        Text("Profile".localized())
                             .font(.custom("LamaSans-Bold", size: 14))
                             .foregroundColor( Color("main1"))
                         Spacer()
@@ -75,7 +75,12 @@ struct ProfileView: View {
                     VStack (spacing : 20) {
                         VStack{
                             if !isUserLogin {
-                                ViewCustomUserIsSigned()
+                                ViewCustomUserIsSigned(signInAction: {
+                                    Helper.shared.changeRoot(toView: SignInScreen(hasnavbar: false))
+                                }, signUpAction: {
+                                    Helper.shared.changeRoot(toView: SignUpScreen(hasnavbar: false))
+
+                                })
                             } else {
                                 ViewCustomUserNotSigned(Name : "Mohamed Ragab" , Balance : "Balance: $1200.00")
                             }
@@ -154,20 +159,23 @@ struct ProfileView: View {
 }
 
 struct  ViewCustomUserIsSigned :  View {
+    var signInAction:(() -> Void?)?
+    var signUpAction:(() -> Void?)?
+
     var body: some View {
         
         VStack {
             
-            Text("Sign in to your account or Sign up for new account")
+            Text("Sign in to your account or Sign up for new account".localized())
                 .font(.custom(fontEnum.medium.rawValue, size: 14))
                 .foregroundColor(Color("main1"))
                 .multilineTextAlignment(.center)
             Spacer()
             Button(action: {
                 //Sign in
-                
+                signInAction?()
             }, label: {
-                Text("Sign in")
+                Text("Sign in".localized())
                     .frame(height: 50) // Set the height here
                     .frame(maxWidth: .infinity)
                     .font(.custom(fontEnum.medium.rawValue, size: 14))
@@ -177,9 +185,9 @@ struct  ViewCustomUserIsSigned :  View {
             Spacer()
             Button(action: {
                 //Sign up
-                
+                signUpAction?()
             }, label: {
-                Text("Sign up")
+                Text("Sign up".localized())
                     .frame(height: 50) // Set the height here
                     .frame(maxWidth: .infinity)
                     .font(.custom(fontEnum.medium.rawValue, size: 14))
