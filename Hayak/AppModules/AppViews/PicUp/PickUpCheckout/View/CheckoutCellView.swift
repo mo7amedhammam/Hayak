@@ -15,11 +15,11 @@ import SwiftUI
 struct CheckoutCellView: View {
     
     @State var plusMinus  = 0
-    
-    @ObservedObject var viewModel: CheckoutVM
+    @EnvironmentObject var itemdetailsvm : ItemDetailsVM
+    @EnvironmentObject var viewModel: CheckoutVM
     var cartItems : CheckoutCartItem
-    
-    
+    @State var isEditCustomizableItem : Bool = false
+
     var body: some View {
         
         HStack(spacing : 10) {
@@ -64,8 +64,16 @@ struct CheckoutCellView: View {
                         .frame(width: 20 , height: 20 )
                         .foregroundColor(.white)
                         .onTapGesture {
+                            guard cartItems.isCustomizable == false else {
+                                isEditCustomizableItem = true
+                                return
+                            }
                             plusMinus += 1
-                            viewModel.updateItemQuantity(itemID: cartItems.id, newQuantity: plusMinus)
+                            itemdetailsvm.quantity = plusMinus
+                            guard let itemid = cartItems.id else {return}
+                            itemdetailsvm.Details?.customerCart?.id = itemid
+                            viewModel.updateItemQuantity(itemID: itemid , newQuantity: plusMinus)
+                            itemdetailsvm.AddToCart()
                         }
                     Spacer()
                     Text("\(plusMinus)")
@@ -77,9 +85,17 @@ struct CheckoutCellView: View {
                         .frame(width: 20 , height: 20 )
                         .foregroundColor(.white)
                         .onTapGesture {
+                            guard cartItems.isCustomizable == false else {
+                                isEditCustomizableItem = true
+                                return
+                            }
                             if plusMinus > 1 {
                                 plusMinus -= 1
-                                viewModel.updateItemQuantity(itemID: cartItems.id, newQuantity: plusMinus)
+                                itemdetailsvm.quantity = plusMinus
+                                guard let itemid = cartItems.id else {return}
+                                itemdetailsvm.Details?.customerCart?.id = itemid
+                                viewModel.updateItemQuantity(itemID: itemid, newQuantity: plusMinus)
+                                itemdetailsvm.AddToCart()
                             }
                         }
                 }
@@ -100,9 +116,24 @@ struct CheckoutCellView: View {
         .onAppear{
             plusMinus = cartItems.qty ?? 0
         }
+        
+        //        .bottomSheet(isPresented: $checkoutvm.isEditCustomizableItem){
+        .sheet(isPresented: $isEditCustomizableItem, onDismiss: {
+            
+        }){
+             let itemid = cartItems.id
+            menueItemDetails( isPresented: $isEditCustomizableItem,
+                              itemId: itemid)
+        .environmentObject(viewModel)
+        .padding(10)
+//        .padding(.bottom)
+//        .padding(.bottom,100)
+        }
+        
     }
 }
 
 #Preview {
-    CheckoutCellView(viewModel: CheckoutVM.shared , cartItems: CheckoutCartItem())
+    CheckoutCellView( cartItems: CheckoutCartItem(id: 0, customerCartID: 0, itemPrice: 0, itemName: "name", customerID: 0, qty: 0, itemAttributeValues: [], isCustomizable: false))
+        .environmentObject(CheckoutVM.shared)
 }

@@ -43,16 +43,18 @@ struct AttributeValue: Codable {
 }
 
 // MARK: - CustomerCart
-struct CustomerCart: Codable {
-    var itemID: Int?
+struct CustomerCart: Codable,Hashable,Identifiable {
+    var id: Int?
     var itemName, description: String?
     var price: Float?
     var calories: Int?
     var imageURL: String?
+    var isCustomizable:Bool?
 
     enum CodingKeys: String, CodingKey {
-        case itemID = "itemId"
+        case id = "itemId"
         case itemName, description, price, calories
         case imageURL = "imageUrl"
+        case isCustomizable
     }
 }

@@ -177,11 +177,13 @@ struct MenueView: View {
                         //                    guard count > 0 else {return}
                         //                    count -= 1
                         isActive = true
-                        destination = AnyView( PickUpCheckoutView().environmentObject(checkoutvm))
+                        destination = AnyView( PickUpCheckoutView(branchId: SelectedBranchId)
+                            .environmentObject(checkoutvm)
+                            .environmentObject(ItemDetailsVM.shared)
+                        )
                     }, label: {
                         HStack {
                             Text(checkoutvm.checkout?.cartItems?.count ?? 0,format: .number)
-                            
                                 .font(.custom(fontEnum.semiBold.rawValue, size:12))
                                 .foregroundColor(checkoutvm.checkout?.cartItems?.count ?? 0 == 0 ? .white:.main2)
                                 .frame(width:33,height: 33)

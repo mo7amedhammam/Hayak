@@ -33,6 +33,7 @@ class CheckoutVM: ObservableObject {
     @Published var note : String = ""
     
     @Published var isCheckoutConfirmed : Bool = false
+//    @Published var isEditCustomizableItem : Bool = false
     
     //    MARK: --- outpust ---
     @Published var isLoading : Bool?
@@ -57,7 +58,7 @@ class CheckoutVM: ObservableObject {
 
 extension CheckoutVM {
     /// Updates the quantity of a specific item in the cart
-    func updateItemQuantity(itemID: UUID, newQuantity: Int) {
+    func updateItemQuantity(itemID: Int, newQuantity: Int) {
         guard var cartItems = checkout?.cartItems else { return }
         // Find the index of the item to update
         if let index = cartItems.firstIndex(where: { $0.id == itemID }) {

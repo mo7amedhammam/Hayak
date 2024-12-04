@@ -101,7 +101,6 @@ struct menueItemDetails: View {
                                     
                             ){
                                 ForEach(detail.attributeValues ?? [], id: \.itemAttributeValueID) { value in
-                                    
                                     Button(action: {
                                         handleSelection(for: value.itemAttributeValueID,
                                                         maxValue: detail.maxValue ?? 1,
@@ -164,7 +163,11 @@ struct menueItemDetails: View {
                     
                     Button(action: {
                         guard itemdetailsvm.quantity > 0 else {return}
-                        itemdetailsvm.quantity -= 1
+                        if cart.isCustomizable == false {
+                            itemdetailsvm.quantity -= 1
+                        }else{
+                            // remove customization section
+                        }
                     }, label: {
                         Image(systemName: "minus")
                             .font(Font.system(size: 12))
@@ -181,7 +184,11 @@ struct menueItemDetails: View {
                         .frame(maxWidth: .infinity,alignment: .center)
                     
                     Button(action: {
+                        if cart.isCustomizable == false{
                         itemdetailsvm.quantity += 1
+                        }else{
+                            // add customization section
+                        }
                     }, label: {
                         Image(systemName: "plus")
                             .font(Font.system(size: 12))
@@ -224,6 +231,7 @@ struct menueItemDetails: View {
             .padding(.horizontal , 10)
         }
         .task {
+            itemdetailsvm.quantity = 1
             guard let itemId = itemId else {return}
             itemdetailsvm.GetItemDetails(itemId: itemId)
             itemdetailsvm.branchId = branchId

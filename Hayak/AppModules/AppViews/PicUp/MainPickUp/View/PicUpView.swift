@@ -50,9 +50,11 @@ struct PicUpView: View {
             CustomPickupHeaderView(title: "Saudi Arabia", subtitle: "Al Riadh city",btnbackimg: hasbackBtn ?? false ? Image(.circleback):nil, onBack: {}, btnimg2:Image(.shoppingiconfill), onbtnimg2: {
                 
                 guard isshowingcart == false else {return}
-                let checkoutvm = CheckoutVM()
+                let checkoutvm = CheckoutVM.shared
                 checkoutvm.GetCheckout()
-                var view = PickUpCheckoutView().environmentObject(checkoutvm)
+                let view = PickUpCheckoutView()
+                    .environmentObject(checkoutvm)
+                    .environmentObject(ItemDetailsVM.shared)
                 destination = AnyView(view)
                 isActive = true
                 

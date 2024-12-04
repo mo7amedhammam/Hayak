@@ -16,35 +16,36 @@ struct CheckoutM: Codable {
 // MARK: - CheckoutCartItem
 struct CheckoutCartItem: Codable , Identifiable,Hashable,Equatable {
     static func == (lhs: CheckoutCartItem, rhs: CheckoutCartItem) -> Bool {
-        return lhs.itemID == rhs.itemID
+        return lhs.id == rhs.id && lhs.hashValue == rhs.hashValue
     }
     
-    let id = UUID()
-    var customerCartID, itemID: Int?
+    let id: Int?
+    var customerCartID: Int?
     var itemPrice: Float?
     var itemName: String?
     var customerID, qty: Int?
     var itemAttributeValues: [ItemAttributeValue]?
+    var isCustomizable:Bool?
 
     enum CodingKeys: String, CodingKey {
         case customerCartID = "customerCartId"
-        case itemID = "itemId"
+        case id = "itemId"
         case itemPrice, itemName
         case customerID = "customerId"
         case qty, itemAttributeValues
+        case isCustomizable
     }
 }
 
 // MARK: - ItemAttributeValue
 struct ItemAttributeValue: Codable , Identifiable ,Hashable{
-    let id = UUID()
-    var itemAttributeValueID: Int?
+    let id:Int?
     var attributeValueName: String?
     var attributeValueID: Int?
     var attributeValuePrice: Float?
 
     enum CodingKeys: String, CodingKey {
-        case itemAttributeValueID = "itemAttributeValueId"
+        case id = "itemAttributeValueId"
         case attributeValueName
         case attributeValueID = "attributeValueId"
         case attributeValuePrice

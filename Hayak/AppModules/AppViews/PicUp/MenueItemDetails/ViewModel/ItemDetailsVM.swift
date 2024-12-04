@@ -101,8 +101,8 @@ extension ItemDetailsVM{
     
     func AddToCart(){
 // orderTypeId -   pickup :1   -    Dining :2
-        
-        guard let brandBranchId = branchId , let itemId = Details?.customerCart?.itemID,let orderTypeId = Helper.shared.selectedordertype?.rawValue else {return}
+        print(branchId,Details?.customerCart?.id,quantity)
+        guard let brandBranchId = branchId , let itemId = Details?.customerCart?.id,let orderTypeId = Helper.shared.selectedordertype?.rawValue else {return}
         var parameters:[String:Any] = [
             "brandBranchId":brandBranchId,
             "orderTypeId":orderTypeId,

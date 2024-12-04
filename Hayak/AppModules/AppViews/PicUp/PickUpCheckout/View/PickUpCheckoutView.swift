@@ -11,12 +11,16 @@ struct PickUpCheckoutView: View {
     @Environment(\.presentationMode) var presentationMode
     //    @ObservedObject var localizeHelper = LocalizeHelper.shared // Observe the language changes
     @EnvironmentObject var checkoutvm : CheckoutVM
-    
+    @EnvironmentObject var itemdetailsvm : ItemDetailsVM
+
     @State var showTimerView = false
     @State private var timeRemaining = 30 // Initial time for the timer
 
     @State var Total_Price = 0
     
+    var branchId : Int?
+//    var itemId : Int?
+
     var body: some View {
         ZStack {
             Color(.white).ignoresSafeArea()
@@ -32,6 +36,7 @@ struct PickUpCheckoutView: View {
                 
                 ExtractedViewCartScreen(showTimerView: $showTimerView)
                     .environmentObject(checkoutvm)
+                    .environmentObject(itemdetailsvm)
                 
             }
             .showHud(isShowing: $checkoutvm.isLoading)
@@ -46,7 +51,6 @@ struct PickUpCheckoutView: View {
                 )
             })
             
-            
             .onChange(of: checkoutvm.dismissCart) { newValue in
                 if newValue {
                     presentationMode.wrappedValue.dismiss()
@@ -59,17 +63,18 @@ struct PickUpCheckoutView: View {
                 }
             }
             
-            
             .onChange(of: checkoutvm.isCheckoutConfirmed) { newValue in
                 if newValue {
                     
                 }
             }
             
-            
         }
         .hideNavigationBar()
-        
+        .onAppear{
+            checkoutvm.note = ""
+            itemdetailsvm.branchId = branchId
+        }
         
         //        .localizeView()
         //
@@ -107,7 +112,9 @@ struct PickUpCheckoutView: View {
 }
 
 #Preview {
-    PickUpCheckoutView().environmentObject(CheckoutVM.shared)
+    PickUpCheckoutView()
+        .environmentObject(CheckoutVM.shared)
+        .environmentObject(ItemDetailsVM.shared)
 }
 
 
@@ -115,6 +122,7 @@ struct PickUpCheckoutView: View {
 struct ExtractedViewCartScreen : View {
     
     @EnvironmentObject var checkoutvm : CheckoutVM
+    @EnvironmentObject var itemdetailsvm : ItemDetailsVM
     @Binding var showTimerView : Bool
     
     var body: some View {
@@ -145,7 +153,9 @@ struct ExtractedViewCartScreen : View {
             List {
                 Group{                    
                     ForEach(checkoutvm.checkout?.cartItems ?? [],id:\.self){ attributes in
-                        CheckoutCellView(viewModel: checkoutvm, cartItems: attributes)
+                        CheckoutCellView(cartItems: attributes)
+                            .environmentObject(checkoutvm)
+                            .environmentObject(itemdetailsvm)
                     }
                     .onDelete(perform: deleteItem)
                     
@@ -271,7 +281,7 @@ struct ExtractedViewCartScreen : View {
     private func deleteItem(at offsets: IndexSet) {
         if let index = offsets.first {
             print("Deleting item at index: \(index)") // Print or use the index as needed
-            checkoutvm.DeleteFromCart(customerCartId: checkoutvm.checkout?.cartItems?[index].itemID ?? 0 , offsets: offsets )
+            checkoutvm.DeleteFromCart(customerCartId: checkoutvm.checkout?.cartItems?[index].id ?? 0 , offsets: offsets )
         }
         
     }
