@@ -21,7 +21,7 @@ enum PickupServices {
     case GetCheckout
     case DeleteFromCart(parameters : [String:Any])
     case ConfirmCheckout(parameters : [String:Any])
-    case CustomerFavourite
+    case CustomerFavourite(parameters : [String:Any])
     case AddToFavourit(parameters : [String:Any])
 
 
@@ -60,22 +60,23 @@ extension PickupServices : TargetType {
     
     var method: HTTPMethod {
         switch self {
-        case .NearestBrandBranches,.BrandBranchDetails,.AddToCart,.ConfirmCheckout , .AddToFavourit :
+        case .NearestBrandBranches, .BrandBranchDetails, .AddToCart, .ConfirmCheckout, .CustomerFavourite, .AddToFavourit :
             return .post
-        case .Categories,.CategoryForList,.GetItemDetailsView,.GetCheckout,.DeleteFromCart , .CustomerFavourite:
+        case .Categories,.CategoryForList,.GetItemDetailsView,.GetCheckout,.DeleteFromCart :
             return .get
         }
     }
     
     var parameter: parameterType {
         switch self {
-        case .Categories,.CategoryForList,.GetCheckout , .CustomerFavourite:
+        case .Categories,.CategoryForList,.GetCheckout:
             return .plainRequest
             
         case .NearestBrandBranches(parameters:let parameters),
                 .BrandBranchDetails(parameters: let parameters),
                 .AddToCart(parameters: let parameters),
                 .ConfirmCheckout(parameters: let parameters),
+                .CustomerFavourite(parameters: let parameters),
                 .AddToFavourit(parameters: let parameters) :
             return .parameterRequest(Parameters: parameters, Encoding: .default)
             

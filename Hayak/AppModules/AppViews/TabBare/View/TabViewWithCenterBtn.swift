@@ -27,6 +27,7 @@ struct TabViewWithCenterBtn: View {
                     
                     NavigationView{
                         PicUpView()
+                            .environmentObject(MainPickUpVM.shared)
                     }
                     .tabItem {
                         Image("picup")

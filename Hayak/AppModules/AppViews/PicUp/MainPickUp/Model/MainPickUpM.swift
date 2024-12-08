@@ -28,11 +28,34 @@ struct NearestBrandBrancheM: Codable,Hashable {
     var distance: Double?
     var resturantType: String?
     var isRecommended: Bool?
+    var averageOrderTime: Int?
 
     enum CodingKeys: String, CodingKey {
         case id, branchName, rate, ratingCount
         case bannerURL = "bannerUrl"
         case favourite, distance, resturantType, isRecommended
+        case averageOrderTime
     }
 }
 
+// MARK: - favourite menue
+//{
+//      "id": 0,
+//      "branchName": "string",
+//      "rate": 0,
+//      "ratingCount": 0,
+//      "bannerUrl": "string",
+//      "favourite": true,
+//      "distance": 0,
+//      "resturantType": "string",
+//      "isRecommended": true,
+//      "customerId": 0,
+//      "customerName": "string",
+//      "averageOrderTime": 0,
+//      "categoryList": [
+//        {
+//          "id": 0,
+//          "name": "string"
+//        }
+//      ]
+//    }

@@ -70,6 +70,7 @@ struct CheckoutCellView: View {
                             }
                             plusMinus += 1
                             itemdetailsvm.quantity = plusMinus
+                            itemdetailsvm.branchId = cartItems.brandBranchId
                             guard let itemid = cartItems.id else {return}
                             itemdetailsvm.Details?.customerCart?.id = itemid
                             viewModel.updateItemQuantity(itemID: itemid , newQuantity: plusMinus)
@@ -92,6 +93,7 @@ struct CheckoutCellView: View {
                             if plusMinus > 1 {
                                 plusMinus -= 1
                                 itemdetailsvm.quantity = plusMinus
+                                itemdetailsvm.branchId = cartItems.brandBranchId
                                 guard let itemid = cartItems.id else {return}
                                 itemdetailsvm.Details?.customerCart?.id = itemid
                                 viewModel.updateItemQuantity(itemID: itemid, newQuantity: plusMinus)

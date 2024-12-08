@@ -19,7 +19,8 @@ struct CheckoutCartItem: Codable , Identifiable,Hashable,Equatable {
         return lhs.id == rhs.id && lhs.hashValue == rhs.hashValue
     }
     
-    let id: Int?
+    var id: Int?
+    var brandBranchId:Int?
     var customerCartID: Int?
     var itemPrice: Float?
     var itemName: String?
@@ -30,6 +31,7 @@ struct CheckoutCartItem: Codable , Identifiable,Hashable,Equatable {
     enum CodingKeys: String, CodingKey {
         case customerCartID = "customerCartId"
         case id = "itemId"
+        case brandBranchId
         case itemPrice, itemName
         case customerID = "customerId"
         case qty, itemAttributeValues

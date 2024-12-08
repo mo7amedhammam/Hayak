@@ -6,11 +6,11 @@
 //
 
 import Foundation
-import Combine
+//import Combine
 
-class MainPickUpVM: ObservableObject {
+class MainPickUpVM: BaseViewModel {
     static let shared = MainPickUpVM()
-    private var cancellables: Set<AnyCancellable> = []
+//    private var cancellables: Set<AnyCancellable> = []
     
     // Reference the location view model
     //    private var locationManager = LocationManagerVM.shared
@@ -46,7 +46,7 @@ class MainPickUpVM: ObservableObject {
     var lat : Double?
     var lon : Double?
     
-    init(){
+    override init(){
         //        lat = locationManager.userLatitude
         //        lon = locationManager.userLongitude
         
@@ -59,56 +59,20 @@ class MainPickUpVM: ObservableObject {
 extension MainPickUpVM{
     
     func GetCategories() {
-        //        var parameters:[String:Any] = ["maxResultCount":maxResultCount,"skipCount":skipCount]
-        
-        //        if let filtersubjectid = filtersubject?.id{
-        //            parameters["teacherSubjectId"] = filtersubjectid
-        //        }
-        //         if let filterlessonid = filterlesson?.id{
-        //            parameters["teacherLessonId"] = filterlessonid
-        //        }
-        //        if filtergroupName.count > 0{
-        //            parameters["groupName"] = filtergroupName
-        //        }
-        //        if let filterdate = filterdate?.ChangeDateFormat(FormatFrom: "dd MMM yyyy", FormatTo:"yyyy-MM-dd'T'HH:mm:ss",outputLocal: .english,inputTimeZone: TimeZone(identifier: "GMT")){
-        //            parameters["lessonDate"] = filterdate
-        //        }
-        
-        //        print("parameters",parameters)
+        DispatchQueue.main.async { [weak self] in
+            self?.isLoading = true
+        }
+
         let target = PickupServices.Categories
-        
-        isLoading = true
-        BaseNetwork.shared.CallApi(target, BaseResponse<[MainCategoriesM]>.self)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {[weak self] completion in
-                guard let self = self else{return}
-                isLoading = false
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    isError =  true
-                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
-                }
-            },receiveValue: {[weak self] receivedData in
-                guard let self = self else{return}
-                print("receivedData",receivedData)
-                if receivedData.success == true {
-                    //                    TeacherSubjects?.append(model)
-                    //                    if skipCount == 0{
-                    Categories = receivedData.data
-                    //                    }else{
-                    //                        Categories?.items?.append(contentsOf: receivedData.data?.items ?? [])
-                    //                    }
-                    
-                }else{
-                    isError =  true
-                    //                    error = NetworkError.apiError(code: receivedData.messageCode ?? 0, error: receivedData.message ?? "")
-                    error = .error(image:nil,  message: receivedData.message ?? "",buttonTitle:"Done")
-                }
-                isLoading = false
-            })
-            .store(in: &cancellables)
+        handleAPI(target: target, responseType: [MainCategoriesM].self, onSuccess: { [weak self] data in
+            self?.Categories = data
+            self?.isLoading = false
+        }, onFailure: { [weak self] error in
+            self?.isError = true
+            self?.error = .error(image: nil, message: error.localizedDescription, buttonTitle: "Done")
+            self?.isLoading = false
+        })
+
     }
     
     func GetNearestBrandBranches(){
@@ -132,100 +96,67 @@ extension MainPickUpVM{
         //            parameters["sortBy"] = sortBy
         //        }
         print("parameters",parameters)
+        DispatchQueue.main.async { [weak self] in
+            self?.isLoading = true
+        }
         let target = PickupServices.NearestBrandBranches(parameters: parameters)
-        isLoading = true
-        BaseNetwork.shared.CallApi(target, BaseResponse<[NearestBrandBrancheM]>.self)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {[weak self] completion in
-                guard let self = self else{return}
-                isLoading = false
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    isError =  true
-                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
-                }
-            },receiveValue: {[weak self] receivedData in
-                guard let self = self else{return}
-                print("receivedData",receivedData)
-                if receivedData.success == true {
-                    //                    TeacherSubjects?.append(model)
-                    NearestBrandBranches = receivedData.data
-                }else{
-                    isError =  true
-                    //                    error = NetworkError.apiError(code: receivedData.messageCode ?? 0, error: receivedData.message ?? "")
-                    error = .error(image:nil,  message: receivedData.message ?? "",buttonTitle:"Done")
-                }
-                isLoading = false
-            })
-            .store(in: &cancellables)
+        handleAPI(target: target, responseType: [NearestBrandBrancheM].self, onSuccess: { [weak self] data in
+            self?.NearestBrandBranches = data
+            self?.isLoading = false
+        }, onFailure: { [weak self] error in
+            self?.isError = true
+            self?.error = .error(image: nil, message: error.localizedDescription, buttonTitle: "Done")
+            self?.isLoading = false
+        })
         
     }
     
     func GetFavouriteBrandBranches(){
-     
-        let target = PickupServices.CustomerFavourite
-        isLoading = true
-        BaseNetwork.shared.CallApi(target, BaseResponse<[NearestBrandBrancheM]>.self)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {[weak self] completion in
-                guard let self = self else{return}
-                isLoading = false
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    isError =  true
-                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
-                }
-            },receiveValue: {[weak self] receivedData in
-                guard let self = self else{return}
-                print("receivedData",receivedData)
-                if receivedData.success == true {
-                    //                    TeacherSubjects?.append(model)
-                    NearestBrandBranches = receivedData.data
-                }else{
-                    isError =  true
-                    //                    error = NetworkError.apiError(code: receivedData.messageCode ?? 0, error: receivedData.message ?? "")
-                    error = .error(image:nil,  message: receivedData.message ?? "",buttonTitle:"Done")
-                }
-                isLoading = false
-            })
-            .store(in: &cancellables)
+        var parameters:[String:Any] = [:]
+        parameters["lat"] = 30.549753700368758
+        parameters["lon"] = 31.065455361906114
+        
+        //        if let lat = lat, let lon = lon {
+        //            parameters["lat"] = lat
+        //            parameters["lon"] = lon
+        //        }
+        
+        //        if let sortBy = ""{
+        //            parameters["sortBy"] = sortBy
+        //        }
+        if let categoryId = selectedCategory?.id{
+            parameters["categoryId"] = categoryId
+        }
+        let target = PickupServices.CustomerFavourite(parameters: parameters)
+        DispatchQueue.main.async { [weak self] in
+            self?.isLoading = true
+        }
+        handleAPI(target: target, responseType: [NearestBrandBrancheM].self, onSuccess: { [weak self] data in
+            self?.NearestBrandBranches = data
+            self?.isLoading = false
+        }, onFailure: { [weak self] error in
+            self?.isError = true
+            self?.error = .error(image: nil, message: error.localizedDescription, buttonTitle: "Done")
+            self?.isLoading = false
+        })
         
     }
-    func AddToFavourit (brandBranchId: Int) {
+    func AddToFavourit(brandBranchId: Int) {
         
-        isLoading = true
+        DispatchQueue.main.async { [weak self] in
+            self?.isLoading = true
+        }
         let parametersArr =  ["brandBranchId" : brandBranchId]
         let target = PickupServices.AddToFavourit(parameters: parametersArr)
         // Call the API using the BaseNetwork class
-        BaseNetwork.shared.CallApi(target, BaseResponse<LoginResponse>.self)
-            .sink { [self] completion in
-                // Handle completion
-                self.isLoading = false
-                switch completion {
-                case .failure(let error):
-                    isError =  true
-                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
-                case .finished:
-                    break
-                }
-            } receiveValue: { [self] response in
-                // Handle the response
-                print("response AddToFavourit : \(response)")
-                self.isLoading = false
-                // Handle the response
-                if response.success == true {
-                    
-                } else {
-                    isError =  true
-                    error = .error(image:nil,  message: response.message ?? "unexpected error occured",buttonTitle:"Done")
-                }
-                
-            }
-            .store(in: &cancellables)
+        handleAPI(target: target, responseType: [LoginResponse].self, onSuccess: { [weak self] data in
+//            self?.NearestBrandBranches = data
+            self?.isLoading = false
+        }, onFailure: { [weak self] error in
+            self?.isError = true
+            self?.error = .error(image: nil, message: error.localizedDescription, buttonTitle: "Done")
+            self?.isLoading = false
+        })
     }
     
     
@@ -266,13 +197,13 @@ extension MainPickUpVM{
     //        isEditing = true
     //    }
     
-    func cleanup() {
-        // Cancel any ongoing Combine subscriptions
-        cancellables.forEach { cancellable in
-            cancellable.cancel()
-        }
-        cancellables.removeAll()
-    }
+//    func cleanup() {
+//        // Cancel any ongoing Combine subscriptions
+//        cancellables.forEach { cancellable in
+//            cancellable.cancel()
+//        }
+//        cancellables.removeAll()
+//    }
 }
 
 

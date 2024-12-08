@@ -25,7 +25,7 @@ enum menuFilterCases:String{
 
 struct PicUpView: View {
     //    @Environment(\.presentationMode) var presentationMode
-    @StateObject var pickupvm = MainPickUpVM.shared
+    @EnvironmentObject var pickupvm: MainPickUpVM
     @StateObject var locationManager = LocationManagerVM.shared
 
     @State var isActive : Bool = false
@@ -65,8 +65,9 @@ struct PicUpView: View {
                 var view = PicUpView()
                 view.islistingfavourites = true
                 view.hasbackBtn = true
-                view.pickupvm.GetFavouriteBrandBranches()
-                destination = AnyView(view)
+                pickupvm.GetFavouriteBrandBranches()
+                destination = AnyView(view                            .environmentObject(pickupvm)
+                )
                 isActive = true
                 
             }, btnimg4: Image("carbon_search"), onbtnimg4: {})
@@ -145,12 +146,18 @@ struct PicUpView: View {
                 .navigationBarBackButtonHidden(true)
         }
         .task {
-            guard islistingfavourites == false && isshowingcart == false else {return}
+            guard islistingfavourites == false && isshowingcart == false else { return }
             pickupvm.lat = locationManager.Currentlat
             pickupvm.lon = locationManager.Currentlong
-
-            pickupvm.GetCategories()
-            pickupvm.GetNearestBrandBranches()
+            
+            await withTaskGroup(of: Void.self) { group in
+                group.addTask {
+                    await pickupvm.GetCategories()
+                }
+                group.addTask {
+                    await pickupvm.GetNearestBrandBranches()
+                }
+            }
         }
         .showHud(isShowing: $pickupvm.isLoading)
         .showAlert(hasAlert: $pickupvm.isError, alertType: pickupvm.error)
@@ -159,5 +166,6 @@ struct PicUpView: View {
 
 #Preview {
     PicUpView()
+        .environmentObject(MainPickUpVM.shared)
 }
 

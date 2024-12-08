@@ -177,7 +177,7 @@ struct MenueView: View {
                         //                    guard count > 0 else {return}
                         //                    count -= 1
                         isActive = true
-                        destination = AnyView( PickUpCheckoutView(branchId: SelectedBranchId)
+                        destination = AnyView(PickUpCheckoutView()
                             .environmentObject(checkoutvm)
                             .environmentObject(ItemDetailsVM.shared)
                         )
@@ -217,18 +217,27 @@ struct MenueView: View {
                 .navigationBarBackButtonHidden(true)
         }
         .task {
-            menuvm.GetCategoriesForList()
-            
             menuvm.lat = locationManager.Currentlat
             menuvm.lon = locationManager.Currentlong
-            menuvm.GetBrandBrancheDetails(id: SelectedBranchId)
-            checkoutvm.GetCheckout()
+
+            await withTaskGroup(of: Void.self) { group in
+                group.addTask {
+                   await menuvm.GetCategoriesForList()
+                }
+                group.addTask {
+                    await menuvm.GetBrandBrancheDetails(id: SelectedBranchId)
+                }
+                group.addTask {
+                    await checkoutvm.GetCheckout()
+                }
+
+            }
         }
         .showHud(isShowing: $menuvm.isLoading)
         .showAlert(hasAlert: $menuvm.isError, alertType: menuvm.error)
         
-        .showHud(isShowing: $checkoutvm.isLoading)
-        .showAlert(hasAlert: $checkoutvm.isError, alertType: checkoutvm.error)
+//        .showHud(isShowing: $checkoutvm.isLoading)
+//        .showAlert(hasAlert: $checkoutvm.isError, alertType: checkoutvm.error)
 
         .bottomSheet(isPresented: $isSheetPresented) {
             menueItemDetails( isPresented: $isSheetPresented, branchId:SelectedBranchId, itemId: selecteditemId)
@@ -312,7 +321,7 @@ struct hayakRecommendLabel: View {
 //  Created by wecancity on 01/09/2024.
 //
 
-import SwiftUI
+//import SwiftUI
 
 //struct MenueView1: View {
 //    var SelectedBranchId:Int

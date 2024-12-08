@@ -99,6 +99,7 @@
 		C8F49C932CCE5F5B003AFC70 /* CheckoutM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F49C922CCE5F5B003AFC70 /* CheckoutM.swift */; };
 		C8F49C952CCE5FA9003AFC70 /* CheckoutVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F49C942CCE5FA9003AFC70 /* CheckoutVM.swift */; };
 		C8F49C972CCE5FBD003AFC70 /* ItemDetailsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F49C962CCE5FBD003AFC70 /* ItemDetailsVM.swift */; };
+		C8FFAD602D059F2C00A72442 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FFAD5F2D059F2C00A72442 /* BaseViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -196,6 +197,7 @@
 		C8F49C922CCE5F5B003AFC70 /* CheckoutM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutM.swift; sourceTree = "<group>"; };
 		C8F49C942CCE5FA9003AFC70 /* CheckoutVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutVM.swift; sourceTree = "<group>"; };
 		C8F49C962CCE5FBD003AFC70 /* ItemDetailsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailsVM.swift; sourceTree = "<group>"; };
+		C8FFAD5F2D059F2C00A72442 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		CEF99719986644E790259E06 /* Pods-Hayak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hayak.release.xcconfig"; path = "Target Support Files/Pods-Hayak/Pods-Hayak.release.xcconfig"; sourceTree = "<group>"; };
 		EFA111EA2737130E40EB7435 /* Pods_Hayak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hayak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -629,6 +631,7 @@
 				C8986CE92C15C27D0091789F /* BaseResponse.swift */,
 				C8986CEA2C15C27D0091789F /* EndPoints.swift */,
 				C8986CEB2C15C27D0091789F /* RequestBuilder.swift */,
+				C8FFAD5F2D059F2C00A72442 /* BaseViewModel.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1036,6 +1039,7 @@
 				C8368F4E2C8878A300003DBB /* KFImageLoader.swift in Sources */,
 				19EA12892CB6B21C00C80528 /* CustomPickupHeaderView.swift in Sources */,
 				C8C5442C2CBC03F000472504 /* CustomAlertView.swift in Sources */,
+				C8FFAD602D059F2C00A72442 /* BaseViewModel.swift in Sources */,
 				C8986CD62C15B9FE0091789F /* HayakApp.swift in Sources */,
 				C8F49C8E2CCE5791003AFC70 /* ItemDetailsM.swift in Sources */,
 				C8C544292CBC022400472504 /* MainPickUpVM.swift in Sources */,

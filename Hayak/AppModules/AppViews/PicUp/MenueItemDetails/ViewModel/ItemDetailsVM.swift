@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import Combine
 
-class ItemDetailsVM: ObservableObject {
+class ItemDetailsVM: BaseViewModel {
     static let shared = ItemDetailsVM()
-    private var cancellables: Set<AnyCancellable> = []
+//    private var cancellables: Set<AnyCancellable> = []
     
     // Reference the location view model
 //    private var locationManager = LocationManagerVM.shared
@@ -50,7 +49,7 @@ class ItemDetailsVM: ObservableObject {
 //     var lat : Double?
 //     var lon : Double?
     
-    init(){
+   override init(){
 //        lat = locationManager.userLatitude
 //        lon = locationManager.userLongitude
         
@@ -65,38 +64,51 @@ extension ItemDetailsVM{
                 let parameters:[String:Any] = ["itemId":itemId]
         //        print("parameters",parameters)
         let target = PickupServices.GetItemDetailsView(parameters: parameters)
-        isLoading = true
-        BaseNetwork.shared.CallApi(target, BaseResponse<ItemDetailsM>.self)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {[weak self] completion in
-                guard let self = self else{return}
-                isLoading = false
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    isError =  true
-                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
-                }
-            },receiveValue: {[weak self] receivedData in
-                guard let self = self else{return}
-                print("receivedData",receivedData)
-                if receivedData.success == true {
-                    //                    TeacherSubjects?.append(model)
-                    //                    if skipCount == 0{
-                    Details = receivedData.data
-                    //                    }else{
-                    //                        Categories?.items?.append(contentsOf: receivedData.data?.items ?? [])
-                    //                    }
-                    
-                }else{
-                    isError =  true
-                    //                    error = NetworkError.apiError(code: receivedData.messageCode ?? 0, error: receivedData.message ?? "")
-                    error = .error(image:nil,  message: receivedData.message ?? "",buttonTitle:"Done")
-                }
-                isLoading = false
-            })
-            .store(in: &cancellables)
+        DispatchQueue.main.async { [weak self] in
+            self?.isLoading = true
+        }
+        handleAPI(target: target, responseType: ItemDetailsM.self, onSuccess: { [weak self] data in
+            self?.Details = data
+            self?.isLoading = false
+        }, onFailure: { [weak self] error in
+            self?.isError = true
+            self?.error = .error(image: nil, message: error.localizedDescription, buttonTitle: "Done")
+            self?.isLoading = false
+        })
+        
+        
+//        isLoading = true
+//        BaseNetwork.shared.CallApi(target, BaseResponse<ItemDetailsM>.self)
+//            .receive(on: DispatchQueue.main)
+//            .sink(receiveCompletion: {[weak self] completion in
+//                guard let self = self else{return}
+//                isLoading = false
+//                switch completion {
+//                case .finished:
+//                    break
+//                case .failure(let error):
+//                    isError =  true
+//                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
+//                }
+//            },receiveValue: {[weak self] receivedData in
+//                guard let self = self else{return}
+//                print("receivedData",receivedData)
+//                if receivedData.success == true {
+//                    //                    TeacherSubjects?.append(model)
+//                    //                    if skipCount == 0{
+//                    Details = receivedData.data
+//                    //                    }else{
+//                    //                        Categories?.items?.append(contentsOf: receivedData.data?.items ?? [])
+//                    //                    }
+//                    
+//                }else{
+//                    isError =  true
+//                    //                    error = NetworkError.apiError(code: receivedData.messageCode ?? 0, error: receivedData.message ?? "")
+//                    error = .error(image:nil,  message: receivedData.message ?? "",buttonTitle:"Done")
+//                }
+//                isLoading = false
+//            })
+//            .store(in: &cancellables)
     }
     
     func AddToCart(){
@@ -115,39 +127,52 @@ extension ItemDetailsVM{
         
         //        print("parameters",parameters)
         let target = PickupServices.AddToCart(parameters: parameters)
-        isLoading = true
-        BaseNetwork.shared.CallApi(target, BaseResponse<BrandBrancheMenuM>.self)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {[weak self] completion in
-                guard let self = self else{return}
-                isLoading = false
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    isError =  true
-                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
-                }
-            },receiveValue: {[weak self] receivedData in
-                guard let self = self else{return}
-                print("receivedData",receivedData)
-                if receivedData.success == true {
-                    //                    TeacherSubjects?.append(model)
-                    //                    if skipCount == 0{
-//                    BrandBrancheDetails = receivedData.data
-                    //                    }else{
-                    //                        Categories?.items?.append(contentsOf: receivedData.data?.items ?? [])
-                    //                    }
-                    isAddedToCheckout = true
-                    
-                }else{
-                    isError =  true
-                    //                    error = NetworkError.apiError(code: receivedData.messageCode ?? 0, error: receivedData.message ?? "")
-                    error = .error(image:nil,  message: receivedData.message ?? "",buttonTitle:"Done")
-                }
-                isLoading = false
-            })
-            .store(in: &cancellables)
+        DispatchQueue.main.async { [weak self] in
+            self?.isLoading = true
+        }
+        handleAPI(target: target, responseType: BrandBrancheMenuM.self, onSuccess: { [weak self] data in
+            self?.isAddedToCheckout = true
+            self?.isLoading = false
+        }, onFailure: { [weak self] error in
+            self?.isError = true
+            self?.error = .error(image: nil, message: error.localizedDescription, buttonTitle: "Done")
+            self?.isLoading = false
+        })
+        
+        
+//        isLoading = true
+//        BaseNetwork.shared.CallApi(target, BaseResponse<BrandBrancheMenuM>.self)
+//            .receive(on: DispatchQueue.main)
+//            .sink(receiveCompletion: {[weak self] completion in
+//                guard let self = self else{return}
+//                isLoading = false
+//                switch completion {
+//                case .finished:
+//                    break
+//                case .failure(let error):
+//                    isError =  true
+//                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
+//                }
+//            },receiveValue: {[weak self] receivedData in
+//                guard let self = self else{return}
+//                print("receivedData",receivedData)
+//                if receivedData.success == true {
+//                    //                    TeacherSubjects?.append(model)
+//                    //                    if skipCount == 0{
+////                    BrandBrancheDetails = receivedData.data
+//                    //                    }else{
+//                    //                        Categories?.items?.append(contentsOf: receivedData.data?.items ?? [])
+//                    //                    }
+//                    isAddedToCheckout = true
+//                    
+//                }else{
+//                    isError =  true
+//                    //                    error = NetworkError.apiError(code: receivedData.messageCode ?? 0, error: receivedData.message ?? "")
+//                    error = .error(image:nil,  message: receivedData.message ?? "",buttonTitle:"Done")
+//                }
+//                isLoading = false
+//            })
+//            .store(in: &cancellables)
     }
     
 //    func GetNearestBrandBranches(){
@@ -239,13 +264,13 @@ extension ItemDetailsVM{
     //        isEditing = true
     //    }
     
-    func cleanup() {
-        // Cancel any ongoing Combine subscriptions
-        cancellables.forEach { cancellable in
-            cancellable.cancel()
-        }
-        cancellables.removeAll()
-    }
+//    func cleanup() {
+//        // Cancel any ongoing Combine subscriptions
+//        cancellables.forEach { cancellable in
+//            cancellable.cancel()
+//        }
+//        cancellables.removeAll()
+//    }
 }
 
 

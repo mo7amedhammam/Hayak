@@ -233,9 +233,20 @@ struct menueItemDetails: View {
         .task {
             itemdetailsvm.quantity = 1
             guard let itemId = itemId else {return}
-            itemdetailsvm.GetItemDetails(itemId: itemId)
             itemdetailsvm.branchId = branchId
+
+            await withTaskGroup(of: Void.self) { group in
+                group.addTask {
+                   await itemdetailsvm.GetItemDetails(itemId: itemId)
+                }
+            }
         }
+//        .task {
+//            itemdetailsvm.quantity = 1
+//            guard let itemId = itemId else {return}
+//            itemdetailsvm.GetItemDetails(itemId: itemId)
+//            itemdetailsvm.branchId = branchId
+//        }
         .task(id: itemdetailsvm.isAddedToCheckout){
             guard itemdetailsvm.isAddedToCheckout == true else{return}
             checkoutvm.GetCheckout()
@@ -244,9 +255,7 @@ struct menueItemDetails: View {
         .showAlert(hasAlert: $itemdetailsvm.isError, alertType: itemdetailsvm.error)
         
     }
-    
-    
-    
+        
     private func handleSelection(for itemID: Int?, maxValue: Int, attributeID: Int?) {
         guard let itemID = itemID, let attributeID = attributeID else { return }
         

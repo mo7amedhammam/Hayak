@@ -18,7 +18,7 @@ struct PickUpCheckoutView: View {
 
     @State var Total_Price = 0
     
-    var branchId : Int?
+//    var branchId : Int?
 //    var itemId : Int?
 
     var body: some View {
@@ -73,8 +73,9 @@ struct PickUpCheckoutView: View {
         .hideNavigationBar()
         .onAppear{
             checkoutvm.note = ""
-            itemdetailsvm.branchId = branchId
+//            itemdetailsvm.branchId = branchId
         }
+        
         
         //        .localizeView()
         //
@@ -281,7 +282,7 @@ struct ExtractedViewCartScreen : View {
     private func deleteItem(at offsets: IndexSet) {
         if let index = offsets.first {
             print("Deleting item at index: \(index)") // Print or use the index as needed
-            checkoutvm.DeleteFromCart(customerCartId: checkoutvm.checkout?.cartItems?[index].id ?? 0 , offsets: offsets )
+            checkoutvm.DeleteFromCart(customerCartId: checkoutvm.checkout?.cartItems?[index].customerCartID ?? 0 , offsets: offsets )
         }
         
     }

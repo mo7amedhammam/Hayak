@@ -6,11 +6,11 @@
 //
 
 import Foundation
-import Combine
+//import Combine
 
-class CheckoutVM: ObservableObject {
+class CheckoutVM: BaseViewModel {
     static let shared = CheckoutVM()
-    private var cancellables: Set<AnyCancellable> = []
+//    private var cancellables: Set<AnyCancellable> = []
     
     // Reference the location view model
     //    private var locationManager = LocationManagerVM.shared
@@ -51,7 +51,7 @@ class CheckoutVM: ObservableObject {
     @Published var isCartDeleted : Bool = false
     @Published var dismissCart : Bool = false
 
-    init(){
+    override init(){
         
     }
 }
@@ -77,122 +77,206 @@ extension CheckoutVM{
     
     func GetCheckout(){
         let target = PickupServices.GetCheckout
-        isLoading = true
-        BaseNetwork.shared.CallApi(target, BaseResponse<CheckoutM>.self)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {[weak self] completion in
-                guard let self = self else{return}
-                isLoading = false
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    isError =  true
-                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
-                }
-            },receiveValue: {[weak self] receivedData in
-                guard let self = self else{return}
-                print("receivedData",receivedData)
-                if receivedData.success == true {
-                    //                    TeacherSubjects?.append(model)
-                    //                    if skipCount == 0{
-                    checkout = receivedData.data
-                    //                    }else{
-                    //                        Categories?.items?.append(contentsOf: receivedData.data?.items ?? [])
-                    //                    }
-                    
-                }else{
-                    isError =  true
-                    //                    error = NetworkError.apiError(code: receivedData.messageCode ?? 0, error: receivedData.message ?? "")
-                    error = .error(image:nil,  message: receivedData.message ?? "",buttonTitle:"Done")
-                }
-                isLoading = false
-            })
-            .store(in: &cancellables)
+        DispatchQueue.main.async { [weak self] in
+            self?.isLoading = true
+        }
+        handleAPI(target: target, responseType: CheckoutM.self, onSuccess: { [weak self] data in
+            self?.checkout = data
+            self?.isLoading = false
+        }, onFailure: { [weak self] error in
+            self?.isError = true
+            self?.error = .error(image: nil, message: error.localizedDescription, buttonTitle: "Done")
+            self?.isLoading = false
+        })
+        
+        
+//        isLoading = true
+//        BaseNetwork.shared.CallApi(target, BaseResponse<CheckoutM>.self)
+//            .receive(on: DispatchQueue.main)
+//            .sink(receiveCompletion: {[weak self] completion in
+//                guard let self = self else{return}
+//                isLoading = false
+//                switch completion {
+//                case .finished:
+//                    break
+//                case .failure(let error):
+//                    isError =  true
+//                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
+//                }
+//            },receiveValue: {[weak self] receivedData in
+//                guard let self = self else{return}
+//                print("receivedData",receivedData)
+//                if receivedData.success == true {
+//                    //                    TeacherSubjects?.append(model)
+//                    //                    if skipCount == 0{
+//                    checkout = receivedData.data
+//                    //                    }else{
+//                    //                        Categories?.items?.append(contentsOf: receivedData.data?.items ?? [])
+//                    //                    }
+//                    
+//                }else{
+//                    isError =  true
+//                    //                    error = NetworkError.apiError(code: receivedData.messageCode ?? 0, error: receivedData.message ?? "")
+//                    error = .error(image:nil,  message: receivedData.message ?? "",buttonTitle:"Done")
+//                }
+//                isLoading = false
+//            })
+//            .store(in: &cancellables)
     }
     
     func ConfirmCheckout(){
         guard let params = checkout?.toDictionary() else {return}
         let parameters:[String:Any] = params
-        print("parameters",parameters)
         
         let target = PickupServices.ConfirmCheckout(parameters: parameters)
-        isLoading = true
-        BaseNetwork.shared.CallApi(target, BaseResponse<[NearestBrandBrancheM]>.self)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {[weak self] completion in
-                guard let self = self else{return}
-                isLoading = false
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    isError =  true
-                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
-                }
-            },receiveValue: {[weak self] receivedData in
-                guard let self = self else{return}
-                print("receivedData",receivedData)
-                if receivedData.success == true {
-                    //                    TeacherSubjects?.append(model)
-                    //                    NearestBrandBranches = receivedData.data
-                    isCheckoutConfirmed = true
-                }else{
-                    isError =  true
-                    //                    error = NetworkError.apiError(code: receivedData.messageCode ?? 0, error: receivedData.message ?? "")
-                    error = .error(image:nil,  message: receivedData.message ?? "",buttonTitle:"Done")
-                }
-                isLoading = false
-            })
-            .store(in: &cancellables)
+        DispatchQueue.main.async { [weak self] in
+            self?.isLoading = true
+        }
+        handleAPI(target: target, responseType: [NearestBrandBrancheM].self, onSuccess: { [weak self] data in
+            self?.isCheckoutConfirmed = true
+            self?.isLoading = false
+        }, onFailure: { [weak self] error in
+            self?.isError = true
+            self?.error = .error(image: nil, message: error.localizedDescription, buttonTitle: "Done")
+            self?.isLoading = false
+        })
+        
+        
+//        isLoading = true
+//        BaseNetwork.shared.CallApi(target, BaseResponse<[NearestBrandBrancheM]>.self)
+//            .receive(on: DispatchQueue.main)
+//            .sink(receiveCompletion: {[weak self] completion in
+//                guard let self = self else{return}
+//                isLoading = false
+//                switch completion {
+//                case .finished:
+//                    break
+//                case .failure(let error):
+//                    isError =  true
+//                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
+//                }
+//            },receiveValue: {[weak self] receivedData in
+//                guard let self = self else{return}
+//                print("receivedData",receivedData)
+//                if receivedData.success == true {
+//                    //                    TeacherSubjects?.append(model)
+//                    //                    NearestBrandBranches = receivedData.data
+//                    isCheckoutConfirmed = true
+//                }else{
+//                    isError =  true
+//                    //                    error = NetworkError.apiError(code: receivedData.messageCode ?? 0, error: receivedData.message ?? "")
+//                    error = .error(image:nil,  message: receivedData.message ?? "",buttonTitle:"Done")
+//                }
+//                isLoading = false
+//            })
+//            .store(in: &cancellables)
     }
     
     
     func DeleteFromCart( customerCartId: Int , offsets: IndexSet) {
         
-        isLoading = true
         let parametersArr =  ["customerCartId" : customerCartId]
-        
         // Create your API request with the username and password
         let target = PickupServices.DeleteFromCart(parameters: parametersArr)
         //print(parametersarr)
+        DispatchQueue.main.async { [weak self] in
+            self?.isLoading = true
+        }
+        handleAPI(target: target, responseType: LoginResponse.self, onSuccess: { [weak self] data in
+            self?.isCartDeleted = true
+            self?.SuccessItemdeleted(at: offsets)
+            self?.isLoading = false
+        }, onFailure: { [weak self] error in
+            self?.isError = true
+            self?.error = .error(image: nil, message: error.localizedDescription, buttonTitle: "Done")
+            self?.isLoading = false
+        })
+        
         // Call the API using the BaseNetwork class
-        BaseNetwork.shared.CallApi(target, BaseResponse<LoginResponse>.self)
-            .sink { [self] completion in
-                // Handle completion
-                self.isLoading = false
-                switch completion {
-                case .failure(let error):
-                    isError =  true
-                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
-                case .finished:
-                    break
-                }
-            } receiveValue: { [self] response in
-                // Handle the response
-                print("response : \(response)")
-                self.isLoading = false
-                
-                // Handle the response
-                if response.success == true {
-                    isCartDeleted = true
-                    SuccessItemdeleted(at: offsets)
-                } else {
-                    isError =  true
-                    error = .error(image:nil,  message: response.message ?? "",buttonTitle:"Done")
-                }
-                
-            }
-            .store(in: &cancellables)
+//        BaseNetwork.shared.CallApi(target, BaseResponse<LoginResponse>.self)
+//            .sink { [self] completion in
+//                // Handle completion
+//                self.isLoading = false
+//                switch completion {
+//                case .failure(let error):
+//                    isError =  true
+//                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
+//                case .finished:
+//                    break
+//                }
+//            } receiveValue: { [self] response in
+//                // Handle the response
+//                print("response : \(response)")
+//                self.isLoading = false
+//                
+//                // Handle the response
+//                if response.success == true {
+//                    isCartDeleted = true
+//                    SuccessItemdeleted(at: offsets)
+//                } else {
+//                    isError =  true
+//                    error = .error(image:nil,  message: response.message ?? "",buttonTitle:"Done")
+//                }
+//            }
+//            .store(in: &cancellables)
     }
+    
+//    func updateItemInCart(){
+//// orderTypeId -   pickup :1   -    Dining :2
+//        print(branchId,Details?.customerCart?.id,quantity)
+//        guard let brandBranchId = branchId , let itemId = Details?.customerCart?.id,let orderTypeId = Helper.shared.selectedordertype?.rawValue else {return}
+//        var parameters:[String:Any] = [
+//            "brandBranchId":brandBranchId,
+//            "orderTypeId":orderTypeId,
+//            "itemId": itemId,
+//            "quantity":quantity
+//        ]
+//        if extraIds.count > 0 {
+//            parameters["itemAttributeValueId"] = extraIds
+//        }
+//        
+//        //        print("parameters",parameters)
+//        let target = PickupServices.AddToCart(parameters: parameters)
+//        isLoading = true
+//        BaseNetwork.shared.CallApi(target, BaseResponse<BrandBrancheMenuM>.self)
+//            .receive(on: DispatchQueue.main)
+//            .sink(receiveCompletion: {[weak self] completion in
+//                guard let self = self else{return}
+//                isLoading = false
+//                switch completion {
+//                case .finished:
+//                    break
+//                case .failure(let error):
+//                    isError =  true
+//                    self.error = .error(image:nil, message: "\(error.localizedDescription)",buttonTitle:"Done")
+//                }
+//            },receiveValue: {[weak self] receivedData in
+//                guard let self = self else{return}
+//                print("receivedData",receivedData)
+//                if receivedData.success == true {
+//                    //                    TeacherSubjects?.append(model)
+//                    //                    if skipCount == 0{
+////                    BrandBrancheDetails = receivedData.data
+//                    //                    }else{
+//                    //                        Categories?.items?.append(contentsOf: receivedData.data?.items ?? [])
+//                    //                    }
+//                    isAddedToCheckout = true
+//                    
+//                }else{
+//                    isError =  true
+//                    //                    error = NetworkError.apiError(code: receivedData.messageCode ?? 0, error: receivedData.message ?? "")
+//                    error = .error(image:nil,  message: receivedData.message ?? "",buttonTitle:"Done")
+//                }
+//                isLoading = false
+//            })
+//            .store(in: &cancellables)
+//    }
     
     private func SuccessItemdeleted(at offsets: IndexSet) {
         checkout?.cartItems?.remove(atOffsets: offsets)
-        
         if checkout?.cartItems?.count == 0  {
             dismissCart = true
         }
-        
     }
     
     
@@ -233,13 +317,13 @@ extension CheckoutVM{
     //        isEditing = true
     //    }
     
-    func cleanup() {
-        // Cancel any ongoing Combine subscriptions
-        cancellables.forEach { cancellable in
-            cancellable.cancel()
-        }
-        cancellables.removeAll()
-    }
+//    func cleanup() {
+//        // Cancel any ongoing Combine subscriptions
+//        cancellables.forEach { cancellable in
+//            cancellable.cancel()
+//        }
+//        cancellables.removeAll()
+//    }
 }
 
 
