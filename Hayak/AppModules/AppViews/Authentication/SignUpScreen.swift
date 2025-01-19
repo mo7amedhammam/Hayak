@@ -139,7 +139,7 @@ struct ExtractedViewSignUp: View {
                 
                 VStack {
                     
-                    UserNameView(userName: $name)
+                    CustomInputField(text: $name)
                     PhoneNumberView(phoneNumber: $phoneNumber)
                         .onChange(of: phoneNumber) { newValue in
                             if newValue.count < 4{
@@ -219,21 +219,26 @@ struct ExtractedViewSignUp: View {
 
 
 
-struct UserNameView: View {
-    @Binding  var userName: String
+struct CustomInputField: View {
+    var title:String? = "Name"
+    var placeholder:String? = "Enter your name"
+    var icon:String? = "user"
+
+    @Binding var text: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("Name")
+            Text(title?.localized() ?? "")
                 .font(.custom("LamaSans-Bold", size: 12))
                 .foregroundColor(Color("main1"))
             
             
             HStack {
-                
+                let stringValue = NSLocalizedString(placeholder ?? "Enter your name", comment: "")
+
                 CustomTextField(
-                    text: $userName,
-                    placeholder: "Enter your name",
+                    text: $text,
+                    placeholder: stringValue,
                     placeholderColor: UIColor(named: "empty text field") ?? .gray ,
                     textColor:  UIColor(named: "main1") ?? .black , keyboardType: .default
                 ).font(.custom("LamaSans-Regular", size: 10))
@@ -241,9 +246,11 @@ struct UserNameView: View {
                     .overlay(
                         HStack {
                             Spacer()
-                            Image("user") // Replace with your desired icon
-                                .foregroundColor(Color("AAAAAA"))
-                                .padding(.trailing, 8)
+                            if let icon = icon{
+                                Image(icon) // Replace with your desired icon
+                                    .foregroundColor(Color("AAAAAA"))
+                                    .padding(.trailing, 8)
+                            }
                         }
                     )
             }

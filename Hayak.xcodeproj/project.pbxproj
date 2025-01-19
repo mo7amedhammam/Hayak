@@ -95,6 +95,8 @@
 		C8C544292CBC022400472504 /* MainPickUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C544282CBC022400472504 /* MainPickUpVM.swift */; };
 		C8C5442C2CBC03F000472504 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5442B2CBC03F000472504 /* CustomAlertView.swift */; };
 		C8C5442E2CBC042900472504 /* PickupServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5442D2CBC042900472504 /* PickupServices.swift */; };
+		C8D2169E2D3CFF8900AD7A96 /* AddNewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D2169D2D3CFF8900AD7A96 /* AddNewCard.swift */; };
+		C8D216A02D3D067A00AD7A96 /* AddNewCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D2169F2D3D067A00AD7A96 /* AddNewCardViewModel.swift */; };
 		C8F49C8E2CCE5791003AFC70 /* ItemDetailsM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F49C8D2CCE5791003AFC70 /* ItemDetailsM.swift */; };
 		C8F49C932CCE5F5B003AFC70 /* CheckoutM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F49C922CCE5F5B003AFC70 /* CheckoutM.swift */; };
 		C8F49C952CCE5FA9003AFC70 /* CheckoutVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F49C942CCE5FA9003AFC70 /* CheckoutVM.swift */; };
@@ -193,6 +195,8 @@
 		C8C544282CBC022400472504 /* MainPickUpVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPickUpVM.swift; sourceTree = "<group>"; };
 		C8C5442B2CBC03F000472504 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 		C8C5442D2CBC042900472504 /* PickupServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupServices.swift; sourceTree = "<group>"; };
+		C8D2169D2D3CFF8900AD7A96 /* AddNewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCard.swift; sourceTree = "<group>"; };
+		C8D2169F2D3D067A00AD7A96 /* AddNewCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCardViewModel.swift; sourceTree = "<group>"; };
 		C8F49C8D2CCE5791003AFC70 /* ItemDetailsM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailsM.swift; sourceTree = "<group>"; };
 		C8F49C922CCE5F5B003AFC70 /* CheckoutM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutM.swift; sourceTree = "<group>"; };
 		C8F49C942CCE5FA9003AFC70 /* CheckoutVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutVM.swift; sourceTree = "<group>"; };
@@ -332,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				195FEDB92C4EF4D800E9EDC7 /* View */,
+				C8D2169A2D3CFED400AD7A96 /* Payment */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -844,6 +849,31 @@
 			path = CustomAlertView;
 			sourceTree = "<group>";
 		};
+		C8D2169A2D3CFED400AD7A96 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				C8D2169C2D3CFEF700AD7A96 /* View */,
+				C8D2169B2D3CFEF000AD7A96 /* ViewModel */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
+		C8D2169B2D3CFEF000AD7A96 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C8D2169F2D3D067A00AD7A96 /* AddNewCardViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C8D2169C2D3CFEF700AD7A96 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C8D2169D2D3CFF8900AD7A96 /* AddNewCard.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C8F49C8A2CCE542C003AFC70 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1059,6 +1089,7 @@
 				190702092C98BD99005B8E23 /* ViewModelVertifyOtp.swift in Sources */,
 				190702032C98BD3D005B8E23 /* ViewModelCreate.swift in Sources */,
 				C8986D212C15C3A00091789F /* Helper.swift in Sources */,
+				C8D216A02D3D067A00AD7A96 /* AddNewCardViewModel.swift in Sources */,
 				19F60B1E2C45766600367453 /* SuccessScreen.swift in Sources */,
 				C8986D152C15C3A00091789F /* ExViews.swift in Sources */,
 				C8601B1A2CC11E08000BF662 /* MenueVM.swift in Sources */,
@@ -1099,6 +1130,7 @@
 				C8368F402C8877F100003DBB /* PickUpCellView.swift in Sources */,
 				19349FFB2C56EBA200AAA59C /* EditAddressScreen.swift in Sources */,
 				196498F02C6AA1D90053F0D3 /* OrderEmptyScreen.swift in Sources */,
+				C8D2169E2D3CFF8900AD7A96 /* AddNewCard.swift in Sources */,
 				19EA12852CB698CC00C80528 /* ViewModelSendOtp.swift in Sources */,
 				C8368F522C88A09600003DBB /* CustomButton.swift in Sources */,
 				C82AED122C8D9A01005FFC41 /* OrderCanselationDelayView.swift in Sources */,

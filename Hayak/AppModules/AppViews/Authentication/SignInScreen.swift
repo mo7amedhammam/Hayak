@@ -139,22 +139,35 @@ struct ExtractedViewSignIn: View {
                     .frame(height: 25)
                     .padding()
                     
-                    Button(action: {
+                    
+                    CustomButton(Title: "Sign in",IsDisabled: .constant(false), action: {
                         UIApplication.shared.endEditing()
                         //Sign in
 //                            viewModel.Login(mobile: phoneNumber , password: passwordNumber)
                         Task{
                             await viewModel.Login1(mobile: phoneNumber , password: passwordNumber)
                         }
-                    }, label: {
-                        Text("Sign in".localized())
-                            .frame(height: 50) // Set the height here
-                            .frame(maxWidth: .infinity)
-                            .font(.custom(fontEnum.medium.rawValue, size: 14))
-                            .foregroundColor(Color("bg1")).background(Color("main2"))
-                            .cornerRadius(20)
-                            .padding(.horizontal , 20)
+
                     })
+                    .frame(height: 50) // Set the height here
+
+                    
+//                    Button(action: {
+//                        UIApplication.shared.endEditing()
+//                        //Sign in
+////                            viewModel.Login(mobile: phoneNumber , password: passwordNumber)
+//                        Task{
+//                            await viewModel.Login1(mobile: phoneNumber , password: passwordNumber)
+//                        }
+//                    }, label: {
+//                        Text("Sign in".localized())
+//                            .frame(height: 50) // Set the height here
+//                            .frame(maxWidth: .infinity)
+//                            .font(.custom(fontEnum.medium.rawValue, size: 14))
+//                            .foregroundColor(Color("bg1")).background(Color("main2"))
+//                            .cornerRadius(20)
+//                            .padding(.horizontal , 20)
+//                    })
                     
                     Spacer()
                     
