@@ -10,6 +10,7 @@ import Kingfisher
 
 enum menuFilterCases:String{
     case sort = "Sort"
+    case Recommendation = "Recommendation"
     case Radius = "Radius"
     case Rate = "Rate"
     
@@ -41,9 +42,9 @@ struct PicUpView: View {
     @State var selectedrate : Int?
     var isshowingcart:Bool? = false
 
-    @State var showSort = true
+    @State var showSort = false
     let options = ["Recommendation", "Top Rated", "Distance"]
-    @State private var selectedOption: String = "Recommendation"
+    @State private var selectedOption: String?
     
     
 //    var islistingfavourites:Bool? = false
@@ -101,15 +102,20 @@ struct PicUpView: View {
                 
                 ScrollView(.horizontal){
                     HStack(spacing: 10) {
+                        cpsuleBtnView(item: items[0],isselecteditem:.constant(selectedOption != nil),onAction: {
+                            showSort = true
+                        })
+
                         ForEach(items){ item in
                             let isselected = (item.id == 0 && selectedsort != nil) || (item.id == 1 && selectedradius != nil) || (item.id == 2 && selectedrate != nil)
                             
                             cpsuleBtnView(item: item,isselecteditem: .constant(isselected),onAction: {
-                                if item.id == 0{
+//                                if item.id == 0{
                                     // show sort options
 //                                    selectedsort = item
                                     showSort = true
-                                }else if item.id == 1{
+//                                }else 
+                                          if item.id == 1{
                                     // show sort options
                                     selectedradius = 5
                                 }else if item.id == 2{
@@ -209,7 +215,15 @@ struct PicUpView: View {
                              VStack(alignment: .leading, spacing: 20) {
                                  ForEach(options, id: \.self) { option in
                                      Button(action: {
-                                         selectedOption = option
+                                         selectedOption =  selectedOption == option ? nil:option
+                                         if items[0].name != selectedOption{
+                                             items[0].name =  selectedOption ?? "Sort By"
+                                             items[0].id = 1
+                                         }else{
+                                             items[0].name = "Sort By"
+                                             items[0].id = 0
+                                         }
+                                             
                                      }, label: {
                                         
                                      HStack {
