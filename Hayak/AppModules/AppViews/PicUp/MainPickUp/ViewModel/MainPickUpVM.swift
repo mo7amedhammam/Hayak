@@ -33,6 +33,8 @@ class MainPickUpVM: BaseViewModel {
     @Published var filterdate : String?
     //    @Published var isFiltering : Bool = false
     
+    @Published var islistingfavourites = false
+    
     //    MARK: --- outpust ---
     @Published var isLoading : Bool?
     @Published var isError : Bool = false

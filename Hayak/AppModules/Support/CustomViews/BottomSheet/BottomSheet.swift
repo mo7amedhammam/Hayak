@@ -81,3 +81,92 @@ extension View {
     }
 }
 
+
+
+struct BottomSheetView1<Content: View>: View {
+    @Binding var isPresented: Bool
+    let content: Content
+
+    init(isPresented: Binding<Bool>, @ViewBuilder content: () -> Content) {
+        self._isPresented = isPresented
+        self.content = content()
+    }
+
+    var body: some View {
+        ZStack{
+            Color.black.opacity(0.05)
+                .edgesIgnoringSafeArea(.vertical)
+//                .borderRadius(.white, cornerRadius: 12, corners: [.topLeft,.topRight])
+                .clearSheetBackground() // 🔥 Remove default sheet background
+                .onTapGesture {
+                    isPresented = false
+                }
+            VStack(spacing:0) {
+                Spacer()
+//                HStack {
+//                    Spacer()
+//                    Button(action: {
+//                        isPresented = false
+//                    }) {
+//                        Image(systemName: "xmark.circle.fill")
+//                            .resizable()
+//                            .frame(width: 24, height: 24)
+//                            .foregroundColor(.gray)
+//                    }
+//                    .padding()
+//                }
+//                .background(.white)
+//                .borderRadius(.white, cornerRadius: 12, corners: [.topLeft,.topRight])
+                
+                content // 🔥 Injected custom content
+                //            Spacer()
+                    .borderRadius(.white, cornerRadius: 12, corners: [.topLeft,.topRight])
+
+            }
+            .frame(maxWidth: .infinity,maxHeight: .infinity)
+            //        .background(Color.black.opacity(0.2))
+//            .cornerRadius(15)
+            //        .background(BlurView(style: .systemThinMaterial)) // 🔥 Background blur
+//            .clearSheetBackground() // 🔥 Remove default sheet background
+            //        .background(Color.black.opacity(0.03))
+            .edgesIgnoringSafeArea(.vertical)
+            
+        }
+    }
+}
+
+
+//    ---- clearSheetBackground ----
+extension View {
+    func clearSheetBackground() -> some View {
+        self.background(
+            UIKitBackgroundClearView()
+                .edgesIgnoringSafeArea(.all)
+        )
+    }
+}
+
+struct UIKitBackgroundClearView: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        DispatchQueue.main.async {
+            view.superview?.superview?.backgroundColor = UIColor.black.withAlphaComponent(0.03) // 🔥 Removes default white background
+        }
+        return view
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+// ---- BlurView ----
+struct BlurView: UIViewRepresentable {
+    let style: UIBlurEffect.Style
+
+    func makeUIView(context: Context) -> UIVisualEffectView {
+        let blurEffect = UIBlurEffect(style: style)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        return blurView
+    }
+
+    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {}
+}

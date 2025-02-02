@@ -41,7 +41,12 @@ struct PicUpView: View {
     @State var selectedrate : Int?
     var isshowingcart:Bool? = false
 
-    var islistingfavourites:Bool? = false
+    @State var showSort = true
+    let options = ["Recommendation", "Top Rated", "Distance"]
+    @State private var selectedOption: String = "Recommendation"
+    
+    
+//    var islistingfavourites:Bool? = false
     var hasbackBtn:Bool? = false
 //    @Environment(\.dismiss) var dismiss
 
@@ -58,12 +63,12 @@ struct PicUpView: View {
                 destination = AnyView(view)
                 isActive = true
                 
-            }, btnimg3: Image(islistingfavourites ?? false ? .favoriteiconfill:.favoriteiconempty), onbtnimg3: {
+            }, btnimg3: Image(pickupvm.islistingfavourites ? .favoriteiconfill:.favoriteiconempty), onbtnimg3: {
                 
-                guard islistingfavourites == false else {return}
+                guard pickupvm.islistingfavourites == false else {return}
                 print("list favourites")
                 var view = PicUpView()
-                view.islistingfavourites = true
+                pickupvm.islistingfavourites = true
                 view.hasbackBtn = true
                 pickupvm.GetFavouriteBrandBranches()
                 destination = AnyView(view                            .environmentObject(pickupvm)
@@ -84,6 +89,15 @@ struct PicUpView: View {
                 
                 restaurantsScrollView(resturants: pickupvm.Categories ?? [] ,selectedResturant: $pickupvm.selectedCategory)
                     .frame(height: 120)
+                    .onChange(of: pickupvm.selectedCategory){_ in
+                        Task{
+                            if pickupvm.islistingfavourites == true{
+                                pickupvm.GetFavouriteBrandBranches()
+                            }else{
+                             pickupvm.GetNearestBrandBranches()
+                            }
+                        }
+                    }
                 
                 ScrollView(.horizontal){
                     HStack(spacing: 10) {
@@ -93,7 +107,8 @@ struct PicUpView: View {
                             cpsuleBtnView(item: item,isselecteditem: .constant(isselected),onAction: {
                                 if item.id == 0{
                                     // show sort options
-                                    selectedsort = item
+//                                    selectedsort = item
+                                    showSort = true
                                 }else if item.id == 1{
                                     // show sort options
                                     selectedradius = 5
@@ -146,21 +161,90 @@ struct PicUpView: View {
                 .navigationBarBackButtonHidden(true)
         }
         .task {
-            guard islistingfavourites == false && isshowingcart == false else { return }
+            guard pickupvm.islistingfavourites == false && isshowingcart == false else { return }
             pickupvm.lat = locationManager.Currentlat
             pickupvm.lon = locationManager.Currentlong
             
             await withTaskGroup(of: Void.self) { group in
                 group.addTask {
                     await pickupvm.GetCategories()
-                }
-                group.addTask {
+//                }
+//                group.addTask {
                     await pickupvm.GetNearestBrandBranches()
                 }
             }
         }
         .showHud(isShowing: $pickupvm.isLoading)
         .showAlert(hasAlert: $pickupvm.isError, alertType: pickupvm.error)
+        .fullScreenCover(isPresented: $showSort, content: {
+
+            BottomSheetView1(isPresented: $showSort, content: {
+                VStack(){
+                        ZStack (alignment:.trailing){
+                            HStack {
+                                Image(.sorticon)
+                                    .renderingMode(.template)
+                                    .frame(width: 25, height: 29)
+                                Text("Sort By".localized())
+                                    .foregroundColor(.main1)
+                                    .font(Font.Bold(size: 14))
+
+                            }
+                            .frame(maxWidth: .infinity)
+
+                            Button(action: {
+                                showSort = false
+                            }) {
+                                Image(systemName: "xmark")
+//                                    .resizable()
+                                    .frame(width: 24, height: 24)
+                                    .foregroundColor(.red)
+                            }
+//                            .padding()
+                        }
+                        .padding(.vertical)
+                        
+                        
+                    // Sorting options list
+                             VStack(alignment: .leading, spacing: 20) {
+                                 ForEach(options, id: \.self) { option in
+                                     Button(action: {
+                                         selectedOption = option
+                                     }, label: {
+                                        
+                                     HStack {
+                                         Text(option.localized())
+                                             .foregroundColor(.main1)
+                                             .font(Font.Bold(size: 14))
+
+                                         Spacer()
+                                         Image(selectedOption == option ? "RadioButton-fill" : "RadioButton-empty")
+                                             .foregroundColor(.main1)
+                                     }
+                                     })
+                                 }
+                             }
+                             .padding(.top,10)
+                             .padding(.bottom,20)
+
+
+                        
+                    }
+//                    .frame(maxWidth: .infinity)
+                    .padding(.all)
+                    .background(.white)
+
+                })
+
+        })
+        
+//        .bottomSheet(isPresented: $showSort){
+//            VStack{
+//                Text("Sort By".localized())
+//            }
+//            .padding(.bottom,100)
+//
+//        }
     }
 }
 
@@ -169,3 +253,15 @@ struct PicUpView: View {
         .environmentObject(MainPickUpVM.shared)
 }
 
+
+struct BackgroundClearView: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        DispatchQueue.main.async {
+            view.superview?.superview?.backgroundColor = .clear
+        }
+        return view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}

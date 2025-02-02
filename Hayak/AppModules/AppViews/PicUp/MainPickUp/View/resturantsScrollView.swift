@@ -35,10 +35,11 @@ struct restaurantsScrollView: View {
                             KFImageLoader(urlStr: resturant.imageURL, placeholder: Image("2"))
                                 .frame(width: 70, height: 70, alignment: .center)
                                 .padding(10)
-                                .background{Color(selectedResturant == resturant ? "active text":"color-E5E5E5").cornerRadius(12)}
+                                .background{Color(selectedResturant == resturant ? .main:.colorE5E5E5)
+                                    .cornerRadius(12)}
                             
                             Text(resturant.name ?? "")
-                                .foregroundColor(selectedResturant == resturant ? .activeText:.main2)
+                                .foregroundColor(selectedResturant == resturant ? .main1:.main2)
                                 .font(.custom(fontEnum.semiBold.rawValue, size:15))
                         }
                     })
