@@ -10,7 +10,7 @@ import Foundation
 
 class MainPickUpVM: BaseViewModel {
     static let shared = MainPickUpVM()
-//    private var cancellables: Set<AnyCancellable> = []
+    //    private var cancellables: Set<AnyCancellable> = []
     
     // Reference the location view model
     //    private var locationManager = LocationManagerVM.shared
@@ -22,6 +22,9 @@ class MainPickUpVM: BaseViewModel {
     
     //    @Published var selectedLessonid : Int?
     @Published var selectedCategory:MainCategoriesM?
+    @Published var sortBy : String? // rate, recommendation,distance
+    @Published var Radius : Int? // rate, recommendation,distance
+    @Published var Rate : Int? // rate, recommendation,distance
     
     //    @Published var filtersubject : DropDownOption?{
     //        didSet{
@@ -29,8 +32,8 @@ class MainPickUpVM: BaseViewModel {
     //        }
     //    }
     //    @Published var filterlesson : DropDownOption?
-    @Published var filtergroupName : String = ""
-    @Published var filterdate : String?
+    //    @Published var filtergroupName : String = ""
+    //    @Published var filterdate : String?
     //    @Published var isFiltering : Bool = false
     
     @Published var islistingfavourites = false
@@ -43,7 +46,7 @@ class MainPickUpVM: BaseViewModel {
     //    @Published var isTeacherHasSubjects: Bool = false
     @Published var Categories : [MainCategoriesM]?
     @Published var NearestBrandBranches : [NearestBrandBrancheM]?
-//    @Published var itemAddedToFavourit : Bool = false
+    //    @Published var itemAddedToFavourit : Bool = false
     
     var lat : Double?
     var lon : Double?
@@ -64,7 +67,7 @@ extension MainPickUpVM{
         DispatchQueue.main.async { [weak self] in
             self?.isLoading = true
         }
-
+        
         let target = PickupServices.Categories
         handleAPI(target: target, responseType: [MainCategoriesM].self, onSuccess: { [weak self] data in
             self?.Categories = data
@@ -74,7 +77,7 @@ extension MainPickUpVM{
             self?.error = .error(image: nil, message: error.localizedDescription, buttonTitle: "Done")
             self?.isLoading = false
         })
-
+        
     }
     
     func GetNearestBrandBranches(){
@@ -88,15 +91,15 @@ extension MainPickUpVM{
         //            parameters["lon"] = lon
         //        }
         
-        //        if let distance = ""{
-        //            parameters["distance"] = distance
-        //        }
+        if let distance = Radius{
+            parameters["distance"] = distance
+        }
         if let categoryId = selectedCategory?.id{
             parameters["categoryId"] = categoryId
         }
-        //        if let sortBy = ""{
-        //            parameters["sortBy"] = sortBy
-        //        }
+        if let sortBy = sortBy{
+            parameters["sortBy"] = sortBy
+        }
         print("parameters",parameters)
         DispatchQueue.main.async { [weak self] in
             self?.isLoading = true
@@ -152,7 +155,7 @@ extension MainPickUpVM{
         let target = PickupServices.AddToFavourit(parameters: parametersArr)
         // Call the API using the BaseNetwork class
         handleAPI(target: target, responseType: [LoginResponse].self, onSuccess: { [weak self] data in
-//            self?.NearestBrandBranches = data
+            //            self?.NearestBrandBranches = data
             self?.isLoading = false
         }, onFailure: { [weak self] error in
             self?.isError = true
@@ -199,13 +202,13 @@ extension MainPickUpVM{
     //        isEditing = true
     //    }
     
-//    func cleanup() {
-//        // Cancel any ongoing Combine subscriptions
-//        cancellables.forEach { cancellable in
-//            cancellable.cancel()
-//        }
-//        cancellables.removeAll()
-//    }
+    //    func cleanup() {
+    //        // Cancel any ongoing Combine subscriptions
+    //        cancellables.forEach { cancellable in
+    //            cancellable.cancel()
+    //        }
+    //        cancellables.removeAll()
+    //    }
 }
 
 
