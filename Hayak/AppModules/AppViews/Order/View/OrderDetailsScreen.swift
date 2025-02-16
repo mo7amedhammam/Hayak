@@ -71,7 +71,7 @@ struct ExtractedViewOrderDetailsScreen : View {
                        
                     }
                     
-                    Text("Delivered")
+                    Text("Delivered".localized())
                         .foregroundColor(Color("main2"))
                         .font(.custom(fontEnum.medium.rawValue, size:12))
                     
@@ -108,24 +108,24 @@ struct ExtractedViewOrderDetailsScreen : View {
                                         .foregroundColor(Color("main1"))
                                         .font(.custom(fontEnum.bold.rawValue, size:12))
 
-                                    Text("Your Choice of Sauce")
+                                    Text("Your Choice of Sauce".localized())
                                         .foregroundColor(Color("main1"))
                                         .font(.custom(fontEnum.regular.rawValue, size:10))
 
-                                    Text("Spicy Sauce")
+                                    Text("Spicy Sauce".localized())
                                         .foregroundColor(Color("main1"))
                                         .font(.custom(fontEnum.bold.rawValue, size:10))
                                     
                                     Text("Pasta Sauce (+7 SAR)")
                                         .foregroundColor(Color("main1"))
                                         .font(.custom(fontEnum.bold.rawValue, size:10))
-                                    Text("Your Choice of Sandwich")
+                                    Text("Your Choice of Sandwich".localized())
                                         .foregroundColor(Color("main1"))
                                         .font(.custom(fontEnum.regular.rawValue, size:10))
                                     Text("Spicy (+15 SAR)")
                                         .foregroundColor(Color("main1"))
                                         .font(.custom(fontEnum.bold.rawValue, size:10))
-                                    Text("Your Choice of Drink")
+                                    Text("Your Choice of Drink".localized())
                                         .foregroundColor(Color("main1"))
                                         .font(.custom(fontEnum.regular.rawValue, size:10))
                                     Text("Cola")
@@ -165,8 +165,6 @@ struct ExtractedViewOrderDetailsScreen : View {
                                     .cornerRadius(15)
                                     
                                     Spacer()
-
-
                                 }
                                 .frame(width: 120)
                                 
@@ -177,19 +175,17 @@ struct ExtractedViewOrderDetailsScreen : View {
                 }
                 .listStyle(.plain)
                 .listRowSeparator(.hidden)
-                
-                
             }
             
             // views
             VStack(alignment : .leading , spacing: 10) {
                 
-                Text("Payment summary")
+                Text("Payment summary".localized())
                     .foregroundColor(Color("main1"))
                     .font(.custom(fontEnum.bold.rawValue, size:16))
                 
                 HStack {
-                    Text("Subtotal")
+                    Text("Subtotal".localized())
                         .foregroundColor(Color("main1"))
                         .font(.custom(fontEnum.regular.rawValue, size:12))
                     Spacer()
@@ -198,9 +194,8 @@ struct ExtractedViewOrderDetailsScreen : View {
                         .font(.custom(fontEnum.medium.rawValue, size:12))
                 }
                 
-                
                 HStack {
-                    Text("Service fee")
+                    Text("Service fee".localized())
                         .foregroundColor(Color("main1"))
                         .font(.custom(fontEnum.regular.rawValue, size:12))
                     Spacer()
@@ -209,7 +204,7 @@ struct ExtractedViewOrderDetailsScreen : View {
                         .font(.custom(fontEnum.medium.rawValue, size:12))
                 }
                 HStack {
-                    Text("Total amount")
+                    Text("Total amount".localized())
                         .foregroundColor(Color("main1"))
                         .font(.custom(fontEnum.medium.rawValue, size:14))
                     Spacer()
@@ -219,15 +214,8 @@ struct ExtractedViewOrderDetailsScreen : View {
                 }
                 Spacer()
                     .frame(height: 5)
-
-                
             }
-
-            
-            
             Spacer()
-            
-    
         }
         .padding(.horizontal , 20)
     }

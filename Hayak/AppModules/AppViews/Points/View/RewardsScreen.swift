@@ -35,30 +35,28 @@ struct RewardsScreen: View {
 }
 
 
-class RewardsModel : Identifiable ,ObservableObject {
+struct RewardsModel : Hashable {
     var tag : Int
     var name: String
-    @Published var selected: Bool
+
     
-    init(tag: Int, name: String, selected: Bool) {
+    init(tag: Int, name: String) {
         self.tag = tag
         self.name = name
-        self.selected = selected
+//        self.selected = selected
     }
 }
 
 struct ExtractedViewRewardsScreen : View {
     
     @State var emptyRewards: Bool = false
-
-    
     @State private var items = [
-        RewardsModel(tag : 0 ,name: "    All    ",selected : true ),
-        RewardsModel(tag : 1 ,name: "  Earned  ",selected : false ),
-        RewardsModel(tag : 2 ,name: "  Redeemed  "  ,selected : false),
-        RewardsModel(tag : 3 ,name: "  Expired  ",selected : false)
+        RewardsModel(tag : 0 ,name: "All"),
+        RewardsModel(tag : 1 ,name: "Earned"),
+        RewardsModel(tag : 2 ,name: "Redeemed"),
+        RewardsModel(tag : 3 ,name: "Expired")
     ]
-    
+    @State var selecteditem : RewardsModel = RewardsModel(tag: 0, name: "All")
     
     var body: some View {
         
@@ -67,25 +65,26 @@ struct ExtractedViewRewardsScreen : View {
             VStack {
                 ScrollView (.horizontal , showsIndicators: false) {
                     HStack(spacing: 10) {
-                        ForEach(items.indices, id: \.self) { index in
+                        ForEach(items,id: \.self){ item in
                             Button(action: {
-                                for i in 0..<items.count {
-                                    items[i].selected = (i == index)
-                                    print("items[\(i)].selected : \(items[i].selected)")
-                                }
+                                selecteditem = item
+//                                for i in 0..<items.count {
+//                                    items[index].selected.wrappedValue = true
+//                                    print("items[\(index)].selected : \(items[index].selected)")
+//                                }
                             }, label: {
-                                Text(items[index].name)
-                                    .font(.custom(items[index].selected ? fontEnum.medium.rawValue : fontEnum.bold.rawValue, size: 10))
+                                Text(item.name)
+                                    .font(.custom(item == selecteditem ? fontEnum.medium.rawValue : fontEnum.bold.rawValue, size: 10))
                                     .padding()
-                                    .background(items[index].selected ? Color("main2") : Color("bg1"))
-                                    .foregroundColor(items[index].selected ? Color("main3") : Color("main1"))
+                                    .background(item == selecteditem ? Color("main2") : Color("bg1"))
+                                    .foregroundColor(item == selecteditem ? Color("main3") : Color("main1"))
                                     .cornerRadius(25)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 20)
-                                            .stroke(items[index].selected ? .clear : Color("main2"), lineWidth: 1)
+                                            .stroke(item == selecteditem ? .clear : Color("main2"), lineWidth: 1)
                                     )
                             })
-                            .tag(items[index].tag)
+//                            .tag(items[index].tag)
                         }
                     }
                 }
@@ -95,7 +94,6 @@ struct ExtractedViewRewardsScreen : View {
             .background(.clear)
          
             ZStack {
-                
                 List {
                     ForEach(0 ..< 10) {_ in
                         
@@ -149,7 +147,6 @@ struct ExtractedViewRewardsScreen : View {
                                 .font(.custom(fontEnum.medium.rawValue, size:14))
                         }
                         .foregroundColor(Color("main1"))
-
 
                         
                         Button(action: {

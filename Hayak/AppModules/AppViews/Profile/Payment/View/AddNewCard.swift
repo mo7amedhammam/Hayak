@@ -63,9 +63,7 @@ struct AddNewCard:View {
         }
         .hideNavigationBar()
         
-        
     }
-    
 }
 #Preview {
     AddNewCard()

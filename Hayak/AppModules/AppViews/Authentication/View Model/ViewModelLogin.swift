@@ -141,7 +141,7 @@ class ViewModelLogin: ObservableObject {
                  self.isLoading = false
 
                  self.errorMessage = error.errorDescription
-                 print("Network error: \(error.errorDescription)")
+                 print("Network error: \(error.errorDescription ?? "")")
              } catch {
                  self.isLoading = false
                  self.errorMessage = error.localizedDescription

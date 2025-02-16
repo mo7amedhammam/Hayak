@@ -36,15 +36,13 @@ struct OrderTrackingScreen: View {
 
 struct ExtractedViewOrderTrackingScreen: View {
     
+    @State var ststusCode : Int? = 1
     var body: some View {
-        
         VStack {
-          
             VStack {
-              
                 VStack (spacing : 15){
                     HStack {
-                        Text("Your Booking code:")
+                        Text("Your Booking code:".localized())
                             .foregroundColor(Color("main1"))
                             .font(.custom(fontEnum.bold.rawValue, size:14))
                         Spacer()
@@ -75,13 +73,13 @@ struct ExtractedViewOrderTrackingScreen: View {
                 HStack {
                     
                     VStack {
-                        Image("oval")
+                        Image(ststusCode ?? 0 > 3 ? "oval-Fill" : "oval")
                         Spacer()
-                        Image("oval")
+                        Image(ststusCode ?? 0 > 2 ? "oval-Fill" : "oval")
                         Spacer()
-                        Image("oval")
+                        Image(ststusCode ?? 0 > 1 ? "oval-Fill" : "oval")
                         Spacer()
-                        Image("oval")
+                        Image(ststusCode ?? 0 > 0 ? "oval-Fill" : "oval")
                     }
                     .frame(width: 50, height: 200)  // Set the size of the container
                     .background(
@@ -94,7 +92,7 @@ struct ExtractedViewOrderTrackingScreen: View {
                     VStack(alignment: .leading , spacing : 20) {
 
                         VStack(alignment: .leading ,  spacing : 10){
-                            Text("Food Delivered")
+                            Text("Food Delivered".localized())
                                 .foregroundColor(Color("main1"))
                                 .font(.custom(fontEnum.bold.rawValue, size:14))
                             Text("Estimated for 7 July, 2021")
@@ -103,7 +101,7 @@ struct ExtractedViewOrderTrackingScreen: View {
                         }
                         
                         VStack(alignment: .leading ,  spacing : 10){
-                            Text("Reached at location")
+                            Text("Reached at location".localized())
                                 .foregroundColor(Color("main1"))
                                 .font(.custom(fontEnum.bold.rawValue, size:14))
                             Text("Estimated for 5 July, 2021")
@@ -113,19 +111,19 @@ struct ExtractedViewOrderTrackingScreen: View {
                         
                         
                         VStack(alignment: .leading ,  spacing : 10){
-                            Text("Confirmed")
+                            Text("Confirmed".localized())
                                 .foregroundColor(Color("main1"))
                                 .font(.custom(fontEnum.bold.rawValue, size:14))
-                            Text("Your Booking has been confirmed")
+                            Text("Your Booking has been confirmed".localized())
                                 .foregroundColor(Color("empty text field"))
                                 .font(.custom(fontEnum.medium.rawValue, size:13))
                         }
                         
                         VStack(alignment: .leading ,  spacing : 10){
-                            Text("Booking placed")
+                            Text("Booking placed".localized())
                                 .foregroundColor(Color("main1"))
                                 .font(.custom(fontEnum.bold.rawValue, size:14))
-                            Text("We have received your order")
+                            Text("We have received your order".localized())
                                 .foregroundColor(Color("empty text field"))
                                 .font(.custom(fontEnum.medium.rawValue, size:13))
                         }
@@ -151,19 +149,11 @@ struct ExtractedViewOrderTrackingScreen: View {
                 .frame(height: 50)
             
          
-            Button(action: {
-                //back
+            CustomButton(Title:"Back to Home",IsDisabled: .constant(false), action: {
                 
-            }, label: {
-                Text("Back to Home")
-                    .frame(height: 50) // Set the height here
-                    .frame(maxWidth: .infinity)
-                    .font(.custom(fontEnum.medium.rawValue, size: 14))
-                    .foregroundColor(Color("bg1")).background(Color("main2"))
-                    .cornerRadius(11)
-                    .padding(.horizontal , 20)
             })
-            
+            .frame(height: 50)
+            .padding(.horizontal)
             
             Spacer()
         }

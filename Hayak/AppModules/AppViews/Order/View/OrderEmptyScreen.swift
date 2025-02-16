@@ -50,11 +50,11 @@ struct ExtractedViewOrderEmptyScreen: View {
                 VStack {
                     
                     VStack(spacing : 15) {
-                        Text("Your Cart is empty")
+                        Text("Your Cart is empty".localized())
                             .font(.custom("LamaSans-Bold", size: 18))
                             .foregroundColor(Color("main1"))
                         
-                        Text("Looks like you haven't made your order yet.")
+                        Text("Looks like you haven't made your order yet.".localized())
                             .lineSpacing(10.0)
                             .font(.custom(fontEnum.medium.rawValue, size: 14))
                             .foregroundColor(Color("main1"))
@@ -66,26 +66,13 @@ struct ExtractedViewOrderEmptyScreen: View {
                     
                     Spacer()
                     
-                    
-                    Button(action: {
-                        //save
+                    CustomButton(Title:"Shop Now",IsDisabled: .constant(false), action: {
                         
-                    }, label: {
-                        Text("Shop Now")
-                            .frame(height: 50) // Set the height here
-                            .frame(maxWidth: .infinity)
-                            .font(.custom(fontEnum.medium.rawValue, size: 14))
-                            .foregroundColor(Color("bg1")).background(Color("main2"))
-                            .cornerRadius(11)
-                            .padding(.horizontal , 20)
                     })
+                    .frame(height: 50)
+                    .padding(.horizontal)
+                    
                 }
-                .frame(maxWidth: .infinity , minHeight: 150)
-                .padding(30)
-                .background(.white)
-                .cornerRadius(20)
-                .padding(20)
-                
                 Spacer()
             }
         }
