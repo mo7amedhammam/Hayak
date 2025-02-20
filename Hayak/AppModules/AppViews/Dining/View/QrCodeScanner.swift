@@ -73,8 +73,11 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
           previewLayer.videoGravity = .resizeAspectFill
           viewController.view.layer.addSublayer(previewLayer)
 
-          captureSession.startRunning()
-
+        // Run the capture session on a background thread to prevent UI blocking
+             DispatchQueue.global(qos: .userInitiated).async {
+                 captureSession.startRunning()
+             }
+        
           return viewController
       }
 

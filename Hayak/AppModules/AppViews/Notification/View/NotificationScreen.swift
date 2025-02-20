@@ -20,18 +20,17 @@ struct NotificationScreen: View {
                             .resizable()
                             .frame(width: 20 , height: 15)
                         Spacer()
-                        Text("Notification")
+                        Text("Notification".localized())
                             .font(.custom("LamaSans-Bold", size: 14))
                             .foregroundColor( Color("main1"))
                         Spacer()
                         Spacer()
-                            .frame(width: 40)
+                            .frame(width: 20)
                     }
                     .frame(height: 60)
                     .padding(.horizontal , 15)
                 }
-                .frame(height: 100)
-                .frame(maxWidth: .infinity)
+                .frame(height: 50)
                 .background(.white)
                                 
                 List {
@@ -50,19 +49,25 @@ struct NotificationScreen: View {
                                         .foregroundColor( Color("main1"))
                                 }
                             }
-                        .frame(width: .infinity , height: 88)
+                        .frame( height: 88)
+                        .frame(maxWidth: .infinity,alignment: .leading)
+                        .padding(.horizontal)
                         .background(.white)
-                        .cornerRadius(40)
-                        
+                        .cornerRadius(15)
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
+                        .padding(.vertical,-5)
                     }
                 }
-                .padding(.horizontal, 15) // Add vertical padding between cells
+ // Add vertical padding between cells
+                .padding(.horizontal, -8) // Add vertical padding between cells
+
                 .listStyle(.plain)
-                .listRowSpacing(10)
-                .listRowSeparator(.hidden, edges: .all)
+//                .listRowSpacing(1)
+
             }
             .background(Color("bg1"))
-            .ignoresSafeArea()
+//            .ignoresSafeArea()
         }
     }
 }

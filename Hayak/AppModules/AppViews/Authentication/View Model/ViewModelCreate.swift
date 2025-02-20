@@ -31,16 +31,33 @@ class ViewModelCreate: ObservableObject {
             self.errorMessage = "Please enter your name."
             return
         }
+        guard validateInput(name) else {
+            errorMessage = "Only alphabetic characters and spaces are allowed."
+            return
+        }
+        
         
         guard !mobile.isEmpty else {
             self.errorMessage = "Please enter a valid phone number"
             return
         }
         
-        guard !passwordHash.isEmpty else {
-            self.errorMessage = "Password must be at least 8 characters long"
+        guard (mobile.contains("+966")) && (mobile.count == 13) else {
+            self.errorMessage = "phone number must start with +966 and 9 digits"
             return
         }
+        
+        guard !passwordHash.isEmpty else {
+            self.errorMessage = "Password must be at least 8 characters long, contain at least one number, and one special character."
+            return
+        }
+        
+        // Validate the password using the reusable function
+          guard isValidPassword(passwordHash) else {
+              self.errorMessage = "Password must be at least 8 characters long, contain at least one number, and one special character."
+              return
+          }
+        
         
         guard !confirmPassword.isEmpty else {
             self.errorMessage = "Please confirm your password."
@@ -57,10 +74,6 @@ class ViewModelCreate: ObservableObject {
             return
         }
         
-        guard (mobile.contains("+966")) && (mobile.count == 13) else {
-            self.errorMessage = "phone number must start with +966 and 9 digits"
-            return
-        }
         
         let newMobile = mobile.replacingOccurrences(of: "+966", with: "")
         
@@ -75,7 +88,7 @@ class ViewModelCreate: ObservableObject {
         let target = Authintications.Create(parameters: parametersArr)
         //print(parametersarr)
         // Call the API using the BaseNetwork class
-        BaseNetwork.CallApi(target, BaseResponse<SignUpResponse>.self)
+        BaseNetwork.shared.CallApi(target, BaseResponse<SignUpResponse>.self)
             .sink {[weak self] completion in
                 guard let self = self else {return}
 

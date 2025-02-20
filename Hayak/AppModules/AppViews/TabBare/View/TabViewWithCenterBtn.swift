@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum OrderTypes:Int{
+    case PickUp = 1
+    case Dinning = 2
+}
+
 struct TabViewWithCenterBtn: View {
     @State private var selectedIndex = 0
     
@@ -22,6 +27,7 @@ struct TabViewWithCenterBtn: View {
                     
                     NavigationView{
                         PicUpView()
+                            .environmentObject(MainPickUpVM.shared)
                     }
                     .tabItem {
                         Image("picup")
@@ -77,6 +83,7 @@ struct TabViewWithCenterBtn: View {
                             
                             Button(action: {
                                 selectedIndex = 1
+                                Helper.shared.selectedordertype = .PickUp
                             }) {
                                 VStack (spacing : 8){
                                     Image("picup")
@@ -106,6 +113,7 @@ struct TabViewWithCenterBtn: View {
                             
                             Button(action: {
                                 selectedIndex = 3
+                                Helper.shared.selectedordertype = .Dinning
                             }) {
                                 VStack (spacing : 8){
                                     Image("dining")
@@ -156,6 +164,7 @@ struct TabViewWithCenterBtn: View {
                 }
                 .edgesIgnoringSafeArea(.bottom)
             }
+            .hideNavigationBar()
     }
 }
 

@@ -87,8 +87,9 @@ struct OnBoardingScreen: View {
                                 Button(action: {
                                     // get started login
                                     self.isActive = true
+                                    Helper.shared.onBoardOpened(opened: true)
                                 }, label: {
-                                    Text("Get Started")
+                                    Text("Get Started".localized())
                                         .frame(height: 50) // Set the height here
                                         .frame(maxWidth: .infinity)
                                         .font(.custom(fontEnum.medium.rawValue, size: 14))

@@ -27,6 +27,7 @@ enum Authintications {
 }
 
 extension Authintications : TargetType {
+    
     var path: String {
         switch self {
         case .Create:

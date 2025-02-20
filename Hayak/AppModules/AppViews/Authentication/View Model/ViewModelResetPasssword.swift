@@ -32,6 +32,13 @@ class ViewModelResetPasssword: ObservableObject {
             return
         }
         
+        
+        // Validate the password using the reusable function
+        guard isValidPassword(newPassword) else {
+            self.errorMessage = "Password must be at least 8 characters long, contain at least one number, and one special character."
+            return
+        }
+        
         // Input validation logic
         guard !ConfirmPassword.isEmpty else {
             self.errorMessage = "Please Confirm new password."
@@ -45,7 +52,7 @@ class ViewModelResetPasssword: ObservableObject {
         }
         
         let newMobile = mobile.replacingOccurrences(of: "+966", with: "")
-
+        
         
         isLoading = true
         errorMessage = nil
@@ -55,7 +62,7 @@ class ViewModelResetPasssword: ObservableObject {
         let target = Authintications.ResetPassword(parameters: parametersArr)
         //print(parametersarr)
         // Call the API using the BaseNetwork class
-        BaseNetwork.CallApi(target, BaseResponse<OtpResponse>.self)
+        BaseNetwork.shared.CallApi(target, BaseResponse<OtpResponse>.self)
             .sink { completion in
                 // Handle completion
                 self.isLoading = false

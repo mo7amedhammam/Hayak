@@ -64,7 +64,7 @@ struct ExtractedViewEditAddressScreen: View {
     
     @State private var isOn: Bool = false
     
-    @State var phoneNumber: String = ""
+    @State var phoneNumber: String = "+966"
     
     
     @State private var textLableName: String = "Full Name"
@@ -87,6 +87,15 @@ struct ExtractedViewEditAddressScreen: View {
                     
                     CustomTextfieldView(textLable: $textLableName , text: $textLableNameTitle , title: $textNamePlaceholder, image: $imageName)
                     PhoneNumberView(phoneNumber: $phoneNumber)
+                        .onChange(of: phoneNumber) { newValue in
+                            if newValue.count < 4{
+                                phoneNumber = "+966"
+                            } else if newValue.count > 13   {
+                                phoneNumber = String(newValue.prefix(13))
+                            }
+                        }
+                    
+                    
                     CustomTextfieldView(textLable: $textLableAddresses , text: $textLableAddressesTitle , title: $textAddressesPlaceholder, image: $imageAddresses)
                     
                     Spacer()

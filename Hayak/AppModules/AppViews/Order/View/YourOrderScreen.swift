@@ -71,6 +71,7 @@ struct ExtractedViewYourOrderScreen : View {
                             cpsuleBtnView(item: item,isselecteditem: .constant(item == selecteditem),onAction: {
                                 selecteditem = item
                             })
+                            .frame(height: 40)
 //                            .tag(item.id)
                         }
                     }
@@ -133,6 +134,8 @@ struct ExtractedViewYourOrderScreen : View {
                                                 .font(.custom(fontEnum.medium.rawValue, size:12))
                                         }
                                     })
+                                    .buttonStyle(.plain)
+
                                     
                                     Spacer()
                                     Button(action: {
@@ -147,17 +150,8 @@ struct ExtractedViewYourOrderScreen : View {
                                                 .font(.custom(fontEnum.medium.rawValue, size:12))
                                         }
                                     })
+                                    .buttonStyle(.plain)
                                   
-                                    .sheet(isPresented: $rateOrder) {
-                                        if #available(iOS 16.0, *) {
-                                            RateOrderView(rating: $rating)
-                                                .presentationDetents([.fraction(0.6) , .fraction(0.9)])
-                                                .presentationDragIndicator(.hidden)
-                                        } else {
-                                            // Fallback on earlier versions
-                                        }
-                                    }
-
 
                                 }
                                 .frame(height: 30)
@@ -185,6 +179,18 @@ struct ExtractedViewYourOrderScreen : View {
             }
             .listStyle(.plain)
 
+        }
+        .sheet(isPresented: $rateOrder) {
+            if #available(iOS 16.0, *) {
+                RateOrderView(rating: $rating)
+                    .presentationDetents([.fraction(0.6) , .fraction(0.9)])
+                    .presentationDragIndicator(.hidden)
+            } else {
+                // Fallback on earlier versions
+                BottomSheetView1(isPresented: $rateOrder, content: {
+                    RateOrderView(rating: $rating)
+                })
+            }
         }
         
     }
@@ -277,7 +283,7 @@ struct RateOrderView: View {
                         .padding(.horizontal , 20)
                 })
             }
-            .frame(width: .infinity)
+            .frame(maxWidth: .infinity)
         }
         .padding(20)
     }

@@ -11,7 +11,7 @@ import Combine
 
 class ViewModelSendOtp: ObservableObject {
     // Published properties to track the sign-up state
-    @Published var isLoading: Bool = false
+    @Published var isLoading: Bool? = false
     @Published var OTPSuccess: Bool = false
     @Published var errorMessage: String? = nil
     // Combine cancellable for API calls
@@ -58,7 +58,7 @@ class ViewModelSendOtp: ObservableObject {
         let target = Authintications.SendOTP(parameters: parametersArr)
         //print(parametersarr)
         // Call the API using the BaseNetwork class
-        BaseNetwork.CallApi(target, BaseResponse<OtpResponse>.self)
+        BaseNetwork.shared.CallApi(target, BaseResponse<OtpResponse>.self)
             .sink { [weak self] completion in
                 guard let self = self else{return}
 

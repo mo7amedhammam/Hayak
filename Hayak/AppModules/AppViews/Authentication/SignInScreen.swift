@@ -35,9 +35,7 @@ struct SignInScreen: View {
             }
                 
             
-//            if viewModel.isLoading {
-//                ProgressView("sign in...") // Show loading indicator
-//            }            
+          
         }.hideNavigationBar()
             .localizeView()
             .showHud(isShowing: $viewModel.isLoading, text: "sign in...")
@@ -77,7 +75,7 @@ struct ExtractedViewSignIn: View {
     @State private var isChecked: Bool = false
     @State private var GoToSignUp: Bool = false
     @State private var GoToForgetPassword: Bool = false
-    @State private var GoToTabViewWithCenterBtn : Bool = false
+//    @State private var GoToTabViewWithCenterBtn : Bool = false
     @State private var passwordNumber: String = ""
     @State private var passwordPlaceholder: String = "Enter your password"
     @State private var textLable: String           = "Password"
@@ -96,10 +94,10 @@ struct ExtractedViewSignIn: View {
                     Image("LOGO")
                         .resizable()
                         .frame(width: 170 , height: 80)
-                    Text("Welcome Back!")
+                    Text("Welcome Back!".localized())
                         .font(.custom("LamaSans-Bold", size: 18))
                         .foregroundColor(Color("main1"))
-                    Text("Sign in to continue")
+                    Text("Sign in to continue".localized())
                         .font(.custom(fontEnum.medium.rawValue, size: 13))
                         .foregroundColor(Color("main1"))
                 }
@@ -110,12 +108,21 @@ struct ExtractedViewSignIn: View {
                 VStack {
                     
                     PhoneNumberView(phoneNumber: $phoneNumber)
-                    PasswordView(passwordNumber: $passwordNumber, passwordPlaceholder: $passwordPlaceholder, textLable: $textLable, image: $image, isPasswordWrong: $isPasswordWrong)
+                        .onChange(of: phoneNumber) { newValue in
+                            if newValue.count < 4{
+                                phoneNumber = "+966"
+                            } else if newValue.count > 13   {
+                                phoneNumber = String(newValue.prefix(13))
+                            }
+                        }
+                    
+                    
+                    PasswordView(passwordNumber: $passwordNumber, passwordPlaceholder: passwordPlaceholder, textLable: textLable, image: image, isPasswordWrong: $isPasswordWrong)
                     Spacer()
                     
                     HStack {
                         CheckboxView(isChecked: $isChecked)
-                        Text("Remember me")
+                        Text("Remember me".localized())
                             .foregroundColor(Color("main1"))
                             .font(.custom(fontEnum.medium.rawValue, size: 13))
                         Spacer()
@@ -124,7 +131,7 @@ struct ExtractedViewSignIn: View {
                             print("Button tapped")
                             GoToForgetPassword = true
                         }) {
-                            Text("Forget password?")
+                            Text("Forget password?".localized())
                                 .font(.custom(fontEnum.medium.rawValue, size: 14))
                                 .foregroundColor(Color("main2"))
                         }
@@ -132,19 +139,35 @@ struct ExtractedViewSignIn: View {
                     .frame(height: 25)
                     .padding()
                     
-                    Button(action: {
+                    
+                    CustomButton(Title: "Sign in",IsDisabled: .constant(false), action: {
                         UIApplication.shared.endEditing()
                         //Sign in
-                        viewModel.Login(mobile: phoneNumber , password: passwordNumber)
-                    }, label: {
-                        Text("Sign in")
-                            .frame(height: 50) // Set the height here
-                            .frame(maxWidth: .infinity)
-                            .font(.custom(fontEnum.medium.rawValue, size: 14))
-                            .foregroundColor(Color("bg1")).background(Color("main2"))
-                            .cornerRadius(20)
-                            .padding(.horizontal , 20)
+//                            viewModel.Login(mobile: phoneNumber , password: passwordNumber)
+                        Task{
+                            await viewModel.Login1(mobile: phoneNumber , password: passwordNumber)
+                        }
+
                     })
+                    .frame(height: 50) // Set the height here
+
+                    
+//                    Button(action: {
+//                        UIApplication.shared.endEditing()
+//                        //Sign in
+////                            viewModel.Login(mobile: phoneNumber , password: passwordNumber)
+//                        Task{
+//                            await viewModel.Login1(mobile: phoneNumber , password: passwordNumber)
+//                        }
+//                    }, label: {
+//                        Text("Sign in".localized())
+//                            .frame(height: 50) // Set the height here
+//                            .frame(maxWidth: .infinity)
+//                            .font(.custom(fontEnum.medium.rawValue, size: 14))
+//                            .foregroundColor(Color("bg1")).background(Color("main2"))
+//                            .cornerRadius(20)
+//                            .padding(.horizontal , 20)
+//                    })
                     
                     Spacer()
                     
@@ -188,13 +211,13 @@ struct ExtractedViewSignIn: View {
                     )
                     
                     
-                    NavigationLink(
-                        destination: TabViewWithCenterBtn().navigationBarBackButtonHidden(true),
-                        isActive: $GoToTabViewWithCenterBtn ,
-                        label: {
-                            EmptyView()
-                        }
-                    )
+//                    NavigationLink(
+//                        destination: TabViewWithCenterBtn().navigationBarBackButtonHidden(true),
+//                        isActive: $GoToTabViewWithCenterBtn ,
+//                        label: {
+//                            EmptyView()
+//                        }
+//                    )
                     
                 } .frame(height: 80)
                 
@@ -202,13 +225,14 @@ struct ExtractedViewSignIn: View {
             }
             
             
-            .onChange(of: viewModel.loginSuccess) { _ in
+            .onChange(of: viewModel.loginSuccess) { newvalue in
                 
                 phoneNumber    = ""
                 passwordNumber = ""
-                
-                if  Helper.shared.CheckIfLoggedIn() {
-                    GoToTabViewWithCenterBtn = true
+                if newvalue == true{
+//                if  Helper.shared.CheckIfLoggedIn() {
+                    Helper.shared.changeRoot(toView: TabViewWithCenterBtn())
+//                    TabViewWithCenterBtn()
                 } else {
                     viewModel.errorMessage = "try again"
                 }

@@ -28,7 +28,7 @@ struct PointsScreen: View {
                         .frame(width: 90 , height: 45)
                     
                     
-                    VStack {
+//                    VStack {
 
                         HStack (spacing : 10){
                             Image("gift")
@@ -50,8 +50,8 @@ struct PointsScreen: View {
                                 .frame(width: 30 , height: 30)
                         }
                         .padding()
-                    }
-                    .frame(width: .infinity)
+//                    }
+//                    .frame(maxWidth: .infinity)
                     .frame(height: 80)
                     .background(Color("bg1"))
                     .overlay(
@@ -67,20 +67,21 @@ struct PointsScreen: View {
                     
                     VStack(spacing : 10) {
 
+                        Button(action: {
+                            howItWork.toggle()
+
+                        }, label: {
                         HStack (spacing : 10){
                             Text("How it works?")
                                 .font(.custom(fontEnum.bold.rawValue, size: 14))
                                 .foregroundColor(Color("main1"))
                             Spacer()
-                            Image(systemName: howItWork ?  "chevron.down" : "chevron.up")
+                            Image(systemName: howItWork ?  "chevron.up" : "chevron.down")
                                 .frame(width: 40 , height: 40)
                                 .foregroundColor(Color("main2"))
-                                .onTapGesture {
-                                    howItWork.toggle()
-                                }
                         }
                         .padding()
-                        
+                        })
                         
                         if howItWork {
                             
@@ -109,7 +110,7 @@ struct PointsScreen: View {
                         }
                     
                     }
-                    .frame(width: .infinity)
+//                    .frame(maxWidth: .infinity)
                     .background(Color("bg1"))
                     .overlay(
                         RoundedCorners(radius: 10, corners: .allCorners)

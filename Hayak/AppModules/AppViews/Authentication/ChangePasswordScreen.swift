@@ -42,9 +42,9 @@ struct ChangePasswordScreen: View {
                 ScrollView {
                         VStack {
                             
-                            PasswordView(passwordNumber: $passwordNumber, passwordPlaceholder: $passwordPlaceholder, textLable: $textLable, image: $image, isPasswordWrong: $isPasswordWrong)
+                            PasswordView(passwordNumber: $passwordNumber, passwordPlaceholder: passwordPlaceholder, textLable: textLable, image: image, isPasswordWrong: $isPasswordWrong)
                             
-                            PasswordView(passwordNumber: $confirmpasswordNumber, passwordPlaceholder: $confirmpasswordPlaceholder, textLable: $confirmtextLable, image: $image, isPasswordWrong: $isPasswordWrongConfirm)
+                            PasswordView(passwordNumber: $confirmpasswordNumber, passwordPlaceholder: confirmpasswordPlaceholder, textLable: confirmtextLable, image: image, isPasswordWrong: $isPasswordWrongConfirm)
 
                             Button(action: {
                                 //Save Now !

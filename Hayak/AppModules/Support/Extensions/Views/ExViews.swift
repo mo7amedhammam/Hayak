@@ -51,44 +51,49 @@ extension UIApplication {
 
 struct PasswordView: View {
     @Binding var passwordNumber: String
-    @Binding var passwordPlaceholder: String
-    @Binding var textLable: String
-    @Binding var image: String
-    
+    var passwordPlaceholder: String
+    var textLable: String
+    var image: String
     @Binding var isPasswordWrong: Bool
+    
+    @State private var isPasswordVisible: Bool = false // State to toggle password visibility
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text(textLable)
+            Text(textLable.localized())
                 .font(.custom("LamaSans-Bold", size: 12))
                 .foregroundColor(Color("main1"))
             
             HStack {
                 CustomSecureTextField(
                     text: $passwordNumber,
+                    isSecure: .constant(!isPasswordVisible), // Pass negation of visibility state
                     placeholder: passwordPlaceholder,
                     placeholderColor: UIColor(named: "empty text field") ?? .gray,
-                    textColor:  (isPasswordWrong ? (UIColor(named: "wrong") ?? .black ) : UIColor(named: "main1") ?? .black)
+                    textColor: (isPasswordWrong ? (UIColor(named: "wrong") ?? .black ) : UIColor(named: "main1") ?? .black)
                 )
-                .font(.custom("LamaSans-Regular", size: 10))
-                .padding(.trailing, 32) // Add padding to make room for the icon
-                .overlay(
-                    HStack {
-                        Spacer()
-                        Image(image) // Replace with your desired icon
-                            .foregroundColor(Color("AAAAAA"))
-                            .padding(.trailing, 8)
-                    }
-                )
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .padding(.trailing, 32)
+                
+                Button(action: {
+                    isPasswordVisible.toggle() // Toggle password visibility
+                }) {
+                    Image(systemName: isPasswordVisible ? "eye.slash" : "eye")
+                        .foregroundColor(Color("main1"))
+                }
+                .padding(.trailing, 8)
             }
             .padding(.vertical, 8)
             .overlay(Rectangle().frame(height: 1).padding(.top, 35))
             .foregroundColor(.gray)
         }
         .padding(.all, 20)
-        .frame(height: 100) // Set the desired height here
+        .frame(height: 100)
     }
 }
+
+
 
 
 

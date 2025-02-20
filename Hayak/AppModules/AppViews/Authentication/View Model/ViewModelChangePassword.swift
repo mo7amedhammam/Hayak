@@ -29,7 +29,7 @@ class ViewModelChangePassword: ObservableObject {
         let target = Authintications.ChangePassword(parameters: parametersArr)
         //print(parametersarr)
         // Call the API using the BaseNetwork class
-        BaseNetwork.CallApi(target, BaseResponse<ChangePasswordResponse>.self)
+        BaseNetwork.shared.CallApi(target, BaseResponse<ChangePasswordResponse>.self)
             .sink { completion in
                 // Handle completion
                 self.isLoading = false

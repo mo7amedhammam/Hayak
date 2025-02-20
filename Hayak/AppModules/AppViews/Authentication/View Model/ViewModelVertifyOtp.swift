@@ -11,13 +11,13 @@ import Combine
 
 class ViewModelVertifyOtp: ObservableObject {
     // Published properties to track the sign-up state
-    @Published var isLoading: Bool = false
+    @Published var isLoading: Bool? = false
     @Published var OTPSuccess: Bool = false
     @Published var errorMessage: String? = nil
     // Combine cancellable for API calls
     private var cancellables = Set<AnyCancellable>()
     
-    var secondsCount: Int     = 0{
+    var secondsCount: Int     = 0 {
         didSet{
             startTimer()
         }
@@ -53,7 +53,7 @@ class ViewModelVertifyOtp: ObservableObject {
         let target = Authintications.VerifyOTP(parameters: parametersArr)
         //print(parametersarr)
         // Call the API using the BaseNetwork class
-        BaseNetwork.CallApi(target, BaseResponse<OtpResponse>.self)
+        BaseNetwork.shared.CallApi(target, BaseResponse<OtpResponse>.self)
             .sink {[weak self] completion in
                 guard let self = self else{return}
 
