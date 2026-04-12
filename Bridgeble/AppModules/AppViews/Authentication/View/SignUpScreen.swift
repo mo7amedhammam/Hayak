@@ -52,7 +52,8 @@ struct SignUpScreen: View {
                 EmptyView()
             }
             
-        }.hideNavigationBar()
+        }
+        .hideNavigationBar()
             .localizeView()
         
             .showHud(isShowing: $viewModel.isLoading, text: "Signing Up...")

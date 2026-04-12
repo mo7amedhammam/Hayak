@@ -271,7 +271,7 @@ struct CustomHeaderView: View {
                 Spacer()
                 
                 // Title
-                Text(title)
+                Text(title.localized())
                     .font(.headline)
                     .foregroundColor(Color("main1"))
                     .frame(maxWidth: .infinity, alignment: .center)
