@@ -40,6 +40,31 @@ extension View {
     }
 }
 
+struct AppRouteLink<Route: Hashable, Destination: View>: View {
+    let route: Route
+    @Binding var selection: Route?
+    let destination: Destination
+
+    init(
+        route: Route,
+        selection: Binding<Route?>,
+        @ViewBuilder destination: () -> Destination
+    ) {
+        self.route = route
+        self._selection = selection
+        self.destination = destination()
+    }
+
+    var body: some View {
+        NavigationLink(
+            tag: route,
+            selection: $selection,
+            destination: { destination },
+            label: { EmptyView() }
+        )
+    }
+}
+
 //MARK:  --- Extension to enable swipe to back even if nafigation bar is hidden ---
 extension UINavigationController: UIGestureRecognizerDelegate {
     override open func viewDidLoad() {

@@ -7,6 +7,28 @@
 
 import SwiftUI
 
+struct ReusableActionButton: View {
+    let title: String
+    var foregroundColor: Color = .main2
+    var backgroundColor: Color = .bg
+    var font: Font = .Medium(size: 14)
+    var cornerRadius: CGFloat = 10
+    var height: CGFloat = 50
+    var action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Text(title.localized())
+                .frame(maxWidth: .infinity)
+                .frame(height: height)
+                .font(font)
+                .foregroundColor(foregroundColor)
+                .background(backgroundColor)
+                .cornerRadius(cornerRadius)
+        }
+    }
+}
+
 struct CustomButton: View {
 //    @State private var language = LocalizationService.shared.language
 
@@ -55,6 +77,11 @@ struct CustomButton: View {
 #Preview {
     CustomButton(Title: "button",IsDisabled: .constant(false), action:{})
         .frame(width:100,height: 50)
+}
+
+#Preview("ReusableActionButton") {
+    ReusableActionButton(title: "button", action: {})
+        .padding()
 }
 
 

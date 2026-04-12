@@ -8,34 +8,18 @@
 import SwiftUI
 
 struct WellcomeLoginScreen: View {
-    
-    @State var isActive : Bool = false
-    //    @State var isActiveSignUp : Bool = false
-    //    @State var isActiveHome : Bool = false
-    @State var destination : AnyView = AnyView(EmptyView())
-    
+    @State private var selectedRoute: Route?
+
+    private enum Route: Hashable {
+        case signIn
+        case signUp
+        case home
+    }
+
     var body: some View {
-        
-        
         ZStack(alignment : .bottom) {
             Color(.bg).ignoresSafeArea()
                 .navigationBarBackButtonHidden(true)
-            
-            NavigationLink(
-                destination: destination,
-                isActive: $isActive,
-                label: {
-                    EmptyView()
-                }
-            )
-            
-            //            NavigationLink(
-            //                destination: SignUpScreen().navigationBarBackButtonHidden(true),
-            //                isActive: $isActiveSignUp,
-            //                label: {
-            //                    EmptyView()
-            //                }
-            //            )
             
             VStack {
                 
@@ -46,71 +30,45 @@ struct WellcomeLoginScreen: View {
                 
                 Spacer()
                 ZStack (alignment : .center)  {
-                    Color.clear.ignoresSafeArea()
-                    Image(.imgbg)
-                        .resizable()
+                    
+                    Color.mainBlue
+                        .cornerRadius(33, corners: [.topLeft,.topRight])
                         .ignoresSafeArea()
                     
                     VStack (spacing : 20){
                         
-                        Text("Welcome to Bridgeble")
+                        Text("Welcome to Bridgeble_".localized())
                             .font(.Bold(size: 18))
                             .foregroundColor(.white)
                             .padding(.top , 20)
                         
                         VStack {
-                            Text("Restaurants and search by cuisine, price,")
+                            Text("Restaurants and search by cuisine, price,_".localized())
                                 .font(.Medium(size: 13))
                                 .foregroundColor(.white)
                                 .frame(height: 16)
                             
-                            Text("location, and more.")
+                            Text("location, and more._".localized())
                                 .font(.Medium(size: 13))
                                 .foregroundColor(.white)
                                 .frame(height: 16)
                         }
                         
-                        Button(action: {
-                            // get started login
-                            destination = AnyView( SignInScreen().navigationBarBackButtonHidden(true)
-                            )
-                            self.isActive = true
-                        }, label: {
-                            Text("Sign in")
-                                .frame(height: 50) // Set the height here
-                                .frame(maxWidth: .infinity)
-                                .font(.Medium(size: 14))
-                                .foregroundColor(.main).background(.bg)
-                                .cornerRadius(10)
-                        })
-                        
-                        Button(action: {
-                            // get started login
-                            destination = AnyView( SignUpScreen().navigationBarBackButtonHidden(true)
-                            )
-                            self.isActive = true
-                        }, label: {
-                            Text("Sign Up")
-                                .frame(height: 50) // Set the height here
-                                .frame(maxWidth: .infinity)
-                                .font(.Medium(size: 14))
-                                .foregroundColor(.main).background(.bg)
-                                .cornerRadius(10)
-                        })
-                        Button(action: {
-                            // go to home
-                            destination = AnyView( TabViewWithCenterBtn().navigationBarBackButtonHidden(true)
-                            )
-                            isActive = true
-                            
-                        }, label: {
-                            Text("Go To Home")
-                                .frame(height: 50) // Set the height here
-                                .frame(maxWidth: .infinity)
-                                .font(.Medium(size: 14))
-                                .foregroundColor(.main).background(.bg)
-                                .cornerRadius(10)
-                        })
+                        ReusableActionButton(title: "Sign_in_") {
+                            selectedRoute = .signIn
+                        }
+
+                        ReusableActionButton(title: "Sign Up_") {
+                            selectedRoute = .signUp
+                        }
+
+                        ReusableActionButton(
+                            title: "Go To Home_",
+                            foregroundColor: .white,
+                            backgroundColor: .main2
+                        ) {
+                            selectedRoute = .home
+                        }
                         
                     }
                     .padding(16)
@@ -119,9 +77,25 @@ struct WellcomeLoginScreen: View {
                 .frame(height: 330)
             }
             
-            
-        }.hideNavigationBar()
-            .localizeView()
+        }
+        .background(routeLinks)
+        .hideNavigationBar()
+        .localizeView()
+    }
+
+    @ViewBuilder
+    private var routeLinks: some View {
+        AppRouteLink(route: Route.signIn, selection: $selectedRoute) {
+            SignInScreen().navigationBarBackButtonHidden(true)
+        }
+
+        AppRouteLink(route: Route.signUp, selection: $selectedRoute) {
+            SignUpScreen().navigationBarBackButtonHidden(true)
+        }
+
+        AppRouteLink(route: Route.home, selection: $selectedRoute) {
+            TabViewWithCenterBtn().navigationBarBackButtonHidden(true)
+        }
     }
 }
 

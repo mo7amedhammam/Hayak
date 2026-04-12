@@ -44,7 +44,7 @@ struct OnBoardingScreen: View {
                 ForEach(0..<onBoardingStepsArr.count) { index  in
                     
                     VStack {
-                        Spacer()
+//                        Spacer()
                         Spacer()
                         Image(onBoardingStepsArr[index].image)
                             .frame(width: 340 , height: 290)
@@ -92,10 +92,11 @@ struct OnBoardingScreen: View {
                                         .frame(height: 50) // Set the height here
                                         .frame(maxWidth: .infinity)
                                         .font(.Medium(size: 14))
-                                        .foregroundColor(.main).background(.bg)
+                                        .foregroundColor(.main2).background(.bg)
                                         .cornerRadius(20)
                                         .padding(.top , 10)
                                 })
+                                .padding(.vertical)
                                 
                                 NavigationLink(
                                     destination: WellcomeLoginScreen().navigationBarBackButtonHidden(true),
@@ -119,6 +120,7 @@ struct OnBoardingScreen: View {
                                         }
                                     }
                                 }
+                                
 
                                 Spacer()
 
@@ -126,7 +128,7 @@ struct OnBoardingScreen: View {
                             .padding(16)
                         }
 //                        .padding(.horizontal , 1)
-                        .frame(height: 200)
+                        .frame(height: 230)
                     }
                     .tag(index)
                 }

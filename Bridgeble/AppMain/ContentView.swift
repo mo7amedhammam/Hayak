@@ -9,35 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var isActive = false
-    @State private var GoToTabViewWithCenterBtn = false
     var body: some View {
-        
-        NavigationView {
             ZStack {
-                Color.white.ignoresSafeArea()
+                Color.mainBlue.ignoresSafeArea()
                 
-                Image("splash")
-                    .resizable()
-                    .ignoresSafeArea()
-                
-                
-                NavigationLink(
-                    destination: OnBoardingScreen(),
-                    isActive: $isActive,
-                    label: {
-                        EmptyView()
-                    }
-                )
-                
-                
-//                NavigationLink(
-//                    destination: TabViewWithCenterBtn().navigationBarBackButtonHidden(true),
-//                    isActive: $GoToTabViewWithCenterBtn ,
-//                    label: {
-//                        EmptyView()
-//                    }
-//                )
+                Image(.bridgeble)
+
                 
             }
             
@@ -47,7 +24,7 @@ struct ContentView: View {
 ////                        GoToTabViewWithCenterBtn = true
 //                        Helper.shared.changeRoot(toView: TabViewWithCenterBtn())
 //                    } else {
-                        if Helper.shared.checkOnBoard(){
+                        if !Helper.shared.checkOnBoard(){
                             Helper.shared.changeRoot(toView: TabViewWithCenterBtn())
                         }else{
                             Helper.shared.changeRoot(toView: OnBoardingScreen())
@@ -55,7 +32,7 @@ struct ContentView: View {
                         }
 //                    }
                 }
-            }
+//            }
             
         }
         .hideNavigationBar()

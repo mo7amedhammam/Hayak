@@ -139,35 +139,31 @@ class Helper: NSObject {
         return (isReachable && !needsConnection)
     }
     
-    func changeRoot(toView:any View) {
+    func changeRoot(toView: any View) {
         let window = UIApplication
             .shared
             .connectedScenes
             .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
             .first { $0.isKeyWindow }
         
-        //                                    window?.rootViewController = UIHostingController(rootView: SignInView())
-        //                                    window?.makeKeyAndVisible()
-        
         if let window = window {
-            let signInView = AnyView(toView)
-            let signInHostingController = UIHostingController(rootView: signInView)
-            let navigationController = UINavigationController(rootViewController: signInHostingController)
-            
-            // Disable swipe back gesture
-            navigationController.interactivePopGestureRecognizer?.isEnabled = false
-            
-            // Set up the flip animation
+            // Use only UIHostingController, no navigation controller wrapping
+            let rootHostingController = UIHostingController(rootView: AnyView(toView))
+            rootHostingController.modalPresentationStyle = .fullScreen
+
+            // Optional: animate the transition
             let transition = CATransition()
             transition.duration = 0.5
             transition.type = CATransitionType(rawValue: "flip")
             transition.subtype = CATransitionSubtype(rawValue: "fromRight")
             window.layer.add(transition, forKey: kCATransition)
-            
-            window.rootViewController = navigationController
+
+            window.rootViewController = rootHostingController
             window.makeKeyAndVisible()
         }
     }
+    
+
 }
 
 //MARK: -- view helper --
@@ -207,3 +203,4 @@ extension View {
     }
 }
 #endif
+
