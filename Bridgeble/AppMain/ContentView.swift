@@ -24,12 +24,13 @@ struct ContentView: View {
 ////                        GoToTabViewWithCenterBtn = true
 //                        Helper.shared.changeRoot(toView: TabViewWithCenterBtn())
 //                    } else {
-                        if !Helper.shared.checkOnBoard(){
-                            Helper.shared.changeRoot(toView: TabViewWithCenterBtn())
-                        }else{
+                    
+//                        if !Helper.shared.checkOnBoard(){
+//                            Helper.shared.changeRoot(toView: TabViewWithCenterBtn())
+//                        }else{
                             Helper.shared.changeRoot(toView: OnBoardingScreen())
                             //                        isActive = true
-                        }
+//                        }
 //                    }
                 }
 //            }

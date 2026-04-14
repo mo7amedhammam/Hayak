@@ -17,70 +17,73 @@ struct WellcomeLoginScreen: View {
     }
 
     var body: some View {
-        ZStack(alignment : .bottom) {
-            Color(.bg).ignoresSafeArea()
-                .navigationBarBackButtonHidden(true)
-            
-            VStack {
+        NavigationView {
+            ZStack(alignment : .bottom) {
+                Color(.bg).ignoresSafeArea()
+                    .navigationBarBackButtonHidden(true)
                 
-                Image("wellcome1")
-                    .frame(width: 300 , height: 170)
-                Image("wellcome2")
-                    .frame(width: 260 , height: 200)
-                
-                Spacer()
-                ZStack (alignment : .center)  {
+                VStack {
                     
-                    Color.mainBlue
-                        .cornerRadius(33, corners: [.topLeft,.topRight])
-                        .ignoresSafeArea()
+                    Image("wellcome1")
+                        .frame(width: 300 , height: 170)
+                    Image("wellcome2")
+                        .frame(width: 260 , height: 200)
                     
-                    VStack (spacing : 20){
+                    Spacer()
+                    ZStack (alignment : .center)  {
                         
-                        Text("Welcome to Bridgeble_".localized())
-                            .font(.Bold(size: 18))
-                            .foregroundColor(.white)
-                            .padding(.top , 20)
+                        Color.mainBlue
+                            .cornerRadius(33, corners: [.topLeft,.topRight])
+                            .ignoresSafeArea()
                         
-                        VStack {
-                            Text("Restaurants and search by cuisine, price,_".localized())
-                                .font(.Medium(size: 13))
-                                .foregroundColor(.white)
-                                .frame(height: 16)
+                        VStack (spacing : 20){
                             
-                            Text("location, and more._".localized())
-                                .font(.Medium(size: 13))
+                            Text("Welcome to Bridgeble_".localized())
+                                .font(.Bold(size: 18))
                                 .foregroundColor(.white)
-                                .frame(height: 16)
-                        }
-                        
-                        ReusableActionButton(title: "Sign_in_") {
-                            selectedRoute = .signIn
-                        }
+                                .padding(.top , 20)
+                            
+                            VStack {
+                                Text("Restaurants and search by cuisine, price,_".localized())
+                                    .font(.Medium(size: 13))
+                                    .foregroundColor(.white)
+                                    .frame(height: 16)
+                                
+                                Text("location, and more._".localized())
+                                    .font(.Medium(size: 13))
+                                    .foregroundColor(.white)
+                                    .frame(height: 16)
+                            }
+                            
+                            ReusableActionButton(title: "Sign_in_") {
+                                selectedRoute = .signIn
+                            }
 
-                        ReusableActionButton(title: "Sign Up_") {
-                            selectedRoute = .signUp
-                        }
+                            ReusableActionButton(title: "Sign Up_") {
+                                selectedRoute = .signUp
+                            }
 
-                        ReusableActionButton(
-                            title: "Go To Home_",
-                            foregroundColor: .white,
-                            backgroundColor: .main2
-                        ) {
-                            selectedRoute = .home
+                            ReusableActionButton(
+                                title: "Go To Home_",
+                                foregroundColor: .white,
+                                backgroundColor: .main2
+                            ) {
+                                selectedRoute = .home
+                            }
+                            
                         }
+                        .padding(16)
                         
                     }
-                    .padding(16)
-                    
+                    .frame(height: 330)
                 }
-                .frame(height: 330)
+                
             }
-            
+            .background(routeLinks)
+            .hideNavigationBar()
+            .localizeView()
         }
-        .background(routeLinks)
-        .hideNavigationBar()
-        .localizeView()
+        .navigationViewStyle(.stack)
     }
 
     @ViewBuilder
@@ -90,7 +93,8 @@ struct WellcomeLoginScreen: View {
         }
 
         AppRouteLink(route: Route.signUp, selection: $selectedRoute) {
-            SignUpScreen().navigationBarBackButtonHidden(true)
+//            SignUpScreen().navigationBarBackButtonHidden(true)
+            AuthManagerView(hasnavbar: false).navigationBarBackButtonHidden(true)
         }
 
         AppRouteLink(route: Route.home, selection: $selectedRoute) {

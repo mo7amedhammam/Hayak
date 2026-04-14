@@ -17,9 +17,14 @@ struct onBoardingSteps {
 
 
 struct OnBoardingScreen: View {
-       
+//    @State private var selectedRoute: Route?
+//
+//    private enum Route: Hashable {
+//        case started
+//    }
+    
     @State private var CurrentState = 0
-    @State private var isActive = false
+//    @State private var isActive = false
     private let onBoardingStepsArr = [
 
         onBoardingSteps(image: "1", title: "Welcome to Food Delivery", des1: "Reference site about Lorem", des2: "Ipsum, giving information origins", des3: "as well as a random") ,
@@ -85,8 +90,10 @@ struct OnBoardingScreen: View {
                                 
                                 Button(action: {
                                     // get started login
-                                    self.isActive = true
+//                                    self.isActive = true
                                     Helper.shared.onBoardOpened(opened: true)
+//                                    selectedRoute = .started
+                                    Helper.shared.changeRoot(toView: WellcomeLoginScreen().navigationBarHidden(true))
                                 }, label: {
                                     Text("Get Started".localized())
                                         .frame(height: 50) // Set the height here
@@ -98,13 +105,13 @@ struct OnBoardingScreen: View {
                                 })
                                 .padding(.vertical)
                                 
-                                NavigationLink(
-                                    destination: WellcomeLoginScreen().navigationBarBackButtonHidden(true),
-                                    isActive: $isActive,
-                                    label: {
-                                        EmptyView()
-                                    }
-                                )
+//                                NavigationLink(
+//                                    destination: WellcomeLoginScreen().navigationBarBackButtonHidden(true),
+//                                    isActive: $isActive,
+//                                    label: {
+//                                        EmptyView()
+//                                    }
+//                                )
                                 
                     
                                 HStack {
@@ -139,8 +146,16 @@ struct OnBoardingScreen: View {
         .ignoresSafeArea()
 
     }
+    
+//    @ViewBuilder
+//    private var routeLinks: some View {
+//        AppRouteLink(route: Route.started, selection: $selectedRoute) {
+//            WellcomeLoginScreen().navigationBarBackButtonHidden(true)
+//        }
+//    }
 }
 
 #Preview {
     OnBoardingScreen()
 }
+

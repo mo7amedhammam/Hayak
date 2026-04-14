@@ -9,7 +9,13 @@ import SwiftUI
 
 struct AuthManagerView: View {
     var hasnavbar:Bool? = true
+    @State private var selectedRoute: Route?
 
+    private enum Route: Hashable {
+        case signUp
+        case home
+    }
+    
     var body: some View {
         ZStack {
             Color(.bg1).ignoresSafeArea()
@@ -73,7 +79,7 @@ struct AuthManagerView: View {
                             title: "Continue with email_",
                             icon: Image(.emailIcon),
                             action: {
-                                print("Email tapped")
+                                selectedRoute = .signUp
                             }
                         )
                     }
@@ -91,12 +97,24 @@ struct AuthManagerView: View {
                 .padding(.horizontal)
             
             }
+            .background(routeLinks)
             .hideNavigationBar()
             .localizeView()
             //            .showHud(isShowing: $viewModel.isLoading, text: "Signing Up...")
             
         }
 
+    }
+    
+    @ViewBuilder
+    private var routeLinks: some View {
+        AppRouteLink(route: Route.signUp, selection: $selectedRoute) {
+            SignUpScreen().navigationBarBackButtonHidden(true)
+        }
+
+        AppRouteLink(route: Route.home, selection: $selectedRoute) {
+            TabViewWithCenterBtn().navigationBarBackButtonHidden(true)
+        }
     }
 }
 
